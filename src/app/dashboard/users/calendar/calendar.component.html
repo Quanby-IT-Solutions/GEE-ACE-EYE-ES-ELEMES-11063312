@@ -38,7 +38,7 @@
                   <td>
                     <div class="px-3 py-2 cursor-pointer flex w-full justify-center"
                       [ngClass]="{
-                          'bg-blue-600 text-white rounded-full': isSelectedDate(day.date),
+                          'bg-green-600 text-white rounded-full': isSelectedDate(day.date),
                           'text-gray-500 dark:text-gray-100': !day.isCurrentMonth
                       }"
                       (click)="selectDate(day.date)">
@@ -58,11 +58,11 @@
           {{ getDisplayDateTitle() }}
         </div>
         @for (event of selectedDateEvents; track event) {
-          <div class="mb-3 p-4 bg-gradient-to-r from-blue-700 to-blue-400 rounded-lg shadow-lg">
+          <div class="mb-3 p-4 bg-gradient-to-r from-green-700 to-green-400 rounded-lg shadow-lg">
             <div class="flex justify-between items-center">
               <div class="flex items-center">
                 <div class="bg-gray-50 rounded-2xl w-12 h-12 flex items-center justify-center mr-4">
-                  <span class="text-xs text-blue-600 font-semibold text-center">{{ event.date | date: 'dd' }}<br>{{ event.date | date: 'MMM' }}</span>
+                  <span class="text-xs text-green-600 font-semibold text-center">{{ event.date | date: 'dd' }}<br>{{ event.date | date: 'MMM' }}</span>
                 </div>
                 <div>
                   <p class="text-sm font-medium text-white dark:text-white">{{ event.title }}</p>

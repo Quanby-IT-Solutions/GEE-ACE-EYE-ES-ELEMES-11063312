@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataService } from 'src/app/shared/service/data/data.service';
 
 interface TaskSummary {
   completed: number;
@@ -10,10 +11,26 @@ interface TestResults {
   completed: number;
 }
 
-interface Class {
-  code: string;
+interface Task {
   name: string;
-  icon: string;
+  dueDate: Date;
+}
+
+interface Assessment {
+  name: string;
+  dueDate: Date;
+}
+
+interface Course {
+  course: string;
+  subject: string;
+  block: string;
+  time: string;
+  grade: string;
+  tasks: Task[];
+  assessments: Assessment[];
+  progress: string;
+  imageUrl: string;
 }
 
 @Component({
@@ -21,9 +38,9 @@ interface Class {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './subjects.component.html',
-  styleUrl: './subjects.component.scss',
+  styleUrls: ['./subjects.component.scss'],
 })
-export class SubjectsComponent {
+export class SubjectsComponent implements OnInit {
   taskSummary: TaskSummary = {
     completed: 36,
     total: 37,
@@ -33,22 +50,15 @@ export class SubjectsComponent {
     completed: 12,
   };
 
-  classes: Class[] = [
-    {
-      code: 'CCS 1101 1A',
-      name: 'Fundamentals of Programming',
-      icon: 'assets/programming-icon.png',
-    },
-    {
-      code: 'CIC 1101 1B',
-      name: 'Introduction to Computing',
-      icon: 'assets/computing-icon.png',
-    },
-    {
-      code: 'CIC 1101',
-      name: 'Introduction to Computing',
-      icon: 'assets/computing-icon.png',
-    },
-    // Add more dummy classes as needed
-  ];
+  courses: Course[] = [];
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.fetchCourses();
+  }
+
+  fetchCourses(): void {
+    this.courses = this.dataService.getCourses();
+  }
 }

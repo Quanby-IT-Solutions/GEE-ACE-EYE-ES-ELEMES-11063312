@@ -5282,18 +5282,18 @@ export class DataService {
       time: '09:00 - 10:00',
       grade: '97',
       progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      imageUrl: 'assets/img/math.png',
       tasks: [
-        { name: 'Math Homework 1', dueDate: new Date(2024, 6, 21) },
-        { name: 'Algebra Quiz 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Math Homework 2', dueDate: new Date(2024, 6, 23) },
-        { name: 'Algebra Quiz 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Math Homework 3', dueDate: new Date(2024, 6, 25) },
-        { name: 'Algebra Quiz 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Math Homework 4', dueDate: new Date(2024, 6, 27) },
-        { name: 'Algebra Quiz 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Math Homework 5', dueDate: new Date(2024, 6, 29) },
-        { name: 'Algebra Quiz 5', dueDate: new Date(2024, 6, 30) }
+        { name: 'Math Homework 1', dueDate: new Date(2024, 8, 21) },
+        { name: 'Algebra Quiz 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Math Homework 2', dueDate: new Date(2024, 8, 23) },
+        { name: 'Algebra Quiz 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Math Homework 3', dueDate: new Date(2024, 8, 25) },
+        { name: 'Algebra Quiz 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'Math Homework 4', dueDate: new Date(2024, 8, 27) },
+        { name: 'Algebra Quiz 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Math Homework 5', dueDate: new Date(2024, 8, 29) },
+        { name: 'Algebra Quiz 5', dueDate: new Date(2024, 8, 30) }
       ],
       assessments: [
         { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15) }
@@ -5305,19 +5305,19 @@ export class DataService {
       block: 'B',
       time: '10:00 - 11:00',
       grade: '92',
-      progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      progress: '85',
+      imageUrl: 'assets/img/physics.png',
 
       tasks: [
-        { name: 'Physics Lab Report 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Mechanics Assignment 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Physics Lab Report 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Mechanics Assignment 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Physics Lab Report 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Mechanics Assignment 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Physics Lab Report 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Mechanics Assignment 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Physics Lab Report 5', dueDate: new Date(2024, 6, 30) },
+        { name: 'Physics Lab Report 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Mechanics Assignment 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Physics Lab Report 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Mechanics Assignment 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Physics Lab Report 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'Mechanics Assignment 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Physics Lab Report 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Mechanics Assignment 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Physics Lab Report 5', dueDate: new Date(2024, 8, 30) },
         { name: 'Mechanics Assignment 5', dueDate: new Date(2024, 7, 1) }
       ],
       assessments: [
@@ -5330,19 +5330,19 @@ export class DataService {
       block: 'C',
       time: '11:00 - 12:00',
       grade: '91',
-      progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      progress: '85',
+      imageUrl: 'assets/img/chemistry.png',
 
       tasks: [
-        { name: 'Organic Chemistry Lab 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Chemical Reactions Assignment 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Organic Chemistry Lab 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Chemical Reactions Assignment 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Organic Chemistry Lab 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Chemical Reactions Assignment 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Organic Chemistry Lab 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Chemical Reactions Assignment 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Organic Chemistry Lab 5', dueDate: new Date(2024, 6, 30) },
+        { name: 'Organic Chemistry Lab 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Chemical Reactions Assignment 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Organic Chemistry Lab 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Chemical Reactions Assignment 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Organic Chemistry Lab 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'Chemical Reactions Assignment 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Organic Chemistry Lab 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Chemical Reactions Assignment 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Organic Chemistry Lab 5', dueDate: new Date(2024, 8, 30) },
         { name: 'Chemical Reactions Assignment 5', dueDate: new Date(2024, 7, 1) }
       ],
       assessments: [
@@ -5355,19 +5355,19 @@ export class DataService {
       block: 'D',
       time: '12:00 - 13:00',
       grade: '90',
-      progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      progress: '85',
+      imageUrl: 'assets/img/biology.png',
 
       tasks: [
-        { name: 'Plant Classification Homework 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Botany Quiz 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Plant Classification Homework 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Botany Quiz 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Plant Classification Homework 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Botany Quiz 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Plant Classification Homework 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Botany Quiz 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Plant Classification Homework 5', dueDate: new Date(2024, 6, 30) },
+        { name: 'Plant Classification Homework 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Botany Quiz 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Plant Classification Homework 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Botany Quiz 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Plant Classification Homework 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'Botany Quiz 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Plant Classification Homework 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Botany Quiz 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Plant Classification Homework 5', dueDate: new Date(2024, 8, 30) },
         { name: 'Botany Quiz 5', dueDate: new Date(2024, 7, 1) }
       ],
       assessments: [
@@ -5380,19 +5380,19 @@ export class DataService {
       block: 'E',
       time: '13:00 - 14:00',
       grade: '93',
-      progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      progress: '85',
+      imageUrl: 'assets/img/compsci.png',
 
       tasks: [
-        { name: 'Programming Assignment 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Data Structures Quiz 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Programming Assignment 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Data Structures Quiz 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Programming Assignment 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Data Structures Quiz 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Programming Assignment 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Data Structures Quiz 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Programming Assignment 5', dueDate: new Date(2024, 6, 30) },
+        { name: 'Programming Assignment 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Data Structures Quiz 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Programming Assignment 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Data Structures Quiz 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Programming Assignment 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'Data Structures Quiz 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Programming Assignment 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Data Structures Quiz 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Programming Assignment 5', dueDate: new Date(2024, 8, 30) },
         { name: 'Data Structures Quiz 5', dueDate: new Date(2024, 7, 1) }
       ],
       assessments: [
@@ -5405,23 +5405,23 @@ export class DataService {
       block: 'F',
       time: '14:00 - 15:00',
       grade: '88',
-      progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      progress: '85',
+      imageUrl: 'assets/img/history.png',
 
       tasks: [
-        { name: 'Essay on Ancient Civilizations 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'History Quiz 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Essay on Ancient Civilizations 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'History Quiz 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Essay on Ancient Civilizations 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'History Quiz 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Essay on Ancient Civilizations 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'History Quiz 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Essay on Ancient Civilizations 5', dueDate: new Date(2024, 6, 30) },
-        { name: 'History Quiz 5', dueDate: new Date(2024, 7, 1) }
+        { name: 'Essay on Ancient Civilizations 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'History Quiz 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Essay on Ancient Civilizations 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'History Quiz 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Essay on Ancient Civilizations 3', dueDate: new Date(2024, 8, 28) },
+        { name: 'History Quiz 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Essay on Ancient Civilizations 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'History Quiz 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Essay on Ancient Civilizations 5', dueDate: new Date(2024, 8, 30) },
+        { name: 'History Quiz 5', dueDate: new Date(2024, 8, 1) }
       ],
       assessments: [
-        { name: 'Midterm Exam', dueDate: new Date(2024, 7, 19) }
+        { name: 'Midterm Exam', dueDate: new Date(2024, 8, 19) }
       ]
     },
     {
@@ -5431,22 +5431,22 @@ export class DataService {
       time: '15:00 - 16:00',
       grade: '81',
       progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      imageUrl: 'assets/img/georaphy.png',
 
       tasks: [
-        { name: 'Geography Map Assignment 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Climate Quiz 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Geography Map Assignment 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Climate Quiz 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Geography Map Assignment 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Climate Quiz 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Geography Map Assignment 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Climate Quiz 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Geography Map Assignment 5', dueDate: new Date(2024, 6, 30) },
-        { name: 'Climate Quiz 5', dueDate: new Date(2024, 7, 1) }
+        { name: 'Geography Map Assignment 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Climate Quiz 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Geography Map Assignment 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Climate Quiz 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Geography Map Assignment 3', dueDate: new Date(2024, 8, 26) },
+        { name: 'Climate Quiz 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Geography Map Assignment 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Climate Quiz 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Geography Map Assignment 5', dueDate: new Date(2024, 8, 30) },
+        { name: 'Climate Quiz 5', dueDate: new Date(2024, 8, 1) }
       ],
       assessments: [
-        { name: 'Field Trip Report', dueDate: new Date(2024, 7, 26) }
+        { name: 'Field Trip Report', dueDate: new Date(2024, 8, 26) }
       ]
     },
     {
@@ -5456,19 +5456,19 @@ export class DataService {
       time: '16:00 - 17:00',
       grade: '75',
       progress: '65',
-      imageUrl: 'assets/img/bini.jpeg',
+      imageUrl: 'assets/img/literature.png',
 
       tasks: [
-        { name: 'Literature Review 1', dueDate: new Date(2024, 6, 22) },
-        { name: 'Poetry Analysis 1', dueDate: new Date(2024, 6, 23) },
-        { name: 'Literature Review 2', dueDate: new Date(2024, 6, 24) },
-        { name: 'Poetry Analysis 2', dueDate: new Date(2024, 6, 25) },
-        { name: 'Literature Review 3', dueDate: new Date(2024, 6, 26) },
-        { name: 'Poetry Analysis 3', dueDate: new Date(2024, 6, 27) },
-        { name: 'Literature Review 4', dueDate: new Date(2024, 6, 28) },
-        { name: 'Poetry Analysis 4', dueDate: new Date(2024, 6, 29) },
-        { name: 'Literature Review 5', dueDate: new Date(2024, 6, 30) },
-        { name: 'Poetry Analysis 5', dueDate: new Date(2024, 7, 1) }
+        { name: 'Literature Review 1', dueDate: new Date(2024, 8, 22) },
+        { name: 'Poetry Analysis 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Literature Review 2', dueDate: new Date(2024, 8, 24) },
+        { name: 'Poetry Analysis 2', dueDate: new Date(2024, 8, 25) },
+        { name: 'Literature Review 3', dueDate: new Date(2024, 8, 26) },
+        { name: 'Poetry Analysis 3', dueDate: new Date(2024, 8, 27) },
+        { name: 'Literature Review 4', dueDate: new Date(2024, 8, 28) },
+        { name: 'Poetry Analysis 4', dueDate: new Date(2024, 8, 29) },
+        { name: 'Literature Review 5', dueDate: new Date(2024, 8, 30) },
+        { name: 'Poetry Analysis 5', dueDate: new Date(2024, 8, 20) }
       ],
       assessments: [
         { name: 'Term Paper', dueDate: new Date(2024, 7, 30) }

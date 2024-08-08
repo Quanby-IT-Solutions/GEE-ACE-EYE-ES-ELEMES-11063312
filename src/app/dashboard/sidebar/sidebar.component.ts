@@ -95,129 +95,121 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     InfoQueue: 'fas fa-info-circle',
   };
 
-  public student_no = [
-    { title: 'Dashboard', route: this.routes.dashboard },
-    // { title: 'Courses', route: this.routes.courses },
-    // { title: 'Tasks', route: this.routes.tasks },
-    // { title: 'Assessments', route: this.routes.assessments },
-    // { title: 'Meet', route: this.routes.meet },
+  public student_no = [ 
+    { title: 'Home', route: this.routes.dashboard },
+    { title: 'Courses', route: this.routes.subjects },
+    { title: 'Assignments', route: this.routes.tasks },
+    { title: 'Progress', route: this.routes.assessments },
 
 
-    {
-      title: 'Classroom',
-      subItems: [
-        { title: 'Enrolled Subjects', route: this.routes.subjects  },
-        { title: 'Learning Modules', route: this.routes.learning_module },
-        { title: 'My Online Tasks', route: this.routes.online_tasks },
-        { title: 'My Test Scores', route: this.routes.test_scores },
-        { title: 'Assessments', route: this.routes.assessments },
+    // {
+    //   title: 'Classroom',
+    //   subItems: [
+    //     { title: 'Enrolled Subjects', route: this.routes.subjects  },
+    //     { title: 'Learning Modules', route: this.routes.learning_module },
+    //     { title: 'My Online Tasks', route: this.routes.online_tasks },
+    //     { title: 'My Test Scores', route: this.routes.test_scores },
+    //     { title: 'Assessments', route: this.routes.assessments },
 
 
-      ],
-    },
+    //   ],
+    // },
 
 
-    {
-      title: 'Transactions',
-      subItems: [
-        { title: 'Pre-Enlistment', route: this.routes.pre_enlistment },
-        { title: 'Enrollment', route: this.routes.enrollment },
-        { title: 'Add / Cross-Enroll', route: this.routes.add_enroll },
-        { title: 'Teacher Evaluation', route: this.routes.teacher_evaluation },
-        { title: 'Disable ID Card', route: this.routes.disable_id },
-        { title: 'Online Payment', route: this.routes.online_payment },
-        { title: 'Express Payment', route: this.routes.express_payment },
+    // {
+    //   title: 'Transactions',
+    //   subItems: [
+    //     { title: 'Pre-Enlistment', route: this.routes.pre_enlistment },
+    //     { title: 'Enrollment', route: this.routes.enrollment },
+    //     { title: 'Add / Cross-Enroll', route: this.routes.add_enroll },
+    //     { title: 'Teacher Evaluation', route: this.routes.teacher_evaluation },
+    //     { title: 'Disable ID Card', route: this.routes.disable_id },
+    //     { title: 'Online Payment', route: this.routes.online_payment },
+    //     { title: 'Express Payment', route: this.routes.express_payment },
 
-      ],
-    },
-    {
-      title: 'Reports',
-      subItems: [
-        { title: 'Class Absences', route: this.routes.class_absences },
-        { title: 'Term Grades', route: this.routes.term_grades },
-        { title: 'Final Grades', route: this.routes.final_grades },
-        { title: 'General Weighted Average', route: this.routes.gwa },
-        { title: 'Curriculum Evaluation', route: this.routes.curriculum_evaluation},
-        { title: 'Statement of Accounts', route: this.routes.statement_accounts },
-        { title: 'In / Out Monitoring', route: this.routes.in_out_monitoring },
-        { title: 'Purchases Report', route: this.routes.purchases_report },
-
-
-
-
-
-      ],
-    },
+    //   ],
+    // },
+    // {
+    //   title: 'Reports',
+    //   subItems: [
+    //     { title: 'Class Absences', route: this.routes.class_absences },
+    //     { title: 'Term Grades', route: this.routes.term_grades },
+    //     { title: 'Final Grades', route: this.routes.final_grades },
+    //     { title: 'General Weighted Average', route: this.routes.gwa },
+    //     { title: 'Curriculum Evaluation', route: this.routes.curriculum_evaluation},
+    //     { title: 'Statement of Accounts', route: this.routes.statement_accounts },
+    //     { title: 'In / Out Monitoring', route: this.routes.in_out_monitoring },
+    //     { title: 'Purchases Report', route: this.routes.purchases_report },
+    //   ],
+    // },
     // { title: 'Schedules', route: this.routes.schedules },
     // { title: 'Forums', route: this.routes.forums },
   ];
 
   public instructor = [
-    { title: 'Dashboard', route: this.routes.dashboard },
-    // { title: 'Courses', route: this.routes.courses },
-    // { title: 'Classes', route: this.routes.classes },
-    // { title: 'Tasks', route: this.routes.tasks },
-    // { title: 'Grades', route: this.routes.grades },
-    // { title: 'MissedClass', route: this.routes.absences },
-    // { title: 'Calendar', route: this.routes.calendar },
+    { title: 'Home', route: this.routes.dashboard },
+    { title: 'Courses', route: this.routes.courses },
+    { title: 'Assignments', route: this.routes.tasks },
+    { title: 'Progress', route: this.routes.assessments },
+    { title: 'Reports', route: this.routes.meet },
 
-    {
-      title: 'Classroom',
-      subItems: [
+    // {
+    //   title: 'Classroom',
+    //   subItems: [
 
-        { title: 'Subject Resources', route: this.routes.subject_resources },
-        { title: 'Tests', route: this.routes.tests},
-        { title: 'Test Bank', route: this.routes.test_bank},
-        { title: 'Subject Modules', route: this.routes.subject_modules },
-        { title: 'Class Modules', route: this.routes.class_modules },
-        { title: 'Class List', route: this.routes.class_list },
-        { title: 'My Online Tasks', route: this.routes.teacher_online_tasks },
-        { title: 'Schedule Online Tasks', route: this.routes.schedule_online_tasks },
-        { title: 'Check Online Tasks', route: this.routes.check_online_tasks },
+    //     { title: 'Subject Resources', route: this.routes.subject_resources },
+    //     { title: 'Tests', route: this.routes.tests},
+    //     { title: 'Test Bank', route: this.routes.test_bank},
+    //     { title: 'Subject Modules', route: this.routes.subject_modules },
+    //     { title: 'Class Modules', route: this.routes.class_modules },
+    //     { title: 'Class List', route: this.routes.class_list },
+    //     { title: 'My Online Tasks', route: this.routes.teacher_online_tasks },
+    //     { title: 'Schedule Online Tasks', route: this.routes.schedule_online_tasks },
+    //     { title: 'Check Online Tasks', route: this.routes.check_online_tasks },
 
 
-      ],
-    },
+    //   ],
+    // },
 
 
-    {
-      title: 'Transactions',
-      subItems: [
-        { title: 'Grading Sheet', route: this.routes.teacher },
-        { title: 'Class Attendance', route: this.routes.teacher },
-        { title: 'Section Attendance', route: this.routes.teacher },
-        { title: 'Override Attendance', route: this.routes.teacher },
-        { title: 'Request Change Grade', route: this.routes.teacher },
-        { title: 'Adviser Comments', route: this.routes.teacher },
+    // {
+    //   title: 'Transactions',
+    //   subItems: [
+    //     { title: 'Grading Sheet', route: this.routes.teacher },
+    //     { title: 'Class Attendance', route: this.routes.teacher },
+    //     { title: 'Section Attendance', route: this.routes.teacher },
+    //     { title: 'Override Attendance', route: this.routes.teacher },
+    //     { title: 'Request Change Grade', route: this.routes.teacher },
+    //     { title: 'Adviser Comments', route: this.routes.teacher },
 
 
-      ],
-    },
-    {
-      title: 'Reports',
-      subItems: [
-        { title: 'Class Attendance', route: this.routes.grades },
-        { title: 'Class Absences', route: this.routes.grades },
-        { title: 'Test Item Analysis', route: this.routes.clearance },
-        { title: 'Report Card', route: this.routes.clearance },
-        { title: 'Permanent Record', route: this.routes.clearance },
-        { title: 'Periodic Grades Listing', route: this.routes.clearance },
+    //   ],
+    // },
+    // {
+    //   title: 'Reports',
+    //   subItems: [
+    //     { title: 'Class Attendance', route: this.routes.grades },
+    //     { title: 'Class Absences', route: this.routes.grades },
+    //     { title: 'Test Item Analysis', route: this.routes.clearance },
+    //     { title: 'Report Card', route: this.routes.clearance },
+    //     { title: 'Permanent Record', route: this.routes.clearance },
+    //     { title: 'Periodic Grades Listing', route: this.routes.clearance },
 
-      ],
-    },
+    //   ],
+    // },
 
-    {
-      title: 'Tools',
-      subItems: [
-        { title: 'Options', route: this.routes.curriculum },
+    // {
+    //   title: 'Tools',
+    //   subItems: [
+    //     { title: 'Options', route: this.routes.curriculum },
 
 
-      ],
-    },
+    //   ],
+    // },
   ];
 
   public school_admin = [
-    {
+    { 
       title: 'Grading',
       isOpenKey: 'gradingSystem',
       subItems: [
@@ -563,43 +555,43 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   handleSearch() {
-    const userType = this.getUserRole();
-    let allItems: any[] = [];
+    // const userType = this.getUserRole();
+    // let allItems: any[] = [];
 
-    if (userType === 'student') {
-      allItems = this.student_no.flatMap((item) =>
-        item.subItems ? [item, ...item.subItems] : [item]
-      );
-    } else if (userType === 'instructor') {
-      allItems = this.instructor;
-    } else if (userType === 'school_admin') {
-      allItems = this.school_admin.flatMap((group) => [
-        group,
-        ...(group.subItems || []),
-      ]);
-    } else if (userType === 'department_admin') {
-      allItems = this.department_admin;
-    }
+    // if (userType === 'student') {
+    //   allItems = this.student_no.flatMap((item) =>
+    //     item.subItems ? [item, ...item.subItems] : [item]
+    //   );
+    // } else if (userType === 'instructor') {
+    //   allItems = this.instructor;
+    // } else if (userType === 'school_admin') {
+    //   allItems = this.school_admin.flatMap((group) => [
+    //     group,
+    //     ...(group.subItems || []),
+    //   ]);
+    // } else if (userType === 'department_admin') {
+    //   allItems = this.department_admin;
+    // }
 
-    const matchedItem = allItems.find((item) => {
-      if ('subItems' in item) {
-        return item.title
-          .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
-      } else {
-        return item.title
-          .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
-      }
-    });
+    // const matchedItem = allItems.find((item) => {
+    //   if ('subItems' in item) {
+    //     return item.title
+    //       .toLowerCase()
+    //       .includes(this.searchQuery.toLowerCase());
+    //   } else {
+    //     return item.title
+    //       .toLowerCase()
+    //       .includes(this.searchQuery.toLowerCase());
+    //   }
+    // });
 
-    if (matchedItem) {
-      if ('route' in matchedItem) {
-        this.router.navigate([matchedItem.route]);
-      } else if ('subItems' in matchedItem && matchedItem.subItems.length > 0) {
-        this.router.navigate([matchedItem.subItems[0].route]);
-      }
-    }
+    // if (matchedItem) {
+    //   if ('route' in matchedItem) {
+    //     this.router.navigate([matchedItem.route]);
+    //   } else if ('subItems' in matchedItem && matchedItem.subItems.length > 0) {
+    //     this.router.navigate([matchedItem.subItems[0].route]);
+    //   }
+    // }
   }
 
   async logout() {

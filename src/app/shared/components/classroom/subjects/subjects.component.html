@@ -49,13 +49,13 @@
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     <div
-      *ngFor="let class of classes"
+      *ngFor="let course of courses"
       class="rounded-lg shadow-md overflow-hidden"
     >
       <div
         class="relative h-32"
         style="
-          background-image: url('assets/img/classroom/classBG.svg');
+          background-image: url('{{ course.imageUrl }}');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -64,8 +64,8 @@
         <div class="absolute inset-0 bg-[#0C1228] opacity-30"></div>
       </div>
       <div class="p-4 bg-white">
-        <h3 class="font-bold">{{ class.code }}</h3>
-        <p class="text-sm text-gray-600">{{ class.name }}</p>
+        <h3 class="font-bold">{{ course.course }}</h3>
+        <p class="text-sm text-gray-600">{{ course.subject }}</p>
       </div>
     </div>
   </div>

@@ -22,11 +22,11 @@
           <div class="grid grid-cols-1 lg:grid-cols-5 mt-4">
             <div class="col-span-3 ">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                @if (getUserRole() === 'student') {
+               
                   <app-card class="tilt-8" icon="fa-book" value="8" label="Lessons" [progress]="60"></app-card>
                   <app-card icon="fa-tasks" value="12" label="Tasks" [progress]="45"></app-card>
                   <app-card icon="fa-clipboard-check" value="9" label="Assessments" [progress]="75"></app-card>
-                }
+                
               </div>
 
               <div class="mt-4 font-semibold text-gray-800 text-lg">My Courses</div>

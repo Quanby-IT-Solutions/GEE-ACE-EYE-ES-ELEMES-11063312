@@ -20,8 +20,8 @@ export class LoginComponent {
   passwordInput: string = 'password';
   errorMessage: string | null = null;
   university: any =  {
-    'name' : 'Catanduanes State University',
-    'description' : `CATSU Learning Management System (LMS), your one-stop solution for all your educational needs. Whether you're a student, teacher, administrator, or parent, our platform is designed to make your academic journey smooth and efficient.`
+    'name' : 'Government Service Insurance System',
+    'description' : ``
   }
 
   public welcomeLogin: welcomeLogin[] = [];
