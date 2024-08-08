@@ -1,0 +1,12 @@
+.document-item {
+    background-color: #EEF2FF;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .document-item:hover {
+    background-color: #C7D2FE;
+    transform: translateY(-2px);
+  }

@@ -1,0 +1,360 @@
+<div class="h-full w-full p-0 bg-color-primary">
+  <!-- first section -->
+  <!-- @if(ready === false){
+
+        <section class="h-dvh w-dvw text-color-tertiary bg-color-primary">
+            <div class="container flex md:flex-row flex-col-reverse md:justify-around justify-center items-center md:gap-12 gap-12 h-full w-fit">
+                <div class="h-fit w-5/6 flex flex-col justify-center items-start md:gap-3 gap-4">
+                    <p class="font-extrabold md:text-5xl text-3xl text-color-tertiary drop-shadow-lg">Speech Laboratory</p>
+                    <p class="text-md md:w-[460px] text-lg">Practice, Repeat, and Read Aloud with Engaging Audio Modules.</p>
+                    <button class="text-md p-3 md:w-60 md:mt-2 mt-4 w-full px-6 text-lg bg-color-secondary rounded-lg shadow-lg" (click)="readyButton()">Let’s get started</button>
+                </div>
+                <div>
+                    <img src="assets/img/speechlab/speechlab.png" alt="">
+                </div>
+            </div>
+        </section>
+    }
+    @if(ready === true){
+        <section class="h-dvh w-dvw text-slate-700 bg-color-primary">
+            <div class="container flex flex-col justify-center md:gap-4 gap-12 items-center h-full w-full md:p-8 p-4">
+                <div class="flex md:flex-row flex-col-reverse md:justify-center justify-evenly items-center lg:gap-40 gap-12 h-4/6 w-full">   
+                    <button class="h-56 md:w-80 w-full bg-color-tertiary text flex flex-col items-center justify-center rounded-3xl shadow-lg 
+                    hover:bg-color-secondary hover:text-color-tertiary hover:outline-color-secondary outline-none outline-2 outline-color-tertiary
+                    " (click)="autoSort()">
+                        <p class="text-2xl font-bold">Auto Sort</p>
+                        <p class="text-xs">Units are auto sorted for you</p>
+                    </button>   
+                    <button class="h-56 md:w-80 w-full bg-color-tertiary text flex flex-col items-center justify-center rounded-3xl shadow-lg 
+                    hover:bg-color-secondary hover:text-color-tertiary hover:outline-color-secondary outline-none outline-2 outline-color-tertiary
+                    " (click)="manualSort()">
+                        <p class="text-2xl font-bold">Manual Sort</p>
+                        <p class="text-xs">You will manually sort the units</p>
+                    </button>
+                </div>
+                <div class="w-full flex justify-center items-center">
+                    <button class="text-md text-color-tertiary p-3 md:w-72 w-full px-6 text-lg bg-color-secondary rounded-lg shadow-lg">Continue</button>
+                </div>
+            </div>
+        </section>
+    }
+    <section class="h-dvh w-dvw text-color-tertiary bg-color-primary">
+        <div
+            class="container flex md:flex-row flex-col-reverse md:justify-around justify-center items-center md:gap-12 gap-12 h-full w-fit">
+            <div class="h-fit w-full flex flex-col justify-center items-center md:gap-3 gap-4">
+                <p class="font-extrabold md:text-4xl text-3xl drop-shadow-lg">How many Students?</p>
+                <div class="relative w-48">
+                    <input type="number"
+                        class="w-full px-3 py-2 text-6xl text-center font-bold bg-transparent text-white rounded-lg focus:outline-none focus:ring-0 no-spinner"
+                        >
+                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-color-tertiary"></div>
+                </div>
+                <button
+                    class="text-md p-3 md:w-52 md:mt-2 mt-4 w-full text-lg bg-color-secondary rounded-lg shadow-lg"
+                    (click)="readyButton()">Continue</button>
+            </div>
+        </div>
+    </section>  -->
+  <!-- <section class="min-h-screen w-full text-color-tertiary bg-color-primary flex items-center justify-center p-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col items-center justify-center space-y-8">
+                <div class="text-center">
+                    <p class="font-bold text-3xl md:text-3xl lg:text-4xl drop-shadow-lg max-w-md mx-auto">
+                        Select a layout closest to your classroom
+                    </p>
+                </div>
+                <div class="w-full h-full overflow-y-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full overflow-y-auto">
+                        @for (line of lines; track $index) {
+                        <div class="flex flex-col items-center">
+                            <div class="text-center mb-4">
+                                <p class="text-lg md:text-xl">{{line.lineNumber}}</p>
+                            </div>
+                            <div class="relative w-full max-w-sm aspect-video rounded-3xl overflow-hidden">
+                                <div role="none" class="absolute inset-0 bg-color-tertiary cursor-pointer"
+                                    (click)="clickEvent(line.clickEvent)"   
+                                >
+                                    <img [src]="" [alt]="">
+                                </div>  
+                                @if (eventLine === line.clickEvent) {
+                                <div class="absolute inset-0 bg-slate-400 flex items-center justify-center"
+                                     [@overlayAnimation]>
+                                    <button class="px-6 py-3 text-lg bg-color-secondary rounded-lg shadow-lg transition-transform hover:scale-105"
+                                            (click)="readyButton()">
+                                        Proceed
+                                    </button>
+                                </div>
+                                }                  
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+  <!-- <section class="h-dvh w-dvw text-color-tertiary bg-color-primary">
+        <div class="container flex justify-center items-center h-full w-full p-4">
+            <div class="lg:h-fit h-full w-full flex flex-col justify-evenly items-center md:gap-3 gap-4">
+                <div>
+                    <p
+                        class="font-bold h-full md:w-[350px] w-72 md:text-3xl text-2xl drop-shadow-lg text-center md:py-0 py-4">
+                        Select a layout closest to your classroom
+                    </p>
+                </div>
+                <div class="flex md:flex-row flex-col gap-8 justify-evenly items-center md:h-fit h-full overflow-y-auto">
+                    @for (line of lines; track $index) {
+                    <div class="w-full h-full ">
+                        <div class="text-center md:my-12 my-4">
+                            <p>{{line.lineNumber}}</p>
+                        </div>
+                        <div class="md:pb-3 pb-6 w-full flex justify-center items-center gap-4 ">
+                            <div class="flex justify-center items-center gap-4 relative rounded-3xl overflow-hidden w-fit">
+                                <div class="lg:h-[250px] lg:w-[450px] md:w-full rounded-3xl bg-color-tertiary " 
+                                     (click)="clickEvent(line.clickEvent)">
+                                </div>  
+                                @if (eventLine === line.clickEvent) {
+                                    <div class="h-full w-full bg-color-secondary  absolute top-0 left-0" 
+                                         [@overlayAnimation]
+                                         >
+                                         <div class="lg:h-[250px] lg:w-[450px] flex justify-center items-center">
+                                            <button class="text-md p-3 md:w-60 md:mt-2 mt-4 w-full px-6 text-lg bg-color-primary rounded-lg shadow-lg"
+                                             (click)="readyButton()"
+                                            >
+                                             Proceed
+                                            </button>
+                                         </div>
+                                    </div>
+                                }                  
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                
+            </div>
+        </div>
+    </section> -->
+
+  <section class="h-dvh w-dvw">
+    <div class="h-full w-full flex justify-center items-center relative">
+      <!-- sidenav left-->
+      <div
+        class="bg-color-primary xl:w-[400px] sm:w-[400px] xs:w-full h-full px-8 pt-8 flex flex-col gap-8 absolute left-0 top-0
+                 transition-transform duration-300 ease-in-out transform lg:translate-x-0
+                 {{ !showSideNav ? 'md:translate-x-[-398px] sm:translate-x-[-400px] xs:translate-x-[-99.5%]' : 'translate-x-0' }}"
+      >
+        <div
+          class="absolute top-7 {{
+            showSideNav ? '-right-4 rotate-180' : '-right-5 '
+          }}"
+        >
+          <svg
+            (click)="sideNav()"
+            role="none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="2em"
+            height="2em"
+            viewBox="0 0 1024 1024"
+            class="text-color-secondary bg-color-primary rounded-full p-1 hover:cursor-pointer rotate-90 border-2 border-color-tertiary lg:hidden"
+          >
+            <path
+              fill="currentColor"
+              d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8l316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64 0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496"
+            />
+          </svg>
+        </div>
+
+        <!-- title -->
+        <div class="flex justify-between items-center text-color-tertiary">
+          <div class="flex flex-col items-start justify-center gap-2">
+            <p class="text-base font-bold capitalize">Speech lab units</p>
+            <p class="text-xs">{{ class }}</p>
+          </div>
+          <div class="flex flex-col items-end justify-center gap-2">
+            <button>
+              <img
+                src="assets/img/speechlab/Vector.png"
+                alt=""
+                class="px-3 h-7 cursor-pointer hover:rotate-[240deg] hover:scale-105 duration-300"
+              />
+            </button>
+            <p class="whitespace-nowrap line-clamp-2 text-xs font-thin">
+              Auto arrange
+            </p>
+          </div>
+        </div>
+        <!-- search input -->
+        <div class="w-full mx-auto">
+          <div class="relative flex items-center bg-white rounded-full">
+            <button class="absolute left-3 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+            <input
+              type="text"
+              class="w-full py-2 pl-12 pr-4 text-gray-700 rounded-full focus:outline-none"
+              placeholder="Search..."
+            />
+            <button class="absolute right-3 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- table / students-->
+        <div
+          class="h-full overflow-hidden border w-full bg-color-tertiary rounded-t-3xl p-3"
+        >
+          <div
+            class="w-full h-full scroll-none flex flex-col gap-2 justify-start items-center rounded-t-3xl overflow-y-auto pb-12"
+          >
+            <!-- @for (item of items; track $index) { -->
+            <div class="w-full h-fit bg-color-quarterry rounded-xl">
+              <div class="flex justify-between items-center gap-8 px-2">
+                <div class="flex gap-1 justify-center items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-24 w-24"
+                    viewBox="0 0 24 24"
+                  >
+                    <g fill="none">
+                      <path
+                        d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M9 4.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3m1.5 7.5a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m0 6a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m6-6a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M15 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3M16.5 6a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0"
+                      />
+                    </g>
+                  </svg>
+                  <img
+                    src="assets/img/speechlab/Icon.png"
+                    alt=""
+                    class="w-16 h-14"
+                  />
+                </div>
+
+                <div class="flex flex-col">
+                  <p class="text-sm font-semibold capitalize">
+                    Last name, First name, Middle initial
+                  </p>
+                  <p class="text-xs">Student ID</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- } -->
+          </div>
+        </div>
+      </div>
+
+      <!-- body right-->
+      <div
+        class="flex-grow flex-col h-full bg-color-tertiary transition-all duration-300 ease-in-out lg:ml-[400px]"
+      >
+        <div
+          class="flex justify-between items-center h-[10dvh] border-black border px-8"
+        >
+          <div class="flex justify-center md:gap-24 gap-4 items-center w-full">
+            <button
+              class="flex justify-center items-center gap-2 bg-color-primary text-color-tertiary md:w-40 w-24 font-medium py-[10px] hover:scale-105 rounded-lg "
+            >
+              1v1
+              <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 4a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7M6.5 7.5a5.5 5.5 0 1 1 11 0a5.5 5.5 0 0 1-11 0M3 19a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v3H3zm5-3a3 3 0 0 0-3 3v1h14v-1a3 3 0 0 0-3-3z"
+                />
+              </svg>
+            </button>
+            <button
+              class="flex justify-center items-center gap-2 bg-color-primary text-color-tertiary md:w-40 w-24 font-medium py-[10px] hover:scale-105 rounded-lg "
+            >
+              Group
+              <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M17.928 19.634h2.138a1.165 1.165 0 0 0 1.116-1.555a6.851 6.851 0 0 0-6.117-3.95m0-2.759a3.664 3.664 0 0 0 3.665-3.664a3.664 3.664 0 0 0-3.665-3.674m-1.04 16.795a1.908 1.908 0 0 0 1.537-3.035a8.026 8.026 0 0 0-6.222-3.196a8.026 8.026 0 0 0-6.222 3.197a1.909 1.909 0 0 0 1.536 3.034zM9.34 11.485a4.16 4.16 0 0 0 4.15-4.161a4.151 4.151 0 0 0-8.302 0a4.16 4.16 0 0 0 4.151 4.16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="h-[90dvh] w-full px-8 pt-8 pb-24">
+          <div class="w-full h-full rounded-xl bg-color-quarterry"></div>
+          <div class="w-full mt-4 flex justify-center gap-12 items-center">
+            <button (click)="cancelButton()">
+              <svg
+                class="bg-color-red-primary hover:bg-red-500 rounded-full duration-300 h-12 w-12 text-color-tertiary p-2"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M18.36 19.78L12 13.41l-6.36 6.37l-1.42-1.42L10.59 12L4.22 5.64l1.42-1.42L12 10.59l6.36-6.36l1.41 1.41L13.41 12l6.36 6.36z"
+                />
+              </svg>
+            </button>
+            <button (click)="saveButton()">
+              <svg
+                class="bg-color-green-primary hover:bg-green-400 rounded-full duration-300 h-12 w-12 text-color-tertiary p-2"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
