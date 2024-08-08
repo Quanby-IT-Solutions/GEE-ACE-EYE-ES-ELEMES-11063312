@@ -1,0 +1,58 @@
+<div class="p-6 bg-white rounded-lg shadow-md">
+    <div *ngIf="!selectedCourse">
+      <h2 class="text-xl font-bold mb-4">Courses</h2>
+      <div *ngIf="courses.length > 0">
+        <ul class="course-list">
+          <li *ngFor="let course of courses" class="course-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm cursor-pointer" (click)="selectCourse(course)">
+            <h3 class="text-lg font-semibold">{{ course.course }}</h3>
+            <p class="text-sm text-gray-600">{{ course.subject }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div *ngIf="selectedCourse">
+      <button (click)="deselectCourse()" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Back to Courses</button>
+      <h2 class="text-xl font-bold mb-4">{{ selectedCourse.course }} Tasks</h2>
+      <div *ngIf="userRole === 'instructor'" class="instructor-view">
+        <div class="mb-4">
+          <input
+            type="text"
+            placeholder="Add a new task"
+            class="p-2 border border-gray-300 rounded-md w-full"
+            #taskInput
+          />
+          <button
+            class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md w-full"
+            (click)="addTask(taskInput.value); taskInput.value=''"
+          >
+            Add Task
+          </button>
+        </div>
+        <ul class="task-list">
+          <li *ngFor="let task of tasks" class="task-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold">{{ task.name }}</h3>
+                <p class="text-sm text-gray-600">{{ task.dueDate | date: 'shortDate' }}</p>
+              </div>
+              <button class="text-red-500" (click)="removeTask(task)">Remove</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="userRole === 'student'" class="student-view">
+        <ul class="task-list">
+          <li *ngFor="let task of tasks" class="task-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold">{{ task.name }}</h3>
+                <p class="text-sm text-gray-600">Due: {{ task.dueDate | date: 'shortDate' }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

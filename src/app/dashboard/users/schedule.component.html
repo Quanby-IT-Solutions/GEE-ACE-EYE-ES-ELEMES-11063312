@@ -1,0 +1,22 @@
+<!-- schedule.component.html -->
+<div *ngIf="conflict" class="alert alert-danger">
+    There are conflicts in your schedule. Please contact your administrator.
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of schedule">
+        <td>{{ item.title }}</td>
+        <td>{{ item.startTime | date: 'short' }}</td>
+        <td>{{ item.endTime | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

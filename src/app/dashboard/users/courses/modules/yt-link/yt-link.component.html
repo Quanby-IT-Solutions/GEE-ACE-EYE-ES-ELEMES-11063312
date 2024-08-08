@@ -1,0 +1,7 @@
+<div class="flex gap-5">
+          @for (video of videoLinks; track $index) {
+            <div class="relative h-80 w-80">
+              <iframe class="absolute top-0 left-0 w-full h-full" [src]="video" frameborder="0" allowfullscreen></iframe>
+            </div>    
+        }
+</div>

@@ -1,0 +1,47 @@
+<div class="flex min-h-screen">
+  <app-our-sidebar [searchQuery]="searchQuery"></app-our-sidebar>
+  <div class="flex-1 flex flex-col">
+    <app-our-header (search)="handleSearch($event)"></app-our-header>
+    <main class="flex-1 p-6 bg-gray-50">
+      <router-outlet></router-outlet>
+      @if (isMainRouteActive) {
+
+        <!-- @if (getUserRole() === 'instructor') {
+          <div>
+            <div> i am {{ getUserRole() }}</div>
+            <button class="btn btn-primary" (click)="showModal()">Add Course</button>
+          </div>
+        } -->
+        
+        <div class="px-4">
+          <div class="font-semibold text-gray-800 text-lg">Welcome back, {{ getUserRole() }} 🎉</div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 mt-4">
+            <div class="col-span-3 ">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <ng-container *ngIf="getUserRole() === 'student'">
+                  <app-card class="tilt-8" icon="fa-book" value="8" label="Lessons" [progress]="60"></app-card>
+                  <app-card icon="fa-tasks" value="12" label="Tasks" [progress]="45"></app-card>
+                  <app-card icon="fa-clipboard-check" value="9" label="Assessments" [progress]="75"></app-card>
+                </ng-container>
+              </div>
+
+              <div class="mt-4 font-semibold text-gray-800 text-lg">My Courses</div>
+              <div class="mt-4">
+                  <app-card-courses> </app-card-courses>
+
+              </div>
+              
+            </div>
+            <div class="col-span-2 flex flex-col space-y-4">
+              <app-calendar class="w-full"></app-calendar>
+            </div>
+          </div>
+        </div>
+        
+      }
+    </main>
+  </div>
+</div>
+
+<app-course-modal [class.hidden]="!isModalVisible" (close)="closeModal()"
+(save)="saveCourse($event)"></app-course-modal>

@@ -1,0 +1,201 @@
+<aside
+  class="w-auto pt-2.5 bg-color-tertiary h-fit min-h-screen transition-all duration-300"
+  [ngClass]="{
+    'w-64': isSidebarExpanded && !isMobile,
+    'w-16': !isSidebarExpanded && !isMobile,
+    'w-full': isMobile
+  }"
+>
+  <div
+    class="flex justify-start items-center transition-all duration-300 gap-2"
+    [ngClass]="{
+      'px-6 py-4 justify-start': isSidebarExpanded,
+      'p-4 justify-center': !isSidebarExpanded,
+      'sidebar-icon-container': !isSidebarExpanded
+    }"
+  >
+    <button
+      (click)="!isMobile && toggleSidebar()"
+      [disabled]="isMobile"
+      class="h-4 text-blue-500 font-bold transition-colors duration-300 flex items-center justify-center"
+      [ngClass]="{
+        'text-2xl hover:text-blue-700': !isMobile,
+        'text-2xl cursor-default': isMobile
+      }"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <ng-container *ngIf="isSidebarExpanded && !isMobile">
+      <h1 class="ml-2">
+        <a
+          [routerLink]="routes.home"
+          class="text-blue-500 text-2xl font-bold hover:text-blue-700 transition-colors duration-300"
+        >
+          Q-LMS
+        </a>
+      </h1>
+    </ng-container>
+  </div>
+  <nav class="mt-2">
+    <ul class="space-y-2 px-4" [ngClass]="{ 'pr-3': !isSidebarExpanded }">
+      <ng-container *ngIf="user">
+        <ng-container [ngSwitch]="getUserType()"> 
+          <ng-container *ngSwitchCase="'student'">
+            <li *ngFor="let item of student_no; trackBy: trackByTitle">
+              <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+            </li>
+          </ng-container>
+          <ng-container *ngSwitchCase="'instructor'">
+            <li *ngFor="let item of instructor; trackBy: trackByTitle">
+              <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+            </li>
+          </ng-container>
+          <ng-container *ngSwitchCase="'school_admin'">
+            <li *ngFor="let item of school_admin; trackBy: trackByTitle">
+              <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+            </li>
+          </ng-container>
+          <ng-container *ngSwitchCase="'department_admin'">
+            <li *ngFor="let item of department_admin; trackBy: trackByTitle">
+              <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <li>
+        <div
+          class="flex justify-start items-center py-3 pl-3 my-2 text-gray-700 rounded-lg cursor-pointer hover:bg-red-100 hover:text-red-700 transition-colors duration-300"
+          tabindex="0"
+          (click)="logout()"
+          (keyup.enter)="logout()"
+          [ngClass]="{
+            'justify-center pl-0': !isSidebarExpanded,
+            'sidebar-icon-container my-3': !isSidebarExpanded
+          }"
+        >
+          <i
+            class="fas fa-sign-out-alt"
+            [ngClass]="{
+              'mr-2': isSidebarExpanded,
+              'text-xl': !isSidebarExpanded
+            }"
+          ></i>
+          <span *ngIf="isSidebarExpanded">Logout</span>
+        </div>
+
+        <!-- test -->
+       
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<ng-template #menuItem let-item="item">
+  <div *ngIf="item.subItems && item.subItems.length; else singleItem">
+    <div
+      class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-300 group"
+      [ngClass]="{
+        'bg-blue-100': isActive(item.route)
+      }"
+      (click)="toggleDropdown(item.title)"
+    >
+      <span
+        class="flex items-center font-medium"
+        [ngClass]="{
+          'w-full': isSidebarExpanded,
+          'w-full justify-center': !isSidebarExpanded,
+          'text-blue-500': isActive(item.route),
+          'text-gray-700 group-hover:text-blue-500': !isActive(item.route)
+        }"
+      >
+        <div class="w-8 flex justify-center items-center">
+          <i
+            [class]="iconMap[item.title] || 'fas fa-book'"
+            [ngClass]="{
+              'text-xl': !isSidebarExpanded,
+              'text-blue-500': isActive(item.route),
+              'text-gray-700 group-hover:text-blue-500': !isActive(item.route)
+            }"
+          ></i>
+        </div>
+        <span *ngIf="isSidebarExpanded" class="ml-2">{{ item.title }}</span>
+      </span>
+      <i
+        *ngIf="isSidebarExpanded"
+        [ngClass]="{
+          'fa-chevron-down': !isOpen[item.title],
+          'fa-chevron-up': isOpen[item.title],
+          'text-blue-500': isActive(item.route) || isOpen[item.title],
+          'text-gray-700 group-hover:text-blue-500': !isActive(item.route) && !isOpen[item.title]
+        }"
+        class="fas text-sm ml-4 transition-transform duration-300"
+      ></i>
+    </div>
+    <ul
+      *ngIf="isOpen[item.title]"
+      [ngClass]="{
+        'mt-2 ml-4 space-y-1': isSidebarExpanded,
+        'mt-1 flex flex-col items-center': !isSidebarExpanded
+      }"
+    >
+      <li
+        *ngFor="let subItem of item.subItems; trackBy: trackByTitle"
+        [ngClass]="{ 'mb-1': !isSidebarExpanded }"
+      >
+        <a
+          [routerLink]="subItem.route"
+          class="flex items-center p-2 rounded-md transition-colors duration-200 group"
+          [ngClass]="{
+            'bg-blue-100 text-blue-500': isActive(subItem.route),
+            'text-gray-700 hover:text-blue-500': !isActive(subItem.route),
+            'justify-start w-full': isSidebarExpanded,
+            'justify-center': !isSidebarExpanded
+          }"
+        >
+          <div class="w-8 flex justify-center items-center">
+            <i
+              [class]="iconMap[subItem.title] || 'fas fa-chevron-right'"
+              [ngClass]="{
+                'text-sm': !isSidebarExpanded,
+                'text-blue-500': isActive(subItem.route),
+                'text-gray-500 group-hover:text-blue-500': !isActive(subItem.route)
+              }"
+            ></i>
+          </div>
+          <span *ngIf="isSidebarExpanded" class="ml-2">{{ subItem.title }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <ng-template #singleItem>
+    <div
+      class="p-3 rounded-lg cursor-pointer transition-all duration-300 group"
+      [ngClass]="{
+        'bg-blue-200': isActive(item.route),
+        'hover:text-blue-500': !isActive(item.route)
+      }"
+    >
+      <a
+        [routerLink]="item.route"
+        class="flex items-center w-full"
+        [ngClass]="{
+          'text-blue-500': isActive(item.route),
+          'text-gray-700 group-hover:text-blue-500': !isActive(item.route),
+          'justify-center': !isSidebarExpanded
+        }"
+      >
+        <div class="w-8 flex justify-center items-center">
+          <i
+            [class]="iconMap[item.title] || 'fas fa-book'"
+            [ngClass]="{
+              'text-xl': !isSidebarExpanded,
+              'text-blue-500': isActive(item.route),
+              'text-gray-700 group-hover:text-blue-500': !isActive(item.route)
+            }"
+          ></i>
+        </div>
+        <span *ngIf="isSidebarExpanded" class="ml-2">{{ item.title }}</span>
+      </a>
+    </div>
+  </ng-template>
+</ng-template>

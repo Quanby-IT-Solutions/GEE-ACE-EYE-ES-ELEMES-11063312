@@ -1,0 +1,73 @@
+<div id="start-meeting-container" class="flex justify-center items-center h-screen">
+    <button (click)="startMeeting()" class="px-4 py-2 bg-green-600 text-white rounded-lg">Start Meeting</button>
+</div>
+
+<div id="meeting-container" class="p-6 bg-white rounded-xl shadow-md hidden">
+  <!-- Header Section -->
+  <div class="grid grid-cols-6 items-center mb-4 px-1 py-4">
+    <!-- Main Participant Section -->
+    <div class="col-span-2 items-center relative">
+      <div>
+        <img id="main-participant-img" src="assets/img/bini.jpeg" alt="Main Participant" class="w-11/12 h-60 rounded-2xl mr-4">
+        <video id="main-video-element" class="w-11/12 h-60 rounded-2xl mr-4 object-cover hidden" autoplay muted></video>
+        <div class="mt-2">
+          <div class="text-sm font-semibold text-gray-800">Anton Caesar Cabais <span class="text-sm font-light text-gray-500">Software Engineer</span></div>
+        </div>
+        <!-- Microphone Icon -->
+        <div class="absolute top-3 left-3 flex justify-center items-center">
+            <div class="rounded-full h-10 w-10 bg-gray-50 flex justify-center items-center">
+                <i id="microphone-icon" class="fas cursor-pointer text-blue-700 text-lg fa-microphone" (click)="toggleMicrophone()"></i>
+            </div>
+        </div>
+        
+          
+      </div>
+    </div>
+
+    <!-- Title and Participants Section -->
+    <div class="col-span-4 flex flex-col h-full">
+      <div class="flex justify-between items-center mb-7">
+        <div>
+          <div class="text-lg font-semibold text-gray-900">Software Engineering</div>
+          <div class="text-md font-light text-gray-600">Computer Science 4B</div>
+        </div>
+        <button (click)="leaveMeeting()" class="px-4 py-2 bg-red-600 text-white rounded-lg">Leave</button>
+      </div>
+
+      <!-- Participants Section -->
+      <div class="flex space-x-4 overflow-x-auto" id="participants-container">
+        <!-- Participants will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="grid grid-cols-3 gap-4">
+    <div class="col-span-2 bg-white shadow-xl border border-gray-600 object-fill rounded-2xl relative">
+      <!-- Shared screen area -->
+      <video id="shared-screen-element" class="w-full h-full object-fill rounded-2xl" autoplay></video>
+      <div id="shared-screen-placeholder" class="absolute inset-0 flex items-center justify-center text-gray-400">
+        <div class="text-lg font-semibold">Wait for screen share...</div>
+      </div>
+    </div>
+
+    <!-- Chat Room Section -->
+    <div class="bg-gray-50 p-6 rounded-lg">
+      <div class="text-lg font-bold mb-2">Chat</div>
+      <div class="overflow-y-auto h-64 mb-4" id="chat-room">
+        <!-- Messages will be dynamically added here -->
+      </div>
+      <div class="flex items-center mt-10">
+        <input type="text" #messageInput class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Type a message...">
+        <button (click)="sendMessage(messageInput)" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Control Buttons -->
+  <div class="flex justify-center mt-4 space-x-4">
+    <button (click)="toggleVideo()" class="px-4 py-2 bg-green-600 text-white rounded-lg" id="toggle-video-btn">Start Video</button>
+    <button (click)="toggleMicrophone()" class="px-4 py-2 bg-blue-600 text-white rounded-lg" id="toggle-mic-btn">Mute Microphone</button>
+    <button (click)="startScreenShare()" class="px-4 py-2 bg-yellow-600 text-white rounded-lg">Share Screen</button>
+  </div>
+</div>
