@@ -5287,7 +5287,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Algebra' },
         { title: 'Chapter 1.1', description: 'Basics of Algebra (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Math Homework 1', dueDate: new Date(2024, 8, 21) },
@@ -5318,7 +5318,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Physics' },
         { title: 'Chapter 1.1', description: 'Basics of Physics (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
 
       tasks: [
@@ -5350,7 +5350,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Chemistry' },
         { title: 'Chapter 1.1', description: 'Basics of Chemistry (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
 
       tasks: [
@@ -5382,7 +5382,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Biology' },
         { title: 'Chapter 1.1', description: 'Basics of Biology (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Plant Classification Homework 1', dueDate: new Date(2024, 8, 22) },
@@ -5413,7 +5413,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Computer Science' },
         { title: 'Chapter 1.1', description: 'Basics of Computer Science (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Programming Assignment 1', dueDate: new Date(2024, 8, 22) },
@@ -5444,7 +5444,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to History' },
         { title: 'Chapter 1.1', description: 'Basics of History (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Essay on Ancient Civilizations 1', dueDate: new Date(2024, 8, 22) },
@@ -5475,7 +5475,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Geography' },
         { title: 'Chapter 1.1', description: 'Basics of Geography (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Geography Map Assignment 1', dueDate: new Date(2024, 8, 22) },
@@ -5506,7 +5506,7 @@ export class DataService {
       modules: [
         { title: 'Course Outline', description: 'Introduction to Literature' },
         { title: 'Chapter 1.1', description: 'Basics of Literature (YouTube)' },
-        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+        { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
         { name: 'Literature Review 1', dueDate: new Date(2024, 8, 22) },
