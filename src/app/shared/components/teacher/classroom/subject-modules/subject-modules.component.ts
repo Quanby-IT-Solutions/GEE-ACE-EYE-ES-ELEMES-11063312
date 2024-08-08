@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
+  selectedTab: string = 'modules'; // default tab
 
   constructor(private router: Router, private datePipe: DatePipe) {}
 
@@ -20,5 +21,9 @@ export class SubjectModulesComponent implements OnInit {
     if (!this.course) {
       this.router.navigate(['/']);
     }
+  }
+
+  selectTab(tab: string): void {
+    this.selectedTab = tab;
   }
 }

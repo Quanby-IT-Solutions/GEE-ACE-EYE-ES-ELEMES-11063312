@@ -5276,6 +5276,7 @@ export class DataService {
   private course: any;
   private courses = [
     {
+      instructor: 'John Paul Azkal',
       course: 'Mathematics 101',
       subject: 'Algebra',
       block: 'A',
@@ -5283,6 +5284,11 @@ export class DataService {
       grade: '97',
       progress: '65',
       imageUrl: 'assets/img/math.png',
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Algebra' },
+        { title: 'Chapter 1.1', description: 'Basics of Algebra (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Math Homework 1', dueDate: new Date(2024, 8, 21) },
         { name: 'Algebra Quiz 1', dueDate: new Date(2024, 8, 22) },
@@ -5300,6 +5306,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Physics 201',
       subject: 'Mechanics',
       block: 'B',
@@ -5307,6 +5315,11 @@ export class DataService {
       grade: '92',
       progress: '85',
       imageUrl: 'assets/img/physics.png',
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Physics' },
+        { title: 'Chapter 1.1', description: 'Basics of Physics (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
 
       tasks: [
         { name: 'Physics Lab Report 1', dueDate: new Date(2024, 8, 22) },
@@ -5325,6 +5338,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Chemistry 301',
       subject: 'Organic Chemistry',
       block: 'C',
@@ -5332,6 +5347,11 @@ export class DataService {
       grade: '91',
       progress: '85',
       imageUrl: 'assets/img/chemistry.png',
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Chemistry' },
+        { title: 'Chapter 1.1', description: 'Basics of Chemistry (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
 
       tasks: [
         { name: 'Organic Chemistry Lab 1', dueDate: new Date(2024, 8, 22) },
@@ -5350,6 +5370,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Biology 101',
       subject: 'Botany',
       block: 'D',
@@ -5357,7 +5379,11 @@ export class DataService {
       grade: '90',
       progress: '85',
       imageUrl: 'assets/img/biology.png',
-
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Biology' },
+        { title: 'Chapter 1.1', description: 'Basics of Biology (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Plant Classification Homework 1', dueDate: new Date(2024, 8, 22) },
         { name: 'Botany Quiz 1', dueDate: new Date(2024, 8, 23) },
@@ -5375,6 +5401,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Computer Science 101',
       subject: 'Programming',
       block: 'E',
@@ -5382,7 +5410,11 @@ export class DataService {
       grade: '93',
       progress: '85',
       imageUrl: 'assets/img/compsci.png',
-
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Computer Science' },
+        { title: 'Chapter 1.1', description: 'Basics of Computer Science (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Programming Assignment 1', dueDate: new Date(2024, 8, 22) },
         { name: 'Data Structures Quiz 1', dueDate: new Date(2024, 8, 23) },
@@ -5400,6 +5432,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'History 101',
       subject: 'World History',
       block: 'F',
@@ -5407,7 +5441,11 @@ export class DataService {
       grade: '88',
       progress: '85',
       imageUrl: 'assets/img/history.png',
-
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to History' },
+        { title: 'Chapter 1.1', description: 'Basics of History (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Essay on Ancient Civilizations 1', dueDate: new Date(2024, 8, 22) },
         { name: 'History Quiz 1', dueDate: new Date(2024, 8, 23) },
@@ -5425,6 +5463,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Geography 101',
       subject: 'Physical Geography',
       block: 'G',
@@ -5432,7 +5472,11 @@ export class DataService {
       grade: '81',
       progress: '65',
       imageUrl: 'assets/img/georaphy.png',
-
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Geography' },
+        { title: 'Chapter 1.1', description: 'Basics of Geography (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Geography Map Assignment 1', dueDate: new Date(2024, 8, 22) },
         { name: 'Climate Quiz 1', dueDate: new Date(2024, 8, 23) },
@@ -5450,6 +5494,8 @@ export class DataService {
       ]
     },
     {
+      instructor: 'John Paul Azkal',
+
       course: 'Literature 101',
       subject: 'English Literature',
       block: 'H',
@@ -5457,7 +5503,11 @@ export class DataService {
       grade: '75',
       progress: '65',
       imageUrl: 'assets/img/literature.png',
-
+      modules: [
+        { title: 'Course Outline', description: 'Introduction to Literature' },
+        { title: 'Chapter 1.1', description: 'Basics of Literature (YouTube)' },
+        { title: 'Assignment 1', description: 'Due: 3:00 PM' }
+      ],
       tasks: [
         { name: 'Literature Review 1', dueDate: new Date(2024, 8, 22) },
         { name: 'Poetry Analysis 1', dueDate: new Date(2024, 8, 23) },
