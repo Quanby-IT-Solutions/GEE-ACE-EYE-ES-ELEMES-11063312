@@ -1,0 +1,611 @@
+<!-- src/app/dashboard/dashboard.component.html -->
+
+<div class="flex min-h-screen">
+  <!-- @if (getUserType() !== 'school_admin') {} -->
+  <aside class="w-64 bg-white py-8">
+    <h1>
+      <a [routerLink]="routes.home" class="text-pink-300 text-3xl font-bold p-4"> bini! </a>
+    </h1>
+    
+    <nav class="flex-1 overflow-y-auto">
+      <ul class="space-y-2 p-4">
+        <!-- Media Manager Routes -->
+        <li>
+          <div
+            class="flex items-center justify-between p-2 text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white cursor-pointer"
+            tabindex="0" (click)="toggleDropdown('media')" (keyup.enter)="toggleDropdown('media')">
+            <span>Media</span>
+            <span [ngClass]="{ 'rotate-180': isOpen['media'] }" class="transform transition-transform duration-300">
+              &#9660;
+            </span>
+          </div>
+          <ul *ngIf="isOpen['media']" class="space-y-2 ml-4">
+            <li>
+              <a [routerLink]="routes.media_manager" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Media
+                Manager</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.media_manager_create" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Create
+                Media</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.media_manager_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Media
+                Manager Settings</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Users Routes -->
+        <li>
+          <div
+            class="flex items-center justify-between p-2 text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white cursor-pointer"
+            tabindex="0" (click)="toggleDropdown('users')" (keyup.enter)="toggleDropdown('users')">
+            <span>Users</span>
+            <span [ngClass]="{ 'rotate-180': isOpen['users'] }" class="transform transition-transform duration-300">
+              &#9660;
+            </span>
+          </div>
+          <ul *ngIf="isOpen['users']" class="space-y-2 ml-4">
+            <li>
+              <a [routerLink]="routes.users_instructors" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Instructors</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.users_instructors_payout" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Instructors
+                Payout</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.users_students" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Students</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.users_staffs" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Staffs</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.users_roles" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Roles</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.users_delete_account_requests" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Delete
+                Account Requests</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Settings Routes -->
+        <li>
+          <div
+            class="flex items-center justify-between p-2 text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white cursor-pointer"
+            tabindex="0" (click)="toggleDropdown('settings')" (keyup.enter)="toggleDropdown('settings')">
+            <span>Settings</span>
+            <span [ngClass]="{ 'rotate-180': isOpen['settings'] }" class="transform transition-transform duration-300">
+              &#9660;
+            </span>
+          </div>
+          <ul *ngIf="isOpen['settings']" class="space-y-2 ml-4">
+            <li>
+              <a [routerLink]="routes.settings_system" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">System
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_api" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">API
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_sms" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">SMS
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_vimeo" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Vimeo
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_vdocipher" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Vdocipher
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_localization" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Localization
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_module_manager" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Module
+                Manager</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_sidebar_manager" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Sidebar
+                Manager</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_themes" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Themes
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_themes_customize" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Themes
+                Customize</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_themes_font" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Themes
+                Font</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_newsletter" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Newsletter
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_newsletter_mailchimp" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Mailchimp
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_newsletter_get_response" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">GetResponse
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_newsletter_acelle" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Acelle
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_newsletter_subscriber" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Subscriber
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_push_notification" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Push
+                Notification Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_utilities" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Utilities
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_preloader" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Preloader
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_geo_location" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Geo
+                Location Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_error_log" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Error Log
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_ip_block" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">IP Block
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_maintenance" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Maintenance
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_update_system" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Update
+                System Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_city" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">City
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_cache" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Cache
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_queue" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Queue
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_cron_job" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Cron Job
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_captcha" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Captcha
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_social_login" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Social
+                Login Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_payout_accounts" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Payout
+                Accounts Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_cookie" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Cookie
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_analytics" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Analytics
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_pusher" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Pusher
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_gdrive" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Gdrive
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_seo" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">SEO
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_currencies" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Currencies
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_timezone" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Timezone
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_activation" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Activation
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_general" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">General
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_email" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Email
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_email_template" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Email
+                Template Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_payout" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Payout
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.settings_backup" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Backup
+                Settings</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- No Main Route -->
+        <li>
+          <div
+            class="flex items-center justify-between p-2 text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white cursor-pointer"
+            tabindex="0" (click)="toggleDropdown('noMainRoute')" (keyup.enter)="toggleDropdown('noMainRoute')">
+            <span>No Main Route</span>
+            <span [ngClass]="{ 'rotate-180': isOpen['noMainRoute'] }"
+              class="transform transition-transform duration-300">
+              &#9660;
+            </span>
+          </div>
+          <ul *ngIf="isOpen['noMainRoute']" class="space-y-2 ml-4">
+            <li>
+              <a [routerLink]="routes.departments" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Departments</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.courses_categories" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Course
+                Categories</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.courses_levels" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Course
+                Levels</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.courses_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Course
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.courses_subjects" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Course
+                Subjects</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.quizzes_question_groups" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Question
+                Groups</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.quizzes_question_banks" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Question
+                Banks</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.quizzes_setups" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Quiz
+                Setups</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.quizzes_results" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Quiz
+                Results</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.virtual_classes" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Virtual
+                Classes</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.zoom_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Zoom
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.certificates" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Certificates</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.certificates_fonts" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Certificate
+                Fonts</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.certificates_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Certificate
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.revenue" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Revenue</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.revenue_instructors" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Instructors
+                Revenue</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.revenue_statistics" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Revenue
+                Statistics</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.enrollments" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Enrollments</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.enrollments_refund_n_cancellation" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Refund and
+                Cancellation</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.enrollments_refund_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Refund
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.communication_notifications" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Notifications</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.communication_private_messages" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Private
+                Messages</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.coupons_manage" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Manage
+                Coupons</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.coupons_single" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Single
+                Coupons</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.coupons_personalized" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Personalized
+                Coupons</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.coupons_invite_code" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Invite
+                Code Coupons</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.coupons_invite_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Invite
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.payment_online" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Online
+                Payment</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.payment_offline" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Offline
+                Payment</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.payment_bank" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Bank
+                Payment</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.payment_commission" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Payment
+                Commission</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.blogs" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Blogs</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.blogs_comments" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Blog
+                Comments</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.questions" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Questions</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.questions_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Question
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_header_menu" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Header
+                Menu</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_menu_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Menu
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_sliders" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Sliders</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_sliders_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Slider
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_page_content" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Page
+                Content</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_testimonials" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Testimonials</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_social_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Social
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_pages" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Pages</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_become_instructor" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Become an
+                Instructor</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_sponsors" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Sponsors</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_popup_content" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Popup
+                Content</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_footer_settings" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Footer
+                Settings</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_login_page" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Login
+                Page</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_faq" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">FAQ</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.cmo_header_footer_style" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Header
+                Footer Style</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.gamification" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Gamification</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.gamification_badges" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Gamification
+                Badges</a>
+            </li>
+            <li>
+              <a [routerLink]="routes.gamification_history" routerLinkActive="bg-purple-300 text-white"
+                class="block p-2 rounded text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white">Gamification
+                History</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Logout -->
+        <li>
+          <div
+            class="flex items-center justify-between p-2 text-gray-800 hover:bg-purple-300 hover:rounded-lg hover:text-white cursor-pointer"
+            tabindex="0" (click)="logout()" (keyup.enter)="logout()">
+            <span>Logout</span>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    
+  </aside>
+
+
+  <div class="flex-1 flex flex-col">
+    
+    <header class="bg-white shadow-sm text-gray-700 p-4 flex items-center justify-between">
+      <h1 class="text-pink-300 text-2xl font-bold">bini babies!</h1>
+      <div class="flex items-center space-x-4">
+        <input type="text" placeholder="Search... not working" (keyup.enter)="searchRoutes()"
+          class="p-2 rounded bg-gray-50 border-pink-300 border-2 text-gray-500 placeholder-gray-800 focus:outline-purple-600 focus:bg-gray-100" />
+        <button (click)="searchRoutes()" class="p-2 text-gray-100 bg-pink-300 rounded">Search</button>
+      </div>
+    </header>
+
+    <main class="flex-1 p-6 bg-gray-50">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
