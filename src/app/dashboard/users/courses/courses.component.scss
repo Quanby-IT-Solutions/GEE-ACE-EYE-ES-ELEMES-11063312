@@ -1,0 +1,15 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.course-card {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+  @apply shadow-lg;
+}
+
+button {
+  transition: background-color 0.3s ease;
+}

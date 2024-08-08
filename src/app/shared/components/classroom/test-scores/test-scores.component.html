@@ -1,0 +1,64 @@
+<div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-semibold mb-4">My Test Scores</h1>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Class</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Quiz Name</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Percentage</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Score</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Duration</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Completed Date</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Final Grade</th>
+            <th class="py-2 px-4 bg-gray-100 border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let score of testScores">
+            <td class="py-4 px-6 border-b border-gray-200">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <img class="h-10 w-10 rounded-full" src="../../../../../assets/catsu.png" alt="Class Icon">
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">{{ score.class }}</div>
+                  <div class="text-sm text-gray-500">{{ score.instructor }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">{{ score.quizName }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">
+              <div class="relative pt-1">
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                  <div [ngClass]="getProgressBarClass(score.percentage)" [style.width.%]="score.percentage" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center"></div>
+                </div>
+                <span>{{ score.percentage }}%</span>
+              </div>
+            </td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">{{ score.score }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">{{ score.duration }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">{{ score.completedDate }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 text-sm text-gray-900">{{ score.finalGrade }}%</td>
+            <td class="py-4 px-6 border-b border-gray-200 text-right text-sm font-medium">
+              <button class="text-indigo-600 hover:text-indigo-900">Review</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded">Preview</button>
+      <div class="flex items-center">
+        <a href="#" class="px-2 py-1 text-gray-500">1</a>
+        <a href="#" class="px-2 py-1 text-gray-500">2</a>
+        <a href="#" class="px-2 py-1 bg-blue-500 text-white rounded">3</a>
+        <a href="#" class="px-2 py-1 text-gray-500">...</a>
+        <a href="#" class="px-2 py-1 text-gray-500">7</a>
+        <a href="#" class="px-2 py-1 text-gray-500">9</a>
+        <a href="#" class="px-2 py-1 text-gray-500">10</a>
+      </div>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
+    </div>
+  </div>
+  

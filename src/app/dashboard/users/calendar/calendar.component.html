@@ -1,0 +1,84 @@
+<div class="flex items-center justify-center">
+  <div class="max-w-sm w-full">
+    <div class="md:p-8 p-4 dark:bg-gray-800 bg-white rounded-xl shadow-md">
+      <div class="flex items-center justify-between">
+        <span tabindex="0" class="focus:outline-none text-base font-bold dark:text-gray-800 text-gray-800">{{ currentMonth | date: 'MMMM yyyy' }}</span>
+        <div class="flex items-center">
+          <button aria-label="calendar backward" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-400" (click)="previousMonth()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <polyline points="15 6 9 12 15 18" />
+            </svg>
+          </button>
+          <button aria-label="calendar forward" class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-400" (click)="nextMonth()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <polyline points="9 6 15 12 9 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-8 overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr>
+              @for (day of daysOfWeek; track day) {
+                <th>
+                  <div class="w-full flex justify-center">
+                    <p class="text-base font-medium text-center text-gray-800 dark:text-gray-400">{{ day }}</p>
+                  </div>
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (week of calendar; track week) {
+              <tr>
+                @for (day of week; track day) {
+                  <td>
+                    <div class="px-3 py-2 cursor-pointer flex w-full justify-center"
+                      [ngClass]="{
+                          'bg-blue-600 text-white rounded-full': isSelectedDate(day.date),
+                          'text-gray-500 dark:text-gray-100': !day.isCurrentMonth
+                      }"
+                      (click)="selectDate(day.date)">
+                      <p class="text-base">{{ day.date.getDate() }}</p>
+                    </div>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="md:py-8 md:px-16 px-4 bg-white mt-6 rounded-xl shadow-md">
+      <div>
+        <div class="text-lg font-bold text-gray-900 mb-4">
+          {{ getDisplayDateTitle() }}
+        </div>
+        @for (event of selectedDateEvents; track event) {
+          <div class="mb-3 p-4 bg-gradient-to-r from-blue-700 to-blue-400 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <div class="bg-gray-50 rounded-2xl w-12 h-12 flex items-center justify-center mr-4">
+                  <span class="text-xs text-blue-600 font-semibold text-center">{{ event.date | date: 'dd' }}<br>{{ event.date | date: 'MMM' }}</span>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white dark:text-white">{{ event.title }}</p>
+                  <p class="text-xs text-white dark:text-white">{{ event.type }}</p>
+                </div>
+              </div>
+              <div class="text-xs text-white dark:text-white">{{ event.time }}</div>
+            </div>
+          </div>
+        }
+        @if (selectedDateEvents.length === 0) {
+          <div class="text-center text-black dark:text-black">
+            No events for this day.
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

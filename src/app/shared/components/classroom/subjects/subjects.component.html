@@ -1,0 +1,72 @@
+<div class="container mx-auto p-4">
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div
+      class="relative text-white rounded-lg p-4 flex justify-between items-start overflow-hidden"
+      style="
+        background-image: url('assets/img/classroom/onlineTaskBG.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="absolute inset-0 bg-[#0C1228] opacity-50"></div>
+      <div class="relative z-10 flex-grow">
+        <h2 class="text-3xl font-bold text-white">My Online Task</h2>
+        <p class="text-md">View task that you have this week</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-end">
+        <div class="text-4xl font-bold flex items-center">
+          <span class="text-yellow-300 mr-1">{{ taskSummary.completed }}</span>
+          <span class="text-2xl text-gray-300">/{{ taskSummary.total }}</span>
+        </div>
+        <span class="text-sm text-gray-300 mt-1">Completed</span>
+      </div>
+    </div>
+    <div
+      class="relative text-white rounded-lg p-4 flex justify-between items-start overflow-hidden"
+      style="
+        background-image: url('assets/img/classroom/testFileBG.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="absolute inset-0 bg-[#0C1228] opacity-50"></div>
+      <div class="relative z-10 flex-grow">
+        <h2 class="text-3xl font-bold text-white">My Test Results</h2>
+        <p class="text-md">View your performance this sem</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-end">
+        <div class="text-4xl font-bold text-yellow-300">
+          {{ testResults.completed }}
+        </div>
+        <span class="text-sm text-gray-300 mt-1">Quiz Completed</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4">My Classes</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div
+      *ngFor="let class of classes"
+      class="rounded-lg shadow-md overflow-hidden"
+    >
+      <div
+        class="relative h-32"
+        style="
+          background-image: url('assets/img/classroom/classBG.svg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        "
+      >
+        <div class="absolute inset-0 bg-[#0C1228] opacity-30"></div>
+      </div>
+      <div class="p-4 bg-white">
+        <h3 class="font-bold">{{ class.code }}</h3>
+        <p class="text-sm text-gray-600">{{ class.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

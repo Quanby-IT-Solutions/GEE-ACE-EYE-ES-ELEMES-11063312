@@ -1,0 +1,24 @@
+.instructor-view .task-item,
+.student-view .task-item {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instructor-view .task-item h3,
+.student-view .task-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.instructor-view .task-item p,
+.student-view .task-item p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #757575;
+}

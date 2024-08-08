@@ -1,0 +1,306 @@
+<div class="h-full w-full p-0 bg-color-primary">
+
+  <!-- Number of students -->
+  <section class="h-dvh w-dvw text-color-tertiary bg-color-primary">
+    <div
+      class="container flex md:flex-row flex-col-reverse md:justify-around justify-center items-center md:gap-12 gap-12 h-full w-fit">
+      <div class="h-fit w-full flex flex-col justify-center items-center md:gap-3 gap-4">
+        <p class="font-extrabold md:text-4xl text-3xl drop-shadow-lg">How many Students?</p>
+        <div class="relative w-48">
+          <input [(ngModel)]="numberOfStudents" type="number"
+            class="w-full px-3 py-2 text-6xl text-center font-bold bg-transparent text-white rounded-lg focus:outline-none focus:ring-0 no-spinner">
+          <div class="absolute bottom-0 left-0 w-full h-0.5 bg-color-tertiary"></div>
+        </div>
+        <button class="text-md p-3 md:w-52 md:mt-2 mt-4 w-full text-lg bg-color-secondary rounded-lg shadow-lg"
+          (click)="generateStudentArray()">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout for SpeechLab -->
+  <section
+    class="h-dvh w-full overflow-hidden text-color-tertiary bg-color-primary flex items-center justify-center p-4">
+
+    <div class="flex flex-col items-center justify-center gap-8 h-full w-full">
+      <div class="text-center pb-8">
+        <p class="font-bold text-3xl md:text-3xl lg:text-4xl drop-shadow-lg max-w-md mx-auto">
+          Select a layout closest to your classroom
+        </p>
+      </div>
+      <div class="w-full h-fit container lg:px-16 md:px-4 xs:px-2 overflow-y-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-color-quarterry text-base">
+          <div class="w-full flex flex-col justify-center items-center gap-4 p-1 ">
+            <div>
+              <p>Line 1</p>
+            </div>
+            <div role="none" (click)="seatLayout(1)" class="w-full h-56 rounded-xl bg-color-quarterry outline-none outline-2 hover:outline-2 hover:outline-color-secondary overflow-hidden
+              p-2">
+              <!-- arrangement of seats -->
+              <div class="w-full h-fit  grid gap-2"
+                [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(35px, 1fr))'}">
+                @for (img of studentsArray; track $index) {
+                <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                }
+              </div>
+            </div>
+          </div>
+          <!-- Line 2 -->
+          <div class="w-full flex flex-col justify-center items-center gap-4 p-1">
+            <div>
+              <p>Line 2</p>
+            </div>
+            <div role="none" (click)="seatLayout(2)"
+              class="w-full h-56 rounded-xl bg-color-quarterry outline-none outline-2 hover:outline-2 hover:outline-color-secondary p-2 overflow-hidden">
+              <!-- arrangement of seats -->
+              <div class="flex gap-8 h-fit">
+                <div class="w-1/2 h-full grid gap-2 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(30px, 1fr))', 'grid-gap': '12px'}">
+                  @for (student of studentsArray.slice(0, studentsArray.length / 2); track student) {
+                  <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                  }
+                </div>
+                <div class="w-1/2 h-full grid gap-2 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(30px, 1fr))', 'grid-gap': '12px'}">
+                  @for (student of studentsArray.slice(studentsArray.length / 2); track student) {
+                  <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-col justify-center items-center gap-4 p-1">
+            <div>
+              <p>Line 3</p>
+            </div>
+            <div role="none" (click)="seatLayout(3)"
+              class="w-full h-56 rounded-xl bg-color-quarterry outline-none outline-2 hover:outline-2 hover:outline-color-secondary p-2 overflow-hidden">
+              <!-- arrangement of seats -->
+              <div class="flex gap-8 h-fit" role="none">
+                <div class="w-1/3 h-full grid gap-2 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(30px, 1fr))', 'grid-gap': '12px'}">
+                  @for (student of studentsArray.slice(0, studentsArray.length / 3); track student) {
+                  <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                  }
+                </div>
+                <div class="w-1/3 h-full grid gap-2 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(30px, 1fr))', 'grid-gap': '12px'}">
+                  @for (student of studentsArray.slice(studentsArray.length / 3, studentsArray.length * 2 / 3); track
+                  student) {
+                  <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                  }
+                </div>
+                <div class="w-1/3 h-full grid gap-2 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(30px, 1fr))', 'grid-gap': '12px'}">
+                  @for (student of studentsArray.slice(studentsArray.length * 2 / 3); track student) {
+                  <img src="assets/img/speechlab/add.png" class="h-6" alt="">
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="h-dvh w-dvw">
+    <div class="h-full w-dvw flex relative">
+      <!-- sidenav left-->
+      <div class="bg-color-primary lg:w-[400px] md:w-[400px] sm:w-[300px] xs:w-full h-full md:px-8 px-4 pt-8 flex flex-col gap-8 absolute left-0 top-0
+               transition-transform duration-300 ease-in-out transform
+               {{ showSideNav ? 'lg:translate-x-[-395px] md:translate-x-[-395px] sm:translate-x-[-298px] xs:translate-x-[-99.5%]'
+               : 'translate-x-0' }}">
+        <div class="absolute top-2/4 duration-300 ease-in-out {{
+            showSideNav ? '-right-5 rotate-180' : '-right-5 '
+            }}">
+          <svg (click)="sideNav()" role="none" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em"
+            viewBox="0 0 1024 1024"
+            class="text-color-quarterry bg-color-primary rounded-full p-1 hover:cursor-pointer rotate-[270deg] border-2 border-color-quarterry">
+            <path fill="currentColor" d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8l316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64
+              0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496" />
+          </svg>
+        </div>
+
+        <!-- title -->
+        <div class="flex justify-between items-center text-color-tertiary">
+          <div class="flex flex-col items-start justify-center gap-2">
+            <p class="text-base font-bold capitalize">Speech lab units</p>
+            <p class="text-xs">{{ class }}</p>
+          </div>
+          <div class="flex flex-col items-end justify-center gap-2">
+            <button>
+              <img src="assets/img/speechlab/Vector.png" alt=""
+                class="px-3 h-7 cursor-pointer hover:scale-110 duration-300" />
+            </button>
+            <p class="whitespace-nowrap line-clamp-2 text-xs font-thin">
+              Auto arrange
+            </p>
+          </div>
+        </div>
+        <!-- search input -->
+        <div class="w-full mx-auto">
+          <div class="relative flex items-center bg-white rounded-full">
+            <button class="absolute left-3 text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <input type="text" class="w-full py-2 pl-12 pr-4 text-gray-700 rounded-full focus:outline-none"
+              placeholder="Search..." />
+            <button class="absolute right-3 text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- table / students-->
+        <div class="h-full overflow-hidden w-full bg-color-tertiary rounded-t-xl p-3">
+          <div class="w-full h-full scroll-none flex flex-col gap-2 justify-start items-center overflow-y-auto pb-12">
+            <!-- @for (item of items; track $index) { -->
+            <div class="w-full h-fit bg-color-quarterry rounded-xl py-2 px-2">
+              <div class="flex justify-between items-center gap-8 px-2">
+                <div class="flex gap-2 justify-center items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-12 -ml-3" viewBox="0 0 24 24">
+                    <g fill="none">
+                      <path
+                        d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l
+                        -.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" />
+                      <path fill="currentColor"
+                        d="M9 4.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3m1.5 7.5a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m0 6a1.5
+                        1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m6-6a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0M15 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3M16.5 6a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0" />
+                    </g>
+                  </svg>
+                  <img src="assets/img/speechlab/Icon.png" alt="" class="w-16 h-14" />
+                </div>
+
+                <div class="flex flex-col">
+                  <p class="text-sm font-semibold capitalize">
+                    Last name, First name, Middle initial
+                  </p>
+                  <p class="text-xs">Student ID</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- } -->
+          </div>
+        </div>
+      </div>
+
+      <!-- body right lg:px-24 md:px-12 xs:px-4-->
+      <div class="flex-grow flex-col flex justify-start items-center w-full h-full bg-color-tertiary transition-all duration-300 ease-in-out
+        {{ showSideNav ? '' : 'md:ml-[400px] xs:ml-[300px]' }}">
+        <div class="flex justify-between items-center h-[10dvh] px-8 w-full">
+          <div class="flex justify-center md:gap-24 gap-4 items-center w-full">
+            <button
+              class="flex justify-center items-center gap-2 bg-color-primary text-color-tertiary md:w-40 w-24 font-medium py-[10px] hover:scale-105 rounded-lg">
+              1v1
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                  d="M12 4a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7M6.5 7.5a5.5 5.5 0 1 1 11 0a5.5 5.5 0 0 1-11 0M3 19a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v3H3zm5-3a3 3 0 0 0-3 3v1h14v-1a3 3 0 0 0-3-3z" />
+              </svg>
+            </button>
+            <button
+              class="flex justify-center items-center gap-2 bg-color-primary text-color-tertiary md:w-40 w-24 font-medium py-[10px] hover:scale-105 rounded-lg">
+              Group
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M17.928 19.634h2.138a1.165 1.165 0 0 0 1.116-1.555a6.851 6.851 0 0 0-6.117-3.95m0-2.759a3.664 3.664 0 0 0 3.665-3.664a3.664 3.664 0 0 0-3.665-3.674m-1.04 16.795a1.908 1.908 0 0 0 1.537-3.035a8.026 8.026 0 0 0-6.222-3.196a8.026 8.026 0 0 0-6.222 3.197a1.909 1.909 0 0 0 1.536 3.034zM9.34 11.485a4.16 4.16 0 0 0 4.15-4.161a4.151 4.151 0 0 0-8.302 0a4.16 4.16 0 0 0 4.151 4.16" />
+              </svg>
+            </button>
+            <button
+              class="flex justify-center items-center gap-4 bg-color-primary text-color-tertiary md:w-40 w-24 font-medium py-[10px] hover:scale-105 rounded-lg">
+              Customize
+              <svg class="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <path fill="currentColor"
+                  d="M30 6a3.992 3.992 0 0 0-7.977-.224L9.586 8.263A3.99 3.99 0 1 0 5 13.858v8.284A3.992 3.992 0 1 0 9.858 27h8.284a3.991 3.991 0 1 0 5.595-4.586l2.487-12.437A3.995 3.995 0 0 0 30 6m-4-2a2 2 0 1 1-2 2a2 2 0 0 1 2-2M4 10a2 2 0 1 1 2 2a2 2 0 0 1-2-2m2 18a2 2 0 1 1 2-2a2 2 0 0 1-2 2m12.142-3H9.858A4 4 0 0 0 7 22.142v-8.284a3.99 3.99 0 0 0 2.977-3.634l12.437-2.487a4 4 0 0 0 1.849 1.85l-2.487 12.436A3.99 3.99 0 0 0 18.142 25M22 28a2 2 0 1 1 2-2a2 2 0 0 1-2 2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="h-[90dvh] w-full px-8 pt-8 pb-24 duration-300 ease-in-out
+        {{ showSideNav ? 'xl:px-48 lg:px-20 md:px-16 xs:px-12 ' : '' }}">
+          <!-- RIGHT DIV  -->
+          <div class="w-full h-full overflow-hidden rounded-lg bg-color-quarterry p-4">
+            <!--  MGA STUDENT DIGDI -->
+            <div class="w-full h-full overflow-y-auto scroll-none">
+              @if(studentSeatLayout === 1){
+              <div class="w-full h-fit  grid gap-8"
+                [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(85px, 1fr))'}">
+                @for (img of studentsArray; track $index) {
+                <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                }
+              </div>
+              }
+              @else if(studentSeatLayout === 2){
+              <div class="flex md:gap-20 gap-8 h-fit">
+                <div class="w-1/2 h-full grid gap-8 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(80px, 1fr))'}">
+                  @for (student of studentsArray.slice(0, studentsArray.length / 2); track student) {
+                  <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                  }
+                </div>
+                <div class="w-1/2 h-full grid gap-8 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(80px, 1fr))'}">
+                  @for (student of studentsArray.slice(studentsArray.length / 2); track student) {
+                  <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                  }
+                </div>
+              </div>
+              }
+              @else if(studentSeatLayout === 3){
+              <div class="flex lg:gap-16 gap-8 h-fit" role="none">
+                <div class="w-1/3 h-full grid gap-8 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(80px, 1fr))'}">
+                  @for (student of studentsArray.slice(0, studentsArray.length / 3); track student) {
+                  <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                  }
+                </div>
+                <div class="w-1/3 h-full grid gap-8 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(80px, 1fr))'}">
+                  @for (student of studentsArray.slice(studentsArray.length / 3, studentsArray.length * 2 / 3); track
+                  student) {
+                  <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                  }
+                </div>
+                <div class="w-1/3 h-full grid gap-8 justify-start"
+                  [ngStyle]="{'grid-template-columns': 'repeat(auto-fill, minmax(80px, 1fr))'}">
+                  @for (student of studentsArray.slice(studentsArray.length * 2 / 3); track student) {
+                  <img src="assets/img/speechlab/add.png" class="mx-auto" alt="">
+                  }
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+          <div class="w-full mt-4 flex justify-center gap-16 items-center">
+            <button (click)="cancelButton()">
+              <svg
+                class="bg-color-red-primary hover:bg-red-500 rounded-full duration-300 h-12 w-12 text-color-tertiary p-2"
+                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                  d="M18.36 19.78L12 13.41l-6.36 6.37l-1.42-1.42L10.59 12L4.22 5.64l1.42-1.42L12 10.59l6.36-6.36l1.41 1.41L13.41 12l6.36 6.36z" />
+              </svg>
+            </button>
+            <button (click)="saveButton()">
+              <svg
+                class="bg-color-green-primary hover:bg-green-400 rounded-full duration-300 h-12 w-12 text-color-tertiary p-2"
+                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

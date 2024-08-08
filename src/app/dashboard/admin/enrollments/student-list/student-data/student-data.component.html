@@ -1,0 +1,48 @@
+<div class="container mx-auto px-4 py-8 max-w-6xl">
+  @if (loading) {
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600"></div>
+    </div>
+  }
+
+  @if (error) {
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-md mb-6">
+      <p class="font-bold">Error</p>
+      <p>{{ error }}</p>
+    </div>
+  }
+
+  @if (!loading && !error && studentData) {
+    <div>
+      <h2 class="text-3xl font-bold mb-4">{{ studentData.first_name }} {{ studentData.last_name }}</h2>
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Student Information</h3>
+        </div>
+        <div class="border-t border-gray-200">
+          <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Full name</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ studentData.first_name }} {{ studentData.middle_name }} {{ studentData.last_name }}</dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Email address</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ studentData.email }}</dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Contact number</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ studentData.contact_number }}</dd>
+            </div>
+            <!-- Add more fields as needed -->
+          </dl>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (!loading && !error && !studentData) {
+    <div class="text-center text-gray-600 mt-8">
+      No data found for this student.
+    </div>
+  }
+</div>

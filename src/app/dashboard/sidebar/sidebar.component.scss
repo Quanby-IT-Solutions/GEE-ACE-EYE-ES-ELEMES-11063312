@@ -1,0 +1,23 @@
+// src/app/dashboard/sidebar/sidebar.component.scss
+
+* {
+  user-select: none;
+}
+
+.sidebar-transition {
+  transition: width 0.3s ease-in-out;
+}
+
+.sidebar-collapsed {
+  width: 4rem;
+}
+
+.sidebar-expanded {
+  width: 16rem;
+}
+
+@media (max-width: 479px) {
+  aside {
+    width: 100% !important;
+  }
+}

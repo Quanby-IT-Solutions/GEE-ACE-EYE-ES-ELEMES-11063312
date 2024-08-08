@@ -1,0 +1,25 @@
+<!-- schedule.component.html -->
+@if (conflict) {
+  <div class="alert alert-danger">
+    There are conflicts in your schedule. Please contact your administrator.
+  </div>
+}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of schedule; track item) {
+      <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.startTime | date: 'short' }}</td>
+        <td>{{ item.endTime | date: 'short' }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
