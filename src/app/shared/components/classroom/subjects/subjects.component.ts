@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from 'src/app/shared/service/data/data.service';
+import { Router } from '@angular/router';
+import { routes } from 'src/app/shared/service/routes/routes';
 
 interface TaskSummary {
   completed: number;
@@ -52,7 +54,7 @@ export class SubjectsComponent implements OnInit {
 
   courses: Course[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCourses();
@@ -60,5 +62,9 @@ export class SubjectsComponent implements OnInit {
 
   fetchCourses(): void {
     this.courses = this.dataService.getCourses();
+  }
+
+  selectCourse(course: Course): void {
+    this.router.navigate([routes.subject_modules], { state: { course } });
   }
 }

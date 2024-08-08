@@ -1,3 +1,5 @@
+<!-- src/app/subjects/subjects.component.html -->
+
 <div class="container mx-auto p-4">
   <div class="grid grid-cols-2 gap-4 mb-4">
     <div
@@ -50,7 +52,8 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     <div
       *ngFor="let course of courses"
-      class="rounded-lg shadow-md overflow-hidden"
+      class="rounded-lg shadow-md overflow-hidden cursor-pointer"
+      (click)="selectCourse(course)"
     >
       <div
         class="relative h-32"
