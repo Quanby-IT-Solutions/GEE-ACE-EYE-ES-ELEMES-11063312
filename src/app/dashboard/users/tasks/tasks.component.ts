@@ -110,6 +110,7 @@ import { DataService } from 'src/app/shared/service/data/data.service';
 import { User } from '@supabase/supabase-js';
 import { GuestUser } from 'src/app/shared/models/model';
 import { Subscription } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 interface Task {
   name: string;
@@ -129,6 +130,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   selectedTask: any = null;
   filterCourse: string = 'all';
   tasks: Task[] = [];
+  commentField: string = '';
   collapsables:any = {
     "No Due Date" : true,
     "This Week" : true,
@@ -192,6 +194,11 @@ export class TasksComponent implements OnInit, OnDestroy {
     return  Object.keys(this.collapsables);
   }
 
+  isDue(date:Date){
+    const today = new Date();
+    return today > date;
+  }
+
   getCollapsableItems(){
     this.collapsableItems = {
       "No Due Date" : [],
@@ -206,6 +213,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       for(let task of course.tasks ?? []){
         task.course = course.course;
         task.instructor = course.instructor;
+        task.type = 'task';
         if(!task.dueDate){
           this.collapsableItems['No Due Date'].push(task);
           continue;
@@ -226,7 +234,76 @@ export class TasksComponent implements OnInit, OnDestroy {
           this.collapsableItems['Earlier'].push(task);
         }
       }
+
+      for(let assessment of course.assessments ?? []){
+        assessment.course = course.course;
+        assessment.instructor = course.instructor;
+        assessment.type = 'assessment';
+        if(!assessment.dueDate){
+          this.collapsableItems['No Due Date'].push(assessment);
+          continue;
+        }
+        const today = new Date();
+        const startOfThisWeek = new Date(today);
+        const day = startOfThisWeek.getDay();
+        const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+        startOfThisWeek.setDate(diff);
+        startOfThisWeek.setHours(0, 0, 0, 0);
+        const lastOfLastWeek = new Date(startOfThisWeek);
+        lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+        if (assessment.dueDate >= startOfThisWeek && assessment.dueDate <= lastOfLastWeek){
+          this.collapsableItems['This Week'].push(assessment);
+        } else if (assessment.dueDate >= lastOfLastWeek) {
+          this.collapsableItems['Later'].push(assessment);
+        } else {
+          this.collapsableItems['Earlier'].push(assessment);
+        }
+      }
     }
+  }
+
+  
+  
+  handleAddFiles(event:any){ 
+    const input = event.target as HTMLInputElement;
+    if(input.files && input.files.length > 0){
+      if(this.selectedTask.files){
+        this.selectedTask.files.push(...Array.from(input.files))
+      }else{
+        this.selectedTask.files = [...Array.from(input.files)];
+      }
+      console.log(this.selectedTask.files)
+    }
+  }
+
+  removeFile(file:any){
+    this.selectedTask.files.splice(this.selectedTask.files.indexOf(file));
+  }
+
+  addComment(){
+    console.log(this.commentField)
+    if(this.commentField.trim() == ''){
+      return;
+    }
+    if(this.selectedTask.comments){
+      this.selectedTask.comments.push({
+        sender: 'Anton Caesar Cabais',
+        time: new Date(),
+        message: this.commentField,
+      });
+    }else{
+      this.selectedTask.comments = [{
+        sender:'Anton Caesar Cabais',
+        time: new Date(),
+        message : this.commentField
+      }];
+    }
+
+    this.commentField = '';
+  }
+
+  getTime(now:Date): string {
+    return formatDate(now, 'h:mm a', 'en-US');
   }
 
   ngOnDestroy() {
@@ -263,6 +340,8 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   deselectTask() {
     this.selectedTask = null;
+    this.filterCourse = 'all';
+    this.getCollapsableItems();
   }
 
   addTask(taskName: string) {
