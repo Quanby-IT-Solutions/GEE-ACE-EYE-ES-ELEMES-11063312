@@ -208,6 +208,7 @@ export class TasksComponent implements OnInit, OnDestroy {
         task.instructor = course.instructor;
         if(!task.dueDate){
           this.collapsableItems['No Due Date'].push(task);
+          continue;
         }
         const today = new Date();
         const startOfThisWeek = new Date(today);
