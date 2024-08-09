@@ -15,7 +15,7 @@ interface TestResults {
 
 interface Task {
   name: string;
-  dueDate: Date;
+  dueDate: Date | null;
 }
 
 interface Assessment {

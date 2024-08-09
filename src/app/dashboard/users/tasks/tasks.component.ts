@@ -126,8 +126,33 @@ export class TasksComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription | undefined;
   userRole: string | null = null;
   courses: any[] = [];
-  selectedCourse: any = null;
+  selectedTask: any = null;
+  filterCourse: string = 'all';
   tasks: Task[] = [];
+  collapsables:any = {
+    "No Due Date" : true,
+    "This Week" : true,
+    "Later" : true,
+    "Earlier" : true,
+  }
+
+  collapsableItems:any = {
+    "No Due Date" : [],
+    "This Week" : [],
+    "Later" : [],
+    "Earlier" : [],
+  }
+
+
+
+  taskSummary:any = {
+    completed : 36,
+    total: 37
+  };
+
+  testResults:any = {
+    completed: 36,
+  };
 
   constructor(
     private supabaseService: SupabaseService,
@@ -142,6 +167,8 @@ export class TasksComponent implements OnInit, OnDestroy {
         console.log('Current user:', this.user);
         this.userRole = this.getUserRole();
         this.fetchCourses();
+        this.getCollapsableItems();
+        console.log('HATDOG',this.collapsableItems)
       },
       (error) => {
         console.error('Error fetching user:', error);
@@ -149,10 +176,70 @@ export class TasksComponent implements OnInit, OnDestroy {
     );
   }
 
+
+
+
+  setFilterCourse(event:any){
+    this.filterCourse = event.target.value;
+    this.getCollapsableItems();
+  }
+
+  toggleCollapsable(section:string) {
+    this.collapsables[section] = !this.collapsables[section] 
+  }
+
+  getCollapsables(){
+    return  Object.keys(this.collapsables);
+  }
+
+  getCollapsableItems(){
+    this.collapsableItems = {
+      "No Due Date" : [],
+      "This Week" : [],
+      "Later" : [],
+      "Earlier" : [],
+    }
+    for(let course of this.courses){
+      if(this.filterCourse !='all' && course.course != this.filterCourse){
+        continue;
+      }
+      for(let task of course.tasks ?? []){
+        task.course = course.course;
+        task.instructor = course.instructor;
+        if(!task.dueDate){
+          this.collapsableItems['No Due Date'].push(task);
+        }
+        const today = new Date();
+        const startOfThisWeek = new Date(today);
+        const day = startOfThisWeek.getDay();
+        const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+        startOfThisWeek.setDate(diff);
+        startOfThisWeek.setHours(0, 0, 0, 0);
+        const lastOfLastWeek = new Date(startOfThisWeek);
+        lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+        if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
+          this.collapsableItems['This Week'].push(task);
+        } else if (task.dueDate >= lastOfLastWeek) {
+          this.collapsableItems['Later'].push(task);
+        } else {
+          this.collapsableItems['Earlier'].push(task);
+        }
+      }
+    }
+  }
+
   ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
+  }
+
+  formatDate(date: Date): string {
+    if(date == null){
+      return 'No Due Date';
+    }
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
   }
 
   getUserRole(): string | null {
@@ -168,16 +255,13 @@ export class TasksComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectCourse(course: any) {
-    this.selectedCourse = course;
-    this.tasks = course.tasks || [];
-    console.log('Selected course:', course);
-    console.log('Tasks loaded:', this.tasks);
+  selectTask(task:any){
+    this.selectedTask = task;
   }
 
-  deselectCourse() {
-    this.selectedCourse = null;
-    this.tasks = [];
+
+  deselectTask() {
+    this.selectedTask = null;
   }
 
   addTask(taskName: string) {
@@ -186,11 +270,11 @@ export class TasksComponent implements OnInit, OnDestroy {
       this.tasks.push(newTask);
       console.log('Task added:', newTask);
       // Optionally, update the tasks in the data service if necessary
-      if (this.selectedCourse) {
-        this.selectedCourse.tasks.push(newTask);
-        this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
-        console.log('Course updated with new task:', this.selectedCourse);
-      }
+      // if (this.selectedCourse) {
+      //   this.selectedCourse.tasks.push(newTask);
+      //   this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
+      //   console.log('Course updated with new task:', this.selectedCourse);
+      // }
     }
   }
 
@@ -198,10 +282,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.tasks = this.tasks.filter((t: Task) => t !== task);
     console.log('Task removed:', task);
     // Optionally, update the tasks in the data service if necessary
-    if (this.selectedCourse) {
-      this.selectedCourse.tasks = this.selectedCourse.tasks.filter((t: Task) => t !== task);
-      this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
-      console.log('Course updated after task removal:', this.selectedCourse);
-    }
+    // if (this.selectedCourse) {
+    //   this.selectedCourse.tasks = this.selectedCourse.tasks.filter((t: Task) => t !== task);
+    //   this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
+    //   console.log('Course updated after task removal:', this.selectedCourse);
+    // }
   }
 }

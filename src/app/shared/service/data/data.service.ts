@@ -5322,8 +5322,8 @@ export class DataService {
       ],
 
       tasks: [
-        { name: 'Physics Lab Report 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Mechanics Assignment 1', dueDate: new Date(2024, 8, 23) },
+        { name: 'Physics Lab Report 1', dueDate: new Date(2024, 7, 11) },
+        { name: 'Mechanics Assignment 1', dueDate: new Date(2024, 7, 23) },
         { name: 'Physics Lab Report 2', dueDate: new Date(2024, 8, 24) },
         { name: 'Mechanics Assignment 2', dueDate: new Date(2024, 8, 25) },
         { name: 'Physics Lab Report 3', dueDate: new Date(2024, 8, 28) },
@@ -5331,7 +5331,7 @@ export class DataService {
         { name: 'Physics Lab Report 4', dueDate: new Date(2024, 8, 28) },
         { name: 'Mechanics Assignment 4', dueDate: new Date(2024, 8, 29) },
         { name: 'Physics Lab Report 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Mechanics Assignment 5', dueDate: new Date(2024, 7, 1) }
+        { name: 'Mechanics Assignment 5', dueDate: null }
       ],
       assessments: [
         { name: 'Final Exam', dueDate: new Date(2024, 7, 20) }
