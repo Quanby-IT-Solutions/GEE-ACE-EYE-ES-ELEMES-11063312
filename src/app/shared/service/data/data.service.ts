@@ -5276,7 +5276,9 @@ export class DataService {
   private course: any;
   private courses = [
     {
-      instructor: 'John Paul Azkal',
+
+      instructor: 'Michael Maxwell',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Mathematics 101',
       subject: 'Algebra',
       block: 'A',
@@ -5306,8 +5308,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Chrisma Maxwell',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Physics 201',
       subject: 'Mechanics',
       block: 'B',
@@ -5338,8 +5340,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Joshua Corda',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Chemistry 301',
       subject: 'Organic Chemistry',
       block: 'C',
@@ -5370,8 +5372,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Sean Palacay',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Biology 101',
       subject: 'Botany',
       block: 'D',
@@ -5401,8 +5403,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Kenneth Belga',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Computer Science 101',
       subject: 'Programming',
       block: 'E',
@@ -5432,8 +5434,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'History 101',
       subject: 'World History',
       block: 'F',
@@ -5463,8 +5465,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Joemar Cardino',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Geography 101',
       subject: 'Physical Geography',
       block: 'G',
@@ -5494,8 +5496,8 @@ export class DataService {
       ]
     },
     {
-      instructor: 'John Paul Azkal',
-
+      instructor: 'Kenneth Aycardo',
+      instructor_profile: 'assets/img/bini.jpeg',
       course: 'Literature 101',
       subject: 'English Literature',
       block: 'H',

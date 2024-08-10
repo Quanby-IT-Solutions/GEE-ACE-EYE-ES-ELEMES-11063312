@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; // Add this line if using HttpClient
+import { SubjectsComponent } from './shared/components/classroom/subjects/subjects.component';
 
 
 import { SharedModule } from './shared/module/shared.module';
@@ -17,7 +18,8 @@ import { OurHeaderComponent } from './dashboard/sidebar/header/header.component'
 import { FeatherIconModule } from './shared/module/feather.module';
 import { CommonModule } from '@angular/common';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,    SubjectsComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
