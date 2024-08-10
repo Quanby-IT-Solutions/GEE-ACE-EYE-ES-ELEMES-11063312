@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [CommonModule],
-  providers: [DatePipe]
+  imports: [CommonModule]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
-  selectedTab: string = 'modules'; // default tab
+  selectedTab: string = 'about'; // default tab
+  selectedModuleIndex: number = 0; // Track the selected module
 
-  constructor(private router: Router, private datePipe: DatePipe) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.course = history.state.course;
@@ -25,5 +25,15 @@ export class SubjectModulesComponent implements OnInit {
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
+  }
+
+  selectModule(index: number): void {
+    this.selectedModuleIndex = index;
+  }
+
+  goToNextModule(): void {
+    if (this.selectedModuleIndex < this.course.modules.length - 1) {
+      this.selectedModuleIndex++;
+    }
   }
 }
