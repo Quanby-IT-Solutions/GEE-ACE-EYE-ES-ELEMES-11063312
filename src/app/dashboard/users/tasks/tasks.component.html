@@ -160,8 +160,8 @@
                         <p class="px-[1.8rem] text-sm {{ task.type == 'assignment' ? 'text-gray-600' : 'text-white'}}">{{ task.course }}</p>
                         <p class="px-[1.8rem] text-sm  {{ isDue(task)?'text-red-400 font-semibold' :task.type == 'assignment' ? 'text-gray-600' : 'text-white'}}">{{task.dueDate ? 'Due' : ''}} {{ formatDate(task.dueDate) }}</p>
                       </div>
-                      <span *ngIf="task.submitted" class="rounded-full w-12 h-12 bg-gray-600 flex justify-center items-center mr-5">
-                        <i class="fa-solid fa-check text-lg text-white"></i>
+                      <span *ngIf="task.submitted" class="rounded-full w-12 h-12 {{task.type == 'assignment'? 'bg-gray-600': 'bg-white'}} flex justify-center items-center mr-5">
+                        <i class="fa-solid fa-check text-lg {{task.type =='assignment' ? 'text-white': 'text-blue-700'}}"></i>
                       </span>
                     </li>
                   </ng-container>
