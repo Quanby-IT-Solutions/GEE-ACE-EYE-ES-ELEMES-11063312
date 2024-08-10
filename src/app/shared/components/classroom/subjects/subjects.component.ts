@@ -4,15 +4,6 @@ import { DataService } from 'src/app/shared/service/data/data.service';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/service/routes/routes';
 
-interface TaskSummary {
-  completed: number;
-  total: number;
-}
-
-interface TestResults {
-  completed: number;
-}
-
 interface Task {
   name: string;
   dueDate: Date | null;
@@ -24,35 +15,31 @@ interface Assessment {
 }
 
 interface Course {
+  instructor: string;
+  instructor_profile: string;
   course: string;
   subject: string;
   block: string;
   time: string;
   grade: string;
-  tasks: Task[];
-  assessments: Assessment[];
   progress: string;
   imageUrl: string;
+  modules: Array<{ title: string; description: string }>;
+  tasks: Task[];
+  assessments: Assessment[];
 }
 
 @Component({
   selector: 'app-subjects',
-  standalone: true,
-  imports: [CommonModule],
+  
   templateUrl: './subjects.component.html',
   styleUrls: ['./subjects.component.scss'],
 })
 export class SubjectsComponent implements OnInit {
-  taskSummary: TaskSummary = {
-    completed: 36,
-    total: 37,
-  };
-
-  testResults: TestResults = {
-    completed: 12,
-  };
-
   courses: Course[] = [];
+  filteredCourses: Course[] = [];
+  searchTerm: string = '';
+  sortMenuOpen: boolean = false;
 
   constructor(private dataService: DataService, private router: Router) {}
 
@@ -62,6 +49,27 @@ export class SubjectsComponent implements OnInit {
 
   fetchCourses(): void {
     this.courses = this.dataService.getCourses();
+    this.filteredCourses = this.courses;
+  }
+
+  filterCourses(): void {
+    this.filteredCourses = this.courses.filter(course =>
+      course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  toggleSortMenu(): void {
+    this.sortMenuOpen = !this.sortMenuOpen;
+  }
+
+  sortCourses(order: 'asc' | 'desc' = 'asc'): void {
+    this.filteredCourses.sort((a, b) =>
+      order === 'asc'
+        ? a.course.toLowerCase().localeCompare(b.course.toLowerCase())
+        : b.course.toLowerCase().localeCompare(a.course.toLowerCase())
+    );
+    this.sortMenuOpen = false; // Close the sort menu after sorting
   }
 
   selectCourse(course: Course): void {

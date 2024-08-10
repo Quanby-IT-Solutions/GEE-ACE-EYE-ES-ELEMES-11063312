@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';  
 
 import { SubjectsRoutingModule } from './subjects-routing.module';
 
@@ -8,7 +9,9 @@ import { SubjectsRoutingModule } from './subjects-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    SubjectsRoutingModule
+    SubjectsRoutingModule,
+    FormsModule 
+
   ]
 })
 export class SubjectsModule { }
