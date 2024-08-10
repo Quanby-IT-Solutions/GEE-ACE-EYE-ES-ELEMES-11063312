@@ -5287,9 +5287,9 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/math.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Algebra' },
-        { title: 'Chapter 1.1', description: 'Basics of Algebra (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
+        { title: 'Algebra', description: 'Introduction to Algebra' },
+        { title: 'Basics of Algebra', description: 'Fundamentals of Algebra (YouTube)' },
+        { title: 'Intermediate Algebra', description: 'Foundations of Algebra (YouTube)' }
       ],
       tasks: [
         { name: 'Math Homework 1', dueDate: new Date(2024, 7, 11) },
