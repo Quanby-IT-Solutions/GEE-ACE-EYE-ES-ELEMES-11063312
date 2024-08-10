@@ -5276,7 +5276,6 @@ export class DataService {
   private course: any;
   private courses = [
     {
-
       instructor: 'Michael Maxwell',
       instructor_profile: 'assets/img/bini.jpeg',
       course: 'Mathematics 101',
@@ -5287,24 +5286,57 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/math.png',
       modules: [
-        { title: 'Algebra', description: 'Introduction to Algebra' },
-        { title: 'Basics of Algebra', description: 'Fundamentals of Algebra (YouTube)' },
-        { title: 'Intermediate Algebra', description: 'Foundations of Algebra (YouTube)' }
-      ],
-      tasks: [
-        { name: 'Math Homework 1', dueDate: new Date(2024, 7, 11) },
-        { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9) },
-        { name: 'Math Homework 2', dueDate: new Date(2024, 7, 10) },
-        { name: 'Algebra Quiz 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Math Homework 3', dueDate: new Date(2024, 8, 25) },
-        { name: 'Algebra Quiz 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'Math Homework 4', dueDate: new Date(2024, 8, 27) },
-        { name: 'Algebra Quiz 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Math Homework 5', dueDate: new Date(2024, 8, 29) },
-        { name: 'Algebra Quiz 5', dueDate: new Date(2024, 8, 30) }
-      ],
-      assessments: [
-        { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15) }
+        {
+          title: 'Introduction to Algebra',
+          description: 'Overview of Algebraic Concepts',
+          about: 'This module introduces you to the basic concepts of algebra, focusing on variables, expressions, and equations.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/algebra_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/algebra_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/algebra_book' }
+          ],
+          assignments: [
+            { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11) },
+            { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15) }
+          ]
+        },
+        {
+          title: 'Algebraic Operations',
+          description: 'Working with Algebraic Expressions',
+          about: 'This module covers the operations involving algebraic expressions, including addition, subtraction, and factoring.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/algebra_operations.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/algebra_operations_video' },
+            { title: 'Practice Problems', link: 'https://example.com/algebra_operations_practice' }
+          ],
+          assignments: [
+            { name: 'Operations Homework', dueDate: new Date(2024, 7, 20) },
+            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25) }
+          ],
+          exams: [
+            { name: 'Operations Test', dueDate: new Date(2024, 7, 28) }
+          ]
+        },
+        {
+          title: 'Quadratic Equations',
+          description: 'Solving Quadratic Equations',
+          about: 'In this module, you will learn how to solve quadratic equations using various methods, including factoring, completing the square, and the quadratic formula.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/quadratic_equations.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/quadratic_equations_video' },
+            { title: 'Example Problems', link: 'https://example.com/quadratic_problems' }
+          ],
+          assignments: [
+            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5) },
+            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 20) }
+          ]
+        }
       ]
     },
     {
@@ -5318,25 +5350,57 @@ export class DataService {
       progress: '85',
       imageUrl: 'assets/img/physics.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Physics' },
-        { title: 'Chapter 1.1', description: 'Basics of Physics (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-
-      tasks: [
-        { name: 'Physics Lab Report 1', dueDate: new Date(2024, 7, 11) },
-        { name: 'Mechanics Assignment 1', dueDate: new Date(2024, 7, 23) },
-        { name: 'Physics Lab Report 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Mechanics Assignment 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Physics Lab Report 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'Mechanics Assignment 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Physics Lab Report 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Mechanics Assignment 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Physics Lab Report 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Mechanics Assignment 5', dueDate: null }
-      ],
-      assessments: [
-        { name: 'Final Exam', dueDate: new Date(2024, 7, 20) }
+        {
+          title: 'Introduction to Mechanics',
+          description: 'Basic Concepts in Mechanics',
+          about: 'This module introduces the foundational concepts in mechanics, including force, motion, and energy.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/mechanics_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/mechanics_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/mechanics_book' }
+          ],
+          assignments: [
+            { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15) },
+            { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Newton’s Laws of Motion',
+          description: 'Understanding Newton’s Laws',
+          about: 'This module provides a detailed study of Newton’s three laws of motion and their practical applications.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/newton_laws.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/newton_laws_video' },
+            { title: 'Practice Problems', link: 'https://example.com/newton_practice' }
+          ],
+          assignments: [
+            { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) },
+            { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Energy and Work',
+          description: 'Conservation of Energy',
+          about: 'This module explores the concepts of energy, work, and the conservation of mechanical energy.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/energy_work.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/energy_work_video' },
+            { title: 'Example Problems', link: 'https://example.com/energy_work_problems' }
+          ],
+          assignments: [
+            { name: 'Energy Homework', dueDate: new Date(2024, 8, 12) },
+            { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     },
     {
@@ -5350,25 +5414,57 @@ export class DataService {
       progress: '85',
       imageUrl: 'assets/img/chemistry.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Chemistry' },
-        { title: 'Chapter 1.1', description: 'Basics of Chemistry (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-
-      tasks: [
-        { name: 'Organic Chemistry Lab 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Chemical Reactions Assignment 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Organic Chemistry Lab 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Chemical Reactions Assignment 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Organic Chemistry Lab 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'Chemical Reactions Assignment 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Organic Chemistry Lab 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Chemical Reactions Assignment 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Organic Chemistry Lab 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Chemical Reactions Assignment 5', dueDate: new Date(2024, 7, 1) }
-      ],
-      assessments: [
-        { name: 'Practical Exam', dueDate: new Date(2024, 7, 18) }
+        {
+          title: 'Organic Molecules and Structures',
+          description: 'Introduction to Organic Molecules',
+          about: 'This module introduces the structure and bonding of organic molecules, including hydrocarbons and functional groups.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/organic_molecules.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/organic_molecules_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/organic_book' }
+          ],
+          assignments: [
+            { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20) },
+            { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) }
+          ],
+          exams: [
+            { name: 'Molecules Test', dueDate: new Date(2024, 7, 30) }
+          ]
+        },
+        {
+          title: 'Chemical Reactions in Organic Chemistry',
+          description: 'Types of Organic Reactions',
+          about: 'This module covers various types of chemical reactions in organic chemistry, such as substitution, addition, and elimination reactions.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/organic_reactions.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/organic_reactions_video' },
+            { title: 'Practice Problems', link: 'https://example.com/organic_reactions_practice' }
+          ],
+          assignments: [
+            { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) },
+            { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) }
+          ],
+          exams: [
+            { name: 'Reactions Test', dueDate: new Date(2024, 8, 20) }
+          ]
+        },
+        {
+          title: 'Stereochemistry',
+          description: 'Understanding Molecular Geometry',
+          about: 'This module focuses on the spatial arrangement of atoms in organic molecules and its implications in chemical reactions.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/stereochemistry.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/stereochemistry_video' },
+            { title: 'Example Problems', link: 'https://example.com/stereochemistry_problems' }
+          ],
+          assignments: [
+            { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25) },
+            { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 9, 5) }
+          ]
+        }
       ]
     },
     {
@@ -5382,24 +5478,57 @@ export class DataService {
       progress: '85',
       imageUrl: 'assets/img/biology.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Biology' },
-        { title: 'Chapter 1.1', description: 'Basics of Biology (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-      tasks: [
-        { name: 'Plant Classification Homework 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Botany Quiz 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Plant Classification Homework 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Botany Quiz 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Plant Classification Homework 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'Botany Quiz 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Plant Classification Homework 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Botany Quiz 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Plant Classification Homework 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Botany Quiz 5', dueDate: new Date(2024, 7, 1) }
-      ],
-      assessments: [
-        { name: 'Field Study', dueDate: new Date(2024, 7, 25) }
+        {
+          title: 'Introduction to Botany',
+          description: 'Basics of Plant Biology',
+          about: 'This module covers the basic principles of plant biology, including plant structure, function, and growth.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/botany_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/botany_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/botany_book' }
+          ],
+          assignments: [
+            { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15) },
+            { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Plant Physiology',
+          description: 'Understanding Plant Processes',
+          about: 'This module explores the physiological processes in plants, such as photosynthesis, respiration, and water transport.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/plant_physiology.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/plant_physiology_video' },
+            { title: 'Practice Problems', link: 'https://example.com/plant_physiology_practice' }
+          ],
+          assignments: [
+            { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30) },
+            { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Physiology Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Plant Ecology',
+          description: 'Plants and Their Environment',
+          about: 'This module focuses on the interactions between plants and their environment, including topics like plant communities and ecosystems.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/plant_ecology.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/plant_ecology_video' },
+            { title: 'Example Problems', link: 'https://example.com/plant_ecology_problems' }
+          ],
+          assignments: [
+            { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12) },
+            { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     },
     {
@@ -5413,24 +5542,57 @@ export class DataService {
       progress: '85',
       imageUrl: 'assets/img/compsci.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Computer Science' },
-        { title: 'Chapter 1.1', description: 'Basics of Computer Science (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-      tasks: [
-        { name: 'Programming Assignment 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Data Structures Quiz 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Programming Assignment 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Data Structures Quiz 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Programming Assignment 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'Data Structures Quiz 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Programming Assignment 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Data Structures Quiz 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Programming Assignment 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Data Structures Quiz 5', dueDate: new Date(2024, 7, 1) }
-      ],
-      assessments: [
-        { name: 'Project Presentation', dueDate: new Date(2024, 7, 22) }
+        {
+          title: 'Introduction to Programming',
+          description: 'Getting Started with Code',
+          about: 'This module introduces the fundamentals of programming, including basic syntax, variables, and control structures.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/programming_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/programming_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/programming_book' }
+          ],
+          assignments: [
+            { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15) },
+            { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Data Structures',
+          description: 'Organizing and Managing Data',
+          about: 'This module covers essential data structures such as arrays, linked lists, and trees, and their applications in programming.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/data_structures.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/data_structures_video' },
+            { title: 'Practice Problems', link: 'https://example.com/data_structures_practice' }
+          ],
+          assignments: [
+            { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) },
+            { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Algorithms and Problem-Solving',
+          description: 'Efficient Coding Techniques',
+          about: 'This module focuses on developing algorithms to solve computational problems efficiently.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/algorithms.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/algorithms_video' },
+            { title: 'Example Problems', link: 'https://example.com/algorithms_problems' }
+          ],
+          assignments: [
+            { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12) },
+            { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     },
     {
@@ -5444,24 +5606,57 @@ export class DataService {
       progress: '85',
       imageUrl: 'assets/img/history.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to History' },
-        { title: 'Chapter 1.1', description: 'Basics of History (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-      tasks: [
-        { name: 'Essay on Ancient Civilizations 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'History Quiz 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Essay on Ancient Civilizations 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'History Quiz 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Essay on Ancient Civilizations 3', dueDate: new Date(2024, 8, 28) },
-        { name: 'History Quiz 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Essay on Ancient Civilizations 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'History Quiz 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Essay on Ancient Civilizations 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'History Quiz 5', dueDate: new Date(2024, 8, 1) }
-      ],
-      assessments: [
-        { name: 'Midterm Exam', dueDate: new Date(2024, 8, 19) }
+        {
+          title: 'Ancient Civilizations',
+          description: 'Exploring the Foundations of History',
+          about: 'This module explores the major ancient civilizations, including Mesopotamia, Egypt, and the Indus Valley.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/ancient_civilizations.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/ancient_civilizations_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/ancient_civilizations_book' }
+          ],
+          assignments: [
+            { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15) },
+            { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Medieval Times',
+          description: 'History of the Middle Ages',
+          about: 'This module covers the key events and developments during the Medieval period, including feudalism, the Crusades, and the rise of nation-states.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/medieval_times.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/medieval_times_video' },
+            { title: 'Practice Problems', link: 'https://example.com/medieval_times_practice' }
+          ],
+          assignments: [
+            { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) },
+            { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Modern History',
+          description: 'World Events from 1500 to Present',
+          about: 'This module focuses on significant global events from the Renaissance to the present day, including revolutions, wars, and technological advancements.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/modern_history.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/modern_history_video' },
+            { title: 'Example Problems', link: 'https://example.com/modern_history_problems' }
+          ],
+          assignments: [
+            { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) },
+            { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     },
     {
@@ -5473,26 +5668,59 @@ export class DataService {
       time: '15:00 - 16:00',
       grade: '81',
       progress: '65',
-      imageUrl: 'assets/img/georaphy.png',
+      imageUrl: 'assets/img/geography.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Geography' },
-        { title: 'Chapter 1.1', description: 'Basics of Geography (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-      tasks: [
-        { name: 'Geography Map Assignment 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Climate Quiz 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Geography Map Assignment 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Climate Quiz 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Geography Map Assignment 3', dueDate: new Date(2024, 8, 26) },
-        { name: 'Climate Quiz 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Geography Map Assignment 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Climate Quiz 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Geography Map Assignment 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Climate Quiz 5', dueDate: new Date(2024, 8, 1) }
-      ],
-      assessments: [
-        { name: 'Field Trip Report', dueDate: new Date(2024, 8, 26) }
+        {
+          title: 'Introduction to Physical Geography',
+          description: 'Earth’s Physical Features',
+          about: 'This module covers the basic physical features of the Earth, including landforms, climate, and ecosystems.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/physical_geography_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/physical_geography_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/physical_geography_book' }
+          ],
+          assignments: [
+            { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) },
+            { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Weather and Climate',
+          description: 'Understanding Atmospheric Processes',
+          about: 'This module explores the processes that drive weather and climate, including the water cycle, atmospheric circulation, and climate change.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/weather_climate.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/weather_climate_video' },
+            { title: 'Practice Problems', link: 'https://example.com/weather_climate_practice' }
+          ],
+          assignments: [
+            { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) },
+            { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Weather Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Landforms and Landscapes',
+          description: 'Formation and Evolution of Earth’s Surface',
+          about: 'This module focuses on the processes that shape the Earth’s surface, such as plate tectonics, erosion, and sedimentation.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/landforms.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/landforms_video' },
+            { title: 'Example Problems', link: 'https://example.com/landforms_problems' }
+          ],
+          assignments: [
+            { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) },
+            { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     },
     {
@@ -5506,27 +5734,62 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/literature.png',
       modules: [
-        { title: 'Course Outline', description: 'Introduction to Literature' },
-        { title: 'Chapter 1.1', description: 'Basics of Literature (YouTube)' },
-        { title: 'Assignment 1', description: 'Secret' }
-      ],
-      tasks: [
-        { name: 'Literature Review 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Poetry Analysis 1', dueDate: new Date(2024, 8, 23) },
-        { name: 'Literature Review 2', dueDate: new Date(2024, 8, 24) },
-        { name: 'Poetry Analysis 2', dueDate: new Date(2024, 8, 25) },
-        { name: 'Literature Review 3', dueDate: new Date(2024, 8, 26) },
-        { name: 'Poetry Analysis 3', dueDate: new Date(2024, 8, 27) },
-        { name: 'Literature Review 4', dueDate: new Date(2024, 8, 28) },
-        { name: 'Poetry Analysis 4', dueDate: new Date(2024, 8, 29) },
-        { name: 'Literature Review 5', dueDate: new Date(2024, 8, 30) },
-        { name: 'Poetry Analysis 5', dueDate: new Date(2024, 8, 20) }
-      ],
-      assessments: [
-        { name: 'Term Paper', dueDate: new Date(2024, 7, 30) }
+        {
+          title: 'Introduction to English Literature',
+          description: 'Overview of English Literary Works',
+          about: 'This module provides an introduction to the major works and authors in English literature, from Chaucer to modern times.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/english_lit_intro.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/english_lit_intro_video' },
+            { title: 'Supplementary Reading', link: 'https://example.com/english_lit_book' }
+          ],
+          assignments: [
+            { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15) },
+            { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) }
+          ],
+          exams: [
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+          ]
+        },
+        {
+          title: 'Poetry and Prose',
+          description: 'Exploring Different Literary Forms',
+          about: 'This module explores the various forms of poetry and prose, including sonnets, novels, and essays, with an emphasis on literary analysis.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/poetry_prose.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/poetry_prose_video' },
+            { title: 'Practice Problems', link: 'https://example.com/poetry_prose_practice' }
+          ],
+          assignments: [
+            { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) },
+            { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) }
+          ],
+          exams: [
+            { name: 'Poetry Test', dueDate: new Date(2024, 8, 7) }
+          ]
+        },
+        {
+          title: 'Shakespeare and His Contemporaries',
+          description: 'The Golden Age of English Drama',
+          about: 'This module focuses on the works of William Shakespeare and his contemporaries, examining their influence on English literature and culture.',
+          materials: [
+            { title: 'Lecture Notes', link: 'assets/files/shakespeare.pdf' },
+            { title: 'Video Lecture', link: 'https://example.com/shakespeare_video' },
+            { title: 'Example Problems', link: 'https://example.com/shakespeare_problems' }
+          ],
+          assignments: [
+            { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12) },
+            { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+          ]
+        }
       ]
     }
   ];
+  
+  
 
   
   
@@ -5544,15 +5807,28 @@ export class DataService {
   }
 
   getSchedules() {
-    return this.courses.map(course => ({
-      course: course.course,
-      subject: course.subject,
-      block: course.block,
-      time: course.time,
-      tasks: course.tasks,
-      assessments: course.assessments
-    }));
+    return this.courses.map(course => {
+      // Aggregate tasks and assessments from all modules
+      const tasks = course.modules.flatMap(module => module.assignments);
+      const assessments = course.modules.flatMap(module => module.exams);
+  
+      return {
+        course: course.course,
+        subject: course.subject,
+        block: course.block,
+        time: course.time,
+        tasks: tasks.map(task => ({
+          name: task.name,
+          dueDate: task.dueDate
+        })),
+        assessments: assessments.map(assessment => ({
+          name: assessment.name,
+          dueDate: assessment.dueDate
+        }))
+      };
+    });
   }
+  
 
   private evaluations = [
     {

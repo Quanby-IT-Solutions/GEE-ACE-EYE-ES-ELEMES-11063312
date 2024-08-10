@@ -4,14 +4,28 @@ import { DataService } from 'src/app/shared/service/data/data.service';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/shared/service/routes/routes';
 
-interface Task {
+interface Material {
+  title: string;
+  link: string;
+}
+
+interface Assignment {
   name: string;
   dueDate: Date | null;
 }
 
-interface Assessment {
+interface Exam {
   name: string;
   dueDate: Date;
+}
+
+interface Module {
+  title: string;
+  description: string;
+  about: string;
+  materials: Material[];
+  assignments: Assignment[];
+  exams: Exam[];
 }
 
 interface Course {
@@ -24,14 +38,11 @@ interface Course {
   grade: string;
   progress: string;
   imageUrl: string;
-  modules: Array<{ title: string; description: string }>;
-  tasks: Task[];
-  assessments: Assessment[];
+  modules: Module[];
 }
 
 @Component({
   selector: 'app-subjects',
-  
   templateUrl: './subjects.component.html',
   styleUrls: ['./subjects.component.scss'],
 })
