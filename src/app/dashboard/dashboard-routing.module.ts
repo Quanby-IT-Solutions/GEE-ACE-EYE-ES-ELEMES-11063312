@@ -40,6 +40,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'profile',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/profile/profile.module'
+          ).then((m) => m.ProfileModule),
+      },
+
+      {
         path: 'online-tasks',
         loadChildren: () =>
           import(

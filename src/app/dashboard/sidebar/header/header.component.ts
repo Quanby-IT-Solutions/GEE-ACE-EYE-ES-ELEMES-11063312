@@ -8,9 +8,11 @@ import {
 import { Subscription } from 'rxjs';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { UserService } from 'src/app/shared/service/user/user.service';
+import { routes } from 'src/app/shared/service/routes/routes';
 
 import { User } from '@supabase/supabase-js';
 import { GuestUser } from 'src/app/shared/models/model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-our-header',
@@ -27,7 +29,8 @@ export class OurHeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private supabaseService: SupabaseService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -47,6 +50,10 @@ export class OurHeaderComponent implements OnInit, OnDestroy {
 
   getUserRole(): string | null {
     return this.userService.getUserRole();
+  }
+
+  navigateToProfile() {
+    this.router.navigate([routes.profile]);
   }
 
   searchRoutes() {

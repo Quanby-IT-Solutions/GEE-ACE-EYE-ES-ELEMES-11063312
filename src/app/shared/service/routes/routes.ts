@@ -630,6 +630,10 @@ export class routes {
   return this.users_dashboard + '/assessments';
 }
 
+public static get profile(): string {
+  return this.users_dashboard + '/profile';
+}
+
 public static get meet(): string {
   return this.users_dashboard + '/meet';
 }

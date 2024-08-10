@@ -15,6 +15,13 @@ const routes: Routes = [
       //     import('./blog/blog.module').then((m) => m.BlogModule),
       // },
 
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/profile/profile.module'
+          ).then((m) => m.ProfileModule),
+      },
 
 
        // new SIAS
