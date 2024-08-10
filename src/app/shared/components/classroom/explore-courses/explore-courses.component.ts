@@ -1,8 +1,7 @@
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { routes } from 'src/app/shared/service/routes/routes';
 
@@ -37,18 +36,21 @@ interface Course {
   subject: string;
   block: string;
   time: string;
-  enrolled: string;
   grade: string;
+  enrolled: string;
   progress: string;
   imageUrl: string;
   modules: Module[];
 }
+
 @Component({
-  selector: 'app-subjects',
-  templateUrl: './subjects.component.html',
-  styleUrls: ['./subjects.component.scss'],
+  selector: 'app-explore-courses',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './explore-courses.component.html',
+  styleUrls: ['./explore-courses.component.scss']
 })
-export class SubjectsComponent implements OnInit {
+export class ExploreCoursesComponent implements OnInit {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchTerm: string = '';
@@ -61,8 +63,8 @@ export class SubjectsComponent implements OnInit {
   }
 
   fetchCourses(): void {
-    this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
-    this.filteredCourses = this.courses;
+    this.courses = this.dataService.getCourses(); // Fetches both enrolled and not enrolled courses
+    this.filteredCourses = [...this.courses]; // Make sure to copy the courses array
   }
 
   filterCourses(): void {
@@ -86,6 +88,11 @@ export class SubjectsComponent implements OnInit {
   }
 
   selectCourse(course: Course): void {
-    this.router.navigate([routes.subject_modules], { state: { course } });
+    this.router.navigate([routes.explore_courses_modules], { state: { course } });
   }
 }
+
+
+
+
+

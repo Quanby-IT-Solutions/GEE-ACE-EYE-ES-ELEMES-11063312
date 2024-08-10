@@ -105,7 +105,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public student_no = [
     { title: 'Home', route: this.routes.dashboard },
-    { title: 'Explore Courses', route: this.routes.subjects },
+    { title: 'Explore Courses', route: this.routes.explore_courses },
 
     { 
     title: 'My Courses',

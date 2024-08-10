@@ -47,13 +47,7 @@ export class SubjectModulesComponent implements OnInit {
       this.selectedMaterial = null; // Reset selected material when moving to the next module
     }
   }
-  // selectMaterial(material: any): void {
-  //   this.selectedMaterial = {
-  //     ...material,
-  //     safeLink: material.link // Pass the raw URL without sanitizing
-  //   };
-  // }
-  
+
   selectMaterial(material: any): void {
     this.selectedMaterial = material;
     console.log('Attempting to load material:', material.link);
