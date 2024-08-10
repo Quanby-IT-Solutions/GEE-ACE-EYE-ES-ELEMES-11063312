@@ -5290,9 +5290,9 @@ export class DataService {
         { title: 'Assignment 1', description: 'Secret' }
       ],
       tasks: [
-        { name: 'Math Homework 1', dueDate: new Date(2024, 8, 21) },
-        { name: 'Algebra Quiz 1', dueDate: new Date(2024, 8, 22) },
-        { name: 'Math Homework 2', dueDate: new Date(2024, 8, 23) },
+        { name: 'Math Homework 1', dueDate: new Date(2024, 7, 11) },
+        { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9) },
+        { name: 'Math Homework 2', dueDate: new Date(2024, 7, 10) },
         { name: 'Algebra Quiz 2', dueDate: new Date(2024, 8, 24) },
         { name: 'Math Homework 3', dueDate: new Date(2024, 8, 25) },
         { name: 'Algebra Quiz 3', dueDate: new Date(2024, 8, 28) },

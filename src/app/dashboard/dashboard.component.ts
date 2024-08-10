@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   checkRoute() {
-    const mainRoutes = ['/', '/home', '/dashboard']; // Define your main routes here
+    const mainRoutes = ['/', '/home', '/dashboard', '/dashboard/tasks']; // Define your main routes here
     this.isMainRouteActive = mainRoutes.includes(this.router.url);
   }
 

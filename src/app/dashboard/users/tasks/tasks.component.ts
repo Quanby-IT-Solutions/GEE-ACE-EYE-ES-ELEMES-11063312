@@ -195,7 +195,11 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   isDue(date:Date){
+    if(date == null){
+      return false;
+    }
     const today = new Date();
+    today.setDate(today.getDate() - 1);
     return today > date;
   }
 
@@ -206,11 +210,33 @@ export class TasksComponent implements OnInit, OnDestroy {
       "Later" : [],
       "Earlier" : [],
     }
+    this.taskSummary = {
+      completed : 0,
+      total: 0
+    };
+    this.testResults = {
+      completed : 0,
+      total: 0
+    };
     for(let course of this.courses){
-      if(this.filterCourse !='all' && course.course != this.filterCourse){
-        continue;
-      }
       for(let task of course.tasks ?? []){
+        if(this.filterCourse !='all' && course.course != this.filterCourse){
+          const today = new Date();
+          const startOfThisWeek = new Date(today);
+          const day = startOfThisWeek.getDay();
+          const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+          startOfThisWeek.setDate(diff);
+          startOfThisWeek.setHours(0, 0, 0, 0);
+          const lastOfLastWeek = new Date(startOfThisWeek);
+          lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
+            if(task.submitted){
+              this.taskSummary.completed +=1;
+            }
+            this.taskSummary.total +=1
+          }
+          continue;
+        }
         task.course = course.course;
         task.instructor = course.instructor;
         task.type = 'task';
@@ -228,6 +254,10 @@ export class TasksComponent implements OnInit, OnDestroy {
         lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
         if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
           this.collapsableItems['This Week'].push(task);
+          if(task.submitted){
+            this.taskSummary.completed +=1;
+          }
+          this.taskSummary.total +=1
         } else if (task.dueDate >= lastOfLastWeek) {
           this.collapsableItems['Later'].push(task);
         } else {
@@ -236,6 +266,21 @@ export class TasksComponent implements OnInit, OnDestroy {
       }
 
       for(let assessment of course.assessments ?? []){
+        if(this.filterCourse !='all' && course.course != this.filterCourse){
+          const today = new Date();
+          const startOfThisWeek = new Date(today);
+          const day = startOfThisWeek.getDay();
+          const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+          startOfThisWeek.setDate(diff);
+          startOfThisWeek.setHours(0, 0, 0, 0);
+          const lastOfLastWeek = new Date(startOfThisWeek);
+          lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if(assessment.submitted){
+            this.testResults.completed +=1;
+          }
+          this.testResults.total +=1
+          continue;
+        }
         assessment.course = course.course;
         assessment.instructor = course.instructor;
         assessment.type = 'assessment';
@@ -258,12 +303,37 @@ export class TasksComponent implements OnInit, OnDestroy {
         } else {
           this.collapsableItems['Earlier'].push(assessment);
         }
+        if(assessment.submitted){
+          this.testResults.completed +=1;
+        }
+        this.testResults.total +=1
       }
     }
+
+
+    // sort in order
+    for(let collapsable of Object.keys(this.collapsableItems)){
+      this.collapsableItems[collapsable] =  this.collapsableItems[collapsable]
+      .sort((a:any,b:any)=>
+         a.dueDate - b.dueDate
+      )
+    }
+    
   }
 
   
-  
+  submitWork(){
+    
+    this.selectedTask.submitted = !this.selectedTask.submitted;
+
+    if(this.selectedTask.submitted){
+      // submit actions
+      // show submitted 
+    }else{
+      // unsubmit actions
+    }
+  }
+
   handleAddFiles(event:any){ 
     const input = event.target as HTMLInputElement;
     if(input.files && input.files.length > 0){
@@ -317,7 +387,13 @@ export class TasksComponent implements OnInit, OnDestroy {
       return 'No Due Date';
     }
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Intl.DateTimeFormat('en-US', options).format(date);
+    const formated = new Intl.DateTimeFormat('en-US', options).format(date);
+    const today = new Intl.DateTimeFormat('en-US', options).format(new Date())
+    if(formated == today){
+      return 'Today'
+    }
+    
+    return formated;
   }
 
   getUserRole(): string | null {

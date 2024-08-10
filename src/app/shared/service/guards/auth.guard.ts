@@ -29,16 +29,16 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user) => {
         const isAuthRoute = state.url.startsWith('/auth');
-
         if (user) {
           // User is authenticated
-          if (isAuthRoute) {
+          if (isAuthRoute || state.url === '/') {
             // Redirect to dashboard if trying to access auth routes
             console.log(
               'Authenticated user trying to access auth route. Redirecting to dashboard.'
             );
             return this.router.createUrlTree(['/dashboard']);
           }
+          console.log('ACCESS' ,state.url);
           // Allow access to other routes
           return true;
         } else {
