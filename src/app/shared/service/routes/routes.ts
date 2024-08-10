@@ -634,6 +634,10 @@ public static get profile(): string {
   return this.users_dashboard + '/profile';
 }
 
+public static get messaging(): string {
+  return this.users_dashboard + '/messaging';
+}
+
 public static get meet(): string {
   return this.users_dashboard + '/meet';
 }

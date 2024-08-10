@@ -1,0 +1,93 @@
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-1/4 bg-white border-r border-gray-300 overflow-y-auto">
+      <div class="px-4 py-2">
+        <input
+          type="text"
+          placeholder="Search name/chat"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <ul class="space-y-2 mt-4">
+        <li
+          *ngFor="let chat of chats"
+          (click)="selectChat(chat)"
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100"
+        >
+          <img
+            [src]="chat.avatar"
+            alt="{{ chat.name }}"
+            class="w-10 h-10 rounded-full mr-3"
+          />
+          <div>
+            <h3 class="font-semibold text-gray-900">{{ chat.name }}</h3>
+            <p class="text-sm text-gray-500">{{ chat.lastMessage }}</p>
+          </div>
+          <span class="ml-auto text-xs text-gray-400">{{ chat.time }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Chat Area -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <div class="border-b border-gray-300 py-4 px-6 bg-white flex items-center">
+        <img
+          [src]="selectedChat?.avatar"
+          alt="{{ selectedChat?.name }}"
+          class="w-10 h-10 rounded-full mr-4"
+        />
+        <div>
+          <h3 class="font-semibold text-lg">{{ selectedChat?.name }}</h3>
+          <p class="text-sm text-gray-500">{{ selectedChat?.status }}</p>
+        </div>
+      </div>
+  
+      <!-- Messages -->
+      <div class="flex-1 overflow-y-auto p-6 bg-gray-100">
+        <div *ngFor="let message of selectedChat?.messages" class="mb-4">
+          <div
+            class="flex items-start"
+            [ngClass]="{
+              'flex-row-reverse text-right': message.sender === 'me',
+              'flex-row': message.sender !== 'me'
+            }"
+          >
+            <img
+              [src]="message.avatar"
+              alt="{{ message.sender }}"
+              class="w-8 h-8 rounded-full mr-3"
+            />
+            <div
+              class="max-w-xs px-4 py-2 rounded-lg"
+              [ngClass]="{
+                'bg-blue-500 text-white': message.sender === 'me',
+                'bg-white border border-gray-300 text-gray-700': message.sender !== 'me'
+              }"
+            >
+              <p>{{ message.text }}</p>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400 mt-1" [ngClass]="{'text-right': message.sender === 'me', 'text-left': message.sender !== 'me'}">{{ message.time }}</p>
+        </div>
+      </div>
+  
+      <!-- Input -->
+      <div class="border-t border-gray-300 py-4 px-6 bg-white flex items-center">
+        <input
+          [(ngModel)]="newMessage"
+          (keyup.enter)="sendMessage()"
+          type="text"
+          placeholder="Type your message..."
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          (click)="sendMessage()"
+          class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+  

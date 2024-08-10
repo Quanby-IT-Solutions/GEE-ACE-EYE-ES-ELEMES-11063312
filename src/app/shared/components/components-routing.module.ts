@@ -16,6 +16,14 @@ const routes: Routes = [
       // },
 
       {
+        path: 'messaging',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/messaging/messaging.module'
+          ).then((m) => m.MessagingModule),
+      },
+
+      {
         path: 'profile',
         loadChildren: () =>
           import(

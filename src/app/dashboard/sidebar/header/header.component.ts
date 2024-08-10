@@ -56,6 +56,10 @@ export class OurHeaderComponent implements OnInit, OnDestroy {
     this.router.navigate([routes.profile]);
   }
 
+  navigateToMessage() {
+    this.router.navigate([routes.messaging]);
+  }
+
   searchRoutes() {
     this.search.emit(this.searchQuery);
   }
