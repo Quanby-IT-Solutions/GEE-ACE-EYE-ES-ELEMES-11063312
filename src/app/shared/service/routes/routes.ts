@@ -451,6 +451,14 @@ export class routes {
     return this.users_dashboard + '/subjects';
   }
 
+  public static get help(): string {
+    return this.users_dashboard + '/help';
+  }
+
+  public static get support(): string {
+    return this.users_dashboard + '/support';
+  }
+
   public static get learning_module(): string {
     return this.users_dashboard + '/learning-module';
   }

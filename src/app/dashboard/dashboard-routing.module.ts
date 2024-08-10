@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../shared/service/guards/auth.guard';
+import { HelpModule } from '../shared/components/classroom/help/help.module';
+import { SupportModule } from '../shared/components/pages/support/support.module';
 
 const routes: Routes = [
   {
@@ -421,7 +423,20 @@ const routes: Routes = [
 
     // end - teacher -reports 
 
-
+    {
+      path: 'help',
+      loadChildren: () =>
+        import('src/app/shared/components/classroom/help/help.component').then(
+          (m) => HelpModule
+        ),
+    },
+    {
+      path: 'support',
+      loadChildren: () =>
+        import('src/app/shared/components/pages/support/support.component').then(
+          (m) => SupportModule
+        ),
+    },
       // end new SIAS
 
       {
