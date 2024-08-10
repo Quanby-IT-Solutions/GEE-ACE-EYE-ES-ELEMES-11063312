@@ -1,82 +1,81 @@
-<!-- src\app\dashboard\sidebar\sidebar.component.html -->
-
+<!-- Sidebar component -->
 <aside
-  class="bg-white text-black h-screen overflow-y-auto transition-all duration-300 flex flex-col scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-green-800"
+  class="bg-[#f2f4f1] text-black h-screen overflow-y-auto transition-all duration-300 flex flex-col scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-green-800"
   [ngClass]="{
-  'w-64': isSidebarExpanded && !isMobile,
-  'w-20': !isSidebarExpanded && !isMobile,
-  'w-full': isMobile
-}">
-  <div class="flex items-center py-6 px-4 " [ngClass]="{
-      'justify-start': isSidebarExpanded,
-      'justify-center': !isSidebarExpanded
-    }">
-    <button (click)="!isMobile && toggleSidebar()" (keyup.enter)="!isMobile && toggleSidebar()" [disabled]="isMobile"
-      class="text-black hover:text-white transition-colors duration-300 flex items-center justify-center focus:outline-none focus:ring-2  rounded"
-      [attr.aria-label]="isSidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'" [ngClass]="{
-        'text-2xl': !isMobile,
-        'text-2xl cursor-default': isMobile
-      }">
-      <i class="fas fa-bars"></i>
+    'w-64': isSidebarExpanded && !isMobile,
+    'w-20': !isSidebarExpanded && !isMobile,
+    'w-full': isMobile
+  }"
+>
+  <!-- Logo section -->
+  <div class="bg-[#0d9100] h-20 mb-3 px-4 flex items-center">
+    <!-- Toggle button -->
+    <button
+      (click)="!isMobile && toggleSidebar()"
+      (keyup.enter)="!isMobile && toggleSidebar()"
+      [disabled]="isMobile"
+      class="bg-color-secondary text-black w-8 h-8 flex items-center justify-center rounded-md shadow-md hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d9100]"
+      [attr.aria-label]="
+        isSidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'
+      "
+    >
+      <i class="fa-solid fa-bars text-lg"></i>
     </button>
-    <!-- @if (isSidebarExpanded && !isMobile) {
-    <h1 class="ml-4 text-xl font-bold">
-      <a [routerLink]="routes.home"
-        class="text-black hover:text-blue-300 transition-colors duration-300 focus:outline-none focus:ring-2  rounded">
-        Q-LMS
-      </a>
-    </h1>
-    } -->
   </div>
 
-  <nav class="flex-1 mt-6">
-    <ul class="space-y-2 px-2">
-      @if (user) {
-      @switch (getUserType()) {
-      @case ('student') {
-      @for (item of student_no; track trackByTitle($index, item)) {
+  <!-- Navigation menu -->
+  <nav class="flex-1 overflow-y-auto">
+    <ul class="space-y-2 p-2">
+      @if (user) { @switch (getUserType()) { @case ('student') { @for (item of
+      student_no; track trackByTitle($index, item)) {
       <li>
-        <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { item: item }"
+        ></ng-container>
       </li>
-      }
-      }
-      @case ('instructor') {
-      @for (item of instructor; track trackByTitle($index, item)) {
+      } } @case ('instructor') { @for (item of instructor; track
+      trackByTitle($index, item)) {
       <li>
-        <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { item: item }"
+        ></ng-container>
       </li>
-      }
-      }
-      @case ('school_admin') {
-      @for (item of school_admin; track trackByTitle($index, item)) {
+      } } @case ('school_admin') { @for (item of school_admin; track
+      trackByTitle($index, item)) {
       <li>
-        <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { item: item }"
+        ></ng-container>
       </li>
-      }
-      }
-      @case ('department_admin') {
-      @for (item of department_admin; track trackByTitle($index, item)) {
+      } } @case ('department_admin') { @for (item of department_admin; track
+      trackByTitle($index, item)) {
       <li>
-        <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { item: item }"
+        ></ng-container>
       </li>
-      }
-      }
-      @case ('super_admin') {
-      @for (item of superAdminTabs(); track trackByTitle($index, item)) {
+      } } @case ('super_admin') { @for (item of superAdminTabs(); track
+      trackByTitle($index, item)) {
       <li>
-        <ng-container *ngTemplateOutlet="menuItem; context: { item: item }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuItem; context: { item: item }"
+        ></ng-container>
       </li>
-      }
-      }
-      }
-      }
+      } } } }
     </ul>
   </nav>
 
+  <!-- Logout button -->
   <div class="mt-auto mb-6 px-4">
-    <button (click)="logout()" (keyup.enter)="logout()"
-      class="w-full flex items-center justify-center py-2 px-4 rounded-lg text-black bg-red-600 hover:bg-red-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-300">
-      <i class="fas fa-sign-out-alt" [ngClass]="{'mr-2': isSidebarExpanded}"></i>
+    <button
+      (click)="logout()"
+      (keyup.enter)="logout()"
+      class="w-full flex items-center justify-center py-2 px-2 rounded-lg text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-300"
+    >
+      <i
+        class="fas fa-sign-out-alt"
+        [ngClass]="{ 'mr-2': isSidebarExpanded }"
+      ></i>
       @if (isSidebarExpanded) {
       <span>Logout</span>
       }
@@ -87,32 +86,51 @@
 <ng-template #menuItem let-item="item">
   @if (item.subItems && item.subItems.length) {
   <div class="relative">
-    <!-- Dropdown trigger button -->
-    <div (click)="toggleDropdown(item.title)" (keyup.enter)="toggleDropdown(item.title)"
+    <div
+      (click)="toggleDropdown(item.title)"
+      (keyup.enter)="toggleDropdown(item.title)"
       (keyup.space)="toggleDropdown(item.title)"
-      class="flex items-center justify-between p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-green-500 focus:outline-none focus:ring-2 "
-      [ngClass]="{'bg-green-600': isOpen[item.title]}" role="button" tabindex="0"
-      [attr.aria-expanded]="isOpen[item.title]">
-      <span class="flex items-center">
-        <i [class]="iconMap[item.title] || 'fas fa-book'" class="w-5 h-5" [ngClass]="{'mr-3': isSidebarExpanded}"></i>
+      class="flex items-center justify-between py-3 px-4 rounded-lg cursor-pointer transition-all duration-300 hover:bg-color-secondary focus:outline-none focus:ring-2"
+      [ngClass]="{ 'bg-color-secondary': isOpen[item.title] }"
+      role="button"
+      tabindex="0"
+      [attr.aria-expanded]="isOpen[item.title]"
+    >
+      <div class="flex items-center">
+        <i
+          [class]="iconMap[item.title] || 'fas fa-circle'"
+          class="w-6 text-lg"
+        ></i>
         @if (isSidebarExpanded) {
-        <span>{{ item.title }}</span>
+        <span class="ml-4">{{ item.title }}</span>
         }
-      </span>
+      </div>
       @if (isSidebarExpanded) {
-      <i [ngClass]="{'fa-chevron-down': !isOpen[item.title], 'fa-chevron-up': isOpen[item.title]}"
-        class="fas text-sm transition-transform duration-300"></i>
+      <i
+        class="fas fa-chevron-down text-sm transition-transform duration-300"
+        [ngClass]="{ 'rotate-180': isOpen[item.title] }"
+      ></i>
       }
     </div>
     @if (isOpen[item.title]) {
-    <ul class="mt-2 space-y-1 bg-green-600 rounded-md overflow-hidden"
-      [ngClass]="{'absolute left-full top-0 ml-2 w-48': !isSidebarExpanded, 'ml-4': isSidebarExpanded}">
+    <ul
+      class="mt-2 space-y-1 bg-color-secondary rounded-md overflow-hidden"
+      [ngClass]="{
+        'absolute left-full top-0 ml-2 w-48': !isSidebarExpanded,
+        'ml-4': isSidebarExpanded
+      }"
+    >
       @for (subItem of item.subItems; track trackByTitle($index, subItem)) {
       <li>
-        <a [routerLink]="subItem.route"
-          class="flex items-center p-2 text-black hover:text-white hover:bg-green-500 transition-colors duration-200 focus:outline-none focus:ring-2 ">
-          <i [class]="iconMap[subItem.title] || 'fas fa-chevron-right'" class="w-4 h-4 mr-3"></i>
-          <span>{{ subItem.title }}</span>
+        <a
+          [routerLink]="subItem.route"
+          class="flex items-center py-3 px-4 text-black hover:bg-green-500 transition-colors duration-200 focus:outline-none focus:ring-2"
+        >
+          <i
+            [class]="iconMap[subItem.title] || 'fas fa-circle'"
+            class="w-6 text-lg"
+          ></i>
+          <span class="ml-4">{{ subItem.title }}</span>
         </a>
       </li>
       }
@@ -120,12 +138,14 @@
     }
   </div>
   } @else {
-  <a [routerLink]="item.route"
-    class="flex items-center p-2 rounded-lg text-black hover:text-white hover:bg-green-500 transition-colors duration-300 focus:outline-none focus:ring-2 "
-    [ngClass]="{'bg-green-600 text-black': isActive(item.route)}">
-    <i [class]="iconMap[item.title] || 'fas fa-book'" class="w-5 h-5" [ngClass]="{'mr-3': isSidebarExpanded}"></i>
+  <a
+    [routerLink]="item.route"
+    class="flex items-center py-3 px-4 rounded-lg text-black hover:bg-color-secondary transition-colors duration-300 focus:outline-none focus:ring-2"
+    [ngClass]="{ 'bg-color-secondary': isActive(item.route) }"
+  >
+    <i [class]="iconMap[item.title] || 'fas fa-circle'" class="w-6 text-lg"></i>
     @if (isSidebarExpanded) {
-    <span>{{ item.title }}</span>
+    <span class="ml-4">{{ item.title }}</span>
     }
   </a>
   }
