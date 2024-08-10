@@ -143,7 +143,7 @@ export class SupabaseService {
     if (existingSession) {
       const {
         data: { user },
-      } = await this.supabase.auth.getUser();
+      } = await this.supabase.auth.getUser(existingSession);
       this.userSubject.next(user);
     } else {
       const guestUser = localStorage.getItem('guestUser');
@@ -154,6 +154,7 @@ export class SupabaseService {
 
     this.supabase.auth.onAuthStateChange(
       (event: AuthChangeEvent, session: Session | null) => {
+        // || event === 'TOKEN_REFRESHED'
         if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
           this.userSubject.next(session?.user || null);
           localStorage.setItem(
