@@ -8,6 +8,7 @@
 
       <router-outlet></router-outlet>
 
+      @if (isMainRouteActive) {
 
         <!-- @if (getUserRole() === 'instructor') {
         <div>
@@ -40,7 +41,8 @@
             </div>
           </div>
         </div>
-    
+      }
+
     </main>
   </div>
 </div>
