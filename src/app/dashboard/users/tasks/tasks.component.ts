@@ -194,13 +194,13 @@ export class TasksComponent implements OnInit, OnDestroy {
     return  Object.keys(this.collapsables);
   }
 
-  isDue(date:Date){
-    if(date == null){
+  isDue(task:any){
+    if(task.dueDate == null || task.submitted){
       return false;
     }
     const today = new Date();
     today.setDate(today.getDate() - 1);
-    return today > date;
+    return today > task.dueDate;
   }
 
   getCollapsableItems(){
@@ -323,7 +323,9 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   
   submitWork(){
-    
+    if(!this.selectedTask.files?.length){
+      return;
+    }
     this.selectedTask.submitted = !this.selectedTask.submitted;
 
     if(this.selectedTask.submitted){

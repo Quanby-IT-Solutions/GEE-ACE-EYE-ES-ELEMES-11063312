@@ -139,12 +139,13 @@ export class SupabaseService {
   }
 
   private async initializeUser() {
-    const existingSession = localStorage.getItem('supabase.auth.token');
+    const existingSession = localStorage.getItem('user');
+    console.log('EXISITING SEESSSION',existingSession);
     if (existingSession) {
-      const {
-        data: { user },
-      } = await this.supabase.auth.getUser(existingSession);
-      this.userSubject.next(user);
+      // const {
+      //   data: { user },
+      // } = await this.supabase.auth.getUser(existingSession);
+      this.userSubject.next(JSON.parse(existingSession));
     } else {
       const guestUser = localStorage.getItem('guestUser');
       if (guestUser) {
@@ -154,16 +155,18 @@ export class SupabaseService {
 
     this.supabase.auth.onAuthStateChange(
       (event: AuthChangeEvent, session: Session | null) => {
-        // || event === 'TOKEN_REFRESHED'
         if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          console.log('SESSIONNNNN', session);
           this.userSubject.next(session?.user || null);
-          localStorage.setItem(
-            'supabase.auth.token',
-            session?.access_token || ''
-          );
+          localStorage.setItem('user', JSON.stringify(session?.user));
+          // localStorage.setItem(
+          //   'supabase.auth.token',
+          //   session?.access_token || ''
+          // );
         } else if (event === 'SIGNED_OUT') {
           this.userSubject.next(null);
-          localStorage.removeItem('supabase.auth.token');
+          // localStorage.removeItem('supabase.auth.token');
+          localStorage.removeItem('user');
           localStorage.removeItem('guestUser');
         }
       }

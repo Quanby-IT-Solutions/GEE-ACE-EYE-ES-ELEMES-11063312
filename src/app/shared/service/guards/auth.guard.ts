@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate {
             );
             return this.router.createUrlTree(['/dashboard']);
           }
-          console.log('ACCESS' ,state.url);
+        
           // Allow access to other routes
           return true;
         } else {
