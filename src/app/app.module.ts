@@ -17,6 +17,8 @@ import { SharedModule } from './shared/module/shared.module';
 import { OurHeaderComponent } from './dashboard/sidebar/header/header.component';
 import { FeatherIconModule } from './shared/module/feather.module';
 import { CommonModule } from '@angular/common';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 @NgModule({
   declarations: [AppComponent,    SubjectsComponent,
   ],
@@ -33,6 +35,7 @@ import { CommonModule } from '@angular/common';
     FontAwesomeModule,
     HttpClientModule,
     FeatherIconModule,
+    NgxExtendedPdfViewerModule
 
   ],
   exports: [FeatherIconModule],

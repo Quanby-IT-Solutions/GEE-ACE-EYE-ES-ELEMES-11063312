@@ -9,6 +9,7 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { StudentHeaderComponent } from './layouts/student-header/student-header.component';
 import { SharedModule } from '../module/shared.module';
 import { FooterTopContainerComponent } from './layouts/footer/footer-top-container/footer-top-container.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { FooterTopContainerComponent } from './layouts/footer/footer-top-contain
     StudentHeaderComponent,
     FooterTopContainerComponent,
   ],
-  imports: [CommonModule, ComponentsRoutingModule, SharedModule],
+  imports: [CommonModule, ComponentsRoutingModule, SharedModule, NgxExtendedPdfViewerModule],
 })
 export class ComponentsModule {}

@@ -8,7 +8,8 @@ import { SubjectModulesRoutingModule } from './subject-modules-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    SubjectModulesRoutingModule
+    SubjectModulesRoutingModule,
+    
   ]
 })
 export class SubjectModulesModule { }

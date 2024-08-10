@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeUrlPipe } from 'src/app/shared/pipes/safe-url.pipe';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule, SafeUrlPipe, PdfViewerModule]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
   selectedTab: string = 'about'; // Default tab
   selectedModuleIndex: number = 0; // Track the selected module
+  selectedMaterial: any = null; // Track the selected material
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.course = history.state.course;
@@ -27,26 +31,37 @@ export class SubjectModulesComponent implements OnInit {
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
+    this.selectedMaterial = null; // Reset selected material when changing tabs
   }
 
   selectModule(index: number): void {
     this.selectedModuleIndex = index;
     this.sortMaterialsByDate(); // Sort materials when the module changes
+    this.selectedMaterial = null; // Reset selected material when changing modules
   }
 
   goToNextModule(): void {
     if (this.selectedModuleIndex < this.course.modules.length - 1) {
       this.selectedModuleIndex++;
       this.sortMaterialsByDate(); // Sort materials when navigating to the next module
+      this.selectedMaterial = null; // Reset selected material when moving to the next module
     }
   }
 
-  private sortMaterialsByDate(): void {
-    const materials = this.course.modules[this.selectedModuleIndex].materials;
-    materials.sort((a: any, b: any) => a.uploadDate - b.uploadDate);
-    materials.forEach((material: any, index: number) => {
-      material.index = index + 1; // Add numbering based on sorted order
-    });
+  selectMaterial(material: any): void {
+    this.selectedMaterial = {
+      ...material,
+      safeLink: this.sanitizer.bypassSecurityTrustResourceUrl(material.link) // Ensure safe URL
+    };
+  }
+
+  downloadMaterial(material: any, event: Event): void {
+    event.stopPropagation();
+    const link = document.createElement('a');
+    link.href = material.link;
+    link.download = material.title;
+    link.click();
+    console.log('Download link clicked:', material.link);
   }
 
   getMaterialIcon(type: string): string {
@@ -60,5 +75,17 @@ export class SubjectModulesComponent implements OnInit {
       default:
         return 'fa-file';
     }
+  }
+
+  closeMaterialView(): void {
+    this.selectedMaterial = null;
+  }
+
+  private sortMaterialsByDate(): void {
+    const materials = this.course.modules[this.selectedModuleIndex].materials;
+    materials.sort((a: any, b: any) => new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime());
+    materials.forEach((material: any, index: number) => {
+      material.index = index + 1; // Add numbering based on sorted order
+    });
   }
 }

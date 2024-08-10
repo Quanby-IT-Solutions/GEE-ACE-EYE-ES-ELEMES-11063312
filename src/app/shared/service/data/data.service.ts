@@ -5291,9 +5291,9 @@ export class DataService {
           description: 'Overview of Algebraic Concepts',
           about: 'This module introduces you to the basic concepts of algebra, focusing on variables, expressions, and equations.',
           materials: [
-            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: 'assets/files/algebra_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: 'https://example.com/algebra_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: 'https://example.com/algebra_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11) },
@@ -5308,9 +5308,9 @@ export class DataService {
           description: 'Working with Algebraic Expressions',
           about: 'This module covers the operations involving algebraic expressions, including addition, subtraction, and factoring.',
           materials: [
-            { title: 'Algebraic Operations - Lecture Notes', type: 'pdf', link: 'assets/files/algebra_operations.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Algebraic Operations - Video Lecture', type: 'video', link: 'https://example.com/algebra_operations_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Algebraic Operations', type: 'pdf', link: 'https://example.com/algebra_operations_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Algebraic Operations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Algebraic Operations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Algebraic Operations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Operations Homework', dueDate: new Date(2024, 7, 20) },
@@ -5325,9 +5325,9 @@ export class DataService {
           description: 'Solving Quadratic Equations',
           about: 'In this module, you will learn how to solve quadratic equations using various methods, including factoring, completing the square, and the quadratic formula.',
           materials: [
-            { title: 'Quadratic Equations - Lecture Notes', type: 'pdf', link: 'assets/files/quadratic_equations.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Quadratic Equations - Video Lecture', type: 'video', link: 'https://example.com/quadratic_equations_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'https://example.com/quadratic_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Quadratic Equations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Quadratic Equations - Video Lecture', type: 'video', link: 'assets/courses/bini.pdf', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5) },
@@ -5355,9 +5355,9 @@ export class DataService {
           description: 'Basic Concepts in Mechanics',
           about: 'This module introduces the foundational concepts in mechanics, including force, motion, and energy.',
           materials: [
-            { title: 'Introduction to Mechanics - Lecture Notes', type: 'pdf', link: 'assets/files/mechanics_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Mechanics - Video Lecture', type: 'video', link: 'https://example.com/mechanics_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Mechanics', type: 'pdf', link: 'https://example.com/mechanics_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Mechanics - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Mechanics - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Mechanics', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15) },
@@ -5372,9 +5372,9 @@ export class DataService {
           description: 'Understanding Newton’s Laws',
           about: 'This module provides a detailed study of Newton’s three laws of motion and their practical applications.',
           materials: [
-            { title: 'Newton’s Laws - Lecture Notes', type: 'pdf', link: 'assets/files/newton_laws.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Newton’s Laws - Video Lecture', type: 'video', link: 'https://example.com/newton_laws_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Newton’s Laws', type: 'pdf', link: 'https://example.com/newton_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Newton’s Laws - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Newton’s Laws - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Newton’s Laws', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) },
@@ -5389,9 +5389,9 @@ export class DataService {
           description: 'Conservation of Energy',
           about: 'This module explores the concepts of energy, work, and the conservation of mechanical energy.',
           materials: [
-            { title: 'Energy and Work - Lecture Notes', type: 'pdf', link: 'assets/files/energy_work.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Energy and Work - Video Lecture', type: 'video', link: 'https://example.com/energy_work_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Energy and Work', type: 'pdf', link: 'https://example.com/energy_work_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Energy and Work - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Energy and Work - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Energy and Work', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Energy Homework', dueDate: new Date(2024, 8, 12) },
@@ -5419,9 +5419,9 @@ export class DataService {
           description: 'Introduction to Organic Molecules',
           about: 'This module introduces the structure and bonding of organic molecules, including hydrocarbons and functional groups.',
           materials: [
-            { title: 'Organic Molecules - Lecture Notes', type: 'pdf', link: 'assets/files/organic_molecules.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Organic Molecules - Video Lecture', type: 'video', link: 'https://example.com/organic_molecules_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Organic Molecules', type: 'pdf', link: 'https://example.com/organic_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Organic Molecules - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Organic Molecules - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Organic Molecules', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20) },
@@ -5436,9 +5436,9 @@ export class DataService {
           description: 'Types of Organic Reactions',
           about: 'This module covers various types of chemical reactions in organic chemistry, such as substitution, addition, and elimination reactions.',
           materials: [
-            { title: 'Organic Reactions - Lecture Notes', type: 'pdf', link: 'assets/files/organic_reactions.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Organic Reactions - Video Lecture', type: 'video', link: 'https://example.com/organic_reactions_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Organic Reactions', type: 'pdf', link: 'https://example.com/organic_reactions_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Organic Reactions - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Organic Reactions - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Organic Reactions', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) },
@@ -5453,9 +5453,9 @@ export class DataService {
           description: 'Understanding Molecular Geometry',
           about: 'This module focuses on the spatial arrangement of atoms in organic molecules and its implications in chemical reactions.',
           materials: [
-            { title: 'Stereochemistry - Lecture Notes', type: 'pdf', link: 'assets/files/stereochemistry.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Stereochemistry - Video Lecture', type: 'video', link: 'https://example.com/stereochemistry_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Stereochemistry', type: 'pdf', link: 'https://example.com/stereochemistry_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Stereochemistry - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Stereochemistry - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Stereochemistry', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25) },
@@ -5483,9 +5483,9 @@ export class DataService {
           description: 'Basics of Plant Biology',
           about: 'This module covers the basic principles of plant biology, including plant structure, function, and growth.',
           materials: [
-            { title: 'Introduction to Botany - Lecture Notes', type: 'pdf', link: 'assets/files/botany_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Botany - Video Lecture', type: 'video', link: 'https://example.com/botany_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Botany', type: 'pdf', link: 'https://example.com/botany_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Botany - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Botany - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Botany', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15) },
@@ -5500,9 +5500,9 @@ export class DataService {
           description: 'Understanding Plant Processes',
           about: 'This module explores the physiological processes in plants, such as photosynthesis, respiration, and water transport.',
           materials: [
-            { title: 'Plant Physiology - Lecture Notes', type: 'pdf', link: 'assets/files/plant_physiology.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Plant Physiology - Video Lecture', type: 'video', link: 'https://example.com/plant_physiology_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Plant Physiology', type: 'pdf', link: 'https://example.com/plant_physiology_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Plant Physiology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Plant Physiology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Plant Physiology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30) },
@@ -5517,9 +5517,9 @@ export class DataService {
           description: 'Plants and Their Environment',
           about: 'This module focuses on the interactions between plants and their environment, including topics like plant communities and ecosystems.',
           materials: [
-            { title: 'Plant Ecology - Lecture Notes', type: 'pdf', link: 'assets/files/plant_ecology.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Plant Ecology - Video Lecture', type: 'video', link: 'https://example.com/plant_ecology_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Plant Ecology', type: 'pdf', link: 'https://example.com/plant_ecology_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Plant Ecology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Plant Ecology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Plant Ecology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12) },
@@ -5547,9 +5547,9 @@ export class DataService {
           description: 'Getting Started with Code',
           about: 'This module introduces the fundamentals of programming, including basic syntax, variables, and control structures.',
           materials: [
-            { title: 'Introduction to Programming - Lecture Notes', type: 'pdf', link: 'assets/files/programming_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Programming - Video Lecture', type: 'video', link: 'https://example.com/programming_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Programming', type: 'pdf', link: 'https://example.com/programming_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Programming - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Programming - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Programming', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15) },
@@ -5564,9 +5564,9 @@ export class DataService {
           description: 'Organizing and Managing Data',
           about: 'This module covers essential data structures such as arrays, linked lists, and trees, and their applications in programming.',
           materials: [
-            { title: 'Data Structures - Lecture Notes', type: 'pdf', link: 'assets/files/data_structures.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Data Structures - Video Lecture', type: 'video', link: 'https://example.com/data_structures_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Data Structures', type: 'pdf', link: 'https://example.com/data_structures_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Data Structures - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Data Structures - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Data Structures', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) },
@@ -5581,9 +5581,9 @@ export class DataService {
           description: 'Efficient Coding Techniques',
           about: 'This module focuses on developing algorithms to solve computational problems efficiently.',
           materials: [
-            { title: 'Algorithms - Lecture Notes', type: 'pdf', link: 'assets/files/algorithms.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Algorithms - Video Lecture', type: 'video', link: 'https://example.com/algorithms_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Algorithms', type: 'pdf', link: 'https://example.com/algorithms_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Algorithms - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Algorithms - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Algorithms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12) },
@@ -5611,9 +5611,9 @@ export class DataService {
           description: 'Exploring the Foundations of History',
           about: 'This module explores the major ancient civilizations, including Mesopotamia, Egypt, and the Indus Valley.',
           materials: [
-            { title: 'Ancient Civilizations - Lecture Notes', type: 'pdf', link: 'assets/files/ancient_civilizations.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Ancient Civilizations - Video Lecture', type: 'video', link: 'https://example.com/ancient_civilizations_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Ancient Civilizations', type: 'pdf', link: 'https://example.com/ancient_civilizations_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Ancient Civilizations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Ancient Civilizations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Ancient Civilizations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15) },
@@ -5628,9 +5628,9 @@ export class DataService {
           description: 'History of the Middle Ages',
           about: 'This module covers the key events and developments during the Medieval period, including feudalism, the Crusades, and the rise of nation-states.',
           materials: [
-            { title: 'Medieval Times - Lecture Notes', type: 'pdf', link: 'assets/files/medieval_times.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Medieval Times - Video Lecture', type: 'video', link: 'https://example.com/medieval_times_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Medieval Times', type: 'pdf', link: 'https://example.com/medieval_times_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Medieval Times - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Medieval Times - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Medieval Times', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) },
@@ -5645,9 +5645,9 @@ export class DataService {
           description: 'World Events from 1500 to Present',
           about: 'This module focuses on significant global events from the Renaissance to the present day, including revolutions, wars, and technological advancements.',
           materials: [
-            { title: 'Modern History - Lecture Notes', type: 'pdf', link: 'assets/files/modern_history.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Modern History - Video Lecture', type: 'video', link: 'https://example.com/modern_history_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Modern History', type: 'pdf', link: 'https://example.com/modern_history_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Modern History - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Modern History - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Modern History', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) },
@@ -5675,9 +5675,9 @@ export class DataService {
           description: 'Earth’s Physical Features',
           about: 'This module covers the basic physical features of the Earth, including landforms, climate, and ecosystems.',
           materials: [
-            { title: 'Introduction to Physical Geography - Lecture Notes', type: 'pdf', link: 'assets/files/physical_geography_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Physical Geography - Video Lecture', type: 'video', link: 'https://example.com/physical_geography_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on Physical Geography', type: 'pdf', link: 'https://example.com/physical_geography_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Physical Geography - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Physical Geography - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on Physical Geography', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) },
@@ -5692,9 +5692,9 @@ export class DataService {
           description: 'Understanding Atmospheric Processes',
           about: 'This module explores the processes that drive weather and climate, including the water cycle, atmospheric circulation, and climate change.',
           materials: [
-            { title: 'Weather and Climate - Lecture Notes', type: 'pdf', link: 'assets/files/weather_climate.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Weather and Climate - Video Lecture', type: 'video', link: 'https://example.com/weather_climate_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Weather and Climate', type: 'pdf', link: 'https://example.com/weather_climate_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Weather and Climate - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Weather and Climate - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Weather and Climate', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) },
@@ -5709,9 +5709,9 @@ export class DataService {
           description: 'Formation and Evolution of Earth’s Surface',
           about: 'This module focuses on the processes that shape the Earth’s surface, such as plate tectonics, erosion, and sedimentation.',
           materials: [
-            { title: 'Landforms and Landscapes - Lecture Notes', type: 'pdf', link: 'assets/files/landforms.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Landforms and Landscapes - Video Lecture', type: 'video', link: 'https://example.com/landforms_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Landforms', type: 'pdf', link: 'https://example.com/landforms_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Landforms and Landscapes - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Landforms and Landscapes - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Landforms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) },
@@ -5739,9 +5739,9 @@ export class DataService {
           description: 'Overview of English Literary Works',
           about: 'This module provides an introduction to the major works and authors in English literature, from Chaucer to modern times.',
           materials: [
-            { title: 'Introduction to English Literature - Lecture Notes', type: 'pdf', link: 'assets/files/english_lit_intro.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to English Literature - Video Lecture', type: 'video', link: 'https://example.com/english_lit_intro_video', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Supplementary Reading on English Literature', type: 'pdf', link: 'https://example.com/english_lit_book', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to English Literature - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to English Literature - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Supplementary Reading on English Literature', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15) },
@@ -5756,9 +5756,9 @@ export class DataService {
           description: 'Exploring Different Literary Forms',
           about: 'This module explores the various forms of poetry and prose, including sonnets, novels, and essays, with an emphasis on literary analysis.',
           materials: [
-            { title: 'Poetry and Prose - Lecture Notes', type: 'pdf', link: 'assets/files/poetry_prose.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Poetry and Prose - Video Lecture', type: 'video', link: 'https://example.com/poetry_prose_video', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Poetry and Prose', type: 'pdf', link: 'https://example.com/poetry_prose_practice', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Poetry and Prose - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Poetry and Prose - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Practice Problems on Poetry and Prose', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
             { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) },
@@ -5773,9 +5773,9 @@ export class DataService {
           description: 'The Golden Age of English Drama',
           about: 'This module focuses on the works of William Shakespeare and his contemporaries, examining their influence on English literature and culture.',
           materials: [
-            { title: 'Shakespeare - Lecture Notes', type: 'pdf', link: 'assets/files/shakespeare.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Shakespeare - Video Lecture', type: 'video', link: 'https://example.com/shakespeare_video', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Shakespeare', type: 'pdf', link: 'https://example.com/shakespeare_problems', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Shakespeare - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Shakespeare - Video Lecture', type: 'video', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Example Problems on Shakespeare', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
             { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12) },
