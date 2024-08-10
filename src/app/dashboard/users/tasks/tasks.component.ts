@@ -219,8 +219,32 @@ export class TasksComponent implements OnInit, OnDestroy {
       total: 0
     };
     for(let course of this.courses){
-      for(let task of course.tasks ?? []){
-        if(this.filterCourse !='all' && course.course != this.filterCourse){
+      for(let module of course.modules ?? []){
+        for(let task of module.assignments ?? []){
+          if(this.filterCourse !='all' && course.course != this.filterCourse){
+            const today = new Date();
+            const startOfThisWeek = new Date(today);
+            const day = startOfThisWeek.getDay();
+            const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+            startOfThisWeek.setDate(diff);
+            startOfThisWeek.setHours(0, 0, 0, 0);
+            const lastOfLastWeek = new Date(startOfThisWeek);
+            lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+            if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
+              if(task.submitted){
+                this.taskSummary.completed +=1;
+              }
+              this.taskSummary.total +=1
+            }
+            continue;
+          }
+          task.course = course.course;
+          task.instructor = course.instructor;
+          task.type = 'assignment';
+          if(!task.dueDate){
+            this.collapsableItems['No Due Date'].push(task);
+            continue;
+          }
           const today = new Date();
           const startOfThisWeek = new Date(today);
           const day = startOfThisWeek.getDay();
@@ -230,43 +254,41 @@ export class TasksComponent implements OnInit, OnDestroy {
           const lastOfLastWeek = new Date(startOfThisWeek);
           lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
           if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
+            this.collapsableItems['This Week'].push(task);
             if(task.submitted){
               this.taskSummary.completed +=1;
             }
             this.taskSummary.total +=1
+          } else if (task.dueDate >= lastOfLastWeek) {
+            this.collapsableItems['Later'].push(task);
+          } else {
+            this.collapsableItems['Earlier'].push(task);
           }
-          continue;
         }
-        task.course = course.course;
-        task.instructor = course.instructor;
-        task.type = 'task';
-        if(!task.dueDate){
-          this.collapsableItems['No Due Date'].push(task);
-          continue;
-        }
-        const today = new Date();
-        const startOfThisWeek = new Date(today);
-        const day = startOfThisWeek.getDay();
-        const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
-        startOfThisWeek.setDate(diff);
-        startOfThisWeek.setHours(0, 0, 0, 0);
-        const lastOfLastWeek = new Date(startOfThisWeek);
-        lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
-        if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
-          this.collapsableItems['This Week'].push(task);
-          if(task.submitted){
-            this.taskSummary.completed +=1;
+  
+        for(let assessment of module.exams ?? []){
+          if(this.filterCourse !='all' && course.course != this.filterCourse){
+            const today = new Date();
+            const startOfThisWeek = new Date(today);
+            const day = startOfThisWeek.getDay();
+            const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+            startOfThisWeek.setDate(diff);
+            startOfThisWeek.setHours(0, 0, 0, 0);
+            const lastOfLastWeek = new Date(startOfThisWeek);
+            lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+            if(assessment.submitted){
+              this.testResults.completed +=1;
+            }
+            this.testResults.total +=1
+            continue;
           }
-          this.taskSummary.total +=1
-        } else if (task.dueDate >= lastOfLastWeek) {
-          this.collapsableItems['Later'].push(task);
-        } else {
-          this.collapsableItems['Earlier'].push(task);
-        }
-      }
-
-      for(let assessment of course.assessments ?? []){
-        if(this.filterCourse !='all' && course.course != this.filterCourse){
+          assessment.course = course.course;
+          assessment.instructor = course.instructor;
+          assessment.type = 'exam';
+          if(!assessment.dueDate){
+            this.collapsableItems['No Due Date'].push(assessment);
+            continue;
+          }
           const today = new Date();
           const startOfThisWeek = new Date(today);
           const day = startOfThisWeek.getDay();
@@ -275,38 +297,18 @@ export class TasksComponent implements OnInit, OnDestroy {
           startOfThisWeek.setHours(0, 0, 0, 0);
           const lastOfLastWeek = new Date(startOfThisWeek);
           lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if (assessment.dueDate >= startOfThisWeek && assessment.dueDate <= lastOfLastWeek){
+            this.collapsableItems['This Week'].push(assessment);
+          } else if (assessment.dueDate >= lastOfLastWeek) {
+            this.collapsableItems['Later'].push(assessment);
+          } else {
+            this.collapsableItems['Earlier'].push(assessment);
+          }
           if(assessment.submitted){
             this.testResults.completed +=1;
           }
           this.testResults.total +=1
-          continue;
         }
-        assessment.course = course.course;
-        assessment.instructor = course.instructor;
-        assessment.type = 'assessment';
-        if(!assessment.dueDate){
-          this.collapsableItems['No Due Date'].push(assessment);
-          continue;
-        }
-        const today = new Date();
-        const startOfThisWeek = new Date(today);
-        const day = startOfThisWeek.getDay();
-        const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
-        startOfThisWeek.setDate(diff);
-        startOfThisWeek.setHours(0, 0, 0, 0);
-        const lastOfLastWeek = new Date(startOfThisWeek);
-        lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
-        if (assessment.dueDate >= startOfThisWeek && assessment.dueDate <= lastOfLastWeek){
-          this.collapsableItems['This Week'].push(assessment);
-        } else if (assessment.dueDate >= lastOfLastWeek) {
-          this.collapsableItems['Later'].push(assessment);
-        } else {
-          this.collapsableItems['Earlier'].push(assessment);
-        }
-        if(assessment.submitted){
-          this.testResults.completed +=1;
-        }
-        this.testResults.total +=1
       }
     }
 
@@ -319,6 +321,10 @@ export class TasksComponent implements OnInit, OnDestroy {
       )
     }
     
+  }
+
+  takeExam(){
+    this.selectedTask.submitted = true;
   }
 
   
