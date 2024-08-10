@@ -47,13 +47,35 @@ export class SubjectModulesComponent implements OnInit {
       this.selectedMaterial = null; // Reset selected material when moving to the next module
     }
   }
-
+  // selectMaterial(material: any): void {
+  //   this.selectedMaterial = {
+  //     ...material,
+  //     safeLink: material.link // Pass the raw URL without sanitizing
+  //   };
+  // }
+  
   selectMaterial(material: any): void {
-    this.selectedMaterial = {
-      ...material,
-      safeLink: this.sanitizer.bypassSecurityTrustResourceUrl(material.link) // Ensure safe URL
-    };
+    this.selectedMaterial = material;
+    console.log('Attempting to load material:', material.link);
+  
+    if (!material.link) {
+      console.error('No link provided for this material');
+    } else {
+      // If possible, load directly to check.
+      fetch(material.link)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          console.log('Material loaded successfully:', material.link);
+        })
+        .catch((error) => {
+          console.error('Error loading material:', error);
+        });
+    }
   }
+  
+  
 
   downloadMaterial(material: any, event: Event): void {
     event.stopPropagation();

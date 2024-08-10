@@ -105,8 +105,17 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public student_no = [
     { title: 'Home', route: this.routes.dashboard },
-    { title: 'Courses', route: this.routes.subjects },
-    { title: 'Assignments', route: this.routes.tasks },
+    { title: 'Explore Courses', route: this.routes.subjects },
+
+    { 
+    title: 'My Courses',
+    subItems: [       
+     { title: 'Materials', route: this.routes.subjects },
+     { title: 'Assignments', route: this.routes.tasks },
+     { title: 'Exams', route: this.routes.quiz },
+    ], 
+    },   
+ 
     { title: 'Progress', route: this.routes.assessments },
 
     // {
@@ -153,27 +162,18 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
-    { title: 'Courses', route: this.routes.courses },
+    { title: 'Courses',
+     subItems: [       
+      { title: 'Materials', route: this.routes.courses },
+      { title: 'Assignments', route: this.routes.tasks },
+      { title: 'Exams', route: this.routes.quiz },
+  ], 
+     },
     { title: 'Assignments', route: this.routes.tasks },
     { title: 'Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
 
-    // {
-    //   title: 'Classroom',
-    //   subItems: [
-
-    //     { title: 'Subject Resources', route: this.routes.subject_resources },
-    //     { title: 'Tests', route: this.routes.tests},
-    //     { title: 'Test Bank', route: this.routes.test_bank},
-    //     { title: 'Subject Modules', route: this.routes.subject_modules },
-    //     { title: 'Class Modules', route: this.routes.class_modules },
-    //     { title: 'Class List', route: this.routes.class_list },
-    //     { title: 'My Online Tasks', route: this.routes.teacher_online_tasks },
-    //     { title: 'Schedule Online Tasks', route: this.routes.schedule_online_tasks },
-    //     { title: 'Check Online Tasks', route: this.routes.check_online_tasks },
-
-    //   ],
-    // },
+  
 
     // {
     //   title: 'Transactions',

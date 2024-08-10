@@ -5291,9 +5291,9 @@ export class DataService {
           description: 'Overview of Algebraic Concepts',
           about: 'This module introduces you to the basic concepts of algebra, focusing on variables, expressions, and equations.',
           materials: [
-            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
             { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11) },
