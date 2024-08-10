@@ -13,20 +13,20 @@ export class MessagingComponent {
   chats = [
     {
       id: 1,
-      name: 'Emerson Levin',
+      name: 'Kenneth Levin',
       avatar: 'assets/img/bini.jpeg',
       lastMessage: 'Et harum quidem rerum facilis est...',
       time: '2m Ago',
       status: 'Online',
       messages: [
-        { sender: 'Emerson', avatar: 'assets/img/bini.jpeg', text: 'Morning Emerson, I have a question about the course', time: '11:52 AM' },
+        { sender: 'Kenneth', avatar: 'assets/img/bini.jpeg', text: 'Morning Kenneth, I have a question about the course', time: '11:52 AM' },
         { sender: 'me', avatar: 'assets/img/bini.jpeg', text: 'Yes sure, any problem to implement the course?', time: '11:53 AM' },
-        { sender: 'Emerson', avatar: 'assets/img/bini.jpeg', text: 'Nam libero tempore, cum soluta nobis...', time: '11:55 AM' }
+        { sender: 'Kenneth', avatar: 'assets/img/bini.jpeg', text: 'Nam libero tempore, cum soluta nobis...', time: '11:55 AM' }
       ]
     },
     {
       id: 2,
-      name: 'Jakob Calzoni',
+      name: 'Sean Calzoni',
       avatar: 'assets/img/bini.jpeg',
       lastMessage: 'Sure! Let me tell you about what happened...',
       time: '5m Ago',
@@ -39,20 +39,20 @@ export class MessagingComponent {
     },
     {
       id: 3,
-      name: 'Emery Korsgaard',
+      name: 'Joemar Korsgaard',
       avatar: 'assets/img/bini.jpeg',
       lastMessage: 'Don’t worry, everything is under control!',
       time: '10m Ago',
       status: 'Online',
       messages: [
-        { sender: 'Emery', avatar: 'assets/img/bini.jpeg', text: 'Don’t worry, everything is under control!', time: '11:45 AM' },
+        { sender: 'Joemar', avatar: 'assets/img/bini.jpeg', text: 'Don’t worry, everything is under control!', time: '11:45 AM' },
         { sender: 'me', avatar: 'assets/img/bini.jpeg', text: 'Are you sure? It seems pretty chaotic...', time: '11:46 AM' },
-        { sender: 'Emery', avatar: 'assets/img/bini.jpeg', text: 'Trust me on this one!', time: '11:47 AM' }
+        { sender: 'Joemar', avatar: 'assets/img/bini.jpeg', text: 'Trust me on this one!', time: '11:47 AM' }
       ]
     },
     {
       id: 4,
-      name: 'Randy Vetrov',
+      name: 'Randy Palacay',
       avatar: 'assets/img/bini.jpeg',
       lastMessage: 'Just sent you the documents, check your email.',
       time: '15m Ago',
@@ -65,15 +65,15 @@ export class MessagingComponent {
     },
     {
       id: 5,
-      name: 'Hanna Septimus',
+      name: 'Antonzxz Septimus',
       avatar: 'assets/img/bini.jpeg',
       lastMessage: 'Let’s catch up later this week.',
       time: '20m Ago',
       status: 'Online',
       messages: [
-        { sender: 'Hanna', avatar: 'assets/img/bini.jpeg', text: 'Let’s catch up later this week.', time: '11:35 AM' },
+        { sender: 'Antonzxz', avatar: 'assets/img/bini.jpeg', text: 'Let’s catch up later this week.', time: '11:35 AM' },
         { sender: 'me', avatar: 'assets/img/bini.jpeg', text: 'Sounds good, I’m free on Friday.', time: '11:36 AM' },
-        { sender: 'Hanna', avatar: 'assets/img/bini.jpeg', text: 'Perfect, let’s plan for Friday afternoon.', time: '11:37 AM' }
+        { sender: 'Antonzxz', avatar: 'assets/img/bini.jpeg', text: 'Perfect, let’s plan for Friday afternoon.', time: '11:37 AM' }
       ]
     }
   ];
