@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "@angular/material"as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -19,11 +19,15 @@ $quanby-lms-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$quanby-lms-theme: mat.define-light-theme((color: (primary: $quanby-lms-primary,
+$quanby-lms-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $quanby-lms-primary,
       accent: $quanby-lms-accent,
       warn: $quanby-lms-warn,
     ),
-  ));
+  )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -31,11 +35,30 @@ $quanby-lms-theme: mat.define-light-theme((color: (primary: $quanby-lms-primary,
 @include mat.all-component-themes($quanby-lms-theme);
 
 @import "assets/css/style.css";
-@import 'primeng/resources/themes/saga-blue/theme.css';
-@import 'primeng/resources/primeng.min.css';
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/assets/fonts/SF-Pro-Display-Regular.ttf") format("truetype"),
+    url("/assets/fonts/SF-Pro-Display-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/assets/fonts/SF-Pro-Display-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: "SF Pro Display", sans-serif;
+}
 
 .hide-dropdown {
   display: none;
@@ -45,12 +68,13 @@ $quanby-lms-theme: mat.define-light-theme((color: (primary: $quanby-lms-primary,
   display: block;
 }
 
-
 mat-option.mat-mdc-option mat-pseudo-checkbox {
   display: none;
 }
 
-mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+mat-option.mat-mdc-option.mdc-list-item--selected:not(
+    .mdc-list-item--disabled
+  ):not(.mat-mdc-option-multiple) {
   background-color: #ffdeda;
   font-size: 14px;
   min-height: 35px;
@@ -61,7 +85,8 @@ mat-option.mat-mdc-option span.mdc-list-item__primary-text {
   color: #22100d;
 }
 
-mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+  .mdc-list-item__primary-text {
   color: inherit;
 }
 
@@ -76,8 +101,11 @@ mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) 
   box-shadow: none;
 }
 
-.home-four mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
-  background-color: #FFD600;
+.home-four
+  mat-option.mat-mdc-option.mdc-list-item--selected:not(
+    .mdc-list-item--disabled
+  ):not(.mat-mdc-option-multiple) {
+  background-color: #ffd600;
 }
 
 .stickybar {
@@ -113,7 +141,7 @@ mat-option.mat-mdc-option.mdc-list-item {
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease 0s;
-  background: #066AC9;
+  background: #066ac9;
   border-radius: 50%;
 }
 
@@ -127,7 +155,7 @@ mat-option.mat-mdc-option.mdc-list-item {
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease 0s;
-  background: #2BB7E5;
+  background: #2bb7e5;
   border-radius: 50%;
 }
 
@@ -137,12 +165,12 @@ mat-option.mat-mdc-option.mdc-list-item {
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease 0s;
-  background: #066AC9;
+  background: #066ac9;
   border-radius: 50%;
 }
 
 .social-icon-three ul li .feather.icon-youtube:hover {
-  background: #7B1FFE;
+  background: #7b1ffe;
 }
 
 .social-icon-three ul li .feather.icon-youtube {
@@ -151,7 +179,7 @@ mat-option.mat-mdc-option.mdc-list-item {
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease 0s;
-  background: #FF2D20;
+  background: #ff2d20;
   border-radius: 50%;
 }
 
@@ -161,7 +189,7 @@ mat-select.custom-mat-select.home-one .mat-mdc-select-trigger {
   font-size: 14px;
   padding-left: 8px;
   padding-right: 20px;
-  background: #FFDEDA;
+  background: #ffdeda;
 }
 
 .home-three .drop-detail-three {
@@ -170,15 +198,18 @@ mat-select.custom-mat-select.home-one .mat-mdc-select-trigger {
   margin: 0 17px;
   border: 0;
   height: 56px;
-  background: rgba(247, 247, 247, .968627451);
+  background: rgba(247, 247, 247, 0.968627451);
   align-items: center;
   text-align: center;
   border-radius: 0px !important;
   padding-right: 10px;
 }
 
-.select-home-three mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
-  background-color: #7B1FFE;
+.select-home-three
+  mat-option.mat-mdc-option.mdc-list-item--selected:not(
+    .mdc-list-item--disabled
+  ):not(.mat-mdc-option-multiple) {
+  background-color: #7b1ffe;
   font-size: 14px;
   min-height: 35px;
   color: #fff;
@@ -188,8 +219,11 @@ mat-select.custom-mat-select.select.home-four-select .mat-mdc-select-trigger {
   border: none;
 }
 
-.select-home-four mat-option.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
-  background-color: #FFD600;
+.select-home-four
+  mat-option.mat-mdc-option.mdc-list-item--selected:not(
+    .mdc-list-item--disabled
+  ):not(.mat-mdc-option-multiple) {
+  background-color: #ffd600;
 }
 
 bs-datepicker-container .theme-green .bs-datepicker-head,
@@ -199,12 +233,30 @@ bs-datepicker-container .theme-green .bs-datepicker-head,
 
 bs-datepicker-container .theme-green .bs-datepicker-body table td span.selected,
 bs-datepicker-container .theme-green .bs-datepicker-body table td.selected span,
-bs-datepicker-container .theme-green .bs-datepicker-body table td span[class*=select-]:after,
-bs-datepicker-container .theme-green .bs-datepicker-body table td[class*=select-] span:after,
+bs-datepicker-container
+  .theme-green
+  .bs-datepicker-body
+  table
+  td
+  span[class*="select-"]:after,
+bs-datepicker-container
+  .theme-green
+  .bs-datepicker-body
+  table
+  td[class*="select-"]
+  span:after,
 .bs-datepicker.theme-green .bs-datepicker-body table td span.selected,
 .bs-datepicker.theme-green .bs-datepicker-body table td.selected span,
-.bs-datepicker.theme-green .bs-datepicker-body table td span[class*=select-]:after,
-.bs-datepicker.theme-green .bs-datepicker-body table td[class*=select-] span:after {
+.bs-datepicker.theme-green
+  .bs-datepicker-body
+  table
+  td
+  span[class*="select-"]:after,
+.bs-datepicker.theme-green
+  .bs-datepicker-body
+  table
+  td[class*="select-"]
+  span:after {
   background-color: #08c;
 }
 
@@ -233,15 +285,15 @@ bs-datepicker-container .theme-green .bs-datepicker-body table td[class*=select-
 }
 
 mat-select.custom-mat-select.home-one-select .mat-mdc-select-trigger {
-  background: #FFDEDA;
+  background: #ffdeda;
   border-radius: 22px;
 }
 
 .dropdown-item.night-mode .feather.icon-moon {
-  color: #FF875A;
+  color: #ff875a;
 }
 
-#chats.left-sidebar-wrap>div {
+#chats.left-sidebar-wrap > div {
   border: 1px solid #cdcdcd;
   border-radius: 10px;
 }

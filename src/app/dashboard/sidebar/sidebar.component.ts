@@ -1,4 +1,3 @@
-
 import {
   Component,
   Input,
@@ -50,6 +49,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   public currentRoute: string = '';
 
   iconMap: IconMap = {
+    Home: 'fa-solid fa-house',
     Courses: 'fas fa-book',
     Classes: 'fas fa-chalkboard-teacher',
     'Class Records': 'fa-solid fa-clipboard',
@@ -57,6 +57,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Theme: 'fa-solid fa-wand-magic-sparkles',
     Integration: 'fa-solid fa-cloud',
     System: 'fa-solid fa-sliders',
+    General: 'fa-solid fa-sliders',
+    Offerings: 'fa-solid fa-envelope-open',
     'Custom Styling': 'fa-brands fa-css3-alt',
     Logo: 'fa-solid fa-shapes',
     Footer: 'fa-solid fa-square',
@@ -65,6 +67,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Admissions: 'fa-solid fa-building-columns',
     Enrollments: 'fa-solid fa-school',
     'Document Management': 'fa-solid fa-folder',
+    'Learning Management': 'fa-solid fa-folder',
+    Transactions: 'fa-solid fa-money-check-dollar',
     Scholarships: 'fa-solid fa-money-check',
     'Clearance Status': 'fa-solid fa-torii-gate',
     Attendance: 'fa-solid fa-hand',
@@ -74,6 +78,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Tasks: 'fa-solid fa-thumbtack',
     Details: 'fa-solid fa-user',
     Assessments: 'fa-solid fa-pen-to-square',
+    Assignments: 'fa-solid fa-pen-to-square',
     Curriculum: 'fas fa-book-open',
     Teacher: 'fa-solid fa-person-chalkboard',
     Meet: 'fa-solid fa-video',
@@ -93,14 +98,16 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Clearance: 'fas fa-check-circle',
     Alert: 'fas fa-bell',
     InfoQueue: 'fas fa-info-circle',
+    Progress: 'fa-solid fa-bars-progress',
+    Reports: 'fa-solid fa-flag',
+    Tools: 'fa-solid fa-screwdriver-wrench',
   };
 
-  public student_no = [ 
+  public student_no = [
     { title: 'Home', route: this.routes.dashboard },
     { title: 'Courses', route: this.routes.subjects },
     { title: 'Assignments', route: this.routes.tasks },
     { title: 'Progress', route: this.routes.assessments },
-
 
     // {
     //   title: 'Classroom',
@@ -111,10 +118,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     //     { title: 'My Test Scores', route: this.routes.test_scores },
     //     { title: 'Assessments', route: this.routes.assessments },
 
-
     //   ],
     // },
-
 
     // {
     //   title: 'Transactions',
@@ -167,10 +172,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     //     { title: 'Schedule Online Tasks', route: this.routes.schedule_online_tasks },
     //     { title: 'Check Online Tasks', route: this.routes.check_online_tasks },
 
-
     //   ],
     // },
-
 
     // {
     //   title: 'Transactions',
@@ -181,7 +184,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     //     { title: 'Override Attendance', route: this.routes.teacher },
     //     { title: 'Request Change Grade', route: this.routes.teacher },
     //     { title: 'Adviser Comments', route: this.routes.teacher },
-
 
     //   ],
     // },
@@ -203,13 +205,12 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     //   subItems: [
     //     { title: 'Options', route: this.routes.curriculum },
 
-
     //   ],
     // },
   ];
 
   public school_admin = [
-    { 
+    {
       title: 'Grading',
       isOpenKey: 'gradingSystem',
       subItems: [
@@ -221,9 +222,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     {
       title: 'Courses',
       isOpenKey: 'CoursesSystem',
-      subItems: [
-        { title: 'Courses', route: this.routes.courses},
-      ],
+      subItems: [{ title: 'Courses', route: this.routes.courses }],
     },
 
     {
@@ -307,7 +306,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     {
       title: 'General',
       subItems: [
-
         { title: 'Campuses', route: this.routes.curriculum },
         { title: 'Departments', route: this.routes.curriculum },
         { title: 'Periods', route: this.routes.curriculum },
@@ -372,10 +370,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
         { title: 'Discounts / Scholarship', route: this.routes.curriculum },
         { title: 'Teacher Evaluation', route: this.routes.curriculum },
         { title: 'Student Clearance', route: this.routes.curriculum },
-
-
-
-
       ],
     },
 
@@ -411,10 +405,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
         { title: 'Visitor IN/OUT Report', route: this.routes.curriculum },
         { title: 'Purchases Report', route: this.routes.curriculum },
         { title: 'Teacher Evaluation', route: this.routes.curriculum },
-
       ],
     },
-
 
     {
       title: 'Tools',
@@ -423,10 +415,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
         { title: 'Rebuild LMS Cache', route: this.routes.curriculum },
         { title: 'Activity Log', route: this.routes.curriculum },
         { title: 'Options', route: this.routes.curriculum },
-
       ],
     },
-
   ];
 
   @HostListener('window:resize', ['$event'])
@@ -438,7 +428,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     private supabaseService: SupabaseService,
     private router: Router,
     private userService: UserService
-
   ) {}
 
   toggleSidebar() {
@@ -447,20 +436,32 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-   role: string | null = null;
+  role: string | null = null;
 
   getUserType() {
-    console.log(('hain'),this.role);
-   return this.role;
-
+    console.log('hain', this.role);
+    return this.role;
   }
 
-  superAdminTabs(){
-    let superadmin:any[] = [];
-    for(const roleTabs of [this.student_no, this.instructor, this.school_admin, this.department_admin]){
-        superadmin = [...superadmin, ...roleTabs.filter(item=> !superadmin.reduce((acc, curr)=>{
-          return [...acc, curr.title];
-        }, []).includes(item.title))];
+  superAdminTabs() {
+    let superadmin: any[] = [];
+    for (const roleTabs of [
+      this.student_no,
+      this.instructor,
+      this.school_admin,
+      this.department_admin,
+    ]) {
+      superadmin = [
+        ...superadmin,
+        ...roleTabs.filter(
+          (item) =>
+            !superadmin
+              .reduce((acc, curr) => {
+                return [...acc, curr.title];
+              }, [])
+              .includes(item.title)
+        ),
+      ];
     }
     return superadmin;
   }
@@ -474,8 +475,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     const _user = await this.userService.getUser();
-    console.log('User',_user);
-    console.log(('Role ken:'), _user.role);
+    console.log('User', _user);
+    console.log('Role ken:', _user.role);
     this.role = _user.role;
 
     this.userSubscription = this.supabaseService.currentUser.subscribe(
@@ -486,9 +487,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
         console.log('User role:', role);
       }
     );
-
-
-
 
     this.routerSubscription = this.router.events
       .pipe(
@@ -534,17 +532,16 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     return user !== null && 'user_type' in user;
   }
 
-
-
-
-
   getTonUserRole(): string | null {
-    if (this.user && 'role' in this.user && typeof this.user.role === 'string') {
+    if (
+      this.user &&
+      'role' in this.user &&
+      typeof this.user.role === 'string'
+    ) {
       return this.user.role;
     }
     return null;
   }
-
 
   getUserRole(): string | null {
     return this.userService.getUserRole();
@@ -557,7 +554,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   handleSearch() {
     // const userType = this.getUserRole();
     // let allItems: any[] = [];
-
     // if (userType === 'student') {
     //   allItems = this.student_no.flatMap((item) =>
     //     item.subItems ? [item, ...item.subItems] : [item]
@@ -572,7 +568,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     // } else if (userType === 'department_admin') {
     //   allItems = this.department_admin;
     // }
-
     // const matchedItem = allItems.find((item) => {
     //   if ('subItems' in item) {
     //     return item.title
@@ -584,7 +579,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     //       .includes(this.searchQuery.toLowerCase());
     //   }
     // });
-
     // if (matchedItem) {
     //   if ('route' in matchedItem) {
     //     this.router.navigate([matchedItem.route]);
@@ -628,10 +622,3 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     return item.title;
   }
 }
-
-
-
-
-
-
-
