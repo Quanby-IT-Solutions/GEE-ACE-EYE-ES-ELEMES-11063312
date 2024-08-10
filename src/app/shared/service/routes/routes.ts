@@ -628,7 +628,19 @@ export class routes {
   // end new SIAS 
  public static get assessments(): string {
   return this.users_dashboard + '/assessments';
-}
+} 
+
+public static get explore_courses(): string {
+  return this.users_dashboard + '/explore-courses';
+} 
+
+public static get explore_courses_modules(): string {
+  return this.users_dashboard + '/explore-courses-modules';
+} 
+
+
+
+
 
 public static get profile(): string {
   return this.users_dashboard + '/profile';

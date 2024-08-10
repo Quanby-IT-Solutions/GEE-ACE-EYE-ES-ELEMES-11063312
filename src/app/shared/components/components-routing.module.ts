@@ -16,6 +16,22 @@ const routes: Routes = [
       // },
 
       {
+        path: 'explore-courses',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/explore-courses/explore-courses.module'
+          ).then((m) => m.ExploreCoursesModule),
+      },
+
+      {
+        path: 'explore-courses-modules',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/explore-courses-modules/explore-courses-modules.module'
+          ).then((m) => m.ExploreCoursesModulesModule),
+      },
+
+      {
         path: 'messaging',
         loadChildren: () =>
           import(

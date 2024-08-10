@@ -5285,6 +5285,8 @@ export class DataService {
       grade: '97',
       progress: '65',
       imageUrl: 'assets/img/math.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to Algebra',
@@ -5349,6 +5351,8 @@ export class DataService {
       grade: '92',
       progress: '85',
       imageUrl: 'assets/img/physics.png',
+      enrolled: 'no',
+
       modules: [
         {
           title: 'Introduction to Mechanics',
@@ -5413,6 +5417,8 @@ export class DataService {
       grade: '91',
       progress: '85',
       imageUrl: 'assets/img/chemistry.png',
+      enrolled: 'no',
+
       modules: [
         {
           title: 'Organic Molecules and Structures',
@@ -5477,6 +5483,8 @@ export class DataService {
       grade: '90',
       progress: '85',
       imageUrl: 'assets/img/biology.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to Botany',
@@ -5541,6 +5549,8 @@ export class DataService {
       grade: '93',
       progress: '85',
       imageUrl: 'assets/img/compsci.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to Programming',
@@ -5605,6 +5615,8 @@ export class DataService {
       grade: '88',
       progress: '85',
       imageUrl: 'assets/img/history.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Ancient Civilizations',
@@ -5669,6 +5681,8 @@ export class DataService {
       grade: '81',
       progress: '65',
       imageUrl: 'assets/img/geography.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to Physical Geography',
@@ -5733,6 +5747,8 @@ export class DataService {
       grade: '75',
       progress: '65',
       imageUrl: 'assets/img/literature.png',
+      enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to English Literature',
@@ -5799,6 +5815,8 @@ export class DataService {
   getCourses() {
     return this.courses;
   }
+
+  
   
   setCourse(course: any) {
     this.course = course;

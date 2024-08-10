@@ -1,0 +1,117 @@
+<div class="container mx-auto p-4">
+    <div class="flex flex-col lg:flex-row">
+      <!-- Sidebar -->
+      <div class="lg:w-1/4 w-full bg-white rounded-lg shadow-md p-6 mb-6 lg:mb-0">
+        <h2 class="text-2xl font-bold mb-4 text-gray-500">{{ course.course }}</h2>
+        <div class="flex items-center mb-4">
+          <img
+            [src]="course.instructor_profile"
+            alt="Instructor Profile"
+            class="w-12 h-12 rounded-full mr-3"
+          />
+          <div>
+            <p class="text-gray-500 font-semibold">{{ course.instructor }}</p>
+            <p class="text-gray-500 text-sm">{{ course.grade }} Students | {{ course.modules.length }} Modules | {{ course.time }}</p>
+          </div>
+        </div>
+        <ul class="mb-6">
+          <li 
+            *ngFor="let module of course.modules; let i = index" 
+            class="mb-2 cursor-not-allowed"
+          >
+            <div 
+              class="block text-gray-500 p-2 rounded-lg bg-gray-200"
+            >
+              {{ module.title }}
+            </div>
+          </li>
+        </ul>
+        <button 
+          class="w-full bg-green-600 text-white rounded-md py-2 mt-4 hover:bg-green-700 transition"
+          (click)="openEnrollModal()"
+        >
+          Enroll Now
+        </button>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="lg:w-3/4 w-full lg:ml-4">
+        <!-- Module Content -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-2xl font-bold mb-2 text-gray-500">{{ course.modules[selectedModuleIndex].title }}</h2>
+          <p class="text-gray-500">{{ course.modules[selectedModuleIndex].description }}</p>
+          <div class="mt-4">
+            <p class="text-gray-500">{{ course.modules[selectedModuleIndex].about }}</p>
+          </div>
+        </div>
+  
+        <!-- Tab Navigation -->
+        <div class="border-b border-gray-200 mb-4">
+          <nav class="flex space-x-4">
+            <button 
+              (click)="selectTab('about')"
+              [ngClass]="{ 'text-green-600': selectedTab === 'about', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'about' }">
+              About
+            </button>
+            <button 
+              (click)="selectTab('materials')"
+              [ngClass]="{ 'text-green-600': selectedTab === 'materials', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'materials' }">
+              Materials
+            </button>
+          </nav>
+        </div>
+  
+        <!-- About Tab Content -->
+        <div *ngIf="selectedTab === 'about'">
+          <h3 class="text-xl font-bold mb-4 text-gray-500">Course Overview</h3>
+          <p class="text-gray-500 mb-4">{{ course.modules[selectedModuleIndex].about }}</p>
+        </div>
+  
+        <!-- Materials Tab Content -->
+        <div *ngIf="selectedTab === 'materials'">
+          <h3 class="text-xl font-bold mb-4 text-gray-500">Materials</h3>
+          <div 
+            *ngFor="let material of course.modules[selectedModuleIndex].materials" 
+            class="mb-4 p-4 border border-gray-200 rounded-lg flex items-center cursor-not-allowed bg-gray-200"
+          >
+            <div class="text-lg font-semibold text-gray-500 mr-4">
+              <i class="fas" [ngClass]="getMaterialIcon(material.type)"></i>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-semibold text-gray-500">{{ material.index }}. {{ material.title }}</h4>
+            </div>
+            <div class="text-sm text-gray-500">
+              <i class="fas fa-lock"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Enroll Modal -->
+  <div *ngIf="showEnrollModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md">
+      <h3 class="text-xl font-bold mb-4">Please enter enrollment key:</h3>
+      <input
+        type="text"
+        [(ngModel)]="enrollmentKey"
+        class="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
+      />
+      <div class="flex justify-end space-x-4">
+        <button 
+          class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition"
+          (click)="closeEnrollModal()"
+        >
+          Cancel
+        </button>
+        <button 
+          class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+          (click)="proceedEnrollment()"
+        >
+          Proceed
+        </button>
+      </div>
+    </div>
+  </div>
+  
