@@ -101,6 +101,10 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Progress: 'fa-solid fa-bars-progress',
     Reports: 'fa-solid fa-flag',
     Tools: 'fa-solid fa-screwdriver-wrench',
+    Message: 'fa-regular fa-envelope',
+    Help: 'fa-regular fa-envelope',
+    Setting: 'fa-solid fa-sliders',
+    Support: 'fa-solid fa-ticket',
   };
 
   public student_no = [
