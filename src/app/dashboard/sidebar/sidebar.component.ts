@@ -208,7 +208,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   ];
 
   public department_admin = [
- 
+    { title: 'User-Management', route: this.routes.user_management },
+
 
     {
       title: 'General',

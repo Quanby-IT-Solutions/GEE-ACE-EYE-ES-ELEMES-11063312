@@ -638,6 +638,10 @@ export class routes {
   return this.users_dashboard + '/assessments';
 } 
 
+public static get user_management(): string {
+  return this.users_dashboard + '/user-management';
+} 
+
 public static get explore_courses(): string {
   return this.users_dashboard + '/explore-courses';
 } 
