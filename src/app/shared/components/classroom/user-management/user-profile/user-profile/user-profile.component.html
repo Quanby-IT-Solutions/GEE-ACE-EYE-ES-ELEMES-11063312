@@ -1,1 +1,216 @@
-<p>user-profile works!</p>
+<div class="bg-white h-full flex flex-col">
+  <!-- Close button header -->
+  <div class="flex justify-between items-center p-4 border-b">
+    <h2 class="text-xl font-semibold">User Profile</h2>
+    <button
+      (click)="closeProfile()"
+      class="text-gray-600 hover:text-gray-800 focus:outline-none"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Profile content -->
+  <div class="p-6 overflow-y-auto flex-grow">
+    @if (!isEditing) {
+    <div class="text-center mb-6">
+      <img
+        src="assets/img/user/user-17.jpg"
+        [alt]="user?.firstName + ' ' + user?.lastName"
+        class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+      />
+      <h2 class="text-xl font-semibold">
+        {{ user?.firstName }} {{ user?.middleName }} {{ user?.lastName }}
+      </h2>
+      <p class="text-gray-600 text-sm">{{ user?.email }}</p>
+      <button
+        (click)="startEditing()"
+        class="mt-2 text-blue-500 hover:underline text-sm"
+      >
+        Edit profile
+      </button>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold">Performance</h3>
+      <div class="flex justify-between items-center mt-2">
+        <span class="text-gray-600 text-sm">Overview</span>
+        <button
+          (click)="toggleCourseProgress()"
+          class="text-blue-500 hover:underline text-sm"
+        >
+          Course Progress
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 rounded-lg p-4">
+      <h4 class="text-lg font-semibold mb-4">Overview</h4>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="bg-white rounded p-3">
+          <p class="text-gray-600 text-sm mb-1">Completed</p>
+          <p class="text-2xl font-bold">{{ user?.courseCompleted || 0 }}</p>
+        </div>
+        <div class="bg-white rounded p-3">
+          <p class="text-gray-600 text-sm mb-1">In Progress</p>
+          <p class="text-2xl font-bold">{{ user?.courseInProgress || 0 }}</p>
+        </div>
+      </div>
+      <div class="bg-white rounded p-3">
+        <p class="text-gray-600 text-sm mb-1">Not Started</p>
+        <p class="text-2xl font-bold">{{ user?.courseNotStarted || 0 }}</p>
+      </div>
+    </div>
+    } @else {
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label for="firstName" class="block text-sm font-medium text-gray-700"
+          >First Name</label
+        >
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="editedUser.firstName"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        />
+      </div>
+      <div>
+        <label for="middleName" class="block text-sm font-medium text-gray-700"
+          >Middle Name</label
+        >
+        <input
+          type="text"
+          id="middleName"
+          name="middleName"
+          [(ngModel)]="editedUser.middleName"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        />
+      </div>
+      <div>
+        <label for="lastName" class="block text-sm font-medium text-gray-700"
+          >Last Name</label
+        >
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          [(ngModel)]="editedUser.lastName"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700"
+          >Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="editedUser.email"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        />
+      </div>
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700"
+          >Role</label
+        >
+        <select
+          id="role"
+          name="role"
+          [(ngModel)]="editedUser.role"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        >
+          <option value="Instructor">Instructor</option>
+          <option value="Student">Student</option>
+        </select>
+      </div>
+      <div>
+        <label for="department" class="block text-sm font-medium text-gray-700"
+          >Department</label
+        >
+        <select
+          id="department"
+          name="department"
+          [(ngModel)]="editedUser.department"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        >
+          <option value="IT">IT</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Science">Science</option>
+        </select>
+      </div>
+      <div class="flex justify-end space-x-2">
+        <button
+          type="button"
+          (click)="cancelEditing()"
+          class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        >
+          Confirm
+        </button>
+      </div>
+    </form>
+    }
+  </div>
+  <!-- Course Progress Section -->
+  @if (showCourseProgress && !isEditing) {
+  <div class="bg-white border-t p-6">
+    <h3 class="text-lg font-semibold mb-4">Course Progress</h3>
+    <div class="space-y-4">
+      @for (course of courses; track course.name) {
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <svg
+            class="w-5 h-5 mr-2 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+            ></path>
+          </svg>
+          <div>
+            <p class="font-semibold">{{ course.name }}</p>
+            <p class="text-sm text-gray-500">
+              Started on {{ course.startDate }}
+            </p>
+          </div>
+        </div>
+        <span
+          [ngClass]="{
+            'text-blue-600': course.progress < 100,
+            'text-green-600': course.progress === 100
+          }"
+          class="font-semibold"
+          >{{ course.progress }}%</span
+        >
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>
