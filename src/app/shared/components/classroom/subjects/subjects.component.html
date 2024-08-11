@@ -58,6 +58,27 @@
   </div>
 
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    
+    <!-- Locked Add a Course Container for Instructors -->
+    <div
+      *ngIf="getUserRole() === 'instructor'"
+      class="bg-gray-300 rounded-lg shadow-md overflow-hidden cursor-pointer"
+      (click)="navigateToModules()"
+    >
+      <div
+        class="relative h-40"
+        style="background-size: cover; background-position: center;"
+      >
+        <div class="absolute inset-0 bg-gray-400"></div>
+      </div>
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold mb-3 text-gray-700">Add a Course</h3>
+        
+        
+      </div>
+    </div>
+
+    <!-- List of Courses -->
     <div
       *ngFor="let course of filteredCourses"
       class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
@@ -87,8 +108,8 @@
           <span>{{ course.time }}</span>
         </div>
         
-        <!-- Progress Bar -->
-        <div class="mt-3">
+        <!-- Progress Bar (Visible for Students) -->
+        <div *ngIf="getUserRole() === 'student'" class="mt-3">
           <div class="w-full bg-gray-200 rounded-full h-3">
             <div
               class="bg-green-500 h-3 rounded-full"

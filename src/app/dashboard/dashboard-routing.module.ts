@@ -57,6 +57,15 @@ const routes: Routes = [
           ).then((m) => m.ExploreCoursesModule),
       },
 
+      {
+        path: 'user-management',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/user-management/user-management.module'
+          ).then((m) => m.UserManagementModule),
+      },
+
+
 
       {
         path: 'explore-courses-modules',
@@ -794,13 +803,25 @@ const routes: Routes = [
             (m) => m.SettingsModule
           ),
       },
+
+
       {
-        path: 'courses/subjects',
+        path: 'add-course',
         loadChildren: () =>
-          import('./admin/courses/subjects/subjects.module').then(
-            (m) => m.SubjectsModule
-          ),
+          import(
+            'src/app/shared/components/classroom/add-course/add-course.module'
+          ).then((m) => m.AddCourseModule),
       },
+
+
+      {
+        path: 'manage-courses',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/manage-courses/manage-courses.module'
+          ).then((m) => m.ManageCoursesModule),
+      },
+   
 
       // Quizzes Routes
       {

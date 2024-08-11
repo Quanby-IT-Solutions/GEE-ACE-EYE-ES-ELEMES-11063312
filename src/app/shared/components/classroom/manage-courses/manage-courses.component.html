@@ -1,0 +1,161 @@
+<div class="container mx-auto p-4">
+    <div class="flex flex-col lg:flex-row">
+      <!-- Sidebar -->
+      <div class="lg:w-1/4 w-full bg-white rounded-lg shadow-md p-6 mb-6 lg:mb-0">
+        <h2 class="text-2xl font-bold mb-4">{{ course.course }}</h2>
+        <div class="flex items-center mb-4">
+          <img
+            [src]="course.instructor_profile"
+            alt="Instructor Profile"
+            class="w-12 h-12 rounded-full mr-3"
+          />
+          <div>
+            <p class="text-gray-800 font-semibold">{{ course.instructor }}</p>
+            <p class="text-gray-500 text-sm">{{ course.grade }} Students | {{ course.modules.length }} Modules | {{ course.time }}</p>
+          </div>
+        </div>
+        <ul class="mb-6">
+          <li 
+            *ngFor="let module of course.modules; let i = index" 
+            class="mb-2 cursor-pointer"
+            (click)="selectModule(i)"
+          >
+            <div 
+              class="block text-gray-700 hover:text-green-600 p-2 rounded-lg"
+              [ngClass]="{ 'bg-green-100 text-green-700': selectedModuleIndex === i, 'hover:bg-green-100': selectedModuleIndex !== i }"
+            >
+              {{ module.title }}
+            </div>
+          </li>
+        </ul>
+        <button 
+          class="w-full bg-green-600 text-white rounded-md py-2 mt-4 hover:bg-green-700 transition"
+          [disabled]="selectedModuleIndex >= course.modules.length - 1"
+          (click)="goToNextModule()"
+        >
+          NEXT
+        </button>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="lg:w-3/4 w-full lg:ml-4">
+        <!-- Module Content -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 class="text-2xl font-bold mb-2">{{ course.modules[selectedModuleIndex].title }}</h2>
+          <p class="text-gray-700">{{ course.modules[selectedModuleIndex].description }}</p>
+          <div class="mt-4">
+            <p class="text-gray-600">{{ course.modules[selectedModuleIndex].about }}</p>
+          </div>
+        </div>
+  
+        <!-- Tab Navigation -->
+        <div class="border-b border-gray-200 mb-4">
+          <nav class="flex space-x-4">
+            <button 
+              (click)="selectTab('about')"
+              [ngClass]="{ 'text-green-600': selectedTab === 'about', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'about' }">
+              About
+            </button>
+            <button 
+              (click)="selectTab('materials')"
+              [ngClass]="{ 'text-green-600': selectedTab === 'materials', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'materials' }">
+              Materials
+            </button>
+          
+          </nav>
+        </div>
+  
+        <!-- About Tab Content -->
+        <div *ngIf="selectedTab === 'about'">
+          <h3 class="text-xl font-bold mb-4">Course Overview</h3>
+          <p class="text-gray-700 mb-4">{{ course.modules[selectedModuleIndex].about }}</p>
+        </div>
+  
+        <!-- Materials Tab Content -->
+        <div *ngIf="selectedTab === 'materials'">
+          <h3 class="text-xl font-bold mb-4">Materials</h3>
+          <div 
+            *ngFor="let material of course.modules[selectedModuleIndex].materials" 
+            class="mb-4 p-4 border border-gray-200 rounded-lg flex items-center cursor-pointer" 
+            (click)="selectMaterial(material)"
+          >
+            <div class="text-lg font-semibold text-gray-700 mr-4">
+              <i class="fas" [ngClass]="getMaterialIcon(material.type)"></i>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-lg font-semibold text-black">{{ material.index }}. {{ material.title }}</h4>
+            </div>
+            <div class="text-sm text-gray-500">
+              <button 
+                (click)="downloadMaterial(material, $event)"
+                class="text-blue-500 hover:text-blue-700 transition">
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Display Material Content -->
+        <div 
+          *ngIf="selectedMaterial" 
+          class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+          (click)="closeMaterialView()"
+        >
+          <div 
+            class="bg-white rounded-lg shadow-md p-6 max-w-3xl w-full"
+            (click)="$event.stopPropagation()"
+          >
+            <button 
+              class="absolute top-2 right-2 text-red-600 hover:text-red-800"
+              (click)="closeMaterialView()">
+              <i class="fas fa-times"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-4">{{ selectedMaterial.title }}</h3>
+            <ng-container [ngSwitch]="selectedMaterial.type">
+              <div *ngSwitchCase="'pdf'" class="pdf-container">
+                <pdf-viewer [src]="selectedMaterial.link" [render-text]="true" style="display: block;"></pdf-viewer>
+              </div>
+              <div *ngSwitchCase="'video'" class="video-container">
+                <video width="100%" controls>
+                  <source [src]="selectedMaterial.link" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div *ngSwitchDefault class="text-gray-500">Unsupported material type</div>
+            </ng-container>
+          </div>
+        </div>
+  
+        <!-- Assignments Tab Content -->
+        <div *ngIf="selectedTab === 'assignments'">
+          <h3 class="text-xl font-bold mb-4">Assignments</h3>
+          <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments" class="mb-4 p-4 border border-gray-200 rounded-lg">
+            <h4 class="text-lg font-semibold">{{ assignment.name }}</h4>
+            <p class="text-gray-700 mb-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
+            <p class="text-gray-600 mb-2">Complete the tasks as outlined and submit your work before the due date.</p>
+            <div class="mt-2">
+              <button class="bg-green-600 text-white rounded-md py-1 px-3 hover:bg-green-700 transition">
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Exams Tab Content -->
+        <div *ngIf="selectedTab === 'exams'">
+          <h3 class="text-xl font-bold mb-4">Exams</h3>
+          <div *ngFor="let exam of course.modules[selectedModuleIndex].exams" class="mb-4 p-4 border border-gray-200 rounded-lg">
+            <h4 class="text-lg font-semibold">{{ exam.name }}</h4>
+            <p class="text-gray-700 mb-2">Exam Date: {{ exam.dueDate | date:'fullDate' }}</p>
+            <p class="text-gray-600 mb-2">Prepare thoroughly for the exam and ensure you understand all the key concepts covered in the course.</p>
+            <div class="mt-2">
+              <button class="bg-green-600 text-white rounded-md py-1 px-3 hover:bg-green-700 transition">
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

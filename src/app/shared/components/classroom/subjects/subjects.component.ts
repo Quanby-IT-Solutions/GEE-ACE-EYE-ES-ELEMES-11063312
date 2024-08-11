@@ -1,10 +1,12 @@
-
-
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { routes } from 'src/app/shared/service/routes/routes';
+import { Subscription } from 'rxjs';
+import { User } from '@supabase/supabase-js';
+import { UserService } from 'src/app/shared/service/user/user.service';
+import { GuestUser } from 'src/app/shared/models/model';
 
 interface Material {
   title: string;
@@ -43,32 +45,63 @@ interface Course {
   imageUrl: string;
   modules: Module[];
 }
+
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
   styleUrls: ['./subjects.component.scss'],
 })
-export class SubjectsComponent implements OnInit {
+export class SubjectsComponent implements OnInit, OnDestroy {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchTerm: string = '';
   sortMenuOpen: boolean = false;
+  public user: User | GuestUser | null = null;
 
-  constructor(private dataService: DataService, private router: Router) {}
+  private userSubscription: Subscription | undefined;
+  role: string | null = null;
 
-  ngOnInit(): void {
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private userService: UserService,
+    private supabaseService: SupabaseService
+  ) {}
+
+  getUserRole() {
+    return this.role;
+  }
+
+  async ngOnInit() {
     this.fetchCourses();
+
+    const _user = await this.userService.getUser();
+    console.log('Dashboard - Authenticated User Role:', _user.role);
+    this.role = _user.role;
+
+    this.userSubscription = this.supabaseService.currentUser.subscribe(
+      (user) => {
+        this.user = user;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   fetchCourses(): void {
-    this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
+    this.courses = this.dataService.getCourses().filter((course) => course.enrolled === 'yes');
     this.filteredCourses = this.courses;
   }
 
   filterCourses(): void {
-    this.filteredCourses = this.courses.filter(course =>
-      course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
+    this.filteredCourses = this.courses.filter(
+      (course) =>
+        course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
@@ -87,5 +120,9 @@ export class SubjectsComponent implements OnInit {
 
   selectCourse(course: Course): void {
     this.router.navigate([routes.subject_modules], { state: { course } });
+  }
+
+  navigateToModules(): void {
+    this.router.navigate([routes.add_course]);
   }
 }
