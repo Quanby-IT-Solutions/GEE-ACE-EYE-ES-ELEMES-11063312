@@ -51,7 +51,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   iconMap: IconMap = {
     Home: 'fa-solid fa-house',
     Courses: 'fas fa-book',
-    'My Courses': 'fas fa-book',
     Classes: 'fas fa-chalkboard-teacher',
     'Class Records': 'fa-solid fa-clipboard',
     'Report Generation': 'fa-solid fa-file',
@@ -79,10 +78,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Tasks: 'fa-solid fa-thumbtack',
     Details: 'fa-solid fa-user',
     Assessments: 'fa-solid fa-pen-to-square',
-    Exams: 'fa-solid fa-pen-to-square',
     Assignments: 'fa-solid fa-pen-to-square',
     Curriculum: 'fas fa-book-open',
-    'Explore Courses': 'fas fa-book-open',
     Teacher: 'fa-solid fa-person-chalkboard',
     Meet: 'fa-solid fa-video',
     Evaluation: 'fa-solid fa-dna',
@@ -104,26 +101,21 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     Progress: 'fa-solid fa-bars-progress',
     Reports: 'fa-solid fa-flag',
     Tools: 'fa-solid fa-screwdriver-wrench',
-    Materials: 'fa-solid fa-screwdriver-material',
-    Message: 'fa-regular fa-envelope',
-    Help: 'fa-regular fa-envelope',
-    Setting: 'fa-solid fa-sliders',
-    Support: 'fa-solid fa-ticket',
   };
 
   public student_no = [
     { title: 'Home', route: this.routes.dashboard },
     { title: 'Explore Courses', route: this.routes.explore_courses },
 
-    {
-      title: 'My Courses',
-      subItems: [
-        { title: 'Materials', route: this.routes.subjects },
-        { title: 'Assignments', route: this.routes.tasks },
-        { title: 'Exams', route: this.routes.quiz },
-      ],
-    },
-
+    { 
+    title: 'My Courses',
+    subItems: [       
+     { title: 'Materials', route: this.routes.subjects },
+     { title: 'Assignments', route: this.routes.tasks },
+     { title: 'Exams', route: this.routes.quiz },
+    ], 
+    },   
+ 
     { title: 'Progress', route: this.routes.assessments },
 
     // {
@@ -170,21 +162,21 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
-    {
-      title: 'Courses',
-      subItems: [
-        { title: 'Materials', route: this.routes.courses },
-        { title: 'Assignments', route: this.routes.tasks },
-        { title: 'Exams', route: this.routes.quiz },
-        { title: 'Progress', route: this.routes.assessments },
-      ],
-    },
-
+    { title: 'Courses',
+     subItems: [       
+      { title: 'Materials', route: this.routes.courses },
+      { title: 'Assignments', route: this.routes.tasks },
+      { title: 'Exams', route: this.routes.quiz },
+  ], 
+     },
+    { title: 'Assignments', route: this.routes.tasks },
+    { title: 'Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
-    { title: 'Message', route: this.routes.message },
-    { title: 'Help', route: this.routes.help },
-    { title: 'Setting', route: this.routes.settings },
-    { title: 'Support', route: this.routes.support },
+
+    { title: 'Help', route: this.routes.meet }, // arog kaine padi
+
+
+  
 
     // {
     //   title: 'Transactions',
