@@ -28,7 +28,7 @@
     <div class="col-span-2">
       <label class="block text-lg font-medium text-gray-700">Course Title</label>
       <textarea [(ngModel)]="courseTitle" (input)="adjustTextareaHeight($event)" rows="1"
-        placeholder="Enter the course description"
+        placeholder="Enter the course title"
         class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 overflow-hidden resize-none"></textarea>
     </div>
 
@@ -44,7 +44,7 @@
       <label class="block text-lg font-medium text-gray-700">Course</label>
       <select [(ngModel)]="courseCourse"
         class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-        <option disabled selected>Select language</option>
+        <option disabled selected>Select course</option>
         <option>Computer Science</option>
         <option>Biology</option>
         <option>Information Technology</option>
@@ -54,46 +54,115 @@
       <label class="block text-lg font-medium text-gray-700">Section</label>
       <select [(ngModel)]="courseSection"
         class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
-        <option disabled selected>Select language</option>
+        <option disabled selected>Select section</option>
         <option>A</option>
         <option>B</option>
         <option>C</option>
       </select>
     </div>
   </div>
+  
 
-  <!-- Add Content Section -->
-  <div class="mb-10">
-    <h2 class="text-2xl font-semibold mb-4 text-gray-800 text-center md:text-left">Add content</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-      <div *ngFor="let contentType of contentTypes" (click)="triggerFileUpload(contentType)"
-        class="border border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:bg-green-100 transition">
-        <p class="text-gray-700 font-medium mb-2">{{ contentType.fileName || contentType.label }}</p>
-        <p class="text-gray-500 text-sm">{{ contentType.fileName ? 'File selected' : contentType.description }}</p>
+  <button (click)="addModule()" class="bg-green-600 text-white py-2 px-4 rounded-lg mb-6">Add Module</button>
+
+
+  <!-- Modules Section -->
+  <div *ngFor="let module of modules; let moduleIndex = index" class="mb-10">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Module {{ moduleIndex + 1 }}</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="col-span-2">
+        <label class="block text-lg font-medium text-gray-700">Module Title</label>
+        <input [(ngModel)]="module.title" type="text" placeholder="Module Title"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
       </div>
     </div>
 
-    <!-- Hidden File Inputs -->
-    <input #videoInput type="file" class="hidden" accept="video/*" (change)="onFileSelected(contentTypes[0], $event)" />
-    <input #audioInput type="file" class="hidden" accept="audio/*" (change)="onFileSelected(contentTypes[1], $event)" />
-    <input #pdfInput type="file" class="hidden" accept=".pdf" (change)="onFileSelected(contentTypes[2], $event)" />
-    <input #wordInput type="file" class="hidden" accept=".doc,.docx" (change)="onFileSelected(contentTypes[3], $event)" />
-    <input #excelInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected(contentTypes[4], $event)" />
-    <input #powerPointInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected(contentTypes[5], $event)" />
-    <input #documentInput type="file" class="hidden" accept=".txt,.doc,.docx" (change)="onFileSelected(contentTypes[6], $event)" />
-    <input #zipInput type="file" class="hidden" accept=".zip,.rar" (change)="onFileSelected(contentTypes[7], $event)" />
-    <input #presentationInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected(contentTypes[8], $event)" />
-    <input #slidesInput type="file" class="hidden" accept=".pdf,.ppt,.pptx" (change)="onFileSelected(contentTypes[9], $event)" />
-    <input #scormInput type="file" class="hidden" accept=".zip" (change)="onFileSelected(contentTypes[10], $event)" />
-    <input #spreadsheetInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected(contentTypes[11], $event)" />
-    <input #adobeCaptivateInput type="file" class="hidden" accept=".zip" (change)="onFileSelected(contentTypes[12], $event)" />
+    <!-- Materials Section -->
+    <div class="mb-6">
+      <h4 class="text-lg font-semibold text-gray-800 mb-2">Materials</h4>
+      <div *ngFor="let material of module.materials; let materialIndex = index" class="mb-4">
+        <input [(ngModel)]="material.title" type="text" placeholder="Material Title"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <textarea [(ngModel)]="material.description" rows="2" placeholder="Enter description"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        <p *ngIf="material.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ material.fileName }}</p>
+        <button (click)="openUploadModal('material', moduleIndex, materialIndex)"
+          class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+      </div>
+      <button (click)="addMaterial(moduleIndex)"
+        class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Material</button>
+    </div>
+
+    <!-- Assignments Section -->
+    <div class="mb-6">
+      <h4 class="text-lg font-semibold text-gray-800 mb-2">Assignments</h4>
+      <div *ngFor="let assignment of module.assignments; let assignmentIndex = index" class="mb-4">
+        <input [(ngModel)]="assignment.title" type="text" placeholder="Assignment Title"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <textarea [(ngModel)]="assignment.description" rows="2" placeholder="Enter description"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        <p *ngIf="assignment.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ assignment.fileName }}</p>
+        <button (click)="openUploadModal('assignment', moduleIndex, assignmentIndex)"
+          class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+      </div>
+      <button (click)="addAssignment(moduleIndex)"
+        class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Assignment</button>
+    </div>
+
+    <!-- Exams Section -->
+    <div class="mb-6">
+      <h4 class="text-lg font-semibold text-gray-800 mb-2">Exams</h4>
+      <div *ngFor="let exam of module.exams; let examIndex = index" class="mb-4">
+        <input [(ngModel)]="exam.title" type="text" placeholder="Exam Title"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <textarea [(ngModel)]="exam.description" rows="2" placeholder="Enter description"
+          class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        <p *ngIf="exam.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ exam.fileName }}</p>
+        <button (click)="openUploadModal('exam', moduleIndex, examIndex)"
+          class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+      </div>
+      <button (click)="addExam(moduleIndex)"
+        class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Exam</button>
+    </div>
   </div>
 
+
   <!-- Save and Cancel Buttons -->
-  <div class="flex justify-end space-x-4">
+  <div class="flex justify-end space-x-4 mt-10">
     <button (click)="saveCourse()"
       class="bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition">Save</button>
     <button (click)="cancelCourseCreation()"
       class="bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition">Cancel</button>
   </div>
 </div>
+
+<!-- File Upload Modal -->
+<div *ngIf="isUploadModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+    <h3 class="text-xl font-semibold mb-4">Upload File</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <button *ngFor="let contentType of contentTypes" (click)="triggerFileUpload(contentType)"
+        class="border border-gray-300 rounded-lg p-4 text-center hover:bg-green-100 transition">
+        <p class="text-gray-700 font-medium mb-2">{{ contentType.label }}</p>
+        <p class="text-gray-500 text-sm">{{ contentType.description }}</p>
+      </button>
+    </div>
+    <button (click)="closeUploadModal()"
+      class="bg-red-600 text-white py-2 px-4 rounded-lg mt-6 hover:bg-red-700 transition">Close</button>
+  </div>
+</div>
+
+<!-- Hidden File Inputs -->
+<input #videoInput type="file" class="hidden" accept="video/*" (change)="onFileSelected($event)" />
+<input #audioInput type="file" class="hidden" accept="audio/*" (change)="onFileSelected($event)" />
+<input #pdfInput type="file" class="hidden" accept=".pdf" (change)="onFileSelected($event)" />
+<input #wordInput type="file" class="hidden" accept=".doc,.docx" (change)="onFileSelected($event)" />
+<input #excelInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected($event)" />
+<input #powerPointInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected($event)" />
+<input #documentInput type="file" class="hidden" accept=".txt,.doc,.docx" (change)="onFileSelected($event)" />
+<input #zipInput type="file" class="hidden" accept=".zip,.rar" (change)="onFileSelected($event)" />
+<input #presentationInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected($event)" />
+<input #slidesInput type="file" class="hidden" accept=".pdf,.ppt,.pptx" (change)="onFileSelected($event)" />
+<input #scormInput type="file" class="hidden" accept=".zip" (change)="onFileSelected($event)" />
+<input #spreadsheetInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected($event)" />
+<input #adobeCaptivateInput type="file" class="hidden" accept=".zip" (change)="onFileSelected($event)" />
