@@ -5298,11 +5298,11 @@ export class DataService {
             { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11) },
-            { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9) }
+            { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11), score: '10/12' },
+            { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9), score: '20/20'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15), score: '52/60'  }
           ]
         },
         {
@@ -5315,11 +5315,11 @@ export class DataService {
             { title: 'Practice Problems on Algebraic Operations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Operations Homework', dueDate: new Date(2024, 7, 20) },
-            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25) }
+            { name: 'Operations Homework', dueDate: new Date(2024, 7, 20), score: '10/15'  },
+            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25), score: '12/20'  }
           ],
           exams: [
-            { name: 'Operations Test', dueDate: new Date(2024, 7, 28) }
+            { name: 'Operations Test', dueDate: new Date(2024, 7, 28), score: '50/60'  }
           ]
         },
         {
@@ -5332,11 +5332,11 @@ export class DataService {
             { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5) },
-            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10) }
+            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5) , score: '10/12' },
+            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10) , score: '11/15' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 20) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 20) , score: '32/60' }
           ]
         }
       ],
@@ -5420,11 +5420,11 @@ export class DataService {
             { title: 'Supplementary Reading on Mechanics', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15) },
-            { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18) }
+            { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+            { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
           ]
         },
         {
@@ -5437,11 +5437,11 @@ export class DataService {
             { title: 'Practice Problems on Newton’s Laws', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) },
-            { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+            { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
           ],
           exams: [
-            { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
           ]
         },
         {
@@ -5454,11 +5454,11 @@ export class DataService {
             { title: 'Example Problems on Energy and Work', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Energy Homework', dueDate: new Date(2024, 8, 12) },
-            { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
+            { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
           ]
         }
       ],
@@ -5542,11 +5542,11 @@ export class DataService {
             { title: 'Supplementary Reading on Organic Molecules', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20) },
-            { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) }
+            { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
+            { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
           ],
           exams: [
-            { name: 'Molecules Test', dueDate: new Date(2024, 7, 30) }
+            { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
           ]
         },
         {
@@ -5559,11 +5559,11 @@ export class DataService {
             { title: 'Practice Problems on Organic Reactions', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) },
-            { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) }
+            { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
+            { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
           ],
           exams: [
-            { name: 'Reactions Test', dueDate: new Date(2024, 8, 20) }
+            { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
           ]
         },
         {
@@ -5576,11 +5576,11 @@ export class DataService {
             { title: 'Example Problems on Stereochemistry', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25) },
-            { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) }
+            { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
+            { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 9, 5) }
+            { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
           ]
         }
       ],
@@ -5664,11 +5664,11 @@ export class DataService {
             { title: 'Supplementary Reading on Botany', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15) },
-            { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18) }
+            { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+            { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
           ]
         },
         {
@@ -5681,11 +5681,11 @@ export class DataService {
             { title: 'Practice Problems on Plant Physiology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30) },
-            { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
+            { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
           ],
           exams: [
-            { name: 'Physiology Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
           ]
         },
         {
@@ -5698,11 +5698,11 @@ export class DataService {
             { title: 'Example Problems on Plant Ecology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12) },
-            { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
+            { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
           ]
         }
       ],
@@ -5786,11 +5786,11 @@ export class DataService {
             { title: 'Supplementary Reading on Programming', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15) },
-            { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18) }
+            { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
+            { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
           ]
         },
         {
@@ -5803,11 +5803,11 @@ export class DataService {
             { title: 'Practice Problems on Data Structures', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) },
-            { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
+            { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
           ],
           exams: [
-            { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
           ]
         },
         {
@@ -5820,11 +5820,11 @@ export class DataService {
             { title: 'Example Problems on Algorithms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12) },
-            { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
+            { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
           ]
         }
       ],
@@ -5908,11 +5908,11 @@ export class DataService {
             { title: 'Supplementary Reading on Ancient Civilizations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15) },
-            { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) }
+            { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+            { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
           ]
         },
         {
@@ -5925,11 +5925,11 @@ export class DataService {
             { title: 'Practice Problems on Medieval Times', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) },
-            { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+            { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
           ],
           exams: [
-            { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
           ]
         },
         {
@@ -5942,11 +5942,11 @@ export class DataService {
             { title: 'Example Problems on Modern History', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) },
-            { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
+            { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
           ]
         }
       ],
@@ -6030,11 +6030,11 @@ export class DataService {
             { title: 'Supplementary Reading on Physical Geography', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) },
-            { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) }
+            { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
+            { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
           ]
         },
         {
@@ -6047,11 +6047,11 @@ export class DataService {
             { title: 'Practice Problems on Weather and Climate', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) },
-            { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+            { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
-            { name: 'Weather Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
           ]
         },
         {
@@ -6064,11 +6064,11 @@ export class DataService {
             { title: 'Example Problems on Landforms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) },
-            { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
+            { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
           ]
         }
       ],
@@ -6152,11 +6152,11 @@ export class DataService {
             { title: 'Supplementary Reading on English Literature', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15) },
-            { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) }
+            { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+            { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) }
+            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
           ]
         },
         {
@@ -6169,11 +6169,11 @@ export class DataService {
             { title: 'Practice Problems on Poetry and Prose', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) },
-            { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) }
+            { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+            { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
-            { name: 'Poetry Test', dueDate: new Date(2024, 8, 7) }
+            { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
           ]
         },
         {
@@ -6186,11 +6186,11 @@ export class DataService {
             { title: 'Example Problems on Shakespeare', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12) },
-            { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) }
+            { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
+            { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
           ]
         }
       ],

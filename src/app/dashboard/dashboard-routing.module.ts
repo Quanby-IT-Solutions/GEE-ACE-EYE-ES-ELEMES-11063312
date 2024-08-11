@@ -815,6 +815,14 @@ const routes: Routes = [
 
 
       {
+        path: 'progress',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/progress/progress.module'
+          ).then((m) => m.ProgressModule),
+      },
+
+      {
         path: 'manage-courses',
         loadChildren: () =>
           import(

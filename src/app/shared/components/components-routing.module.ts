@@ -47,6 +47,15 @@ const routes: Routes = [
             'src/app/shared/components/classroom/manage-courses/manage-courses.module'
           ).then((m) => m.ManageCoursesModule),
       },
+
+
+      {
+        path: 'progress',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/progress/progress.module'
+          ).then((m) => m.ProgressModule),
+      },
    
 
 

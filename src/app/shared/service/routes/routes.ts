@@ -642,6 +642,11 @@ public static get manage_courses(): string {
   return this.users_dashboard + '/manage-courses';
 } 
 
+
+public static get progress(): string {
+  return this.users_dashboard + '/progress';
+} 
+
 public static get add_course(): string {
   return this.users_dashboard + '/add-course';
 } 

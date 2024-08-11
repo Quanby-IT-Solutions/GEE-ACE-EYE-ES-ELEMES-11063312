@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
@@ -10,11 +10,41 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
   imports: [FormsModule, CommonModule], // Add CommonModule here
 })
 export class AddCourseComponent {
+  @ViewChild('videoInput') videoInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('audioInput') audioInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('pdfInput') pdfInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('wordInput') wordInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('excelInput') excelInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('powerPointInput') powerPointInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('documentInput') documentInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('zipInput') zipInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('presentationInput') presentationInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('slidesInput') slidesInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('scormInput') scormInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('spreadsheetInput') spreadsheetInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('adobeCaptivateInput') adobeCaptivateInput!: ElementRef<HTMLInputElement>;
+
   coverPhotoUrl: string | null = null;
   courseTitle: string = '';
   courseDescription: string = '';
   courseCourse: string = '';
-  courseSection: string ='';
+  courseSection: string = '';
+
+  contentTypes = [
+    { type: 'video', label: 'Video', description: 'Add a video' },
+    { type: 'audio', label: 'Audio', description: 'Add an audio file' },
+    { type: 'pdf', label: 'PDF', description: 'Add a PDF' },
+    { type: 'word', label: 'Word', description: 'Add a Word file' },
+    { type: 'excel', label: 'Excel', description: 'Add an Excel file' },
+    { type: 'powerPoint', label: 'PowerPoint', description: 'Add a PowerPoint file' },
+    { type: 'document', label: 'Document', description: 'Add a document' },
+    { type: 'zip', label: 'Zip', description: 'Add a zip file' },
+    { type: 'presentation', label: 'Presentation', description: 'Add a presentation' },
+    { type: 'slides', label: 'Slides', description: 'Add slides' },
+    { type: 'scorm', label: 'SCORM', description: 'Add SCORM package' },
+    { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet' },
+    { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
+  ];
 
   onCoverPhotoUpload(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -31,6 +61,46 @@ export class AddCourseComponent {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
+  triggerFileUpload(contentType: { type: string; label: string; description: string }): void {
+    const inputElement = this.getInputElement(contentType.type);
+    if (inputElement) {
+      inputElement.click();
+    }
+  }
+
+  getInputElement(type: string): HTMLInputElement | null {
+    switch (type) {
+      case 'video':
+        return this.videoInput.nativeElement;
+      case 'audio':
+        return this.audioInput.nativeElement;
+      case 'pdf':
+        return this.pdfInput.nativeElement;
+      case 'word':
+        return this.wordInput.nativeElement;
+      case 'excel':
+        return this.excelInput.nativeElement;
+      case 'powerPoint':
+        return this.powerPointInput.nativeElement;
+      case 'document':
+        return this.documentInput.nativeElement;
+      case 'zip':
+        return this.zipInput.nativeElement;
+      case 'presentation':
+        return this.presentationInput.nativeElement;
+      case 'slides':
+        return this.slidesInput.nativeElement;
+      case 'scorm':
+        return this.scormInput.nativeElement;
+      case 'spreadsheet':
+        return this.spreadsheetInput.nativeElement;
+      case 'adobeCaptivate':
+        return this.adobeCaptivateInput.nativeElement;
+      default:
+        return null;
+    }
   }
 
   saveCourse(): void {
