@@ -1,13 +1,26 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
+
+interface CourseMaterial {
+  title: string;
+  description: string;
+  fileName: string;
+}
+
+interface CourseModule {
+  title: string;
+  materials: CourseMaterial[];
+  assignments: CourseMaterial[];
+  exams: CourseMaterial[];
+}
 
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule], // Add CommonModule here
+  imports: [FormsModule, CommonModule],
 })
 export class AddCourseComponent {
   @ViewChild('videoInput') videoInput!: ElementRef<HTMLInputElement>;
@@ -30,20 +43,34 @@ export class AddCourseComponent {
   courseCourse: string = '';
   courseSection: string = '';
 
+  modules: CourseModule[] = [
+    {
+      title: '',
+      materials: [],
+      assignments: [],
+      exams: []
+    }
+  ];
+
+  currentUploadType: string = '';
+  currentModuleIndex: number = -1;
+  currentItemIndex: number = -1;
+  isUploadModalOpen: boolean = false;
+
   contentTypes = [
-    { type: 'video', label: 'Video', description: 'Add a video', fileName: '' },
-    { type: 'audio', label: 'Audio', description: 'Add an audio file', fileName: '' },
-    { type: 'pdf', label: 'PDF', description: 'Add a PDF', fileName: '' },
-    { type: 'word', label: 'Word', description: 'Add a Word file', fileName: '' },
-    { type: 'excel', label: 'Excel', description: 'Add an Excel file', fileName: '' },
-    { type: 'powerPoint', label: 'PowerPoint', description: 'Add a PowerPoint file', fileName: '' },
-    { type: 'document', label: 'Document', description: 'Add a document', fileName: '' },
-    { type: 'zip', label: 'Zip', description: 'Add a zip file', fileName: '' },
-    { type: 'presentation', label: 'Presentation', description: 'Add a presentation', fileName: '' },
-    { type: 'slides', label: 'Slides', description: 'Add slides', fileName: '' },
-    { type: 'scorm', label: 'SCORM', description: 'Add SCORM package', fileName: '' },
-    { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet', fileName: '' },
-    { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file', fileName: '' },
+    { type: 'video', label: 'Video', description: 'Add a video' },
+    { type: 'audio', label: 'Audio', description: 'Add an audio file' },
+    { type: 'pdf', label: 'PDF', description: 'Add a PDF' },
+    { type: 'word', label: 'Word', description: 'Add a Word file' },
+    { type: 'excel', label: 'Excel', description: 'Add an Excel file' },
+    { type: 'powerPoint', label: 'PowerPoint', description: 'Add a PowerPoint file' },
+    { type: 'document', label: 'Document', description: 'Add a document' },
+    { type: 'zip', label: 'Zip', description: 'Add a zip file' },
+    { type: 'presentation', label: 'Presentation', description: 'Add a presentation' },
+    { type: 'slides', label: 'Slides', description: 'Add slides' },
+    { type: 'scorm', label: 'SCORM', description: 'Add SCORM package' },
+    { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet' },
+    { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
   ];
 
   onCoverPhotoUpload(event: Event): void {
@@ -63,18 +90,56 @@ export class AddCourseComponent {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-  triggerFileUpload(contentType: { type: string; label: string; description: string, fileName: string }): void {
+  addModule(): void {
+    this.modules.push({
+      title: '',
+      materials: [],
+      assignments: [],
+      exams: []
+    });
+  }
+
+  addMaterial(moduleIndex: number): void {
+    this.modules[moduleIndex].materials.push({
+      title: '',
+      description: '',
+      fileName: ''
+    });
+  }
+
+  addAssignment(moduleIndex: number): void {
+    this.modules[moduleIndex].assignments.push({
+      title: '',
+      description: '',
+      fileName: ''
+    });
+  }
+
+  addExam(moduleIndex: number): void {
+    this.modules[moduleIndex].exams.push({
+      title: '',
+      description: '',
+      fileName: ''
+    });
+  }
+
+  openUploadModal(type: string, moduleIndex: number, itemIndex: number): void {
+    this.currentUploadType = type;
+    this.currentModuleIndex = moduleIndex;
+    this.currentItemIndex = itemIndex;
+    this.isUploadModalOpen = true;
+  }
+
+  closeUploadModal(): void {
+    this.isUploadModalOpen = false;
+  }
+
+  triggerFileUpload(contentType: { type: string }): void {
     const inputElement = this.getInputElement(contentType.type);
     if (inputElement) {
       inputElement.click();
     }
-  }
-
-  onFileSelected(contentType: { type: string; label: string; description: string, fileName: string }, event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      contentType.fileName = input.files[0].name;
-    }
+    this.closeUploadModal();
   }
 
   getInputElement(type: string): HTMLInputElement | null {
@@ -110,6 +175,25 @@ export class AddCourseComponent {
     }
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const fileName = input.files && input.files.length > 0 ? input.files[0].name : '';
+
+    if (fileName && this.currentModuleIndex > -1 && this.currentItemIndex > -1) {
+      switch (this.currentUploadType) {
+        case 'material':
+          this.modules[this.currentModuleIndex].materials[this.currentItemIndex].fileName = fileName;
+          break;
+        case 'assignment':
+          this.modules[this.currentModuleIndex].assignments[this.currentItemIndex].fileName = fileName;
+          break;
+        case 'exam':
+          this.modules[this.currentModuleIndex].exams[this.currentItemIndex].fileName = fileName;
+          break;
+      }
+    }
+  }
+
   saveCourse(): void {
     console.log('Course saved', {
       title: this.courseTitle,
@@ -117,6 +201,7 @@ export class AddCourseComponent {
       section: this.courseSection,
       course: this.courseCourse,
       coverPhoto: this.coverPhotoUrl,
+      modules: this.modules
     });
   }
 
