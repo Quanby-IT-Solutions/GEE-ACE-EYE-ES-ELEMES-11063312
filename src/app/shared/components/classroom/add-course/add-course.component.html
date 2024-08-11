@@ -68,25 +68,25 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
       <div *ngFor="let contentType of contentTypes" (click)="triggerFileUpload(contentType)"
         class="border border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:bg-green-100 transition">
-        <p class="text-gray-700 font-medium mb-2">{{ contentType.label }}</p>
-        <p class="text-gray-500 text-sm">{{ contentType.description }}</p>
+        <p class="text-gray-700 font-medium mb-2">{{ contentType.fileName || contentType.label }}</p>
+        <p class="text-gray-500 text-sm">{{ contentType.fileName ? 'File selected' : contentType.description }}</p>
       </div>
     </div>
 
     <!-- Hidden File Inputs -->
-    <input #videoInput type="file" class="hidden" accept="video/*" />
-    <input #audioInput type="file" class="hidden" accept="audio/*" />
-    <input #pdfInput type="file" class="hidden" accept=".pdf" />
-    <input #wordInput type="file" class="hidden" accept=".doc,.docx" />
-    <input #excelInput type="file" class="hidden" accept=".xls,.xlsx" />
-    <input #powerPointInput type="file" class="hidden" accept=".ppt,.pptx" />
-    <input #documentInput type="file" class="hidden" accept=".txt,.doc,.docx" />
-    <input #zipInput type="file" class="hidden" accept=".zip,.rar" />
-    <input #presentationInput type="file" class="hidden" accept=".ppt,.pptx" />
-    <input #slidesInput type="file" class="hidden" accept=".pdf,.ppt,.pptx" />
-    <input #scormInput type="file" class="hidden" accept=".zip" />
-    <input #spreadsheetInput type="file" class="hidden" accept=".xls,.xlsx" />
-    <input #adobeCaptivateInput type="file" class="hidden" accept=".zip" />
+    <input #videoInput type="file" class="hidden" accept="video/*" (change)="onFileSelected(contentTypes[0], $event)" />
+    <input #audioInput type="file" class="hidden" accept="audio/*" (change)="onFileSelected(contentTypes[1], $event)" />
+    <input #pdfInput type="file" class="hidden" accept=".pdf" (change)="onFileSelected(contentTypes[2], $event)" />
+    <input #wordInput type="file" class="hidden" accept=".doc,.docx" (change)="onFileSelected(contentTypes[3], $event)" />
+    <input #excelInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected(contentTypes[4], $event)" />
+    <input #powerPointInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected(contentTypes[5], $event)" />
+    <input #documentInput type="file" class="hidden" accept=".txt,.doc,.docx" (change)="onFileSelected(contentTypes[6], $event)" />
+    <input #zipInput type="file" class="hidden" accept=".zip,.rar" (change)="onFileSelected(contentTypes[7], $event)" />
+    <input #presentationInput type="file" class="hidden" accept=".ppt,.pptx" (change)="onFileSelected(contentTypes[8], $event)" />
+    <input #slidesInput type="file" class="hidden" accept=".pdf,.ppt,.pptx" (change)="onFileSelected(contentTypes[9], $event)" />
+    <input #scormInput type="file" class="hidden" accept=".zip" (change)="onFileSelected(contentTypes[10], $event)" />
+    <input #spreadsheetInput type="file" class="hidden" accept=".xls,.xlsx" (change)="onFileSelected(contentTypes[11], $event)" />
+    <input #adobeCaptivateInput type="file" class="hidden" accept=".zip" (change)="onFileSelected(contentTypes[12], $event)" />
   </div>
 
   <!-- Save and Cancel Buttons -->

@@ -31,19 +31,19 @@ export class AddCourseComponent {
   courseSection: string = '';
 
   contentTypes = [
-    { type: 'video', label: 'Video', description: 'Add a video' },
-    { type: 'audio', label: 'Audio', description: 'Add an audio file' },
-    { type: 'pdf', label: 'PDF', description: 'Add a PDF' },
-    { type: 'word', label: 'Word', description: 'Add a Word file' },
-    { type: 'excel', label: 'Excel', description: 'Add an Excel file' },
-    { type: 'powerPoint', label: 'PowerPoint', description: 'Add a PowerPoint file' },
-    { type: 'document', label: 'Document', description: 'Add a document' },
-    { type: 'zip', label: 'Zip', description: 'Add a zip file' },
-    { type: 'presentation', label: 'Presentation', description: 'Add a presentation' },
-    { type: 'slides', label: 'Slides', description: 'Add slides' },
-    { type: 'scorm', label: 'SCORM', description: 'Add SCORM package' },
-    { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet' },
-    { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
+    { type: 'video', label: 'Video', description: 'Add a video', fileName: '' },
+    { type: 'audio', label: 'Audio', description: 'Add an audio file', fileName: '' },
+    { type: 'pdf', label: 'PDF', description: 'Add a PDF', fileName: '' },
+    { type: 'word', label: 'Word', description: 'Add a Word file', fileName: '' },
+    { type: 'excel', label: 'Excel', description: 'Add an Excel file', fileName: '' },
+    { type: 'powerPoint', label: 'PowerPoint', description: 'Add a PowerPoint file', fileName: '' },
+    { type: 'document', label: 'Document', description: 'Add a document', fileName: '' },
+    { type: 'zip', label: 'Zip', description: 'Add a zip file', fileName: '' },
+    { type: 'presentation', label: 'Presentation', description: 'Add a presentation', fileName: '' },
+    { type: 'slides', label: 'Slides', description: 'Add slides', fileName: '' },
+    { type: 'scorm', label: 'SCORM', description: 'Add SCORM package', fileName: '' },
+    { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet', fileName: '' },
+    { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file', fileName: '' },
   ];
 
   onCoverPhotoUpload(event: Event): void {
@@ -63,10 +63,17 @@ export class AddCourseComponent {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-  triggerFileUpload(contentType: { type: string; label: string; description: string }): void {
+  triggerFileUpload(contentType: { type: string; label: string; description: string, fileName: string }): void {
     const inputElement = this.getInputElement(contentType.type);
     if (inputElement) {
       inputElement.click();
+    }
+  }
+
+  onFileSelected(contentType: { type: string; label: string; description: string, fileName: string }, event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      contentType.fileName = input.files[0].name;
     }
   }
 
