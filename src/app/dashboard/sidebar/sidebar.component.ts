@@ -122,7 +122,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
-<<<<<<< HEAD
     { title: 'Add Course', route: this.routes.add_course },
     { title: 'Manage Course', route: this.routes.subjects },
     { 
@@ -132,15 +131,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
       { title: 'Assignments', route: this.routes.tasks },
   ], 
      },
-=======
-    {
-      title: 'Courses',
-      subItems: [
-        { title: 'Materials', route: this.routes.subjects },
-        { title: 'Assignments', route: this.routes.tasks },
-      ],
-    },
->>>>>>> cacec13dbd5bce1912307d03016a221c012004d0
     { title: 'Student Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
 
