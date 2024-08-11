@@ -57,6 +57,15 @@ const routes: Routes = [
           ).then((m) => m.ExploreCoursesModule),
       },
 
+      {
+        path: 'user-management',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/user-management/user-management.module'
+          ).then((m) => m.UserManagementModule),
+      },
+
+
 
       {
         path: 'explore-courses-modules',

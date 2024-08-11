@@ -112,105 +112,28 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     subItems: [       
      { title: 'Materials', route: this.routes.subjects },
      { title: 'Assignments', route: this.routes.tasks },
-     { title: 'Exams', route: this.routes.quiz },
     ], 
-    },   
- 
-    { title: 'Progress', route: this.routes.assessments },
+    },    
+    { title: 'Progress', route: this.routes.schedules},
 
-    // {
-    //   title: 'Classroom',
-    //   subItems: [
-    //     { title: 'Enrolled Subjects', route: this.routes.subjects  },
-    //     { title: 'Learning Modules', route: this.routes.learning_module },
-    //     { title: 'My Online Tasks', route: this.routes.online_tasks },
-    //     { title: 'My Test Scores', route: this.routes.test_scores },
-    //     { title: 'Assessments', route: this.routes.assessments },
+    { title: 'Calendar', route: this.routes.schedules
+     },
 
-    //   ],
-    // },
-
-    // {
-    //   title: 'Transactions',
-    //   subItems: [
-    //     { title: 'Pre-Enlistment', route: this.routes.pre_enlistment },
-    //     { title: 'Enrollment', route: this.routes.enrollment },
-    //     { title: 'Add / Cross-Enroll', route: this.routes.add_enroll },
-    //     { title: 'Teacher Evaluation', route: this.routes.teacher_evaluation },
-    //     { title: 'Disable ID Card', route: this.routes.disable_id },
-    //     { title: 'Online Payment', route: this.routes.online_payment },
-    //     { title: 'Express Payment', route: this.routes.express_payment },
-
-    //   ],
-    // },
-    // {
-    //   title: 'Reports',
-    //   subItems: [
-    //     { title: 'Class Absences', route: this.routes.class_absences },
-    //     { title: 'Term Grades', route: this.routes.term_grades },
-    //     { title: 'Final Grades', route: this.routes.final_grades },
-    //     { title: 'General Weighted Average', route: this.routes.gwa },
-    //     { title: 'Curriculum Evaluation', route: this.routes.curriculum_evaluation},
-    //     { title: 'Statement of Accounts', route: this.routes.statement_accounts },
-    //     { title: 'In / Out Monitoring', route: this.routes.in_out_monitoring },
-    //     { title: 'Purchases Report', route: this.routes.purchases_report },
-    //   ],
-    // },
-    // { title: 'Schedules', route: this.routes.schedules },
-    // { title: 'Forums', route: this.routes.forums },
   ];
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
     { title: 'Courses',
      subItems: [       
-      { title: 'Materials', route: this.routes.courses },
+      { title: 'Materials', route: this.routes.subjects },
       { title: 'Assignments', route: this.routes.tasks },
-      { title: 'Exams', route: this.routes.quiz },
   ], 
      },
-    { title: 'Assignments', route: this.routes.tasks },
-    { title: 'Progress', route: this.routes.assessments },
+    { title: 'Student Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
 
     { title: 'Help', route: this.routes.meet }, // arog kaine padi
-
-
-  
-
-    // {
-    //   title: 'Transactions',
-    //   subItems: [
-    //     { title: 'Grading Sheet', route: this.routes.teacher },
-    //     { title: 'Class Attendance', route: this.routes.teacher },
-    //     { title: 'Section Attendance', route: this.routes.teacher },
-    //     { title: 'Override Attendance', route: this.routes.teacher },
-    //     { title: 'Request Change Grade', route: this.routes.teacher },
-    //     { title: 'Adviser Comments', route: this.routes.teacher },
-
-    //   ],
-    // },
-    // {
-    //   title: 'Reports',
-    //   subItems: [
-    //     { title: 'Class Attendance', route: this.routes.grades },
-    //     { title: 'Class Absences', route: this.routes.grades },
-    //     { title: 'Test Item Analysis', route: this.routes.clearance },
-    //     { title: 'Report Card', route: this.routes.clearance },
-    //     { title: 'Permanent Record', route: this.routes.clearance },
-    //     { title: 'Periodic Grades Listing', route: this.routes.clearance },
-
-    //   ],
-    // },
-
-    // {
-    //   title: 'Tools',
-    //   subItems: [
-    //     { title: 'Options', route: this.routes.curriculum },
-
-    //   ],
-    // },
-  ];
+    ];
 
   public school_admin = [
     {
@@ -285,26 +208,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   ];
 
   public department_admin = [
-    // {
-    //   title: 'Dashboard',
-    //   route: this.routes.dashboard,
-    // },
-    // {
-    //   title: 'Staffing',
-    //   route: this.routes.enrollment,
-    // },
-    // {
-    //   title: 'Scheduling',
-    //   route: this.routes.enrollment,
-    // },
-    // {
-    //   title: 'Metrics',
-    //   route: this.routes.enrollment,
-    // },
-    // {
-    //   title: 'Curriculumship',
-    //   route: this.routes.enrollment,
-    // },
+ 
 
     {
       title: 'General',
@@ -376,28 +280,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
       ],
     },
 
-    // {
-    //   title: 'Admission',
-    //   subItems: [
-    //     { title: 'Admission Requirements', route: this.routes.curriculum },
-    //     { title: 'Admission Schedule', route: this.routes.curriculum },
-    //     { title: 'Automatic ID No.', route: this.routes.curriculum },
-    //     { title: 'Admission Results', route: this.routes.curriculum },
-    //     { title: 'Create Student Account', route: this.routes.curriculum },
-    //     { title: 'Student Profile', route: this.routes.curriculum },
-    //     { title: 'Personal Information', route: this.routes.curriculum },
-    //     { title: 'Address & Contacts', route: this.routes.curriculum },
-    //     { title: 'Family Background', route: this.routes.curriculum },
-    //     { title: 'Educational Background', route: this.routes.curriculum },
-    //     { title: 'Religious Background', route: this.routes.curriculum },
-    //     { title: 'Medical Info', route: this.routes.curriculum },
-    //     { title: 'Empleyment Records', route: this.routes.curriculum },
-    //     { title: 'Uploaded Documents', route: this.routes.curriculum },
-    //     { title: 'Disable ID Card', route: this.routes.curriculum },
-    //     { title: 'Clearance Records', route: this.routes.curriculum },
-    //     { title: 'Clearance Monitor', route: this.routes.curriculum },
-    //   ],
-    // },
+ 
 
     {
       title: 'Reports',
@@ -439,12 +322,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  role: string | null = null;
-
-  getUserType() {
-    console.log('hain', this.role);
-    return this.role;
-  }
+  
 
   superAdminTabs() {
     let superadmin: any[] = [];
@@ -469,45 +347,54 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     return superadmin;
   }
 
-  async ngOnInit() {
-    this.checkScreenSize();
-    const guestUserJson = sessionStorage.getItem('guestUser');
-    if (guestUserJson) {
-      const guestUser = JSON.parse(guestUserJson);
-      this.supabaseService.setGuestUser(guestUser);
-    }
 
-    const _user = await this.userService.getUser();
-    console.log('User', _user);
-    console.log('Role ken:', _user.role);
-    this.role = _user.role;
+  
 
-    this.userSubscription = this.supabaseService.currentUser.subscribe(
-      (user) => {
-        this.user = user;
-        console.log('Current user:', this.user);
-        const role = this.getTonUserRole();
-        console.log('User role:', role);
-      }
-    );
+  role: string | null = null;
 
-    this.routerSubscription = this.router.events
-      .pipe(
-        filter(
-          (event: Event): event is NavigationEnd =>
-            event instanceof NavigationEnd
-        )
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.currentRoute = event.urlAfterRedirects;
-      });
-
-    // Set default route to /dashboard if none is provided
-    if (!this.currentRoute) {
-      this.currentRoute = this.routes.dashboard;
-      this.router.navigate([this.routes.dashboard]);
-    }
+  getUserType() {
+    return this.role;
   }
+
+async ngOnInit() {
+  this.checkScreenSize();
+  
+  const guestUserJson = sessionStorage.getItem('guestUser');
+  if (guestUserJson) {
+    const guestUser = JSON.parse(guestUserJson);
+    this.supabaseService.setGuestUser(guestUser);
+  }
+
+  const _user = await this.userService.getUser();
+  
+  // Log the role only once after fetching the user
+  console.log('Sidebar - Authenticated User Role:', _user.role);
+  this.role = _user.role;
+
+  this.userSubscription = this.supabaseService.currentUser.subscribe(
+    (user) => {
+      this.user = user;
+    }
+  );
+
+  this.routerSubscription = this.router.events
+    .pipe(
+      filter(
+        (event: Event): event is NavigationEnd =>
+          event instanceof NavigationEnd
+      )
+    )
+    .subscribe((event: NavigationEnd) => {
+      this.currentRoute = event.urlAfterRedirects;
+    });
+
+  // Set default route to /dashboard if none is provided
+  if (!this.currentRoute) {
+    this.currentRoute = this.routes.dashboard;
+    this.router.navigate([this.routes.dashboard]);
+  }
+}
+
 
   private checkScreenSize() {
     this.isMobile = window.innerWidth < 480; // Adjust this breakpoint as needed
@@ -535,60 +422,14 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     return user !== null && 'user_type' in user;
   }
 
-  getTonUserRole(): string | null {
-    if (
-      this.user &&
-      'role' in this.user &&
-      typeof this.user.role === 'string'
-    ) {
-      return this.user.role;
-    }
-    return null;
-  }
-
-  getUserRole(): string | null {
-    return this.userService.getUserRole();
-  }
+  
 
   toggleDropdown(section: string) {
     this.isOpen[section] = !this.isOpen[section];
   }
 
   handleSearch() {
-    // const userType = this.getUserRole();
-    // let allItems: any[] = [];
-    // if (userType === 'student') {
-    //   allItems = this.student_no.flatMap((item) =>
-    //     item.subItems ? [item, ...item.subItems] : [item]
-    //   );
-    // } else if (userType === 'instructor') {
-    //   allItems = this.instructor;
-    // } else if (userType === 'school_admin') {
-    //   allItems = this.school_admin.flatMap((group) => [
-    //     group,
-    //     ...(group.subItems || []),
-    //   ]);
-    // } else if (userType === 'department_admin') {
-    //   allItems = this.department_admin;
-    // }
-    // const matchedItem = allItems.find((item) => {
-    //   if ('subItems' in item) {
-    //     return item.title
-    //       .toLowerCase()
-    //       .includes(this.searchQuery.toLowerCase());
-    //   } else {
-    //     return item.title
-    //       .toLowerCase()
-    //       .includes(this.searchQuery.toLowerCase());
-    //   }
-    // });
-    // if (matchedItem) {
-    //   if ('route' in matchedItem) {
-    //     this.router.navigate([matchedItem.route]);
-    //   } else if ('subItems' in matchedItem && matchedItem.subItems.length > 0) {
-    //     this.router.navigate([matchedItem.subItems[0].route]);
-    //   }
-    // }
+   
   }
 
   async logout() {

@@ -28,26 +28,41 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  role: string | null = null;
+
+  getUserRole() {
+    return this.role;
+  }
+  
+  async ngOnInit() {
     this.checkRoute();
+    
     this.routerSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         this.checkRoute();
       });
-
-    const guestUserJson = sessionStorage.getItem('guestUser');
-    if (guestUserJson) {
-      const guestUser = JSON.parse(guestUserJson);
-      this.supabaseService.setGuestUser(guestUser);
-    }
-
+  
+    const _user = await this.userService.getUser();
+    
+    console.log('Dashboard - Authenticated User Role:', _user.role);
+    this.role = _user.role;
+  
     this.userSubscription = this.supabaseService.currentUser.subscribe(
       (user) => {
         this.user = user;
       }
     );
+  
+    const guestUserJson = sessionStorage.getItem('guestUser');
+    if (guestUserJson) {
+      const guestUser = JSON.parse(guestUserJson);
+      this.supabaseService.setGuestUser(guestUser);
+    }
+  
+   
   }
+  
 
   ngOnDestroy() {
     if (this.userSubscription) {
@@ -63,9 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isMainRouteActive = mainRoutes.includes(this.router.url);
   }
 
-  getUserRole(): string | null {
-    return this.userService.getUserRole();
-  }
+ 
 
   handleSearch(query: string) {
     this.searchQuery = query;
