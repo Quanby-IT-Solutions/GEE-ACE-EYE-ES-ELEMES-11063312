@@ -321,14 +321,7 @@ const routes: Routes = [
             (m) => m.SettingsModule
           ),
       },
-      {
-        path: 'courses/subjects',
-        loadChildren: () =>
-          import('../admin/courses/subjects/subjects.module').then(
-            (m) => m.SubjectsModule
-          ),
-      },
-
+     
       // Quizzes Routes
       {
         path: 'quizzes/question-groups',

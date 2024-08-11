@@ -10,10 +10,7 @@
       <div *ngIf="isMainRouteActive">
         
         <!-- Check if user is an instructor -->
-        <div *ngIf="getUserRole() === 'instructor'">
-          <div> i am {{ getUserRole() }}</div>
-          <button class="btn btn-primary" (click)="showModal()">Add Course</button>
-        </div>
+       
 
         <div class="px-4">
           <div class="font-semibold text-gray-800 text-lg">Welcome back, {{ getUserRole() }} 🎉</div>

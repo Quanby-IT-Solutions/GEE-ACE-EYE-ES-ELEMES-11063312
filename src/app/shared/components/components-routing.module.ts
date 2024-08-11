@@ -39,6 +39,25 @@ const routes: Routes = [
           ).then((m) => m.UserManagementModule),
       },
 
+
+      {
+        path: 'manage-courses',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/manage-courses/manage-courses.module'
+          ).then((m) => m.ManageCoursesModule),
+      },
+   
+
+
+      {
+        path: 'add-course',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/add-course/add-course.module'
+          ).then((m) => m.AddCourseModule),
+      },
+
       {
         path: 'messaging',
         loadChildren: () =>

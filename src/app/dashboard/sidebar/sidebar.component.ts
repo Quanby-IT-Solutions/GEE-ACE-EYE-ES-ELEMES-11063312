@@ -123,8 +123,11 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
-    { title: 'Courses',
-     subItems: [       
+    { title: 'Add Course', route: this.routes.add_course },
+    { title: 'Manage Course', route: this.routes.subjects },
+    { 
+      title: 'My Courses',
+        subItems: [       
       { title: 'Materials', route: this.routes.subjects },
       { title: 'Assignments', route: this.routes.tasks },
   ], 
