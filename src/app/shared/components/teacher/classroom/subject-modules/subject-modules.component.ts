@@ -5,6 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SafeUrlPipe } from 'src/app/shared/pipes/safe-url.pipe';
+import { Subscription } from 'rxjs';
+import { User } from '@supabase/supabase-js';
+import { UserService } from 'src/app/shared/service/user/user.service';
+import { GuestUser } from 'src/app/shared/models/model';
+import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 
 @Component({
   selector: 'app-subject-modules',
@@ -25,9 +30,21 @@ export class SubjectModulesComponent implements OnInit {
   filteredNotEnrolledStudents: any[] = [];
   showEnrollModal: boolean = false;
 
-  constructor(private router: Router, private sanitizer: DomSanitizer) {}
+  public user: User | GuestUser | null = null;
 
-  ngOnInit(): void {
+  private userSubscription: Subscription | undefined;
+  role: string | null = null;
+
+  constructor(private router: Router, private sanitizer: DomSanitizer,   private userService: UserService,
+    private supabaseService: SupabaseService) {}
+
+
+    getUserRole() {
+      return this.role;
+    }
+
+
+  async ngOnInit() {
     this.course = history.state.course || this.fetchCourseData();
 
     if (!this.course) {
@@ -50,6 +67,16 @@ export class SubjectModulesComponent implements OnInit {
       this.filteredEnrolledStudents = [...this.course.enrolledStudents];
       this.filteredNotEnrolledStudents = [...this.course.notEnrolledStudents];
     }
+
+    const _user = await this.userService.getUser();
+    console.log('Dashboard - Authenticated User Role:', _user.role);
+    this.role = _user.role;
+
+    this.userSubscription = this.supabaseService.currentUser.subscribe(
+      (user) => {
+        this.user = user;
+      }
+    );
   }
 
   fetchCourseData(): any {

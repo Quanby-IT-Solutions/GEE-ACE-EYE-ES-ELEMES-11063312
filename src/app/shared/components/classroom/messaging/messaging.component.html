@@ -1,93 +1,92 @@
-<div class="flex h-screen p-4 ">
-    <!-- Sidebar -->
-    <div class="w-1/4 bg-white border-r border-gray-200 overflow-y-auto shadow-sm rounded-lg">
-      <div class="p-4">
-        <input
-          type="text"
-          placeholder="Search name/chat"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+<div class="flex h-screen p-4">
+  <!-- Sidebar -->
+  <div class="w-1/4 bg-white border-r border-gray-200 overflow-y-auto shadow-sm rounded-lg">
+    <div class="p-4">
+      <input
+        type="text"
+        placeholder="Search name/chat"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+      />
+    </div>
+    <ul class="space-y-2 mt-4">
+      <li
+        *ngFor="let chat of chats"
+        (click)="selectChat(chat)"
+        class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors"
+      >
+        <img
+          [src]="chat.avatar"
+          alt="{{ chat.name }}"
+          class="w-10 h-10 rounded-full mr-3"
         />
+        <div class="flex-1 min-w-0">
+          <h3 class="font-semibold text-gray-800 truncate">{{ chat.name }}</h3>
+          <p class="text-sm text-gray-600 truncate">{{ chat.lastMessage }}</p>
+        </div>
+        <span class="text-xs text-gray-400 whitespace-nowrap ml-2">{{ chat.time }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="flex-1 flex flex-col bg-white shadow-lg rounded-lg ml-4">
+    <!-- Header -->
+    <div class="border-b border-gray-200 py-4 px-6 bg-white flex items-center rounded-t-lg">
+      <img
+        [src]="selectedChat.avatar"
+        alt="{{ selectedChat.name }}"
+        class="w-10 h-10 rounded-full mr-4"
+      />
+      <div>
+        <h3 class="font-semibold text-gray-800 text-lg">{{ selectedChat.name }}</h3>
+        <p class="text-sm text-gray-500">{{ selectedChat.status }}</p>
       </div>
-      <ul class="space-y-2 mt-4">
-        <li
-          *ngFor="let chat of chats"
-          (click)="selectChat(chat)"
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors"
+    </div>
+
+    <!-- Messages -->
+    <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
+      <div *ngFor="let message of selectedChat.messages" class="mb-4">
+        <div
+          class="flex items-start"
+          [ngClass]="{
+            'flex-row-reverse text-right': message.sender === 'me',
+            'flex-row': message.sender !== 'me'
+          }"
         >
           <img
-            [src]="chat.avatar"
-            alt="{{ chat.name }}"
-            class="w-10 h-10 rounded-full mr-3"
+            [src]="message.avatar"
+            alt="{{ message.sender }}"
+            class="w-8 h-8 rounded-full mr-3"
           />
-          <div class="flex-1 min-w-0">
-            <h3 class="font-semibold text-gray-800 truncate">{{ chat.name }}</h3>
-            <p class="text-sm text-gray-600 truncate">{{ chat.lastMessage }}</p>
-          </div>
-          <span class="text-xs text-gray-400 whitespace-nowrap ml-2">{{ chat.time }}</span>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- Chat Area -->
-    <div class="flex-1 flex flex-col bg-white shadow-lg rounded-lg ml-4">
-      <!-- Header -->
-      <div class="border-b border-gray-200 py-4 px-6 bg-white flex items-center rounded-t-lg">
-        <img
-          [src]="selectedChat?.avatar"
-          alt="{{ selectedChat?.name }}"
-          class="w-10 h-10 rounded-full mr-4"
-        />
-        <div>
-          <h3 class="font-semibold text-gray-800 text-lg">{{ selectedChat?.name }}</h3>
-          <p class="text-sm text-gray-500">{{ selectedChat?.status }}</p>
-        </div>
-      </div>
-  
-      <!-- Messages -->
-      <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
-        <div *ngFor="let message of selectedChat?.messages" class="mb-4">
           <div
-            class="flex items-start"
+            class="max-w-xs lg:max-w-md px-4 py-2 rounded-lg"
             [ngClass]="{
-              'flex-row-reverse text-right': message.sender === 'me',
-              'flex-row': message.sender !== 'me'
+              'bg-green-600 text-white': message.sender === 'me',
+              'bg-white border border-gray-300 text-gray-800': message.sender !== 'me'
             }"
           >
-            <img
-              [src]="message.avatar"
-              alt="{{ message.sender }}"
-              class="w-8 h-8 rounded-full mr-3"
-            />
-            <div
-              class="max-w-xs lg:max-w-md px-4 py-2 rounded-lg"
-              [ngClass]="{
-                'bg-green-600 text-white': message.sender === 'me',
-                'bg-white border border-gray-300 text-gray-800': message.sender !== 'me'
-              }"
-            >
-              <p>{{ message.text }}</p>
-            </div>
+            <p>{{ message.text }}</p>
           </div>
-          <p class="text-xs text-gray-400 mt-1" [ngClass]="{'text-right': message.sender === 'me', 'text-left': message.sender !== 'me'}">{{ message.time }}</p>
         </div>
-      </div>
-  
-      <!-- Input -->
-      <div class="border-t border-gray-200 py-4 px-6 bg-white flex items-center rounded-b-lg">
-        <input
-          [(ngModel)]="newMessage"
-          (keyup.enter)="sendMessage()"
-          type="text"
-          placeholder="Type your message..."
-          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-        />
-        <button
-          (click)="sendMessage()"
-          class="ml-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
-        >
-          Send
-        </button>
+        <p class="text-xs text-gray-400 mt-1" [ngClass]="{'text-right': message.sender === 'me', 'text-left': message.sender !== 'me'}">{{ message.time }}</p>
       </div>
     </div>
+
+    <!-- Input -->
+    <div class="border-t border-gray-200 py-4 px-6 bg-white flex items-center rounded-b-lg">
+      <input
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        type="text"
+        placeholder="Type your message..."
+        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+      />
+      <button
+        (click)="sendMessage()"
+        class="ml-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+      >
+        Send
+      </button>
+    </div>
   </div>
-  
+</div>

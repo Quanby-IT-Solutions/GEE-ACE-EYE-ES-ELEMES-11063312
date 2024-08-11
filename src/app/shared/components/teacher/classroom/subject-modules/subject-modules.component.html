@@ -45,7 +45,7 @@
           class="bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 transition"
           (click)="toggleEditing()"
         >
-          {{ isEditing ? 'Disable Editing' : 'Enable Editing' }}
+          {{ isEditing ? 'Save' : 'Edit' }}
         </button>
       </div>
 
@@ -93,6 +93,8 @@
             [ngClass]="{ 'text-green-600': selectedTab === 'materials', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'materials' }">
             Materials
           </button>
+          @if (getUserRole() ==='instructor') {
+
           <button 
             (click)="selectTab('assignments')"
             [ngClass]="{ 'text-green-600': selectedTab === 'assignments', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'assignments' }">
@@ -108,6 +110,7 @@
             [ngClass]="{ 'text-green-600': selectedTab === 'studentManagement', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'studentManagement' }">
             Student Management
           </button>
+        }
         </nav>
       </div>
 
@@ -189,6 +192,9 @@
         <button *ngIf="isEditing" class="bg-green-600 text-white rounded-md py-1 px-3 hover:bg-green-700 transition"
           (click)="addAssignment()">Add Assignment</button>
       </div>
+    
+
+
 
       <!-- Exams Tab Content -->
       <div *ngIf="selectedTab === 'exams'">
@@ -219,6 +225,10 @@
           (click)="addExam()">Add Exam</button>
       </div>
 
+    
+
+
+    
      <!-- Student Management Tab Content -->
      <div *ngIf="selectedTab === 'studentManagement'">
       <h3 class="text-xl font-bold mb-4">Student Management</h3>
@@ -261,43 +271,52 @@
       </div>
       
       <div *ngIf="filteredEnrolledStudents.length === 0" class="text-gray-500">No enrolled students found.</div>
+    
 
-      <div *ngIf="showEnrollModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div 
-          class="bg-white rounded-lg shadow-md p-6 w-3/4 max-w-2xl"
-          (click)="$event.stopPropagation()"
-        >
-          <h3 class="text-xl font-bold mb-4">Enroll Students</h3>
-          <button 
-            class="absolute top-2 right-2 text-red-600 hover:text-red-800"
-            (click)="closeEnrollModal()">
-            <i class="fas fa-times"></i>
-          </button>
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr>
-                <th class="border-b-2 border-gray-300 p-2">Name</th>
-                <th class="border-b-2 border-gray-300 p-2">Email</th>
-                <th class="border-b-2 border-gray-300 p-2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let student of filteredNotEnrolledStudents">
-                <td class="border-b border-gray-300 p-2">{{ student.name }}</td>
-                <td class="border-b border-gray-300 p-2">{{ student.email }}</td>
-                <td class="border-b border-gray-300 p-2 text-right">
-                  <button 
-                    class="bg-green-600 text-white rounded-md py-1 px-2 hover:bg-green-700 transition"
-                    (click)="enrollStudent(student)"
-                  >
-                    Enroll
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <!-- Enroll Students Modal -->
+<!-- Enroll Students Modal -->
+<div *ngIf="showEnrollModal" class="fixed inset-0 flex items-center h-full justify-center bg-black bg-opacity-50 z-50">
+  <div 
+    class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative overflow-auto  h-3/4"
+  >
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-2xl font-semibold text-gray-800">Enroll Students</h3>
+      <button 
+        class="text-red-600 hover:text-red-800 focus:outline-none"
+        (click)="closeEnrollModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="overflow-y-auto max-full">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">Name</th>
+            <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">Email</th>
+            <th class="border-b-2 border-gray-300 p-3 text-right"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of filteredNotEnrolledStudents" class="hover:bg-gray-50">
+            <td class="border-b border-gray-200 p-3 text-gray-700">{{ student.name }}</td>
+            <td class="border-b border-gray-200 p-3 text-gray-700">{{ student.email }}</td>
+            <td class="border-b border-gray-200 p-3 text-right">
+              <button 
+                class="bg-green-500 text-white rounded-full py-1 px-4 hover:bg-green-600 transition focus:outline-none"
+                (click)="enrollStudent(student)"
+              >
+                Enroll
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 
     </div>
 
