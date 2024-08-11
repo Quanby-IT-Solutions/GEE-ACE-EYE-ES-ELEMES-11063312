@@ -49,6 +49,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   public currentRoute: string = '';
 
   iconMap: IconMap = {
+    'User-Management': 'fa-solid fa-user',
     Home: 'fa-solid fa-house',
     Courses: 'fas fa-book',
     Classes: 'fas fa-chalkboard-teacher',
@@ -107,22 +108,21 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     { title: 'Home', route: this.routes.dashboard },
     { title: 'Explore Courses', route: this.routes.explore_courses },
 
-    { 
-    title: 'My Courses',
-    subItems: [       
-     { title: 'Materials', route: this.routes.subjects },
-     { title: 'Assignments', route: this.routes.tasks },
-    ], 
-    },    
-    { title: 'Progress', route: this.routes.schedules},
+    {
+      title: 'My Courses',
+      subItems: [
+        { title: 'Materials', route: this.routes.subjects },
+        { title: 'Assignments', route: this.routes.tasks },
+      ],
+    },
+    { title: 'Progress', route: this.routes.schedules },
 
-    { title: 'Calendar', route: this.routes.schedules
-     },
-
+    { title: 'Calendar', route: this.routes.schedules },
   ];
 
   public instructor = [
     { title: 'Home', route: this.routes.dashboard },
+<<<<<<< HEAD
     { title: 'Add Course', route: this.routes.add_course },
     { title: 'Manage Course', route: this.routes.subjects },
     { 
@@ -132,11 +132,20 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
       { title: 'Assignments', route: this.routes.tasks },
   ], 
      },
+=======
+    {
+      title: 'Courses',
+      subItems: [
+        { title: 'Materials', route: this.routes.subjects },
+        { title: 'Assignments', route: this.routes.tasks },
+      ],
+    },
+>>>>>>> cacec13dbd5bce1912307d03016a221c012004d0
     { title: 'Student Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
 
     { title: 'Help', route: this.routes.meet }, // arog kaine padi
-    ];
+  ];
 
   public school_admin = [
     {
@@ -213,7 +222,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   public department_admin = [
     { title: 'User-Management', route: this.routes.user_management },
 
-
     {
       title: 'General',
       subItems: [
@@ -284,8 +292,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
       ],
     },
 
- 
-
     {
       title: 'Reports',
       subItems: [
@@ -326,8 +332,6 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  
-
   superAdminTabs() {
     let superadmin: any[] = [];
     for (const roleTabs of [
@@ -351,54 +355,50 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     return superadmin;
   }
 
-
-  
-
   role: string | null = null;
 
   getUserType() {
     return this.role;
   }
 
-async ngOnInit() {
-  this.checkScreenSize();
-  
-  const guestUserJson = sessionStorage.getItem('guestUser');
-  if (guestUserJson) {
-    const guestUser = JSON.parse(guestUserJson);
-    this.supabaseService.setGuestUser(guestUser);
-  }
+  async ngOnInit() {
+    this.checkScreenSize();
 
-  const _user = await this.userService.getUser();
-  
-  // Log the role only once after fetching the user
-  console.log('Sidebar - Authenticated User Role:', _user.role);
-  this.role = _user.role;
-
-  this.userSubscription = this.supabaseService.currentUser.subscribe(
-    (user) => {
-      this.user = user;
+    const guestUserJson = sessionStorage.getItem('guestUser');
+    if (guestUserJson) {
+      const guestUser = JSON.parse(guestUserJson);
+      this.supabaseService.setGuestUser(guestUser);
     }
-  );
 
-  this.routerSubscription = this.router.events
-    .pipe(
-      filter(
-        (event: Event): event is NavigationEnd =>
-          event instanceof NavigationEnd
+    const _user = await this.userService.getUser();
+
+    // Log the role only once after fetching the user
+    console.log('Sidebar - Authenticated User Role:', _user.role);
+    this.role = _user.role;
+
+    this.userSubscription = this.supabaseService.currentUser.subscribe(
+      (user) => {
+        this.user = user;
+      }
+    );
+
+    this.routerSubscription = this.router.events
+      .pipe(
+        filter(
+          (event: Event): event is NavigationEnd =>
+            event instanceof NavigationEnd
+        )
       )
-    )
-    .subscribe((event: NavigationEnd) => {
-      this.currentRoute = event.urlAfterRedirects;
-    });
+      .subscribe((event: NavigationEnd) => {
+        this.currentRoute = event.urlAfterRedirects;
+      });
 
-  // Set default route to /dashboard if none is provided
-  if (!this.currentRoute) {
-    this.currentRoute = this.routes.dashboard;
-    this.router.navigate([this.routes.dashboard]);
+    // Set default route to /dashboard if none is provided
+    if (!this.currentRoute) {
+      this.currentRoute = this.routes.dashboard;
+      this.router.navigate([this.routes.dashboard]);
+    }
   }
-}
-
 
   private checkScreenSize() {
     this.isMobile = window.innerWidth < 480; // Adjust this breakpoint as needed
@@ -426,15 +426,11 @@ async ngOnInit() {
     return user !== null && 'user_type' in user;
   }
 
-  
-
   toggleDropdown(section: string) {
     this.isOpen[section] = !this.isOpen[section];
   }
 
-  handleSearch() {
-   
-  }
+  handleSearch() {}
 
   async logout() {
     if (this.isGuestUser(this.user)) {

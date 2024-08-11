@@ -1,0 +1,61 @@
+/* user-management.component.css */
+
+/* Default styles for larger screens */
+.flex {
+  display: flex;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
+
+  .w-64 {
+    width: 100%;
+  }
+
+  .flex-1 {
+    width: 100%;
+  }
+
+  /* Make the table scrollable horizontally */
+  .bg-white.rounded-lg.shadow {
+    overflow-x: auto;
+  }
+
+  /* Adjust padding for smaller screens */
+  .p-6 {
+    padding: 1rem;
+  }
+
+  /* Stack the header elements */
+  .flex.justify-between.items-center {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flex.justify-between.items-center button {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Optional: Hide some table columns on very small screens */
+@media (max-width: 480px) {
+  table th:nth-child(3),
+  table th:nth-child(4),
+  table th:nth-child(6),
+  table td:nth-child(3),
+  table td:nth-child(4),
+  table td:nth-child(6) {
+    display: none;
+  }
+}
