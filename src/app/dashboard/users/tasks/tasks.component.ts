@@ -355,7 +355,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   removeFile(file:any){
-    this.selectedTask.files.splice(this.selectedTask.files.indexOf(file));
+    this.selectedTask.files.splice(this.selectedTask.files.indexOf(file), 1);
   }
 
   addComment(){

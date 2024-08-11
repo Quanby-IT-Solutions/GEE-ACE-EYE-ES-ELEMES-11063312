@@ -12,11 +12,14 @@ import { routes } from 'src/app/shared/service/routes/routes';
 
 import { User } from '@supabase/supabase-js';
 import { GuestUser } from 'src/app/shared/models/model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProfileModalComponent } from 'src/app/shared/components/classroom/profile/profile-modal/profile-modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-our-header',
   standalone: true,
+  imports: [ProfileModalComponent, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -30,8 +33,19 @@ export class OurHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private supabaseService: SupabaseService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) {}
+
+  openProfileModal:boolean = false;
+  
+  openModal(){
+    if(this.router.url.startsWith('/dashboard/profile')){
+      this.openProfileModal = false;
+      return;
+    }
+    this.openProfileModal = !this.openProfileModal;
+  }
 
   ngOnInit() {
     this.userSubscription = this.supabaseService.currentUser.subscribe(
@@ -52,8 +66,9 @@ export class OurHeaderComponent implements OnInit, OnDestroy {
     return this.userService.getUserRole();
   }
 
-  navigateToProfile() {
-    this.router.navigate([routes.profile]);
+  navigateToProfile(tab:number) {
+    this.router.navigate([routes.profile, {active:tab}]);
+    this.openProfileModal = false;
   }
 
   navigateToMessage() {

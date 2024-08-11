@@ -68,6 +68,12 @@ body {
   display: block;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+}
+
 mat-option.mat-mdc-option mat-pseudo-checkbox {
   display: none;
 }

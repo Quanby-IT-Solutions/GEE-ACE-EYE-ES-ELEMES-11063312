@@ -1,49 +1,330 @@
 
 <div class="flex">
     <div class="mr-8">
-        <app-profile-modal [logout]="logout">
-
+        <app-profile-modal [logout]="logout"
+            [editProfile]="switchTab.bind(this,0)"
+            [accountSetting]="switchTab.bind(this,1)"
+            [notification]="switchTab.bind(this,2)"
+            [helpdesk]="switchTab.bind(this,3)"
+            [activeTab]="currentTab"
+        >
+           
         </app-profile-modal>    
     </div>
     <div class="flex-1">
-        <div class="text-xl font-semibold">Edit Profile</div>
-        <div class="flex items-center mt-4">
-            <div class="relative">
-                <div class="h-40 w-40 rounded-full bg-blue-300 cursor-pointer"></div>
-                <i class="fa-solid fa-arrow-up-from-bracket rounded-full p-1.5 bg-gray-50 shadow-md absolute bottom-4 right-2 cursor-pointer"></i>
+        <!-- EDIT PROFILE -->
+        <div *ngIf="currentTab == 0">
+            <div class="text-xl font-semibold">Edit Profile</div>
+            <div class="flex items-center mt-4">
+                <div class="relative">
+                    <div class="h-40 w-40 rounded-full bg-blue-300 cursor-pointer"></div>
+                    <i class="fa-solid fa-arrow-up-from-bracket rounded-full p-1.5 bg-gray-50 shadow-md absolute bottom-4 right-2 cursor-pointer"></i>
+                </div>
+                <div class="ml-6 flex flex-col">
+                    <span class="font-semibold">
+                        Upload Photo
+                    </span>
+                    <span class="mt-2 text-sm text-gray-400">
+                        300x300 and max 2 MB
+                    </span>
+                </div>
             </div>
-            <div class="ml-6 flex flex-col">
-                <span class="font-semibold">
-                    Upload Photo
-                </span>
-                <span class="mt-2 text-sm text-gray-400">
-                    300x300 and max 2mb
-                </span>
-            </div>
-        </div>
 
-        <div class="mt-6">
-            <div class="font-semibold" >Full Name</div>
-            <input type="text">
+            <div class="mt-6">
+                <div class="font-semibold" >Full Name</div>
+                <input placeholder="Enter your full name" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-96" type="text">
+            </div>
+            <div class="mt-6">
+                <div class="font-semibold" >Location</div>
+                <input placeholder="Enter address" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-96" type="text">
+            </div>
+            <div class="mt-6">
+                <div class="font-semibold" >Birthday</div>
+                <input placeholder="Enter your birthday" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-96" type="date">
+            </div>
+            <div class="mt-6">
+                <div class="font-semibold" >Phone Number</div>
+                <input placeholder="Enter your phone number" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-96" type="text">
+            </div>
+            <div class="mt-6">
+                <div class="font-semibold" >Bio</div>
+                <textarea [value]="''" placeholder="Brief description of your profile" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-96">
+                </textarea>
+            </div>
+            <div class="mt-6 px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                Save Changes
+            </div>
         </div>
-        <div class="mt-6">
-            <div class="font-semibold" >Location</div>
-            <input type="text">
+        <!-- Account Setting -->
+        <div *ngIf="currentTab == 1" class="w-1/2">
+            <div class="text-xl font-semibold">Account Setting</div>
+            <!-- Password -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Password</div>
+                    <div (click)="toggle('password')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                       {{toggles.password ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.password">
+                    <div class="mt-6">
+                        <div class="font-semibold" >Current Password</div>
+                        <div class="relative w-96 flex items-center">
+                            <input placeholder="Input your current password" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full" 
+                                type="{{toggles.current_password ? 'text':'password'}}"
+                            >
+                            <i class="fa-regular {{toggles.current_password ? 'fa-eye' :'fa-eye-slash'}} absolute text-lg cursor-pointer mt-2 text-gray-400 right-4"
+                                (click)="toggle('current_password')"
+                            ></i> 
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <div class="font-semibold" >New Password</div>
+                        <div class="relative w-96 flex items-center">
+                            <input placeholder="Input your new password"  class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full" type="{{toggles.new_password ? 'text':'password'}}">
+                            <i class="fa-regular {{toggles.new_password ? 'fa-eye' :'fa-eye-slash'}} absolute text-lg cursor-pointer mt-2 text-gray-400 right-4"
+                                (click)="toggle('new_password')"
+                            ></i> 
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                            Save Changes
+                        </div>
+                        <span class="text-gray-400 cursor-pointer">Forgot Password?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Username</div>
+                    <div (click)="toggle('username')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                        {{toggles.username ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.username">
+                    <div class="mt-6">
+                        <div class="font-semibold" >Edit Username</div>
+                        <div class="relative w-96 flex items-center">
+                            <input placeholder="Enter new username" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full" type="text">
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                            Save Changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Email Address -->
+             <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Email Address</div>
+                    <div (click)="toggle('email')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                        {{toggles.email ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.email">
+                    <div class="mt-2 text-gray-400">Your email address is pristia&#64;gmail.com</div>
+                    <div class="mt-6">
+                        <div class="font-semibold" >New Email Address</div>
+                        <div class="relative w-96 flex items-center">
+                            <input placeholder="Enter new email address" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full" type="text">
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                            Save Changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Language</div>
+                    <div (click)="toggle('language')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                        {{toggles.language ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.language">
+                    <div class="mt-2 text-gray-400">Your language is currently set to English (US)</div>
+                    <div class="mt-6">
+                        <div class="font-semibold" >Select Language</div>
+                        <div class='relative flex items-center w-96'>
+                            <select id="countries" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full ">
+                              <option value="eng-us" selected>English</option>
+                            </select>
+                            <i class="fa fa-chevron-down right-4 top-6 text-gray-200 absolute" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                            Save Changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timezone -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Timezone</div>
+                    <div (click)="toggle('timezone')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                        {{toggles.timezone ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.timezone">
+                    <div class="mt-2 text-gray-400">Your timezone is currently set to (UTC -6:00) Central Time (US & Canada)</div>
+                    <div class="mt-6">
+                        <div class="font-semibold" >Select Timezone</div>
+                        <div class='relative flex items-center w-96'>
+                            <select id="countries" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full ">
+                              <option value="utc-6:00" selected>(UTC -6:00) Central Time (US & Canada)</option>
+                            </select>
+                            <i class="fa fa-chevron-down right-4 top-6 text-gray-200 absolute" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg text-white bg-blue-500 hover:bg-blue-400 cursor-pointer flex justify-center">
+                            Save Changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Delete Account -->
+             <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Delete Your Account</div>
+                    <div (click)="toggle('delete')" class="rounded hover:bg-slate-50 shadow-sm px-1 py-1 select-none cursor-pointer">
+                        {{toggles.delete ? 'Hide' : 'Show'}}
+                    </div>
+                </div>
+                <!-- Content -->
+                <div *ngIf="toggles.delete">
+                    <div class="mt-2 text-gray-400">When you delete your account, you lose access to Front account services, we permanently delete your personal data. You can cancel the deletion for 14 days.</div>
+                    <div class="mt-6">
+                        <div class="" >Type <i>"DELETE" </i> to delete account</div>
+                        <div class="relative w-96 flex items-center">
+                            <input placeholder="" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full" type="text">
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center w-96 ">
+                        <div class="px-3 py-2 w-48 rounded-lg bg-white hover:bg-gray-100 border-solid border-gray-600 border-2 cursor-pointer flex justify-center">
+                            Learn More
+                        </div>
+                        <div class="ml-4 px-3 py-2 w-48 rounded-lg text-white bg-red-500 hover:bg-red-400 cursor-pointer flex justify-center">
+                            Delete Account
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="mt-6">
-            <div class="font-semibold" >Birthday</div>
-            <input type="text">
-        </div>
-        <div class="mt-6">
-            <div class="font-semibold" >Phone Number</div>
-            <input type="text">
-        </div>
-        <div class="mt-6">
-            <div class="font-semibold" >Bio</div>
-            <input type="text">
-        </div>
-        <div class="mt-6 px-6 py-3 w-48 rounded text-white bg-blue-500 hover:bg-blue-400 font-semibold cursor-pointer flex justify-center">
-            Save Changes
+        <!-- Notification -->
+        <div *ngIf="currentTab == 2">
+            <div class="text-xl font-semibold">Notification</div>
+             <!-- Mobile Push Notification -->
+             <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <!-- Content -->
+                <div>
+                    <div class="mt-6">
+                        <div class="font-semibold" >Mobile Push Notification</div>
+                        <div class='relative flex items-center w-96'>
+                            <select id="countries" class="rounded-lg border-solid border-gray-100 border-2 bg-transparent  px-4 py-2 focus-within:border-blue-300 mt-2 w-full ">
+                              <option value="all" selected>All New Message</option>
+                            </select>
+                            <i class="fa fa-chevron-down right-4 top-6 text-gray-200 absolute" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email Notification -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Email Notifications</div>
+                </div>
+                <!-- Content -->
+                <div>
+                    <div class="mt-2 text-gray-400">When you're busy or not online, we can send you email notifications for any new direct messages or mentions of your name.</div>
+                </div>
+            </div>
+
+            <!-- Send Notifications -->
+            <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Send Me Email Notifications</div>
+                </div>
+                <!-- Content -->
+               <ul class="flex flex-col gap-2 mt-4">
+                <li (click)="handleEmailNotifTick(0)" class=" cursor-pointer flex items-center [&>div>div]:hover:w-2 [&>div>div]:hover:h-2">
+                    <div class="w-5 h-5 rounded-full {{notification.email == 0 ? 'bg-blue-500' : 'bg-gray-200' }}  flex justify-center items-center transition-all">
+                        <div class="{{notification.email == 0 ? 'w-2 h-2' : 'w-4 h-4' }} rounded-full bg-white"></div>
+                    </div>
+                    <span class="ml-3 text-gray-400">Send me email notifications</span>
+                </li>
+                <li (click)="handleEmailNotifTick(1)"  class="cursor-pointer flex items-center  [&>div>div]:hover:w-2 [&>div>div]:hover:h-2">
+                    <div class="w-5 h-5 rounded-full {{notification.email == 1 ? 'bg-blue-500' : 'bg-gray-200' }}  flex justify-center items-center transition-all">
+                        <div class="{{notification.email == 1 ? 'w-2 h-2' : 'w-4 h-4' }} rounded-full bg-white"></div>
+                    </div>
+                    <span class="ml-3 text-gray-400">Once an hour at most</span>
+                </li>
+                <li (click)="handleEmailNotifTick(2)" class="cursor-pointer flex items-center  [&>div>div]:hover:w-2 [&>div>div]:hover:h-2">
+                    <div class="w-5 h-5 rounded-full {{notification.email == 2 ? 'bg-blue-500' : 'bg-gray-200' }}  flex justify-center items-center transition-all">
+                        <div class="{{notification.email == 2 ? 'w-2 h-2' : 'w-4 h-4' }} rounded-full bg-white"></div>
+                    </div>
+                    <span class="ml-3 text-gray-400">Never</span>
+                </li>
+               </ul>
+            </div>
+
+             <!-- Emails news and Updates -->
+             <div class="mt-6 pb-4 border-solid border-gray-100 border-b-2">
+                <div class="flex justify-between items-center">
+                    <div class="font-semibold">Email News & Updates</div>
+                </div>
+                <!-- Content -->
+                <div>
+                    <div class="mt-2 text-gray-400">From time to time, we'd like to send you emails with interesting news. You can choose which of these updates you'd like to receive:</div>
+                </div>
+               <ul class="flex flex-col gap-2 mt-4">
+                <li (click)="handleNewsTick(0)" class="cursor-pointer flex items-center [&>i]:hover:!text-blue-500">
+                    <i class="{{notification.news.includes(0) ? 'text-blue-500 fa-solid' : 'text-gray-200 fa-regular' }} fa-square-check cursor-pointer  text-lg"></i>
+                    <span class="ml-3 text-gray-400">Tips and Tricks</span>
+                </li>
+                <li (click)="handleNewsTick(1)" class="cursor-pointer flex items-center [&>i]:hover:!text-blue-500">
+                    <i class="{{notification.news.includes(1) ? 'text-blue-500 fa-solid' : 'text-gray-200 fa-regular' }} fa-square-check cursor-pointer  text-lg"></i>
+                    <span class="ml-3 text-gray-400">Offers and Promotions</span>
+                </li>
+                <li (click)="handleNewsTick(2)" class="cursor-pointer flex items-center [&>i]:hover:!text-blue-500">
+                    <i class="{{notification.news.includes(2) ? 'text-blue-500 fa-solid' : 'text-gray-200 fa-regular' }} fa-square-check cursor-pointer  text-lg"></i>
+                    <span class="ml-3 text-gray-400">Research Opportunities</span>
+                </li>
+                <li (click)="handleNewsTick(3)" class="cursor-pointer flex items-center [&>i]:hover:!text-blue-500">
+                    <i class="{{notification.news.includes(3) ? 'text-blue-500 fa-solid' : 'text-gray-200 fa-regular' }} fa-square-check cursor-pointer text-lg "></i>
+                    <span class="ml-3 text-gray-400">Newsletter</span>
+                </li>
+               </ul>
+
+
+               
+                <div class="mt-6 text-gray-400">If you opt out of the above, not that we'll still send you important administrative emails, such as password resets.</div>
+                <div class="mt-2 text-gray-400">
+                    We will use this email address: <span class="font-semibold text-black">pristia&#64;gmail.com</span> <span class="text-blue-500 cursor-pointer select-none"> (change address)</span>
+                </div>
+            
+            </div>
         </div>
     </div>
 </div>

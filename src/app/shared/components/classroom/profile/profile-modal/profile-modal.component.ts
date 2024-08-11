@@ -13,5 +13,6 @@ export class ProfileModalComponent {
   @Input() accountSetting:any;
   @Input() notification:any;
   @Input() helpdesk:any;
+  @Input() activeTab:number = 0;
   
 }

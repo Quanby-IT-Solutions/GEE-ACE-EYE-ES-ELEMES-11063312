@@ -1,25 +1,25 @@
 <div class="w-80 p-4">
     <h2 class="text-2xl font-semibold">Update and Manage Your Account</h2>
     <ul class="mt-2">
-        <li (click)="editProfile()" class="font-semibold w-full px-4 py-2.5  my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
+        <li (click)="editProfile()" class="font-semibold w-full px-4 py-2.5 {{activeTab==0 ? 'bg-gray-100': ''}}  my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
             <i class="fa-regular fa-user text-gray-400"></i>
             <span class="ml-4">
                 Edit Profile
             </span>
         </li>
-        <li (click)="accountSetting()" class="font-semibold w-full px-4 py-2.5 my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
+        <li (click)="accountSetting()" class="font-semibold w-full px-4 py-2.5  {{activeTab==1 ? 'bg-gray-100': ''}}  my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
             <i class="fa-solid fa-gear text-gray-400"></i>
             <span class="ml-4">
                 Account Setting
             </span>
         </li>
-        <li (click)="notification()" class="font-semibold w-full px-4 py-2.5 my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
+        <li (click)="notification()" class="font-semibold w-full px-4 py-2.5  {{activeTab==2 ? 'bg-gray-100': ''}}  my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
             <i class="fa-regular fa-bell text-gray-400"></i>
             <span class="ml-4">
                 Notification
             </span>
         </li>
-        <li (click)="helpdesk()"  class="font-semibold w-full px-4 py-2.5 my-4 hover:bg-gray-100 rounded cursor-pointer select-none">
+        <li (click)="helpdesk()"  class="font-semibold w-full px-4 py-2.5 my-4  {{activeTab==3 ? 'bg-gray-100': ''}}  hover:bg-gray-100 rounded cursor-pointer select-none">
             <i class="fa-regular fa-circle-question"></i>
             <span class="ml-4">
                 Helpdesk

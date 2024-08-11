@@ -127,10 +127,13 @@
 
     
     <div class="p-6 bg-white w-full lg:w-5/6 rounded-lg mx-auto shadow-md border-t-4 border-green-600">
-        <select (change)="setFilterCourse($event)" id="countries" class="bg-gray-50 mb-4 border max-w-sm overflow-hidden  border-gray-300 text-gray-900 text-sm rounded-lg focus:!ring-blue-500 focus:!border-blue-500 block w-full p-2.5 ">
-          <option value="all" selected>All Classes</option>
-          <option *ngFor="let course of courses" value="{{course.course}}">{{course.course}}</option>
-        </select>
+        <div class='relative flex items-center w-full max-w-sm'>
+          <select (change)="setFilterCourse($event)" id="countries" class="bg-gray-50 mb-4 border overflow-hidden  border-gray-300 text-gray-900 text-sm rounded-lg focus:!ring-blue-500 w-full focus:!border-blue-500 block  p-2.5 ">
+            <option value="all" selected>All Classes</option>
+            <option *ngFor="let course of courses" value="{{course.course}}">{{course.course}}</option>
+          </select>
+          <i class="fa fa-chevron-down right-4 top-3.5 text-gray-200 absolute" aria-hidden="true"></i>
+        </div>
 
 
         <ng-container *ngFor="let collapsable of getCollapsables()">
@@ -298,7 +301,7 @@
             <!-- Unsubmitted -->
             <div *ngIf="!selectedTask.submitted; else viewResults" class="flex justify-center items-center flex-col h-full w-full">
               <i class="fa-regular fa-face-smile-beam text-7xl text-gray-200"></i>
-              <span class="mt-1 text-center text-sm text-gray-400">
+              <span class="mt-2 text-center text-sm text-gray-400">
                 Your results will be reflected here once you're done taking the exam
               </span>
               <span class="text-center text-gray-500 text-sm font-semibold">
