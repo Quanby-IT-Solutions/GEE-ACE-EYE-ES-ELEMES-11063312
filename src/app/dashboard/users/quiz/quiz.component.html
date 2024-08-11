@@ -1,1 +1,54 @@
-<p>quiz works!</p>
+<div class="max-w-4xl mx-auto mt-10 p-5 bg-white shadow-lg rounded-lg">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-semibold">Quiz 1</h1>
+      <p class="text-gray-500">Due Aug 19, 2025</p>
+    </div>
+  
+    <div class="mb-4">
+      <p>{{ currentIndex + 1 }} of {{ examQuestions.length }} questions completed</p>
+      <div class="relative pt-1">
+        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+          <div
+            [style.width.%]="(currentIndex + 1) / examQuestions.length * 100"
+            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-black"
+          ></div>
+        </div>
+        <p class="text-gray-500">{{ timeLeft }} left</p>
+      </div>
+    </div>
+  
+    <div *ngIf="currentQuestion">
+      <h2 class="text-xl font-semibold mb-4">Question {{ currentIndex + 1 }}</h2>
+      <p class="mb-6">{{ currentQuestion.question }}</p>
+      <div *ngFor="let option of currentQuestion.options | keyvalue" class="mb-4">
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input
+            type="radio"
+            name="option"
+            [value]="option.key"
+            [(ngModel)]="selectedOption"
+            class="form-radio h-5 w-5 text-black"
+          />
+          <span>{{ option.value }}</span>
+        </label>
+      </div>
+    </div>
+  
+    <div class="flex justify-between mt-6">
+      <button
+        (click)="prevQuestion()"
+        [disabled]="currentIndex === 0"
+        class="px-4 py-2 bg-gray-500 text-white rounded disabled:opacity-50"
+      >
+        Back
+      </button>
+      <button
+        (click)="nextQuestion()"
+        [disabled]="!selectedOption"
+        class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  
