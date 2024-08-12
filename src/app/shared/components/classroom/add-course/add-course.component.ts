@@ -11,9 +11,6 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, CommonModule],
 })
 export class AddCourseComponent {
-  @ViewChild('moduleTitleInput') moduleTitleInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('moduleDescriptionInput') moduleDescriptionInput!: ElementRef<HTMLTextAreaElement>;
-
   @ViewChild('videoInput') videoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('audioInput') audioInput!: ElementRef<HTMLInputElement>;
   @ViewChild('pdfInput') pdfInput!: ElementRef<HTMLInputElement>;
@@ -32,7 +29,7 @@ export class AddCourseComponent {
   courseDescription: string = '';
   courseCourse: string = '';
   courseSection: string = '';
-  enrollmentKey: string = ''; // Added enrollmentKey field
+  enrollmentKey: string = ''; 
   coverPhotoUrl: string | null = null;
 
   modules: any[] = [];
@@ -55,8 +52,8 @@ export class AddCourseComponent {
     { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
   ];
 
-  isUploadModalOpen: boolean = false; // Added property to track modal state
-  uploadTarget: { type: string, moduleIndex: number, itemIndex: number } | null = null; // Added property to track upload target
+  isUploadModalOpen: boolean = false; 
+  uploadTarget: { type: string, moduleIndex: number, itemIndex: number } | null = null; 
 
   constructor(private dataService: DataService) {}
 
@@ -80,8 +77,6 @@ export class AddCourseComponent {
   addModule(): void {
     const newModule = {
       title: '',
-      description: '',
-      about: '',
       materials: [],
       assignments: [],
       exams: []
@@ -115,6 +110,22 @@ export class AddCourseComponent {
       fileName: ''
     });
     this.currentItemIndex = this.modules[moduleIndex].exams.length - 1;
+  }
+
+  deleteModule(moduleIndex: number): void {
+    this.modules.splice(moduleIndex, 1);
+  }
+
+  deleteMaterial(moduleIndex: number, materialIndex: number): void {
+    this.modules[moduleIndex].materials.splice(materialIndex, 1);
+  }
+
+  deleteAssignment(moduleIndex: number, assignmentIndex: number): void {
+    this.modules[moduleIndex].assignments.splice(assignmentIndex, 1);
+  }
+
+  deleteExam(moduleIndex: number, examIndex: number): void {
+    this.modules[moduleIndex].exams.splice(examIndex, 1);
   }
 
   openUploadModal(type: string, moduleIndex: number, itemIndex: number): void {
@@ -190,7 +201,7 @@ export class AddCourseComponent {
       course: this.courseTitle,
       subject: this.courseCourse,
       block: this.courseSection,
-      enrollmentKey: this.enrollmentKey, // Save enrollment key
+      enrollmentKey: this.enrollmentKey,
       time: '10:00 - 11:00',
       grade: 'N/A',
       progress: '0',
