@@ -1,73 +1,70 @@
-<div class="p-6 bg-white rounded-lg shadow-md">
-  @if (!selectedCourse) {
-    <div>
-      <h2 class="text-xl font-bold mb-4">Courses</h2>
-      @if (courses.length > 0) {
-        <div>
-          <ul class="course-list">
-            @for (course of courses; track course) {
-              <li class="course-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm cursor-pointer" (click)="selectCourse(course)">
-                <h3 class="text-lg font-semibold">{{ course.course }}</h3>
-                <p class="text-sm text-gray-600">{{ course.subject }}</p>
-              </li>
-            }
-          </ul>
-        </div>
-      }
-    </div>
-  }
+<div class="assessments-container">
+  <h2 class="page-title">Assessments</h2>
 
-  @if (selectedCourse) {
-    <div>
-      <button (click)="deselectCourse()" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4">Back to Courses</button>
-      <h2 class="text-xl font-bold mb-4">{{ selectedCourse.course }} Assessments</h2>
-      @if (userRole === 'instructor') {
-        <div class="instructor-view">
-          <div class="mb-4">
-            <input
-              type="text"
-              placeholder="Add a new assessment"
-              class="p-2 border border-gray-300 rounded-md w-full"
-              #assessmentInput
-              />
-              <button
-                class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md w-full"
-                (click)="addAssessment(assessmentInput.value); assessmentInput.value=''"
-                >
-                Add Assessment
-              </button>
-            </div>
-            <ul class="assessment-list">
-              @for (assessment of assessments; track assessment) {
-                <li class="assessment-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ assessment.name }}</h3>
-                      <p class="text-sm text-gray-600">{{ assessment.dueDate | date: 'shortDate' }}</p>
-                    </div>
-                    <button class="text-red-500" (click)="removeAssessment(assessment)">Remove</button>
-                  </div>
-                </li>
-              }
-            </ul>
-          </div>
-        }
-        @if (userRole === 'student') {
-          <div class="student-view">
-            <ul class="assessment-list">
-              @for (assessment of assessments; track assessment) {
-                <li class="assessment-item mb-2 p-4 bg-gray-100 rounded-md shadow-sm">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ assessment.name }}</h3>
-                      <p class="text-sm text-gray-600">Due: {{ assessment.dueDate | date: 'shortDate' }}</p>
-                    </div>
-                  </div>
-                </li>
-              }
-            </ul>
-          </div>
-        }
+  <div class="controls-container">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="selectedCourse ? filterAssessments() : filterCourses()"
+        placeholder="{{ selectedCourse ? 'Search Assessments' : 'Search Course Name/Mentor' }}"
+        class="search-input"
+      />
+      <button (click)="selectedCourse ? filterAssessments() : filterCourses()" class="search-button">
+        Search
+      </button>
+    </div>
+
+    <!-- Sort Button -->
+    <div class="sort-container">
+      <button (click)="toggleSortMenu()" class="sort-button">
+        <span>Sort Alphabetically</span>
+        <svg class="sort-icon" viewBox="0 0 24 24">
+          <path d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div *ngIf="sortMenuOpen" class="sort-menu">
+        <button (click)="selectedCourse ? sortAssessments('asc') : sortCourses('asc'); $event.stopPropagation();" class="sort-option">
+          Sort A-Z
+        </button>
+        <button (click)="selectedCourse ? sortAssessments('desc') : sortCourses('desc'); $event.stopPropagation();" class="sort-option">
+          Sort Z-A
+        </button>
       </div>
-    }
+    </div>
   </div>
+
+  <div *ngIf="!selectedCourse" class="courses-grid">
+    <!-- List of Courses -->
+    <div
+      *ngFor="let course of filteredCourses"
+      class="course-card"
+      (click)="selectCourse(course)"
+      [attr.aria-label]="course.course"
+      [title]="course.course"
+    >
+      <div class="course-image" [style.background-image]="'url(' + course.imageUrl + ')'">
+        <div class="course-image-overlay"></div>
+      </div>
+      <div class="course-content">
+        <h3 class="course-title">{{ course.course }}</h3>
+        <div class="course-info">
+          <div class="instructor-info">
+            <img [src]="course.instructor_profile" alt="Instructor Profile" class="instructor-avatar" />
+            <p class="instructor-name">{{ course.instructor }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCourse" class="assessments-list">
+    <button (click)="deselectCourse()" class="back-button">Back to Courses</button>
+    <h3 class="selected-course-title">{{ selectedCourse.course }} Assessments</h3>
+    <div *ngFor="let assessment of filteredAssessments" class="assessment-item">
+      <h4 class="assessment-name">{{ assessment.name }}</h4>
+      <p class="assessment-due-date">Due: {{ assessment.dueDate | date:'shortDate' }}</p>
+    </div>
+  </div>
+</div>

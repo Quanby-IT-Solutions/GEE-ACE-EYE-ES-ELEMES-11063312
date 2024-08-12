@@ -5,11 +5,18 @@ import { DataService } from 'src/app/shared/service/data/data.service';
 import { User } from '@supabase/supabase-js';
 import { GuestUser } from 'src/app/shared/models/model';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common'; // Ensure CommonModule is imported
 
 interface Assessment {
   name: string;
   dueDate: Date;
+}
+
+interface Course {
+  course: string;
+  instructor: string;
+  instructor_profile: string;
+  imageUrl: string;
+  assessments: Assessment[];
 }
 
 @Component({
@@ -21,9 +28,13 @@ export class AssessmentsComponent implements OnInit, OnDestroy {
   public user: User | GuestUser | null = null;
   private userSubscription: Subscription | undefined;
   userRole: string | null = null;
-  courses: any[] = [];
-  selectedCourse: any = null;
+  courses: Course[] = [];
+  filteredCourses: Course[] = [];
+  selectedCourse: Course | null = null;
   assessments: Assessment[] = [];
+  filteredAssessments: Assessment[] = [];
+  searchTerm: string = '';
+  sortMenuOpen: boolean = false;
 
   constructor(
     private supabaseService: SupabaseService,
@@ -35,7 +46,6 @@ export class AssessmentsComponent implements OnInit, OnDestroy {
     this.userSubscription = this.supabaseService.currentUser.subscribe(
       (user) => {
         this.user = user;
-        console.log('Current user:', this.user);
         this.userRole = this.getUserRole();
         this.fetchCourses();
       },
@@ -58,46 +68,64 @@ export class AssessmentsComponent implements OnInit, OnDestroy {
   fetchCourses() {
     try {
       this.courses = this.dataService.getCourses();
-      console.log('Courses loaded:', this.courses);
+      this.filteredCourses = this.courses;
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
   }
 
-  selectCourse(course: any) {
+  selectCourse(course: Course) {
     this.selectedCourse = course;
     this.assessments = course.assessments || [];
-    console.log('Selected course:', course);
-    console.log('Assessments loaded:', this.assessments);
+    this.filteredAssessments = this.assessments;
+    this.searchTerm = '';
   }
 
   deselectCourse() {
     this.selectedCourse = null;
     this.assessments = [];
+    this.filteredAssessments = [];
+    this.searchTerm = '';
   }
 
-  addAssessment(assessmentName: string) {
-    if (assessmentName.trim()) {
-      const newAssessment: Assessment = { name: assessmentName, dueDate: new Date() };
-      this.assessments.push(newAssessment);
-      console.log('Assessment added:', newAssessment);
-      // Optionally, update the assessments in the data service if necessary
-      if (this.selectedCourse) {
-        this.selectedCourse.assessments.push(newAssessment);
-        this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
-        console.log('Course updated with new assessment:', this.selectedCourse);
-      }
-    }
+  filterCourses() {
+    this.filteredCourses = this.courses.filter(course =>
+      course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
-  removeAssessment(assessment: Assessment) {
-    this.assessments = this.assessments.filter((a: Assessment) => a !== assessment);
-    console.log('Assessment removed:', assessment);
-    // Optionally, update the assessments in the data service if necessary
+  filterAssessments() {
     if (this.selectedCourse) {
-      this.selectedCourse.assessments = this.selectedCourse.assessments.filter((a: Assessment) => a !== assessment);
-      this.dataService.setCourse(this.selectedCourse); // Update the course data in the service
-      console.log('Course updated after assessment removal:', this.selectedCourse);
+      this.filteredAssessments = this.selectedCourse.assessments.filter(assessment =>
+        assessment.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     }
+  }
+
+  toggleSortMenu() {
+    this.sortMenuOpen = !this.sortMenuOpen;
+  }
+
+  sortCourses(order: 'asc' | 'desc') {
+    this.filteredCourses.sort((a, b) => {
+      if (order === 'asc') {
+        return a.course.localeCompare(b.course);
+      } else {
+        return b.course.localeCompare(a.course);
+      }
+    });
+    this.sortMenuOpen = false;
+  }
+
+  sortAssessments(order: 'asc' | 'desc') {
+    this.filteredAssessments.sort((a, b) => {
+      if (order === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    this.sortMenuOpen = false;
   }
 }
