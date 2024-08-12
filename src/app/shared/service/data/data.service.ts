@@ -5312,9 +5312,14 @@ export class DataService {
             { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11), score: '10/12' },
-            { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9), score: '20/20'  }
+            { name: 'Algebra Homework 1', 
+              dueDate: new Date(2024, 7, 11), 
+              score: '10/12',  
+              details: 'This assignment covers the basics of plant biology, including plant structure, function, and growth.',
+              resources: '/assets/courses/teach.pdf' ,
+            },
           ],
+          
           exams: [
             { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15), score: '52/60'  }
           ]
@@ -5330,8 +5335,17 @@ export class DataService {
           ],
           assignments: [
             { name: 'Operations Homework', dueDate: new Date(2024, 7, 20), score: '10/15'  },
-            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25), score: '12/20'  }
+            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25), score: '12/20'  },
+            { 
+              name: 'Operations Homework 2', 
+              dueDate: new Date(2024, 7, 28), 
+              score: '13/15',
+              resources: [
+                { name: 'Operations Guide', link: 'assets/courses/teach.pdf' }
+              ]
+            }
           ],
+          
           exams: [
             { name: 'Operations Test', dueDate: new Date(2024, 7, 28), score: '50/60'  }
           ]
@@ -5347,8 +5361,17 @@ export class DataService {
           ],
           assignments: [
             { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
-            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10), score: '11/15' }
+            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10), score: '11/15' },
+            { 
+              name: 'Quadratic Homework 2', 
+              dueDate: new Date(2024, 8, 15), 
+              score: '12/12',
+              resources: [
+                { name: 'Quadratic Guide', link: 'assets/courses/teach.pdf' }
+              ]
+            }
           ],
+          
           exams: [
             { name: 'Final Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
           ]
@@ -5408,8 +5431,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+              { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { 
+                name: 'Mechanics Homework 2', 
+                dueDate: new Date(2024, 7, 22), 
+                score: '11/12',
+                resources: [
+                  { name: 'Mechanics Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
             ]
@@ -5425,8 +5457,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
+              { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  },
+              { 
+                name: 'Newton Homework 2', 
+                dueDate: new Date(2024, 8, 6), 
+                score: '12/12',
+                resources: [
+                  { name: 'Newton Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
             ]
@@ -5442,8 +5483,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-              { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
+              { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  },
+              { 
+                name: 'Energy Homework 2', 
+                dueDate: new Date(2024, 8, 20), 
+                score: '12/12',
+                resources: [
+                  { name: 'Energy Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
             ]
@@ -5500,8 +5550,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-              { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
+              { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' },
+              { 
+                name: 'Molecules Homework 2', 
+                dueDate: new Date(2024, 7, 28), 
+                score: '12/12',
+                resources: [
+                  { name: 'Molecules Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
             ]
@@ -5517,8 +5576,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-              { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
+              { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' },
+              { 
+                name: 'Reactions Homework 2', 
+                dueDate: new Date(2024, 8, 18), 
+                score: '12/12',
+                resources: [
+                  { name: 'Reactions Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
             ]
@@ -5534,8 +5602,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-              { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
+              { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' },
+              { 
+                name: 'Stereochemistry Homework 2', 
+                dueDate: new Date(2024, 8, 30), 
+                score: '11/12',
+                resources: [
+                  { name: 'Stereochemistry Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
             ]
@@ -5594,8 +5671,18 @@ export class DataService {
             ],
             assignments: [
               { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+              { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { 
+                name: 'Botany Homework 2', 
+                dueDate: new Date(2024, 7, 22), 
+                score: '11/12',
+                resources: [
+                  { name: 'Botany Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
+            
             exams: [
               { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
             ]

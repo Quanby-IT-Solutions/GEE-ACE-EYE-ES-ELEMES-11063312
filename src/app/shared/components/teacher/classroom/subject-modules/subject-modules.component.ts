@@ -253,4 +253,48 @@ export class SubjectModulesComponent implements OnInit {
       material.index = index + 1;
     });
   }
+
+// Properties to manage assignment details view and selected assignment
+showAssignmentDetails: boolean = false;
+selectedAssignment: any = null;
+
+// Method to show the details of a selected assignment
+showDetails(index: number): void {
+  // Retrieve the selected assignment based on the index
+  this.selectedAssignment = this.course.modules[this.selectedModuleIndex].assignments[index];
+
+  // Log the selected assignment to ensure it's being set correctly
+  console.log('Selected Assignment:', this.selectedAssignment);
+
+  // Display the assignment details
+  this.showAssignmentDetails = true;
+}
+
+// Method to hide the assignment details and return to the assignment list
+hideDetails(): void {
+  this.selectedAssignment = null;
+  this.showAssignmentDetails = false;
+}
+
+// Method to handle file selection for submission
+onFileSelected(event: any): void {
+  const file = event.target.files[0];
+  if (file && this.selectedAssignment) {
+    this.selectedAssignment.submittedFile = file;
+  }
+}
+
+// Method to submit the selected assignment
+submitAssignment(): void {
+  if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
+    // Mark the assignment as submitted
+    this.selectedAssignment.submitted = true;
+    alert('Assignment submitted successfully!');
+  } else {
+    alert('Please select a file to submit.');
+  }
+}
+
+
+
 }
