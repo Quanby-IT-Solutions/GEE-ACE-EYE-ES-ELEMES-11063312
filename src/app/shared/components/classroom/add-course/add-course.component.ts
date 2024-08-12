@@ -1,19 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { DataService } from 'src/app/shared/service/data/data.service';
 import { CommonModule } from '@angular/common';
-
-interface CourseMaterial {
-  title: string;
-  description: string;
-  fileName: string;
-}
-
-interface CourseModule {
-  title: string;
-  materials: CourseMaterial[];
-  assignments: CourseMaterial[];
-  exams: CourseMaterial[];
-}
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-course',
@@ -23,6 +11,9 @@ interface CourseModule {
   imports: [FormsModule, CommonModule],
 })
 export class AddCourseComponent {
+  @ViewChild('moduleTitleInput') moduleTitleInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('moduleDescriptionInput') moduleDescriptionInput!: ElementRef<HTMLTextAreaElement>;
+
   @ViewChild('videoInput') videoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('audioInput') audioInput!: ElementRef<HTMLInputElement>;
   @ViewChild('pdfInput') pdfInput!: ElementRef<HTMLInputElement>;
@@ -37,25 +28,16 @@ export class AddCourseComponent {
   @ViewChild('spreadsheetInput') spreadsheetInput!: ElementRef<HTMLInputElement>;
   @ViewChild('adobeCaptivateInput') adobeCaptivateInput!: ElementRef<HTMLInputElement>;
 
-  coverPhotoUrl: string | null = null;
   courseTitle: string = '';
   courseDescription: string = '';
   courseCourse: string = '';
   courseSection: string = '';
+  enrollmentKey: string = ''; // Added enrollmentKey field
+  coverPhotoUrl: string | null = null;
 
-  modules: CourseModule[] = [
-    {
-      title: '',
-      materials: [],
-      assignments: [],
-      exams: []
-    }
-  ];
-
-  currentUploadType: string = '';
-  currentModuleIndex: number = -1;
-  currentItemIndex: number = -1;
-  isUploadModalOpen: boolean = false;
+  modules: any[] = [];
+  currentModuleIndex: number | null = null;
+  currentItemIndex: number | null = null;
 
   contentTypes = [
     { type: 'video', label: 'Video', description: 'Add a video' },
@@ -72,6 +54,11 @@ export class AddCourseComponent {
     { type: 'spreadsheet', label: 'Spreadsheet', description: 'Add a spreadsheet' },
     { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
   ];
+
+  isUploadModalOpen: boolean = false; // Added property to track modal state
+  uploadTarget: { type: string, moduleIndex: number, itemIndex: number } | null = null; // Added property to track upload target
+
+  constructor(private dataService: DataService) {}
 
   onCoverPhotoUpload(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -91,12 +78,16 @@ export class AddCourseComponent {
   }
 
   addModule(): void {
-    this.modules.push({
+    const newModule = {
       title: '',
+      description: '',
+      about: '',
       materials: [],
       assignments: [],
       exams: []
-    });
+    };
+    this.modules.push(newModule);
+    this.currentModuleIndex = this.modules.length - 1;
   }
 
   addMaterial(moduleIndex: number): void {
@@ -105,6 +96,7 @@ export class AddCourseComponent {
       description: '',
       fileName: ''
     });
+    this.currentItemIndex = this.modules[moduleIndex].materials.length - 1;
   }
 
   addAssignment(moduleIndex: number): void {
@@ -113,6 +105,7 @@ export class AddCourseComponent {
       description: '',
       fileName: ''
     });
+    this.currentItemIndex = this.modules[moduleIndex].assignments.length - 1;
   }
 
   addExam(moduleIndex: number): void {
@@ -121,25 +114,24 @@ export class AddCourseComponent {
       description: '',
       fileName: ''
     });
+    this.currentItemIndex = this.modules[moduleIndex].exams.length - 1;
   }
 
   openUploadModal(type: string, moduleIndex: number, itemIndex: number): void {
-    this.currentUploadType = type;
-    this.currentModuleIndex = moduleIndex;
-    this.currentItemIndex = itemIndex;
+    this.uploadTarget = { type, moduleIndex, itemIndex };
     this.isUploadModalOpen = true;
   }
 
   closeUploadModal(): void {
     this.isUploadModalOpen = false;
+    this.uploadTarget = null;
   }
 
-  triggerFileUpload(contentType: { type: string }): void {
+  triggerFileUpload(contentType: { type: string; label: string; description: string }): void {
     const inputElement = this.getInputElement(contentType.type);
     if (inputElement) {
       inputElement.click();
     }
-    this.closeUploadModal();
   }
 
   getInputElement(type: string): HTMLInputElement | null {
@@ -177,32 +169,42 @@ export class AddCourseComponent {
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    const fileName = input.files && input.files.length > 0 ? input.files[0].name : '';
+    if (input.files && input.files.length > 0 && this.uploadTarget !== null) {
+      const fileName = input.files[0].name;
+      const { type, moduleIndex, itemIndex } = this.uploadTarget;
 
-    if (fileName && this.currentModuleIndex > -1 && this.currentItemIndex > -1) {
-      switch (this.currentUploadType) {
-        case 'material':
-          this.modules[this.currentModuleIndex].materials[this.currentItemIndex].fileName = fileName;
-          break;
-        case 'assignment':
-          this.modules[this.currentModuleIndex].assignments[this.currentItemIndex].fileName = fileName;
-          break;
-        case 'exam':
-          this.modules[this.currentModuleIndex].exams[this.currentItemIndex].fileName = fileName;
-          break;
+      if (type === 'material') {
+        this.modules[moduleIndex].materials[itemIndex].fileName = fileName;
+      } else if (type === 'assignment') {
+        this.modules[moduleIndex].assignments[itemIndex].fileName = fileName;
+      } else if (type === 'exam') {
+        this.modules[moduleIndex].exams[itemIndex].fileName = fileName;
       }
     }
   }
 
   saveCourse(): void {
-    console.log('Course saved', {
-      title: this.courseTitle,
-      description: this.courseDescription,
-      section: this.courseSection,
-      course: this.courseCourse,
-      coverPhoto: this.coverPhotoUrl,
-      modules: this.modules
-    });
+    const newCourse = {
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/bini.jpeg',
+      course: this.courseTitle,
+      subject: this.courseCourse,
+      block: this.courseSection,
+      enrollmentKey: this.enrollmentKey, // Save enrollment key
+      time: '10:00 - 11:00',
+      grade: 'N/A',
+      progress: '0',
+      imageUrl: this.coverPhotoUrl,
+      enrolled: 'no',
+      modules: this.modules,
+      enrolledStudents: []
+    };
+    
+    console.log('New Course:', newCourse); // Debugging: Log the new course to verify the data structure
+
+    this.dataService.addCourse(newCourse);
+    
+    console.log('Course list after addition:', this.dataService.getCourses()); // Debugging: Log the updated list of courses
   }
 
   cancelCourseCreation(): void {

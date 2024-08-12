@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { routes } from 'src/app/shared/service/routes/routes';
+import { UserService } from 'src/app/shared/service/user/user.service'; // Import the UserService
 
 interface Material {
   title: string;
@@ -41,6 +42,8 @@ interface Course {
   progress: string;
   imageUrl: string;
   modules: Module[];
+  enrollmentKey: string;
+  enrolledStudents: { name: string; email: string }[];
 }
 
 @Component({
@@ -56,15 +59,23 @@ export class ExploreCoursesComponent implements OnInit {
   searchTerm: string = '';
   sortMenuOpen: boolean = false;
 
-  constructor(private dataService: DataService, private router: Router) {}
+  enrollmentModalOpen: boolean = false;
+  selectedCourse: Course | null = null;
+  enrollmentKeyInput: string = '';
+
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private userService: UserService // Inject the UserService
+  ) {}
 
   ngOnInit(): void {
     this.fetchCourses();
   }
 
   fetchCourses(): void {
-    this.courses = this.dataService.getCourses(); // Fetches both enrolled and not enrolled courses
-    this.filteredCourses = [...this.courses]; // Make sure to copy the courses array
+    this.courses = this.dataService.getCourses();
+    this.filteredCourses = [...this.courses];
   }
 
   filterCourses(): void {
@@ -84,15 +95,51 @@ export class ExploreCoursesComponent implements OnInit {
         ? a.course.toLowerCase().localeCompare(b.course.toLowerCase())
         : b.course.toLowerCase().localeCompare(a.course.toLowerCase())
     );
-    this.sortMenuOpen = false; // Close the sort menu after sorting
+    this.sortMenuOpen = false;
   }
 
   selectCourse(course: Course): void {
-    this.router.navigate([routes.explore_courses_modules], { state: { course } });
+    this.selectedCourse = course;
+    this.enrollmentModalOpen = true;
   }
+
+  closeEnrollmentModal(): void {
+    this.enrollmentModalOpen = false;
+    this.enrollmentKeyInput = '';
+    this.selectedCourse = null;
+  }
+
+  async enrollInCourse(): Promise<void> {
+    if (this.selectedCourse && this.enrollmentKeyInput === this.selectedCourse.enrollmentKey) {
+      try {
+        const currentUser = await this.userService.getUser(); // Fetch the authenticated user's details
+        
+        // Construct the full name using first_name and last_name
+        const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
+        const student = { name: fullName, email: currentUser.email };
+
+        this.dataService.enrollStudentInCourse(this.courses.indexOf(this.selectedCourse), student);
+
+        // Mark the course as enrolled
+        this.selectedCourse.enrolled = 'yes';
+
+        this.dataService.updateCourse(this.selectedCourse); // Update the course in the service
+        alert(`${fullName} has been successfully enrolled in the course!`);
+        this.closeEnrollmentModal();
+        this.router.navigate([routes.subject_modules]); // Navigate to the subjects page
+      } catch (error) {
+        console.error('Error enrolling in course:', error);
+        alert('There was an issue enrolling in the course. Please try again.');
+      }
+    } else {
+      alert('Incorrect enrollment key. Please try again.');
+    }
 }
 
 
-
-
-
+  clearLocalStorage(): void {
+    localStorage.clear();
+    this.fetchCourses(); // Refresh the courses list
+    alert('Local storage cleared. Courses have been refreshed.');
+  }
+}

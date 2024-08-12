@@ -10,6 +10,7 @@ import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { GuestUser } from 'src/app/shared/models/model';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
+import { DataService } from 'src/app/shared/service/data/data.service';
 
 @Component({
   selector: 'app-subject-modules',
@@ -26,57 +27,46 @@ export class SubjectModulesComponent implements OnInit {
   isEditing: boolean = false; // Track if editing mode is enabled
 
   searchTerm: string = '';
-  filteredEnrolledStudents: any[] = [];
-  filteredNotEnrolledStudents: any[] = [];
+  allUsers: any[] = []; // Track all users
   showEnrollModal: boolean = false;
 
-  public user: User | GuestUser | null = null;
-
   private userSubscription: Subscription | undefined;
+
+  public user: User | GuestUser | null = null;
   role: string | null = null;
 
-  constructor(private router: Router, private sanitizer: DomSanitizer,   private userService: UserService,
-    private supabaseService: SupabaseService) {}
+  constructor(
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private userService: UserService,
+    private supabaseService: SupabaseService,
+    private dataService: DataService,
 
+  ) {}
 
-    getUserRole() {
-      return this.role;
-    }
-
+  getUserRole() {
+    return this.role;
+  }
 
   async ngOnInit() {
+    const _user = await this.userService.getUser();
+    this.role = _user.role;
+
+    this.userSubscription = this.userService.currentUser.subscribe((user) => {
+      this.user = user;
+    });
+
     this.course = history.state.course || this.fetchCourseData();
 
     if (!this.course) {
       this.router.navigate(['/']);  // Redirect if course data is missing
     } else {
       // Ensure consistent structure for students
-      this.course.enrolledStudents = this.course.enrolledStudents.map((student: any) => ({
-        name: student.name,
-        email: student.email || '',
-        progress: student.progress || 0,
-      }));
+      this.course.enrolledStudents = this.course.enrolledStudents || [];
 
-      this.course.notEnrolledStudents = this.course.notEnrolledStudents.map((student: any) => ({
-        name: student.name,
-        email: student.email || '',
-        progress: student.progress || 0,
-      }));
-
-      // Initialize filtered students with full data from the course object
-      this.filteredEnrolledStudents = [...this.course.enrolledStudents];
-      this.filteredNotEnrolledStudents = [...this.course.notEnrolledStudents];
+      // Fetch all users
+      this.allUsers = await this.userService.getAllUsers();
     }
-
-    const _user = await this.userService.getUser();
-    console.log('Dashboard - Authenticated User Role:', _user.role);
-    this.role = _user.role;
-
-    this.userSubscription = this.supabaseService.currentUser.subscribe(
-      (user) => {
-        this.user = user;
-      }
-    );
   }
 
   fetchCourseData(): any {
@@ -164,14 +154,64 @@ export class SubjectModulesComponent implements OnInit {
     this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
   }
 
-  enrollStudent(student: any): void {
-    this.course.enrolledStudents.push(student);
-    const index = this.course.notEnrolledStudents.indexOf(student);
-    if (index !== -1) {
-      this.course.notEnrolledStudents.splice(index, 1);
+  // enrollStudent(user: any): void {
+  //   // Check if the user is already enrolled
+  //   const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
+
+  //   if (!alreadyEnrolled) {
+  //       // Add the user to the enrolledStudents list
+  //       this.course.enrolledStudents.push({
+  //           name: user.name,
+  //           email: user.email,
+  //           progress: 0 // You can adjust the default progress if needed
+  //       });
+
+  //       // Save the updated course data to local storage
+  //       localStorage.setItem('courseData', JSON.stringify(this.course));
+
+  //       // Remove the user from the allUsers list to prevent re-enrollment
+  //       const index = this.allUsers.indexOf(user);
+  //       if (index !== -1) {
+  //           this.allUsers.splice(index, 1);
+  //       }
+  //   }
+  // }
+
+  // openEnrollModal(): void {
+  //   this.userService.getAllUsers().then(users => {
+  //     this.allUsers = users; // Fetch and assign all users to the allUsers array
+  //   }).catch(error => {
+  //     console.error('Failed to fetch users:', error);
+  //   });
+  //   this.showEnrollModal = true;
+  // }
+
+  enrollStudent(user: any): void {
+    // Check if the user is already enrolled
+    const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
+
+    if (!alreadyEnrolled) {
+        // Construct the full name using first_name and last_name
+        const fullName = `${user.first_name} ${user.last_name}`;
+        
+        // Add the user to the enrolledStudents list
+        this.course.enrolledStudents.push({
+            name: fullName,
+            email: user.email,
+            progress: 0 // You can adjust the default progress if needed
+        });
+
+        // Update the course data in the service
+        this.dataService.updateCourse(this.course);
+
+        // Remove the user from the allUsers list to prevent re-enrollment
+        this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+
+        // Notify the user
+        alert(`${fullName} has been successfully enrolled in the course.`);
     }
-    this.searchStudents(); // Update search results
-  }
+}
+
 
   openEnrollModal(): void {
     this.showEnrollModal = true;
@@ -184,12 +224,8 @@ export class SubjectModulesComponent implements OnInit {
   searchStudents(): void {
     const term = this.searchTerm.toLowerCase();
 
-    this.filteredEnrolledStudents = this.course.enrolledStudents.filter((student: any) =>
+    this.allUsers = this.allUsers.filter((student: any) =>
       student.name.toLowerCase().includes(term) || student.email.toLowerCase().includes(term)
-    );
-
-    this.filteredNotEnrolledStudents = this.course.notEnrolledStudents.filter((student: any) =>
-      student.name.toLowerCase().includes(term) || (student.email && student.email.toLowerCase().includes(term))
     );
   }
 

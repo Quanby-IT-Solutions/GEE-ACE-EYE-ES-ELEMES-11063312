@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
-import { routes } from 'src/app/shared/service/routes/routes';
 import { Subscription } from 'rxjs';
 import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { GuestUser } from 'src/app/shared/models/model';
+import { routes } from 'src/app/shared/service/routes/routes';
 
 interface Material {
   title: string;
@@ -55,18 +54,19 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   searchTerm: string = '';
-  sortMenuOpen: boolean = false;
-  public user: User | GuestUser | null = null;
+  sortMenuOpen: boolean = false;  
 
-  private userSubscription: Subscription | undefined;
-  role: string | null = null;
-
+  
   constructor(
     private dataService: DataService,
     private router: Router,
-    private userService: UserService,
-    private supabaseService: SupabaseService
+    private userService: UserService
   ) {}
+
+  private userSubscription: Subscription | undefined;
+
+  public user: User | GuestUser | null = null;  
+  role: string | null = null;
 
   getUserRole() {
     return this.role;
@@ -76,10 +76,9 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     this.fetchCourses();
 
     const _user = await this.userService.getUser();
-    console.log('Dashboard - Authenticated User Role:', _user.role);
     this.role = _user.role;
 
-    this.userSubscription = this.supabaseService.currentUser.subscribe(
+    this.userSubscription = this.userService.currentUser.subscribe(
       (user) => {
         this.user = user;
       }
@@ -93,7 +92,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   }
 
   fetchCourses(): void {
-    this.courses = this.dataService.getCourses().filter((course) => course.enrolled === 'yes');
+    this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
     this.filteredCourses = this.courses;
   }
 
@@ -115,8 +114,11 @@ export class SubjectsComponent implements OnInit, OnDestroy {
         ? a.course.toLowerCase().localeCompare(b.course.toLowerCase())
         : b.course.toLowerCase().localeCompare(a.course.toLowerCase())
     );
-    this.sortMenuOpen = false; // Close the sort menu after sorting
+    this.sortMenuOpen = false;
   }
+
+
+
 
   selectCourse(course: Course): void {
     this.router.navigate([routes.subject_modules], { state: { course } });

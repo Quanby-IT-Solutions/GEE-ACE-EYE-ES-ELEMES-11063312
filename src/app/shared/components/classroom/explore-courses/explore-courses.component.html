@@ -1,91 +1,117 @@
 <div class="container mx-auto p-4">
-    <h2 class="text-3xl font-bold mb-6">Explore Courses</h2>
-  
-    <div class="flex mb-8 items-center justify-between">
+  <h2 class="text-3xl font-bold mb-6">Explore Courses</h2>
+
+  <div class="flex mb-8 items-center justify-between">
       <!-- Search Bar -->
       <div class="flex items-center w-3/4 relative bg-white shadow-md rounded-lg">
-        <input
-          type="text"
-          [(ngModel)]="searchTerm"
-          (ngModelChange)="filterCourses()"
-          placeholder="Search Course Name/Mentor"
-          class="w-full py-3 px-5 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-        />
-        <button
-          (click)="filterCourses()"
-          class="absolute right-0 bg-green-600 text-white rounded-r-lg px-6 py-3 hover:bg-green-700 transition"
-        >
-          Search
-        </button>
+          <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="filterCourses()"
+              placeholder="Search Course Name/Mentor"
+              class="w-full py-3 px-5 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+          />
+          <button
+              (click)="filterCourses()"
+              class="absolute right-0 bg-green-600 text-white rounded-r-lg px-6 py-3 hover:bg-green-700 transition"
+          >
+              Search
+          </button>
       </div>
-  
+
       <!-- Sort Button -->
       <div class="relative">
-        <button
-          (click)="toggleSortMenu()"
-          class="bg-green-600 text-white rounded-lg px-4 py-3 hover:bg-green-700 transition-colors flex items-center space-x-2"
-        >
-          <span>Sort Alphabetically</span>
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div
-          *ngIf="sortMenuOpen"
-          class="absolute mt-2 w-full bg-white shadow-lg rounded-md py-2 z-10"
-        >
           <button
-            (click)="sortCourses('asc'); $event.stopPropagation();"
-            class="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
+              (click)="toggleSortMenu()"
+              class="bg-green-600 text-white rounded-lg px-4 py-3 hover:bg-green-700 transition-colors flex items-center space-x-2"
           >
-            Sort A-Z
+              <span>Sort Alphabetically</span>
+              <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
           </button>
-          <button
-            (click)="sortCourses('desc'); $event.stopPropagation();"
-            class="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
+          <div
+              *ngIf="sortMenuOpen"
+              class="absolute mt-2 w-full bg-white shadow-lg rounded-md py-2 z-10"
           >
-            Sort Z-A
-          </button>
-        </div>
-      </div>
-    </div>
-  
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-      <div
-        *ngFor="let course of filteredCourses"
-        class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-        (click)="selectCourse(course)"
-      >
-        <div
-          class="relative h-40"
-          [ngStyle]="{
-            'background-image': 'url(' + course.imageUrl + ')'
-          }"
-          style="background-size: cover; background-position: center;"
-        >
-          <div class="absolute inset-0 bg-black opacity-30"></div>
-        </div>
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-3">{{ course.course }}</h3>
-          <div class="flex items-center justify-between text-gray-500 text-sm">
-            <div class="flex items-center">
-              <img
-                [src]="course.instructor_profile"
-                alt="Instructor Profile"
-                class="w-8 h-8 rounded-full mr-2"
-              />
-              <p class="text-gray-600 text-sm">{{ course.instructor }}</p>
-            </div>
-            <span>{{ course.time }}</span>
+              <button
+                  (click)="sortCourses('asc'); $event.stopPropagation();"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
+              >
+                  Sort A-Z
+              </button>
+              <button
+                  (click)="sortCourses('desc'); $event.stopPropagation();"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
+              >
+                  Sort Z-A
+              </button>
           </div>
-        </div>
       </div>
-    </div>
   </div>
-  
+
+  <!-- Clear Local Storage Button -->
+  <div class="mb-4">
+      <button 
+          (click)="clearLocalStorage()" 
+          class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition"
+      >
+          Clear Local Storage
+      </button>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      <div
+          *ngFor="let course of filteredCourses"
+          class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+          (click)="selectCourse(course)"
+      >
+          <div
+              class="relative h-40"
+              [ngStyle]="{
+                  'background-image': 'url(' + course.imageUrl + ')'
+              }"
+              style="background-size: cover; background-position: center;"
+          >
+              <div class="absolute inset-0 bg-black opacity-30"></div>
+          </div>
+          <div class="p-4">
+              <h3 class="text-xl font-semibold mb-3">{{ course.course }}</h3>
+              <div class="flex items-center justify-between text-gray-500 text-sm">
+                  <div class="flex items-center">
+                      <img
+                          [src]="course.instructor_profile"
+                          alt="Instructor Profile"
+                          class="w-8 h-8 rounded-full mr-2"
+                      />
+                      <p class="text-gray-600 text-sm">{{ course.instructor }}</p>
+                  </div>
+                  <span>{{ course.time }}</span>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Enrollment Key Modal -->
+  <div *ngIf="enrollmentModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+          <h3 class="text-xl font-semibold mb-4">Enter Enrollment Key</h3>
+          <input
+              type="text"
+              [(ngModel)]="enrollmentKeyInput"
+              placeholder="Enter the enrollment key"
+              class="w-full p-3 border border-gray-300 rounded-lg mb-4"
+          />
+          <div class="flex justify-end space-x-4">
+              <button (click)="enrollInCourse()" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">Enroll</button>
+              <button (click)="closeEnrollmentModal()" class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition">Cancel</button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -49,5 +49,18 @@ export class UserService {
     return data;
   }
  
+
+  async getAllUsers() {
+    const { data, error } = await this.supabaseService.client
+      .from('users_tb')
+      .select('*');
+      
+    if (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
+    console.log(data);
+    return data;
+  }
   
 }

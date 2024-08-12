@@ -29,7 +29,19 @@ export class DataService {
   message: BehaviorSubject<string>;
   constructor(private http: HttpClient) {
     this.message = new BehaviorSubject(this.messages);
+
+      // Initialize courses from localStorage or use default courses
+      this.courses = this.getCoursesFromStorage() || this.defaultCourses;
+      // If localStorage was empty and default courses were used, save them to localStorage
+      if (!localStorage.getItem('courses')) {
+        this.saveCoursesToStorage();
+      }
   }
+
+
+
+
+
   nextmessage(data: string) {
     this.message.next(data);
   }
@@ -5274,7 +5286,7 @@ export class DataService {
 
   // courses, tasks, assessments, grades
   private course: any;
-  private courses = [
+  private defaultCourses = [
     {
       instructor: 'Michael Maxwell',
       instructor_profile: 'assets/img/bini.jpeg',
@@ -5286,7 +5298,6 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/math.png',
       enrolled: 'yes',
-
       modules: [
         {
           title: 'Introduction to Algebra',
@@ -5332,74 +5343,830 @@ export class DataService {
             { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5) , score: '10/12' },
-            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10) , score: '11/15' }
+            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
+            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10), score: '11/15' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 20) , score: '32/60' }
+            { name: 'Final Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
           ]
         }
       ],
       enrolledStudents: [
-        { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-        { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-        { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-        { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-        { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-        { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-        { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-        { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-        { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-        { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-        { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-        { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-        { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-        { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-        { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-        { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-        { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-        { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-        { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-        { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-      ],
-      
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
+        { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20' },
+        { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60' },
+        { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40' },
+        { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50' },
+        { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30' },
+        { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70' },
+        { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90' },
+        { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60' },
+        { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40' },
+        { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80' },
+        { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50' },
+        { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70' },
+        { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30' },
+        { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60' },
+        { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90' },
+        { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70' },
+        { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50' },
+        { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40' },
+        { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60' },
+        { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80' }
       ]
-      
     },
+
+
+    
+
+      {
+        instructor: 'Chrisma Maxwell',
+        instructor_profile: 'assets/img/bini.jpeg', 
+        course: 'Physics 201',
+        subject: 'Mechanics',
+        block: 'B',
+        time: '10:00 - 11:00',
+        grade: '92',
+        progress: '85',
+        imageUrl: 'assets/img/physics.png',
+        enrolled: 'no',
+  
+        modules: [
+          {
+            title: 'Introduction to Mechanics',
+            description: 'Basic Concepts in Mechanics',
+            about: 'This module introduces the foundational concepts in mechanics, including force, motion, and energy.',
+            materials: [
+              { title: 'Introduction to Mechanics - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Introduction to Mechanics - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Mechanics', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+              { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
+            ]
+          },
+          {
+            title: 'Newton’s Laws of Motion',
+            description: 'Understanding Newton’s Laws',
+            about: 'This module provides a detailed study of Newton’s three laws of motion and their practical applications.',
+            materials: [
+              { title: 'Newton’s Laws - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Newton’s Laws - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Newton’s Laws', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+              { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
+            ],
+            exams: [
+              { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
+            ]
+          },
+          {
+            title: 'Energy and Work',
+            description: 'Conservation of Energy',
+            about: 'This module explores the concepts of energy, work, and the conservation of mechanical energy.',
+            materials: [
+              { title: 'Energy and Work - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Energy and Work - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Energy and Work', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
+              { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Joshua Corda',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'Chemistry 301',
+        subject: 'Organic Chemistry',
+        block: 'C',
+        time: '11:00 - 12:00',
+        grade: '91',
+        progress: '85',
+        imageUrl: 'assets/img/chemistry.png',
+        enrolled: 'no',
+  
+        modules: [
+          {
+            title: 'Organic Molecules and Structures',
+            description: 'Introduction to Organic Molecules',
+            about: 'This module introduces the structure and bonding of organic molecules, including hydrocarbons and functional groups.',
+            materials: [
+              { title: 'Organic Molecules - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Organic Molecules - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Organic Molecules', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
+              { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
+            ]
+          },
+          {
+            title: 'Chemical Reactions in Organic Chemistry',
+            description: 'Types of Organic Reactions',
+            about: 'This module covers various types of chemical reactions in organic chemistry, such as substitution, addition, and elimination reactions.',
+            materials: [
+              { title: 'Organic Reactions - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Organic Reactions - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Organic Reactions', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
+              { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
+            ]
+          },
+          {
+            title: 'Stereochemistry',
+            description: 'Understanding Molecular Geometry',
+            about: 'This module focuses on the spatial arrangement of atoms in organic molecules and its implications in chemical reactions.',
+            materials: [
+              { title: 'Stereochemistry - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Stereochemistry - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Stereochemistry', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
+              { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Sean Palacay',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'Biology 101',
+        subject: 'Botany',
+        block: 'D',
+        time: '12:00 - 13:00',
+        grade: '90',
+        progress: '85',
+        imageUrl: 'assets/img/biology.png',
+        enrolled: 'yes',
+  
+        modules: [
+          {
+            title: 'Introduction to Botany',
+            description: 'Basics of Plant Biology',
+            about: 'This module covers the basic principles of plant biology, including plant structure, function, and growth.',
+            materials: [
+              { title: 'Introduction to Botany - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Introduction to Botany - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Botany', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+              { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
+            ]
+          },
+          {
+            title: 'Plant Physiology',
+            description: 'Understanding Plant Processes',
+            about: 'This module explores the physiological processes in plants, such as photosynthesis, respiration, and water transport.',
+            materials: [
+              { title: 'Plant Physiology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Plant Physiology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Plant Physiology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
+              { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
+            ],
+            exams: [
+              { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
+            ]
+          },
+          {
+            title: 'Plant Ecology',
+            description: 'Plants and Their Environment',
+            about: 'This module focuses on the interactions between plants and their environment, including topics like plant communities and ecosystems.',
+            materials: [
+              { title: 'Plant Ecology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Plant Ecology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Plant Ecology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
+              { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Kenneth Belga',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'Computer Science 101',
+        subject: 'Programming',
+        block: 'E',
+        time: '13:00 - 14:00',
+        grade: '93',
+        progress: '85',
+        imageUrl: 'assets/img/compsci.png',
+        enrolled: 'yes',
+  
+        modules: [
+          {
+            title: 'Introduction to Programming',
+            description: 'Getting Started with Code',
+            about: 'This module introduces the fundamentals of programming, including basic syntax, variables, and control structures.',
+            materials: [
+              { title: 'Introduction to Programming - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Introduction to Programming - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Programming', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
+              { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
+            ]
+          },
+          {
+            title: 'Data Structures',
+            description: 'Organizing and Managing Data',
+            about: 'This module covers essential data structures such as arrays, linked lists, and trees, and their applications in programming.',
+            materials: [
+              { title: 'Data Structures - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Data Structures - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Data Structures', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
+              { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
+            ],
+            exams: [
+              { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
+            ]
+          },
+          {
+            title: 'Algorithms and Problem-Solving',
+            description: 'Efficient Coding Techniques',
+            about: 'This module focuses on developing algorithms to solve computational problems efficiently.',
+            materials: [
+              { title: 'Algorithms - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Algorithms - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Algorithms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
+              { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Anton Caesar Cabais',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'History 101',
+        subject: 'World History',
+        block: 'F',
+        time: '14:00 - 15:00',
+        grade: '88',
+        progress: '85',
+        imageUrl: 'assets/img/history.png',
+        enrolled: 'yes',
+  
+        modules: [
+          {
+            title: 'Ancient Civilizations',
+            description: 'Exploring the Foundations of History',
+            about: 'This module explores the major ancient civilizations, including Mesopotamia, Egypt, and the Indus Valley.',
+            materials: [
+              { title: 'Ancient Civilizations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Ancient Civilizations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Ancient Civilizations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+              { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
+            ]
+          },
+          {
+            title: 'Medieval Times',
+            description: 'History of the Middle Ages',
+            about: 'This module covers the key events and developments during the Medieval period, including feudalism, the Crusades, and the rise of nation-states.',
+            materials: [
+              { title: 'Medieval Times - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Medieval Times - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Medieval Times', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+              { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
+            ],
+            exams: [
+              { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
+            ]
+          },
+          {
+            title: 'Modern History',
+            description: 'World Events from 1500 to Present',
+            about: 'This module focuses on significant global events from the Renaissance to the present day, including revolutions, wars, and technological advancements.',
+            materials: [
+              { title: 'Modern History - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Modern History - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Modern History', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
+              { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Joemar Cardino',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'Geography 101',
+        subject: 'Physical Geography',
+        block: 'G',
+        time: '15:00 - 16:00',
+        grade: '81',
+        progress: '65',
+        imageUrl: 'assets/img/georaphy.png',
+        enrolled: 'yes',
+  
+        modules: [
+          {
+            title: 'Introduction to Physical Geography',
+            description: 'Earth’s Physical Features',
+            about: 'This module covers the basic physical features of the Earth, including landforms, climate, and ecosystems.',
+            materials: [
+              { title: 'Introduction to Physical Geography - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Introduction to Physical Geography - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on Physical Geography', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
+              { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
+            ]
+          },
+          {
+            title: 'Weather and Climate',
+            description: 'Understanding Atmospheric Processes',
+            about: 'This module explores the processes that drive weather and climate, including the water cycle, atmospheric circulation, and climate change.',
+            materials: [
+              { title: 'Weather and Climate - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Weather and Climate - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Weather and Climate', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+              { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
+            ]
+          },
+          {
+            title: 'Landforms and Landscapes',
+            description: 'Formation and Evolution of Earth’s Surface',
+            about: 'This module focuses on the processes that shape the Earth’s surface, such as plate tectonics, erosion, and sedimentation.',
+            materials: [
+              { title: 'Landforms and Landscapes - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Landforms and Landscapes - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Landforms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
+              { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      },
+      {
+        instructor: 'Kenneth Aycardo',
+        instructor_profile: 'assets/img/bini.jpeg',
+        course: 'Literature 101',
+        subject: 'English Literature',
+        block: 'H',
+        time: '16:00 - 17:00',
+        grade: '75',
+        progress: '65',
+        imageUrl: 'assets/img/literature.png',
+        enrolled: 'yes',
+  
+        modules: [
+          {
+            title: 'Introduction to English Literature',
+            description: 'Overview of English Literary Works',
+            about: 'This module provides an introduction to the major works and authors in English literature, from Chaucer to modern times.',
+            materials: [
+              { title: 'Introduction to English Literature - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+              { title: 'Introduction to English Literature - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+              { title: 'Supplementary Reading on English Literature', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            ],
+            assignments: [
+              { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
+              { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
+            ],
+            exams: [
+              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
+            ]
+          },
+          {
+            title: 'Poetry and Prose',
+            description: 'Exploring Different Literary Forms',
+            about: 'This module explores the various forms of poetry and prose, including sonnets, novels, and essays, with an emphasis on literary analysis.',
+            materials: [
+              { title: 'Poetry and Prose - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+              { title: 'Poetry and Prose - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+              { title: 'Practice Problems on Poetry and Prose', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            ],
+            assignments: [
+              { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
+              { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
+            ]
+          },
+          {
+            title: 'Shakespeare and His Contemporaries',
+            description: 'The Golden Age of English Drama',
+            about: 'This module focuses on the works of William Shakespeare and his contemporaries, examining their influence on English literature and culture.',
+            materials: [
+              { title: 'Shakespeare - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+              { title: 'Shakespeare - Video Lecture', type: 'video', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 16) },
+              { title: 'Example Problems on Shakespeare', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            ],
+            assignments: [
+              { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
+              { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
+            ],
+            exams: [
+              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
+            ]
+          }
+        ],
+        enrolledStudents: [
+          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
+          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
+          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
+          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
+          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
+          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
+          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
+          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
+          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
+          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
+          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
+          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
+          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
+          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
+          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
+          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
+          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
+          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
+          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
+          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
+        ],
+        
+      
+        
+      }
+    
+  ];
+
+  private courses: any[];
+
+
+  addCourse(course: any): void {
+    this.courses.push(course);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  updateCourse(updatedCourse: any): void {
+    const index = this.courses.findIndex(course => course.course === updatedCourse.course);
+    if (index !== -1) {
+      this.courses[index] = updatedCourse;
+      this.saveCoursesToStorage();
+    }
+  }
+
+  addModuleToCourse(courseIndex: number, module: any): void {
+    this.courses[courseIndex].modules.push(module);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  addMaterialToModule(courseIndex: number, moduleIndex: number, material: any): void {
+    this.courses[courseIndex].modules[moduleIndex].materials.push(material);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  addAssignmentToModule(courseIndex: number, moduleIndex: number, assignment: any): void {
+    this.courses[courseIndex].modules[moduleIndex].assignments.push(assignment);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  addExamToModule(courseIndex: number, moduleIndex: number, exam: any): void {
+    this.courses[courseIndex].modules[moduleIndex].exams.push(exam);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  getCourses(): any[] {
+    return this.courses;
+  }
+
+  getStudents(): any[] {
+    return [
+      { name: 'Alice Johnson', email: 'AliceJohnson@gmail.com' },
+      { name: 'Bob Brown', email: 'BobBrown@gmail.com' },
+      // Add additional students as needed...
+    ];
+  }
+
+  enrollStudentInCourse(courseIndex: number, student: any): void {
+    const course = this.courses[courseIndex];
+    course.enrolledStudents.push(student);
+    this.saveCoursesToStorage(); // Save to localStorage
+  }
+
+  private saveCoursesToStorage(): void {
+    localStorage.setItem('courses', JSON.stringify(this.courses));
+  }
+
+  private getCoursesFromStorage(): any[] | null {
+    const storedCourses = localStorage.getItem('courses');
+    return storedCourses ? JSON.parse(storedCourses) : null;
+  }
+
+  // Example method to get schedule information
+  getSchedules() {
+    return this.courses.map(course => {
+      const tasks = course.modules.flatMap((module: { assignments: any; }) => module.assignments);
+      const assessments = course.modules.flatMap((module: { exams: any; }) => module.exams);
+  
+      return {
+        course: course.course,
+        subject: course.subject,
+        block: course.block,
+        time: course.time,
+        tasks: tasks.map((task: { name: any; dueDate: any; }) => ({
+          name: task.name,
+          dueDate: task.dueDate
+        })),
+        assessments: assessments.map((assessment: { name: any; dueDate: any; }) => ({
+          name: assessment.name,
+          dueDate: assessment.dueDate
+        }))
+      };
+    });
+  }
+
+
+
+  private students = [
+    { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
+    { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
+    { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
+    { name: 'David Moore', email: 'Moore@gmail.com', },
+    { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
+    { name: 'Frank White' , email: 'White@gmail.com',},
+    { name: 'Grace Green' , email: 'Green@gmail.com',},
+    { name: 'Henry Adams' , email: 'Adams@gmail.com',},
+    { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
+    { name: 'Jack Carter', email: 'Carter@gmail.com', },
+    { name: 'Katie Miller' , email: 'Miller@gmail.com',},
+    { name: 'Liam Perez' , email: 'Perez@gmail.com',},
+    { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
+    { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
+    { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
+    { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
+    { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
+    { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
+    { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
+    { name: 'Victoria Bell', email: 'Bell@gmail.com', },
+    { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
+    { name: 'Zoe Ward', email: 'Ward@gmail.com', },
+    { name: 'Andrew Cox', email: 'Cox@gmail.com', },
+    { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
+    { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
+    { name: 'Diana Reed' , email: 'Reed@gmail.com',},
+    { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
+    { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
+    { name: 'George Morgan' , email: 'Morgan@gmail.com',},
+    { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',},
+    { name: 'John Doe', email: 'johndoe@gmail.com',  },
+    { name: 'Jane Smith', email: 'janesmith@gmail.com', },
+    { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', },
+    { name: 'Emily Davis', email: 'emilydavis@gmail.com',  },
+    { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', },
+    { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com',  },
+    { name: 'William Anderson', email: 'williamanderson@gmail.com',  },
+    { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', },
+    { name: 'James Lee', email: 'jameslee@gmail.com',  },
+    { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com',  },
+    { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com',  },
+    { name: 'Mia Clark', email: 'miaclark@gmail.com', },
+    { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', },
+    { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com',},
+    { name: 'Lucas Walker', email: 'lucaswalker@gmail.com',  },
+    { name: 'Amelia Young', email: 'ameliayoung@gmail.com',  },
+    { name: 'Mason Hall', email: 'masonhall@gmail.com',  },
+    { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', },
+    { name: 'Ethan King', email: 'ethanking@gmail.com',  },
+    { name: 'Abigail Wright', email: 'abigailwright@gmail.com',  }
+  ]
+  
+  
+
+
+  private coursesRemoved = [
+
     {
       instructor: 'Chrisma Maxwell',
-      instructor_profile: 'assets/img/bini.jpeg',
+      instructor_profile: 'assets/img/bini.jpeg', 
       course: 'Physics 201',
       subject: 'Mechanics',
       block: 'B',
@@ -5485,38 +6252,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -5607,38 +6343,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -5729,38 +6434,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -5851,38 +6525,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -5973,38 +6616,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -6095,38 +6707,7 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     },
     {
@@ -6217,42 +6798,10 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
       ],
       
-      notEnrolledStudents: [
-        { name: 'Alice Johnson' , email: 'Alice Johnson@gmail.com', },
-        { name: 'Bob Brown', email: 'Bob Brown@gmail.com', },
-        { name: 'Charles Wilson' , email: 'Charles@gmail.com',},
-        { name: 'David Moore', email: 'Moore@gmail.com', },
-        { name: 'Ella Taylor' , email: 'Taylor@gmail.com',},
-        { name: 'Frank White' , email: 'White@gmail.com',},
-        { name: 'Grace Green' , email: 'Green@gmail.com',},
-        { name: 'Henry Adams' , email: 'Adams@gmail.com',},
-        { name: 'Ivy Baker' , email: 'vBaker@gmail.com',},
-        { name: 'Jack Carter', email: 'Carter@gmail.com', },
-        { name: 'Katie Miller' , email: 'Miller@gmail.com',},
-        { name: 'Liam Perez' , email: 'Perez@gmail.com',},
-        { name: 'Nora Nelson' , email: 'Nelson@gmail.com',},
-        { name: 'Owen Ramirez' , email: 'Ramirez@gmail.com',},
-        { name: 'Peyton Mitchell' , email: 'Mitchell@gmail.com',},
-        { name: 'Quinn Hughes', email: 'Hughes@gmail.com', },
-        { name: 'Ryan vBryant', email: 'Bryant@gmail.com', },
-        { name: 'Sarah Scott' , email: 'Scott@gmail.com',},
-        { name: 'Tyler Evans' , email: 'Evans@gmail.com',},
-        { name: 'Victoria Bell', email: 'Bell@gmail.com', },
-        { name: 'Wyatt Russell' , email: 'Russell@gmail.com',},
-        { name: 'Zoe Ward', email: 'Ward@gmail.com', },
-        { name: 'Andrew Cox', email: 'Cox@gmail.com', },
-        { name: 'Brooke Howard' , email: 'Howard@gmail.com',},
-        { name: 'Chris Peterson' , email: 'Peterson@gmail.com',},
-        { name: 'Diana Reed' , email: 'Reed@gmail.com',},
-        { name: 'Eli Stewart', email: 'Stewart@gmail.com', },
-        { name: 'Faith Rogers', email: 'Rogers@gmail.com', },
-        { name: 'George Morgan' , email: 'Morgan@gmail.com',},
-        { name: 'Hannah Cooper' , email: 'Cooper@gmail.com',}
-      ]
+    
       
     }
-  ];
-  
+  ]
   
   
   
@@ -6260,10 +6809,6 @@ export class DataService {
   
   
   
-  getCourses() {
-    return this.courses;
-  }
-
   
   
   setCourse(course: any) {
@@ -6274,28 +6819,51 @@ export class DataService {
     return this.course;
   }
 
-  getSchedules() {
-    return this.courses.map(course => {
-      // Aggregate tasks and assessments from all modules
-      const tasks = course.modules.flatMap(module => module.assignments);
-      const assessments = course.modules.flatMap(module => module.exams);
+  // getSchedules() {
+  //   return this.courses.map(course => {
+  //     // Aggregate tasks and assessments from all modules
+  //     const tasks = course.modules.flatMap(module => module.assignments);
+  //     const assessments = course.modules.flatMap(module => module.exams);
   
-      return {
-        course: course.course,
-        subject: course.subject,
-        block: course.block,
-        time: course.time,
-        tasks: tasks.map(task => ({
-          name: task.name,
-          dueDate: task.dueDate
-        })),
-        assessments: assessments.map(assessment => ({
-          name: assessment.name,
-          dueDate: assessment.dueDate
-        }))
-      };
-    });
-  }
+  //     return {
+  //       course: course.course,
+  //       subject: course.subject,
+  //       block: course.block,
+  //       time: course.time,
+  //       tasks: tasks.map(task => ({
+  //         name: task.name,
+  //         dueDate: task.dueDate
+  //       })),
+  //       assessments: assessments.map(assessment => ({
+  //         name: assessment.name,
+  //         dueDate: assessment.dueDate
+  //       }))
+  //     };
+  //   });
+  // }
+  
+  // getSchedules() {
+  //   return this.courses.map(course => {
+  //     // Aggregate tasks and assessments from all modules
+  //     const tasks = course.modules.flatMap((module: { assignments: any; }) => module.assignments);
+  //     const assessments = course.modules.flatMap((module: { exams: any; }) => module.exams);
+  
+  //     return {
+  //       course: course.course,
+  //       subject: course.subject,
+  //       block: course.block,
+  //       time: course.time,
+  //       tasks: tasks.map((task: { name: any; dueDate: any; }) => ({
+  //         name: task.name, // Ensure 'name' exists in each assignment object
+  //         dueDate: task.dueDate // Ensure 'dueDate' exists in each assignment object
+  //       })),
+  //       assessments: assessments.map((assessment: { name: any; dueDate: any; }) => ({
+  //         name: assessment.name, // Ensure 'name' exists in each exam object
+  //         dueDate: assessment.dueDate // Ensure 'dueDate' exists in each exam object
+  //       }))
+  //     };
+  //   });
+  // }
   
 
   private evaluations = [
