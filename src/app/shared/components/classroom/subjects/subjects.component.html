@@ -61,7 +61,7 @@
     
     <!-- Locked Add a Course Container for Instructors -->
     <div
-      *ngIf="getUserRole() === 'instructor'"
+      *ngIf="getUserRole() === 'instructor' || getUserRole() === 'department_admin'"
       class="bg-gray-300 rounded-lg shadow-md overflow-hidden cursor-pointer"
       (click)="navigateToModules()"
     >

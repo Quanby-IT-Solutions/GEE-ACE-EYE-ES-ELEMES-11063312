@@ -111,6 +111,8 @@ import { User } from '@supabase/supabase-js';
 import { GuestUser } from 'src/app/shared/models/model';
 import { Subscription } from 'rxjs';
 import { formatDate } from '@angular/common';
+import { routes } from 'src/app/shared/service/routes/routes';
+import { Router } from '@angular/router';
 
 interface Task {
   name: string;
@@ -159,7 +161,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   constructor(
     private supabaseService: SupabaseService,
     private userService: UserService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router:Router
   ) {}
 
   ngOnInit() {
@@ -177,9 +180,6 @@ export class TasksComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-
-
 
   setFilterCourse(event:any){
     this.filterCourse = event.target.value;
@@ -284,6 +284,7 @@ export class TasksComponent implements OnInit, OnDestroy {
           }
           assessment.course = course.course;
           assessment.instructor = course.instructor;
+          assessment.items = this.dataService.getExamItems();
           assessment.type = 'exam';
           if(!assessment.dueDate){
             this.collapsableItems['No Due Date'].push(assessment);
@@ -324,7 +325,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   takeExam(){
-    this.selectedTask.submitted = true;
+    this.router.navigate([routes.quiz]);
+    // this.selectedTask.submitted = true;
   }
 
   

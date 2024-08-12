@@ -6941,6 +6941,355 @@ export class DataService {
       this.dept_evaluations[index] = evaluation;
     }
   }
+
+  private examQuestions = [
+    {
+      id: 'q1',
+      question: 'What is the purpose of Angular\'s ngOnInit lifecycle hook?',
+      options: {
+        a: 'To initialize the component after Angular first displays the data-bound properties',
+        b: 'To destroy the component before Angular removes it from the DOM',
+        c: 'To detect changes in data-bound properties',
+        d: 'To create a new module in Angular'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q2',
+      question: 'Which of the following is used to create a two-way data binding in Angular?',
+      options: {
+        a: '[]',
+        b: '()',
+        c: '[()]',
+        d: '{{}}'
+      },
+      answer: 'c'
+    },
+    {
+      id: 'q3',
+      question: 'What command is used to create a new Angular project using Angular CLI?',
+      options: {
+        a: 'ng new',
+        b: 'ng create',
+        c: 'ng generate',
+        d: 'ng init'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q4',
+      question: 'Which decorator is used to define a service in Angular?',
+      options: {
+        a: '@NgModule',
+        b: '@Component',
+        c: '@Injectable',
+        d: '@Directive'
+      },
+      answer: 'c'
+    },
+    {
+      id: 'q5',
+      question: 'In Angular, which module is used for forms with two-way data binding?',
+      options: {
+        a: 'ReactiveFormsModule',
+        b: 'FormsModule',
+        c: 'HttpClientModule',
+        d: 'RouterModule'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q6',
+      question: 'Which Angular CLI command is used to add a new component to a project?',
+      options: {
+        a: 'ng add component',
+        b: 'ng generate component',
+        c: 'ng create component',
+        d: 'ng install component'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q7',
+      question: 'What is the purpose of Angular\'s Dependency Injection?',
+      options: {
+        a: 'To inject HTML into the DOM',
+        b: 'To provide and manage dependencies in an Angular app',
+        c: 'To dynamically load components',
+        d: 'To configure routing in the app'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q8',
+      question: 'Which command would you use to serve an Angular application locally?',
+      options: {
+        a: 'ng serve',
+        b: 'ng start',
+        c: 'ng run',
+        d: 'ng dev'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q9',
+      question: 'What is the default port that Angular CLI uses when serving an application?',
+      options: {
+        a: '3000',
+        b: '8080',
+        c: '4200',
+        d: '8000'
+      },
+      answer: 'c'
+    },
+    {
+      id: 'q10',
+      question: 'Which directive is used to conditionally include/exclude a block of HTML in Angular?',
+      options: {
+        a: 'ngIf',
+        b: 'ngFor',
+        c: 'ngClass',
+        d: 'ngSwitch'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q11',
+      question: 'What is the purpose of Angular\'s ngFor directive?',
+      options: {
+        a: 'To conditionally render HTML elements',
+        b: 'To iterate over a list and render each item',
+        c: 'To add a CSS class conditionally',
+        d: 'To handle form validation'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q12',
+      question: 'Which Angular module is commonly used for making HTTP requests?',
+      options: {
+        a: 'FormsModule',
+        b: 'RouterModule',
+        c: 'HttpClientModule',
+        d: 'ReactiveFormsModule'
+      },
+      answer: 'c'
+    },
+    {
+      id: 'q13',
+      question: 'Which lifecycle hook is called once, after the first ngOnChanges?',
+      options: {
+        a: 'ngOnInit',
+        b: 'ngAfterContentInit',
+        c: 'ngAfterViewInit',
+        d: 'ngDoCheck'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q14',
+      question: 'Which Angular service is used to log messages in the console?',
+      options: {
+        a: 'ConsoleService',
+        b: 'LogService',
+        c: 'MessageService',
+        d: 'LoggingService'
+      },
+      answer: 'd'
+    },
+    {
+      id: 'q15',
+      question: 'Which operator would you use in RxJS to filter emitted values?',
+      options: {
+        a: 'map',
+        b: 'filter',
+        c: 'reduce',
+        d: 'scan'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q16',
+      question: 'In Angular, what is a pipe used for?',
+      options: {
+        a: 'To transform data in the template',
+        b: 'To inject dependencies into components',
+        c: 'To create reusable services',
+        d: 'To handle routing'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q17',
+      question: 'Which of the following is not a valid Angular structural directive?',
+      options: {
+        a: 'ngIf',
+        b: 'ngFor',
+        c: 'ngSwitch',
+        d: 'ngShow'
+      },
+      answer: 'd'
+    },
+    {
+      id: 'q18',
+      question: 'How do you bind a class to an HTML element conditionally in Angular?',
+      options: {
+        a: '[class]="condition ? \'className\' : \'\'"',
+        b: '[ngClass]="condition ? \'className\' : \'\'"',
+        c: '[class.className]="condition"',
+        d: '[ngStyle]="condition ? \'className\' : \'\'"'
+      },
+      answer: 'c'
+    },
+    {
+      id: 'q19',
+      question: 'What does the Angular CLI command `ng build` do?',
+      options: {
+        a: 'It runs the application in development mode',
+        b: 'It compiles the application into an output directory',
+        c: 'It installs dependencies for the application',
+        d: 'It serves the application on a local server'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q20',
+      question: 'Which file is the entry point of an Angular application?',
+      options: {
+        a: 'main.ts',
+        b: 'app.module.ts',
+        c: 'index.html',
+        d: 'angular.json'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q21',
+      question: 'In Angular, what is the primary use of the `@Input` decorator?',
+      options: {
+        a: 'To define a public property that can be set via property binding',
+        b: 'To emit events to the parent component',
+        c: 'To inject services into a component',
+        d: 'To initialize component properties'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q22',
+      question: 'Which of the following is not a valid Angular form of directive?',
+      options: {
+        a: 'ngModel',
+        b: 'ngSubmit',
+        c: 'ngForm',
+        d: 'ngClick'
+      },
+      answer: 'd'
+    },
+    {
+      id: 'q23',
+      question: 'Which Angular module is used for routing and navigation?',
+      options: {
+        a: 'HttpClientModule',
+        b: 'RouterModule',
+        c: 'FormsModule',
+        d: 'CommonModule'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q24',
+      question: 'What is the purpose of the Angular Router?',
+      options: {
+        a: 'To manage HTTP requests',
+        b: 'To navigate between different views or pages in the application',
+        c: 'To validate forms',
+        d: 'To add animations to the application'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q25',
+      question: 'Which command is used to build an Angular application for production?',
+      options: {
+        a: 'ng build --prod',
+        b: 'ng serve --prod',
+        c: 'ng create --prod',
+        d: 'ng start --prod'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q26',
+      question: 'In Angular, which decorator is used to define the metadata for a module?',
+      options: {
+        a: '@NgModule',
+        b: '@Injectable',
+        c: '@Component',
+        d: '@Directive'
+      },
+      answer: 'a'
+    },
+    {
+      id: 'q27',
+      question: 'What is the default strategy for change detection in Angular?',
+      options: {
+        a: 'OnPush',
+        b: 'Default',
+        c: 'CheckOnce',
+        d: 'Manual'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q28',
+      question: 'Which of the following is used to group multiple form controls in Angular?',
+      options: {
+        a: 'FormControl',
+        b: 'FormGroup',
+        c: 'FormBuilder',
+        d: 'FormArray'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q29',
+      question: 'What is the main purpose of Angular\'s Ahead-of-Time (AOT) compilation?',
+      options: {
+        a: 'To compile the application during runtime',
+        b: 'To compile the application code during build time, before it is downloaded and run by the browser',
+        c: 'To increase the size of the application bundle',
+        d: 'To decrease the speed of the application'
+      },
+      answer: 'b'
+    },
+    {
+      id: 'q30',
+      question: 'In Angular, which operator is used to catch errors in an Observable?',
+      options: {
+        a: 'map',
+        b: 'catchError',
+        c: 'retry',
+        d: 'mergeMap'
+      },
+      answer: 'b'
+    }
+  ];
+
+  getExamItems(){
+    return this.examQuestions;
+  }
+
+  addExamItem(item:any){
+    this.examQuestions.push(item);
+  }
+
+  editExamItem(item:any){
+    const itemIndex = this.examQuestions.findIndex((_item) =>  _item.id == item.id);
+    this.examQuestions[itemIndex] = item;                                     
+  }
+
+
+  
   
   // start  routes based from the template:
 
