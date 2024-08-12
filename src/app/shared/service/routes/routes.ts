@@ -646,6 +646,10 @@ public static get manage_courses(): string {
   return this.users_dashboard + '/manage-courses';
 } 
 
+public static get training_calendar(): string {
+  return this.users_dashboard + '/training-calendar';
+} 
+
 
 public static get progress(): string {
   return this.users_dashboard + '/progress';

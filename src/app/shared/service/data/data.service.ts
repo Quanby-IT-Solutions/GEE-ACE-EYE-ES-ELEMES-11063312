@@ -5293,11 +5293,14 @@ export class DataService {
       course: 'Mathematics 101',
       subject: 'Algebra',
       block: 'A',
+      startDate: new Date(2024, 7, 20),
       time: '09:00 - 10:00',
       grade: '97',
+      enrollmentKey: '12345',
       progress: '65',
       imageUrl: 'assets/img/math.png',
       enrolled: 'yes',
+
       modules: [
         {
           title: 'Introduction to Algebra',
@@ -5384,6 +5387,9 @@ export class DataService {
         course: 'Physics 201',
         subject: 'Mechanics',
         block: 'B',
+        startDate: new Date(2024, 8, 21),
+        enrollmentKey: '12345',
+
         time: '10:00 - 11:00',
         grade: '92',
         progress: '85',
@@ -5480,7 +5486,8 @@ export class DataService {
         progress: '85',
         imageUrl: 'assets/img/chemistry.png',
         enrolled: 'no',
-  
+        enrollmentKey: '12345',
+
         modules: [
           {
             title: 'Organic Molecules and Structures',
@@ -5566,12 +5573,15 @@ export class DataService {
         course: 'Biology 101',
         subject: 'Botany',
         block: 'D',
+        startDate: new Date(2024, 8, 23),
+        enrollmentKey: '12345',
+
         time: '12:00 - 13:00',
         grade: '90',
         progress: '85',
         imageUrl: 'assets/img/biology.png',
         enrolled: 'yes',
-  
+        
         modules: [
           {
             title: 'Introduction to Botany',
@@ -5657,12 +5667,14 @@ export class DataService {
         course: 'Computer Science 101',
         subject: 'Programming',
         block: 'E',
+        startDate: new Date(2024, 8, 25),
         time: '13:00 - 14:00',
         grade: '93',
         progress: '85',
         imageUrl: 'assets/img/compsci.png',
         enrolled: 'yes',
-  
+        enrollmentKey: '12345',
+
         modules: [
           {
             title: 'Introduction to Programming',
@@ -5748,6 +5760,9 @@ export class DataService {
         course: 'History 101',
         subject: 'World History',
         block: 'F',
+        startDate: new Date(2024, 8, 27),
+        enrollmentKey: '12345',
+
         time: '14:00 - 15:00',
         grade: '88',
         progress: '85',
@@ -5839,6 +5854,9 @@ export class DataService {
         course: 'Geography 101',
         subject: 'Physical Geography',
         block: 'G',
+        startDate: new Date(2024, 8, 19),
+        enrollmentKey: '12345',
+
         time: '15:00 - 16:00',
         grade: '81',
         progress: '65',
@@ -5930,6 +5948,9 @@ export class DataService {
         course: 'Literature 101',
         subject: 'English Literature',
         block: 'H',
+        startDate: new Date(2024, 8, 18),
+        enrollmentKey: '12345',
+
         time: '16:00 - 17:00',
         grade: '75',
         progress: '65',
@@ -6057,6 +6078,30 @@ export class DataService {
   getCourses(): any[] {
     return this.courses;
   }
+
+  trainingSchedule(): { date: Date, course: string, instructor: string, enrollmentKey: string }[] {
+    console.log("Processing courses for the training schedule...");
+  
+    return this.defaultCourses
+      .filter(course => {
+        const isValidDate = course.startDate instanceof Date && !isNaN(course.startDate as any);
+        console.log(`Course: ${course.course}, StartDate: ${course.startDate}, Valid: ${isValidDate}`);
+        return isValidDate;
+      })
+      .map(course => {
+        const date = new Date(course.startDate as Date);
+        console.log(`Mapped Course: ${course.course}, Date: ${date}, Instructor: ${course.instructor}`);
+        return {
+          date: date,
+          course: course.course,
+          instructor: course.instructor,
+          enrollmentKey: course.enrollmentKey
+        };
+      });
+  }
+  
+  
+  
 
   getStudents(): any[] {
     return [

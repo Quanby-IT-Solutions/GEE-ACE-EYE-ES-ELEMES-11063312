@@ -138,7 +138,7 @@ export class ExploreCoursesComponent implements OnInit {
 
 
   clearLocalStorage(): void {
-    localStorage.clear();
+    localStorage.clear(); 
     this.fetchCourses(); // Refresh the courses list
     alert('Local storage cleared. Courses have been refreshed.');
   }

@@ -814,6 +814,14 @@ const routes: Routes = [
           ),
       },
 
+      {
+        path: 'training-calendar',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/training-calendar/training-calendar.module'
+          ).then((m) => m.TrainingCalendarModule),
+      },
+
 
       {
         path: 'add-course',
