@@ -1,1 +1,357 @@
-<p>site-settings works!</p>
+<section class="flex flex-col font-bold max-w-[960px]">
+    <header class="flex flex-wrap gap-3 justify-between items-start p-4 w-full text-3xl leading-none text-neutral-900 max-md:max-w-full">
+      <h1 class="w-72 min-w-[288px]">Site setting</h1>
+    </header>
+    <nav class="flex flex-col pb-3 w-full text-sm text-slate-500 max-md:max-w-full">
+      <ul class="flex flex-wrap gap-5 py-px pr-20 pl-4 border-b border-slate-300 max-md:pr-5">
+        <li
+          class="py-4 border-gray-200 border-b-[3px] text-neutral-900 cursor-pointer"
+          (click)="showSection('emailConfig')"
+        >
+          <a>Email configuration</a>
+        </li>
+        <li class="py-4 border-gray-200 border-b-[3px] text-neutral-900 cursor-pointer"
+        (click)="showSection('htmlcontent')">
+          <a>Edit HTML content</a>
+        </li>
+        <li class="py-4 border-gray-200 border-b-[3px] text-neutral-900 cursor-pointer"
+        (click)="showSection('editimage')">
+          <a>Edit images</a>
+        </li>
+        <li class="py-4 border-gray-200 border-b-[3px] text-neutral-900 cursor-pointer"
+        (click)="showSection('editmessage')">
+          <a>Edit messages</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+  
+  <!-- Email Configuration Section -->
+  <div *ngIf="currentSection === 'emailConfig'" class="flex overflow-hidden flex-col max-w-[960px]">
+    <header class="flex flex-wrap gap-3 justify-between items-start p-4 w-full max-md:max-w-full">
+        <div class="flex flex-col min-w-[288px] w-[304px]">
+          <h1 class="w-full text-3xl font-bold leading-none text-neutral-900">Email configuration</h1>
+          <p class="mt-3 w-full text-sm text-slate-500">Customize your email templates and settings</p>
+        </div>
+      </header>
+      <div>
+        <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none text-neutral-900 max-md:max-w-full">Course notifications</h2>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[413px]">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[413px]">Course status change notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[412px]">Triggered when a course is published, unpublished, or deleted</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[375px]">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[375px]">Course invite notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[374px]">Triggered when a new member is invited to join a course</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[369px]">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[369px]">Course role change notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[366px]">Triggered when a member's role is changed in a course</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+      </div>
+      <div>
+        <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none text-neutral-900 max-md:max-w-full">System notifications</h2>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[530px] max-md:max-w-full">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[530px] max-md:max-w-full">System event notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[529px] max-md:max-w-full">Triggered when system events occur, such as maintenance windows or outages</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[367px]">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[367px]">Password reset request notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[367px]">Triggered when a user requests to reset their password</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+        <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-white min-h-[72px] max-md:max-w-full">
+          <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[367px]">
+            <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[367px]">Password reset request notifications</h3>
+            <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[367px]">Triggered when a user requests to reset their password</p>
+          </div>
+          <button class="flex overflow-hidden justify-center items-center px-4 bg-gray-100 rounded-xl min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium text-center whitespace-nowrap text-neutral-900">
+            Edit
+          </button>
+        </article>
+      </div>    
+  </div>
+
+  <!--edit HTML content section-->
+  <div *ngIf="currentSection === 'htmlcontent'" class="flex overflow-hidden flex-col max-w-[960px]">
+    <header class="flex flex-wrap gap-3 justify-between items-start p-4 w-full text-3xl font-bold leading-none text-neutral-900 max-md:max-w-full">
+      <h1 class="min-w-[288px] w-[341px]">Editing Custom HTML</h1>
+    </header>
+    <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none text-neutral-900 max-md:max-w-full">Version History</h2>
+    <ul class="list-none p-0 m-0">
+      <li class="flex flex-wrap gap-4 items-center px-4 py-3 w-full bg-white min-h-[72px] max-md:max-w-full">
+        <div class="flex justify-center items-center self-stretch my-auto w-12 h-12 bg-gray-100 rounded-lg min-h-[48px]">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a177f25fb56605f64e60f3b58c7973dd881bdaa629f8c087f772a280b84584a?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="" class="object-contain self-stretch my-auto w-6 aspect-square" />
+        </div>
+        <div class="flex flex-col justify-center self-stretch my-auto w-[104px]">
+          <p class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[103px]">Initial version</p>
+          <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[104px]">v.1 - 2 days ago</p>
+        </div>
+      </li>
+      <li class="flex flex-wrap gap-4 items-center px-4 py-3 w-full bg-white min-h-[72px] max-md:max-w-full">
+        <div class="flex justify-center items-center self-stretch my-auto w-12 h-12 bg-gray-100 rounded-lg min-h-[48px]">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c6f35bd736f1f0776a6bbc8172f76e6aaf71148f12941bc5453888770353330d?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="" class="object-contain self-stretch my-auto w-6 aspect-square" />
+        </div>
+        <div class="flex flex-col justify-center self-stretch my-auto w-[154px]">
+          <p class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[154px]">Updated the header</p>
+          <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[152px]">v.2 - yesterday</p>
+        </div>
+      </li>
+      <li class="flex flex-wrap gap-4 items-center px-4 py-3 w-full bg-white min-h-[72px] max-md:max-w-full">
+        <div class="flex justify-center items-center self-stretch my-auto w-12 h-12 bg-gray-100 rounded-lg min-h-[48px]">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/39feb4756297d03c5ea06485ca2e756412d6446d43616e999a8703d0e2d73359?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="" class="object-contain self-stretch my-auto w-6 aspect-square" />
+        </div>
+        <div class="flex flex-col justify-center self-stretch my-auto w-[191px]">
+          <p class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[191px]">Fixed a typo in the footer</p>
+          <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[190px]">v.3 - 4 hours ago</p>
+        </div>
+      </li>
+      <li class="flex flex-wrap gap-4 items-center px-4 py-3 w-full bg-white min-h-[72px] max-md:max-w-full">
+        <div class="flex justify-center items-center self-stretch my-auto w-12 h-12 bg-gray-100 rounded-lg min-h-[48px]">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/50182cc1a1988651811d8798d8d274a9f4c4c232ff44666edac001e22dbd7d80?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="" class="object-contain self-stretch my-auto w-6 aspect-square" />
+        </div>
+        <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[343px]">
+          <p class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[343px]">Added a new section for the upcoming event</p>
+          <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[342px]">v.4 - 5 minutes ago</p>
+        </div>
+      </li>
+      <li class="flex flex-wrap gap-4 items-center px-4 py-3 w-full bg-white min-h-[72px] max-md:max-w-full">
+        <div class="flex justify-center items-center self-stretch my-auto w-12 h-12 bg-gray-100 rounded-lg min-h-[48px]">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2eb666f0669eb8a0d52b027e42bce709accf587552bde001b9b0f0db6435c07?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="" class="object-contain self-stretch my-auto w-6 aspect-square" />
+        </div>
+        <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[246px]">
+          <p class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[246px]">Changed the color of the button</p>
+          <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[244px]">v.5 - Just now</p>
+        </div>
+      </li>
+    </ul>
+    <div class="flex items-start px-4 py-3 w-full text-sm font-bold text-center text-neutral-900 max-md:max-w-full">
+      <button class="flex overflow-hidden flex-1 shrink justify-center items-center px-4 rounded-xl basis-0 max-w-[480px] min-h-[40px] min-w-[84px] w-[480px] max-md:max-w-full">
+        <span class="overflow-hidden self-stretch my-auto w-[136px]">Create New Version</span>
+      </button>
+    </div>
+    <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none text-neutral-900 max-md:max-w-full">Edit HTML</h2>
+    <p class="px-4 pt-1 pb-3 w-full text-base leading-6 text-neutral-900 max-md:max-w-full">
+      Use the HTML editor to modify the content of this page. You can use any valid HTML, CSS, or JavaScript to create the layout and functionality you want.
+    </p>
+    <div class="flex flex-wrap gap-4 items-end px-4 py-3 max-w-full w-[480px]">
+      <div class="flex flex-col flex-1 shrink w-full basis-0 min-w-[160px] max-md:max-w-full">
+        <div class="flex flex-1 py-4 w-full bg-white rounded-xl border border-solid border-zinc-200 min-h-[144px] max-md:max-w-full"></div>
+      </div>
+    </div>
+    <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none whitespace-nowrap text-neutral-900 max-md:max-w-full">Preview</h2>
+    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b3a26f98d5e465813ab13ae53989e164e485d31798f4fea9aa256ad3e56138d6?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04" alt="Preview of the edited HTML content" class="object-contain w-full aspect-[17.54] max-md:max-w-full" />
+  </div>
+
+<!--Edit Image Section-->
+<div *ngIf="currentSection === 'editimage'" class="flex overflow-hidden flex-col max-w-[960px]">
+        <header class="flex flex-wrap gap-3 justify-between items-start p-4 w-full text-3xl font-bold leading-none max-md:max-w-full">
+          <h1 class="w-72 min-h-[40px] min-w-[288px]">Edit images</h1>
+        </header>
+        <h2 class="px-4 pt-5 pb-3 w-full text-2xl font-bold leading-none whitespace-nowrap max-md:max-w-full">
+          Images
+        </h2>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full whitespace-nowrap bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Logo
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Upload
+          </button>
+        </div>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full whitespace-nowrap bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Banner
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Upload
+          </button>
+        </div>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Course Visuals
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Upload
+          </button>
+        </div>
+        <h2 class="px-4 pt-5 pb-3 w-full text-2xl font-bold leading-none min-h-[60px] max-md:max-w-full">
+          Delete Images
+        </h2>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full whitespace-nowrap bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Logo
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Delete
+          </button>
+        </div>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full whitespace-nowrap bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Banner
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Delete
+          </button>
+        </div>
+        <div class="flex flex-wrap justify-between items-center px-4 w-full bg-slate-50 min-h-[56px] max-md:max-w-full">
+          <p class="overflow-hidden flex-1 shrink self-stretch my-auto text-base min-w-[240px] max-md:max-w-full">
+            Course Visuals
+          </p>
+          <button class="flex overflow-hidden justify-center items-center px-4 rounded-xl bg-slate-200 min-h-[32px] min-w-[84px] w-[84px] text-sm font-medium">
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <!--Edit Message Section-->
+      <div *ngIf="currentSection === 'editmessage'" class="flex overflow-hidden flex-col max-w-[960px]">
+        <div class="flex overflow-hidden flex-col max-w-[908px]">
+            <header class="flex flex-wrap gap-3 justify-between items-start p-4 w-full text-3xl font-bold leading-none text-neutral-900 max-md:max-w-full">
+              <h1 class="w-72 min-w-[288px]">Edit messages</h1>
+            </header>
+            <div>
+              <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none min-h-[47px] text-neutral-900 max-md:max-w-full">System messages</h2>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[397px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[397px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[397px]">This email is sent to instructors when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[397px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[397px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[397px]">This email is sent to instructors when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[397px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[397px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[397px]">This email is sent to instructors when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+            </div>
+            <div>
+              <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none min-h-[47px] text-neutral-900 max-md:max-w-full">System notifications</h2>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[415px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[415px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[415px]">This notification is shown to users when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[415px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[415px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[415px]">This notification is shown to users when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[415px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[415px]">New Course Created</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[415px]">This notification is shown to users when a new course is created.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+            </div>
+            <div>
+              <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none min-h-[47px] text-neutral-900 max-md:max-w-full">System emails</h2>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[374px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[374px]">Added to a group</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[374px]">This email is sent to users when they are added to a group.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[374px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[374px]">Added to a group</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[374px]">This email is sent to users when they are added to a group.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[374px]">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[374px]">Added to a group</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[374px]">This email is sent to users when they are added to a group.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+            </div>
+            <div>
+              <h2 class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none min-h-[47px] text-neutral-900 max-md:max-w-full">System templates</h2>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[427px] max-md:max-w-full">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[427px] max-md:max-w-full">Home Page Welcome</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[427px] max-md:max-w-full">This template is used for the welcome message on the home page.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[427px] max-md:max-w-full">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[427px] max-md:max-w-full">Home Page Welcome</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[427px] max-md:max-w-full">This template is used for the welcome message on the home page.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+              <article class="flex flex-wrap gap-10 justify-between items-center px-4 py-3.5 w-full bg-slate-50 min-h-[72px] max-md:max-w-full">
+                <div class="flex flex-col justify-center self-stretch my-auto min-w-[240px] w-[427px] max-md:max-w-full">
+                  <h3 class="overflow-hidden max-w-full text-base font-medium text-neutral-900 w-[427px] max-md:max-w-full">Home Page Welcome</h3>
+                  <p class="overflow-hidden max-w-full text-sm text-slate-500 w-[427px] max-md:max-w-full">This template is used for the welcome message on the home page.</p>
+                </div>
+                <button class="flex flex-col self-stretch my-auto text-base font-medium text-center text-black whitespace-nowrap w-[30px]">
+                  <span class="flex-1 w-[30px]">Edit</span>
+                </button>
+              </article>
+            </div>
+          </div>
