@@ -326,7 +326,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   takeExam(){
     this.router.navigate([routes.quiz]);
-    this.selectedTask.submitted = true;
+    // this.selectedTask.submitted = true;
   }
 
   

@@ -1,27 +1,39 @@
-<div class="max-w-4xl mx-auto mt-10 p-5 bg-white shadow-lg rounded-lg">
-    <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-semibold">Quiz 1</h1>
-      <p class="text-gray-500">Due Aug 19, 2025</p>
+<div class="bg-green-600 text-white px-4 py-3 rounded-2xl shadow-sm mx-auto">
+  <div class="text-lg flex justify-between items-center">
+    <div>
+      <span > Goodluck </span><span class="font-semibold">Anton Caesar Cabais!</span>
+      <div class="text-gray-300 text-sm">
+        Please answer truthfully. Your truthful answers will help you learn more effectively and improve your understanding.
+      </div>
+    </div>
+    <i class="fa-regular fa-face-smile-wink text-3xl mr-4"></i>
+  </div>
+
+</div>
+<div class="w-3/4 mx-auto mt-4 py-4 px-10 bg-white shadow-lg rounded-lg select-none border-solid  {{isShaking ? 'border-t-8' : 'border-t-4'}} transition-all border-green-600"> 
+    <div class="flex mb-4 flex-col">
+      <h1 class="text-3xl font-semibold">Quiz 1</h1>
+      <span class="text-gray-400">Due Aug 19, 2025</span>
     </div>
   
     <div class="mb-4">
-      <p>{{ currentIndex + 1 }} of {{ examQuestions.length }} questions completed</p>
+      <p class="font-semibold">{{ currentIndex + 1 }} of {{ examQuestions.length }} questions completed</p>
       <div class="relative pt-1">
-        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+        <div class="overflow-hidden h-2 mb-2 text-xs flex rounded bg-gray-200">
           <div
             [style.width.%]="(currentIndex + 1) / examQuestions.length * 100"
             class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-black"
           ></div>
         </div>
-        <p class="text-gray-500">{{ timeLeft }} left</p>
+        <div class="text-gray-400">{{ timeLeft }} left</div>
       </div>
     </div>
   
     <div *ngIf="currentQuestion">
-      <h2 class="text-xl font-semibold mb-4">Question {{ currentIndex + 1 }}</h2>
+      <h2 class="text font-semibold mb-1">Question {{ currentIndex + 1 }}</h2>
       <p class="mb-6">{{ currentQuestion.question }}</p>
-      <div *ngFor="let option of currentQuestion.options | keyvalue" class="mb-4">
-        <label class="flex items-center space-x-3 cursor-pointer">
+      <div *ngFor="let option of currentQuestion.options | keyvalue" class="  mb-3 ">
+        <label class="space-x-3  cursor-pointer rounded border-solid border-gray-600 border-2 hover:bg-blue-100 flex items-center px-3 py-3">
           <input
             type="radio"
             name="option"
