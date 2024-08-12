@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../shared/service/guards/auth.guard';
 import { HelpModule } from '../shared/components/classroom/help/help.module';
 import { SupportModule } from '../shared/components/pages/support/support.module';
+import { SiteSettingsModule } from '../shared/components/classroom/site-settings/site-settings.module';
 
 const routes: Routes = [
   {
@@ -458,6 +459,15 @@ const routes: Routes = [
           (m) => HelpModule
         ),
     },
+
+    {
+      path: 'site-settings',
+      loadChildren: () =>
+        import('src/app/shared/components/classroom/site-settings/site-settings.component').then(
+          (m) => SiteSettingsModule
+        ),
+    },
+
     {
       path: 'support',
       loadChildren: () =>

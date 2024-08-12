@@ -455,6 +455,10 @@ export class routes {
     return this.users_dashboard + '/help';
   }
 
+  public static get sitesettings(): string {
+    return this.users_dashboard + '/site-settings';
+  }
+
   public static get support(): string {
     return this.users_dashboard + '/support';
   }
