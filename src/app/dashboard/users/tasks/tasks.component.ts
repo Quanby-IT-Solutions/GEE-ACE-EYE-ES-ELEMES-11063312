@@ -336,6 +336,46 @@ export class TasksComponent implements OnInit, OnDestroy {
           }
           this.testResults.total +=1
         }
+
+        for(let quiz of module.quizzes ?? []){
+          if(this.filterCourse !='all' && course.course != this.filterCourse){
+            if(quiz.submitted){
+              this.testResults.completed +=1;
+            }
+            this.testResults.total +=1
+            continue;
+          }
+          quiz.course = course.course;
+          quiz.instructor = course.instructor;
+          quiz.items = this.dataService.getExamItems();
+          quiz.type = 'exam';
+          if(!quiz.dueDate){
+            this.collapsableItems['No Due Date'].push(quiz);
+            continue;
+          }
+          const today = new Date();
+          const startOfThisWeek = new Date(today);
+          const day = startOfThisWeek.getDay();
+          const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
+          startOfThisWeek.setDate(diff);
+          startOfThisWeek.setHours(0, 0, 0, 0);
+          const lastOfLastWeek = new Date(startOfThisWeek);
+          lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if(typeof quiz.dueDate == 'string' ){
+            quiz.dueDate = new Date(quiz.dueDate);
+          }
+          if (quiz.dueDate >= startOfThisWeek && quiz.dueDate <= lastOfLastWeek){
+            this.collapsableItems['This Week'].push(quiz);
+          } else if (quiz.dueDate >= lastOfLastWeek) {
+            this.collapsableItems['Later'].push(quiz);
+          } else {
+            this.collapsableItems['Earlier'].push(quiz);
+          }
+          if(quiz.submitted){
+            this.testResults.completed +=1;
+          }
+          this.testResults.total +=1
+        }
       }
     }
 

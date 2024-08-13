@@ -11,13 +11,14 @@ import { CommonModule } from '@angular/common';
 import { TaskViewComponent } from '../../../classroom/task-view/task-view.component';
 import { ModalService } from 'src/app/shared/service/modal/modal.service';
 import { title } from 'process';
+import { QuizComponent } from 'src/app/dashboard/users/quiz/quiz.component';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent]
+  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent, QuizComponent]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;

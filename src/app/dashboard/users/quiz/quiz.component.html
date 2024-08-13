@@ -1,4 +1,4 @@
-<div class="{{totalScore / examQuestions.length < .5 && showResults ?  '!bg-blue-600' :''}} bg-green-600 text-white px-4 py-3 rounded-2xl shadow-sm mx-auto transition-all">
+<div *ngIf="role =='student'" class="{{totalScore / examQuestions.length < .5 && showResults ?  '!bg-blue-600' :''}} bg-green-600 text-white px-4 py-3 rounded-2xl shadow-sm mx-auto transition-all">
   <div class="text-lg flex justify-between items-center">
     <div>
       <span > {{showResults ? totalScore / examQuestions.length >= .5 ?  'Congratulations you passed, ' :'Aweee its oki, ': 'Goodluck'}} </span><span class="font-semibold">Kenneth James Belga!</span>
@@ -14,15 +14,15 @@
   </div>
 
 </div>
-<div class="w-3/4 mx-auto mt-4 py-4 px-10 bg-white shadow-lg rounded-lg select-none border-solid  {{isShaking ? 'border-t-8' : 'border-t-4'}} transition-all border-green-600"> 
-    <div class="flex mb-4 flex-col">
+<div class="{{role == 'student' ? 'w-3/4': 'w-full'}} mx-auto mt-4 py-4 px-10 bg-white shadow-lg rounded-lg select-none border-solid  {{isShaking ? 'border-t-8' : 'border-t-4'}} transition-all border-green-600"> 
+    <div *ngIf="role == 'student'" class="flex mb-4 flex-col">
       <h1 class="text-3xl font-semibold">Quiz 1</h1>
       <span class="text-gray-400">Due Aug 19, 2025</span>
     </div>
   
-    <div class="mb-4">
-      <p class="font-semibold">{{ currentIndex + 1 }} of {{ examQuestions.length }} questions completed</p>
-      <div class="relative pt-1">
+    <div *ngIf="role == 'student'" class="mb-4">
+      <p  class="font-semibold">{{ currentIndex + 1 }} of {{ examQuestions.length }} questions completed</p>
+      <div  class="relative pt-1">
         <div class="overflow-hidden h-2 mb-2 text-xs flex rounded bg-gray-200">
           <div
             [style.width.%]="(currentIndex + 1) / examQuestions.length * 100"
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div class="mb-4" *ngIf="showResults">
+    <div  class="mb-4" *ngIf="showResults && role == 'student'">
       <span class="text-gray-400">Score: </span> <span class="
       {{totalScore / examQuestions.length < .5 ?'text-red-400':''}}
       font-semibold text-lg">{{totalScore}}</span><span class="font-semibold {{totalScore / examQuestions.length < .5 ?'text-red-400':''}}"> / {{examQuestions.length}}</span>
@@ -72,17 +72,19 @@
             <span>{{ option.value }}</span>
           </label>
         </div>
-        <div class="font-semibold mt-1 mb-2 text-green-400" *ngIf="question.answer == question.selectedAnswer">
-          Your answer is correct!
-        </div>
-        <div class="font-semibold mt-1 mb-2 text-red-400" *ngIf="question.answer != question.selectedAnswer && question.selectedAnswer">
-          Your answer is wrong! <span class="text-gray-400 font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
-        </div>
-        <div  class="font-semibold mt-1 mb-2 text-gray-400" *ngIf="!question.selectedAnswer">
-          No answer! <span  class="font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
-        </div>
+        <ng-container *ngIf="role == 'student'">
+          <div class="font-semibold mt-1 mb-2 text-green-400" *ngIf="question.answer == question.selectedAnswer">
+            Your answer is correct!
+          </div>
+          <div class="font-semibold mt-1 mb-2 text-red-400" *ngIf="question.answer != question.selectedAnswer && question.selectedAnswer">
+            Your answer is wrong! <span class="text-gray-400 font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
+          </div>
+          <div  class="font-semibold mt-1 mb-2 text-gray-400" *ngIf="!question.selectedAnswer">
+            No answer! <span  class="font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
+          </div>
+        </ng-container>
       </ng-container>
-      <div class="w-full flex justify-center">
+      <div *ngIf="role == 'student'" class="w-full flex justify-center">
         <button
           (click)="finishAttempt()"
           class="px-4 py-2  bg-blue-500 text-white rounded disabled:opacity-50">
