@@ -1,9 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { routes } from 'src/app/shared/service/routes/routes';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/service/user/user.service'; // Import UserService
 
 @Component({
   selector: 'app-add-course',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, CommonModule],
 })
-export class AddCourseComponent {
+export class AddCourseComponent implements OnInit {
   @ViewChild('videoInput') videoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('audioInput') audioInput!: ElementRef<HTMLInputElement>;
   @ViewChild('pdfInput') pdfInput!: ElementRef<HTMLInputElement>;
@@ -55,11 +56,26 @@ export class AddCourseComponent {
     { type: 'adobeCaptivate', label: 'Adobe Captivate', description: 'Add Adobe Captivate file' },
   ];
 
-  isUploadModalOpen: boolean = false; 
-  uploadTarget: { type: string, moduleIndex: number, itemIndex: number } | null = null; 
 
-  constructor(private dataService: DataService,     private router: Router,
+  isUploadModalOpen: boolean = false;
+  uploadTarget: { type: string, moduleIndex: number, itemIndex: number } | null = null;
+  
+  isConfirmationModalOpen: boolean = false;
+  confirmationMessage: string = '';
+  confirmationAction: (() => void) | null = null;
+  
+  currentUser: any; // To hold the current user's details
+
+  constructor(
+    private dataService: DataService, 
+    private router: Router,
+    private userService: UserService // Inject UserService
   ) {}
+
+  async ngOnInit() {
+    // Fetch the authenticated user's details
+    this.currentUser = await this.userService.getUser();
+  }
 
   onCoverPhotoUpload(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -198,35 +214,6 @@ export class AddCourseComponent {
     }
   }
 
-
-  isConfirmationModalOpen: boolean = false;
-  confirmationMessage: string = '';
-  confirmationAction: (() => void) | null = null;
-
-  // saveCourse(): void {
-  //   const newCourse = {
-  //     instructor: 'Anton Caesar Cabais',
-  //     instructor_profile: 'assets/img/bini.jpeg',
-  //     course: this.courseTitle,
-  //     subject: this.courseCourse,
-  //     block: this.courseSection,
-  //     enrollmentKey: this.enrollmentKey,
-  //     time: '10:00 - 11:00',
-  //     startDate: new Date(this.courseStartDate),
-  //     grade: 'N/A',
-  //     progress: '0',
-  //     imageUrl: this.coverPhotoUrl,
-  //     enrolled: 'no',
-  //     modules: this.modules,
-  //     enrolledStudents: []
-  //   };
-
-  //   this.dataService.addCourse(newCourse);
-  //   this.confirmationMessage = `${this.courseTitle} is successfully created.`;
-  //   this.confirmationAction = () => this.navigateToSubjects(); // Set the action for when the user confirms
-  //   this.isConfirmationModalOpen = true; // Open the modal
-  // }
-
   saveCourse(): void {
     // Validate required fields
     if (!this.coverPhotoUrl || !this.courseTitle || !this.courseDescription || !this.courseCourse || !this.courseSection || !this.courseStartDate || !this.enrollmentKey) {
@@ -235,10 +222,10 @@ export class AddCourseComponent {
       this.isConfirmationModalOpen = true;
       return; // Exit the function if validation fails
     }
-  
+
     const newCourse = {
-      instructor: 'Anton Caesar Cabais',
-      instructor_profile: 'assets/img/bini.jpeg',
+      instructor: this.currentUser.first_name + ' ' + this.currentUser.last_name, 
+      instructor_profile: this.currentUser.profile_picture || 'assets/img/kenB.jpg', 
       course: this.courseTitle,
       subject: this.courseCourse,
       block: this.courseSection,
@@ -252,15 +239,14 @@ export class AddCourseComponent {
       modules: this.modules,
       enrolledStudents: []
     };
-  
+
     this.dataService.addCourse(newCourse);
-  
+
     // Set the confirmation message and action
     this.confirmationMessage = `${this.courseTitle} is successfully created.`;
     this.confirmationAction = () => this.navigateToSubjects(); // Set the action for when the user confirms
     this.isConfirmationModalOpen = true; // Open the modal
   }
-  
 
   validateInputs(): boolean {
     if (!this.coverPhotoUrl || !this.courseTitle || !this.courseDescription || !this.courseCourse || !this.courseSection || !this.courseStartDate || !this.enrollmentKey) {
@@ -273,8 +259,8 @@ export class AddCourseComponent {
   }
 
   cancelCourseCreation(): void {
-    this.confirmationMessage = 'Course creation cancelled.';
-    this.confirmationAction = () => this.navigateToSubjects(); // Set the action for when the user confirms
+    this.confirmationMessage = 'Are you sure you want to cancel the creation of the course?';
+    this.confirmationAction = () => this.navigateToDashboard(); // Set the action for when the user confirms cancellation
     this.isConfirmationModalOpen = true; // Open the modal
   }
 
@@ -283,18 +269,17 @@ export class AddCourseComponent {
     if (this.confirmationAction) {
       this.confirmationAction(); // Execute the assigned action
     }
-    this.navigateToSubjects(); // Always navigate to the subjects page after closing the modal
   }
-  
   
   closeModal(): void {
     this.isConfirmationModalOpen = false; // Close the modal without action
   }
-  
 
   navigateToSubjects(): void {
     this.router.navigate([routes.subjects]); 
   }
 
-  
+  navigateToDashboard(): void {
+    this.router.navigate([routes.dashboard]);
+  }
 }

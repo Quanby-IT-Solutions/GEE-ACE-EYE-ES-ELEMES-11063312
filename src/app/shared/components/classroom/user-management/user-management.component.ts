@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { NewUserApprovalComponent } from './user-approval/new-user-approval/new-user-approval.component';
+import { ReportsComponent } from './reports/reports.component';
 
 interface User {
   id: string;
@@ -20,13 +22,20 @@ interface User {
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserProfileComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    UserProfileComponent,
+    NewUserApprovalComponent,
+    ReportsComponent
+  ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss',
 })
 export class UserManagementComponent {
   showAddUserModal = false;
   selectedUser: User | null = null;
+  activeView: 'allUsers' | 'reports' | 'newUserApproval' = 'allUsers';
 
   newUser: User = {
     id: '',
@@ -72,6 +81,10 @@ export class UserManagementComponent {
     },
     // Add more sample users as needed
   ];
+
+  setActiveView(view: 'allUsers' | 'reports' | 'newUserApproval') {
+    this.activeView = view;
+  }
 
   openModal() {
     this.showAddUserModal = true;
