@@ -468,4 +468,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     //   console.log('Course updated after task removal:', this.selectedCourse);
     // }
   }
+  saveData(){
+    this.dataService.saveCoursesToStorage(this.courses);
+  }
 }

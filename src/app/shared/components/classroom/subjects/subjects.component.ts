@@ -51,7 +51,7 @@ interface Course {
   styleUrls: ['./subjects.component.scss'],
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
-  courses: Course[] = [];
+  courses: any[] = [];
   filteredCourses: Course[] = [];
   searchTerm: string = '';
   sortMenuOpen: boolean = false;  
@@ -98,7 +98,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
-      (course) =>
+      (course:any) =>
         course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
     );

@@ -8,13 +8,14 @@ import { UserService } from 'src/app/shared/service/user/user.service';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { CommonModule } from '@angular/common';
+import { TaskViewComponent } from '../../../classroom/task-view/task-view.component';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [FormsModule, PdfViewerModule, CommonModule]
+  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
@@ -58,6 +59,7 @@ export class SubjectModulesComponent implements OnInit {
     });
   
     this.course = history.state.course || this.fetchCourseData();
+    console.log('THIS COURSE',this.course);
     if (!this.course) {
       this.router.navigate(['/']);
     } else {
@@ -79,6 +81,8 @@ export class SubjectModulesComponent implements OnInit {
   selectTab(tab: string) {
     this.selectedTab = tab;
     this.selectedMaterial = null;
+    this.selectedTask = null;
+    this.showTaskDetails = false;
   }
 
   selectModule(index: number) {
@@ -133,6 +137,9 @@ export class SubjectModulesComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+    if(!this.isEditing){
+      this.saveData();
+    }
   }
 
   addExam() {
@@ -249,19 +256,31 @@ export class SubjectModulesComponent implements OnInit {
   }
 
   // Assignments methods
-  showAssignmentDetails = false;
-  selectedAssignment: any = null;
+  showTaskDetails = false;
+  selectedTask: any = null;
 
   showDetails(index: number) {
-    this.selectedAssignment =
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].assignments[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].assignments[index].type = 'assignment';
+    this.selectedTask =
       this.course.modules[this.selectedModuleIndex].assignments[index];
-    console.log('Selected Assignment:', this.selectedAssignment);
-    this.showAssignmentDetails = true;
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
+  }
+  showExamDetails(index: number) {
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].exams[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].exams[index].type = 'exam';
+    this.selectedTask =
+      this.course.modules[this.selectedModuleIndex].exams[index];
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
   }
 
   hideDetails() {
-    this.selectedAssignment = null;
-    this.showAssignmentDetails = false;
+    this.selectedTask = null;
+    this.showTaskDetails = false;
   }
 
   fileUploaded = false;  // Track if a file has been uploaded
@@ -270,7 +289,7 @@ export class SubjectModulesComponent implements OnInit {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedAssignment.submittedFile = file;
+      this.selectedTask.submittedFile = file;
       this.fileUploaded = true; // Mark that a file has been uploaded
       this.uploadedFileName = file.name; // Store the file name
     }
@@ -282,13 +301,18 @@ export class SubjectModulesComponent implements OnInit {
   }
   
   submitAssignment() {
-    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
-      this.selectedAssignment.submitted = true;
+    if (this.selectedTask && this.selectedTask.submittedFile) {
+      this.selectedTask.submitted = true;
       alert('Assignment submitted successfully!');
       // Optionally reset fileUploaded state if needed for future uploads
     } else {
       alert('Please select a file to submit.');
     }
+  }
+
+  saveData(){
+    console.log(this.course)
+    this.dataService.updateCourse(this.course);
   }
   
 }
