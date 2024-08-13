@@ -167,4 +167,37 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   navigateToModules(): void {
     this.router.navigate([routes.add_course]);
   }
+  showDeleteModal: boolean = false;
+  deleteCourseName: string = '';
+  courseToDelete: Course | null = null;
+  
+
+  deleteCourse(courseToDelete: Course): void {
+    this.filteredCourses = this.filteredCourses.filter(course => course !== courseToDelete);
+    this.courses = this.courses.filter(course => course !== courseToDelete);
+  }
+  
+  openDeleteModal(course: Course): void {
+    this.courseToDelete = course;
+    this.deleteCourseName = '';
+    this.showDeleteModal = true;
+  }
+  
+  closeDeleteModal(): void {
+    this.showDeleteModal = false;
+    this.courseToDelete = null;
+  }
+  
+
+  confirmDelete(): void {
+    if (this.courseToDelete && this.deleteCourseName === this.courseToDelete.course) {
+      this.dataService.deleteCourse(this.courseToDelete.course); // Pass the course name
+      this.fetchCourses(); // Refresh the course list after deletion
+      this.closeDeleteModal();
+    }
+  }
+  
+  
+
+  
 }
