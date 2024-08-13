@@ -16,6 +16,7 @@ export class TaskViewComponent {
   @Input() role: string = 'student';
   @Input() editing:boolean = false;
   @Input() saveData:any = null;
+  @Input() onDelete:any = null;
   commentField: string = '';
   filter:string = '';
 

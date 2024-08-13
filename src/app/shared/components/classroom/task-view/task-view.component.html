@@ -4,7 +4,7 @@
             Dashboard  >  {{selectedTask.course}}  >  <span class="text-orange-400">{{selectedTask.name}}</span>
         </div>
         <div *ngIf="editing">
-            <i class="fa-solid fa-trash cursor-pointer text-red-400" aria-hidden="true"></i>
+            <i (click)="onDelete()" class="fa-solid fa-trash cursor-pointer text-red-400" aria-hidden="true"></i>
         </div>
     </div>
   </div>
@@ -187,7 +187,7 @@
       </ng-container>
     </div>
     <!-- Review -->
-    <div *ngIf="selectedTask.type == 'exam' && role == 'student' " class="lg:mx-3 mt-3 border-green-700 border-solid border-t-4  shadow-md h-[26rem] w-full  lg:w-80 rounded-lg pt-3 px-4 pb-4 flex flex-col">
+    <div *ngIf="selectedTask.type == 'exam' && role == 'student' && !editing " class="lg:mx-3 mt-3 border-green-700 border-solid border-t-4  shadow-md h-[26rem] w-full  lg:w-80 rounded-lg pt-3 px-4 pb-4 flex flex-col">
       <!-- Unsubmitted -->
       <div *ngIf="!selectedTask.submitted; else viewResults" class="flex justify-center items-center flex-col h-full w-full">
         <i class="fa-regular fa-face-smile-beam text-7xl text-gray-200"></i>
@@ -233,33 +233,28 @@
       </ng-template>
     </div>
 
-    <div *ngIf="selectedTask.type == 'exam' && role == 'instructor'" class="lg:mx-3 mt-3 border-green-700 border-solid border-t-4  shadow-md h-96 w-full  lg:w-80 rounded-lg pt-3 px-4 pb-4 flex flex-col">
+    <div *ngIf="selectedTask.type == 'exam' && role == 'instructor' && !editing" class="lg:mx-3 mt-3 border-green-700 border-solid border-t-4  shadow-md h-96 w-full  lg:w-80 rounded-lg pt-3 px-4 pb-4 flex flex-col">
         <div class="text-xl font-semibold mb-2"> Scores </div>
         <!-- Content -->
         <div class="w-full h-10 relative flex items-center">
           <input  placeholder="Search student"  type="text" class="px-2 w-full h-full rounded-lg border-2 border-solid border-gray-300 outline-none hover:border-blue-500" [(ngModel)]="filter" >
           <i class="fa fa-search absolute text-gray-400 right-5" aria-hidden="true"></i>
       </div>
-        <div class="flex-1 flex-col flex overflow-y-scroll py-3 px-1 rounded-md gap-2">
+        <div class="flex-1 flex-col flex overflow-y-scroll py-3 px-1 rounded-md gap-1">
           <!-- Files -->
   
           <ng-container>
-              <ng-container *ngIf="selectedTask.files?.length > 0; else noFiles">
-                  <div *ngIf="'Kenneth James Belga'.toLowerCase().includes(filter.toLowerCase())" class="border-2 border-solid border-black p-2 rounded">
-                      <div class="mb-2">Kenneth James Belga</div>
-                      <ng-container *ngFor="let student of [{name: 'Kenneth James Belga', score: 5}, {name: 'Joshua Corda', score: '4/30'}] ?? []">
-                          <div class="w-full border-2 text-sm border-solid border-blue-600 hover:bg-blue-100 min-h-12 rounded cursor-pointer p-2">
+              <ng-container *ngIf="true; else noExams">
+                   <ng-container *ngFor="let student of [{name: 'Kenneth James Belga', score: 5}, {name: 'Joshua Corda', score: 4}] ?? []">
+                          <div *ngIf="student.name.toLowerCase().includes(filter.toLowerCase())" class="flex w-full border-2 text-sm border-solid border-blue-600 hover:bg-blue-100 min-h-12 rounded cursor-pointer p-2">
                              
-                                  <span class="text-gray-400">{{student.name}}</span>
+                                  <span class="text-gray-400 flex-1">{{student.name}}</span>
                                   <span class="text-blue-400"><span class="font-semibold text-base">{{student.score}}</span> / 30</span>
                           </div>          
-                          <div></div>
                       </ng-container>
-                  </div>
-       
                   
                 </ng-container>
-                <ng-template #noFiles>
+                <ng-template #noExams>
                   <div class="w-full h-full flex justify-center items-center flex-col text-gray-600">
                     <i class="fa-solid fa-face-laugh text-7xl text-gray-200 mb-3"></i>
                     <span>
