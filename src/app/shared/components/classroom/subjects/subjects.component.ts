@@ -64,7 +64,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   ) {}
 
   private userSubscription: Subscription | undefined;
-
   public user: User | GuestUser | null = null;  
   role: string | null = null;
   currentUser: any; // To hold the current user's details
@@ -80,14 +79,26 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
 
     const _user = await this.userService.getUser();
-    this.user = _user;
-    this.role = _user.role;
+    
+    if (this.isUser(_user)) {
+      this.user = _user;
+      this.role = _user.role || null;
+    } else {
+      this.user = null;
+      this.role = null;
+    }
   
     this.fetchCourses(); // Fetch courses after setting the user
   
     this.userSubscription = this.userService.currentUser.subscribe(
       (user) => {
-        this.user = user;
+        if (this.isUser(user)) {
+          this.user = user;
+          this.role = user.role || null;
+        } else {
+          this.user = null;
+          this.role = null;
+        }
         this.fetchCourses(); // Re-fetch courses if the user changes
       }
     );
@@ -120,24 +131,10 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     } else {
       // If no user is logged in, or there's an issue, don't show any courses
       this.courses = [];
+      this.filteredCourses = [];
     }
-  
-    this.filteredCourses = this.courses;
   }
   
-  getInstructorFullName(user: User | GuestUser): string {
-    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
-      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
-    }
-    return '';
-  }
-
-  getDepartminAdmin(user: User | GuestUser): string {
-    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
-      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
-    }
-    return '';
-  }
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
@@ -166,5 +163,10 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
   navigateToModules(): void {
     this.router.navigate([routes.add_course]);
+  }
+
+  // Type guard to check if the user is of type User
+  private isUser(user: any): user is User {
+    return user && 'app_metadata' in user && 'user_metadata' in user;
   }
 }

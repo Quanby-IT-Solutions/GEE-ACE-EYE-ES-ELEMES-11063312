@@ -33,6 +33,13 @@ const routes: Routes = [
             'src/app/shared/components/classroom/subjects/subjects.module'
           ).then((m) => m.SubjectsModule),
       },
+      {
+        path: 'evaluation',
+        loadChildren: () =>
+          import('src/app/dashboard/users/evaluation/evaluation.module').then(
+            (m) => m.EvaluationModule
+          ),
+      },
 
       {
         path: 'learning-module',
@@ -200,13 +207,13 @@ const routes: Routes = [
           ),
       },
 
-      {
-        path: 'curriculum-evaluation',
-        loadChildren: () =>
-          import(
-            'src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module'
-          ).then((m) => m.CurriculumEvaluationModule),
-      },
+      // {
+      //   path: 'curriculum-evaluation',
+      //   loadChildren: () =>
+      //     import(
+      //       'src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module'
+      //     ).then((m) => m.CurriculumEvaluationModule),
+      // },
 
       {
         path: 'statement-accounts',
@@ -240,13 +247,13 @@ const routes: Routes = [
             ),
         },
   
-        {
-          path: 'curriculum-evaluation',
-          loadChildren: () =>
-            import('src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module').then(
-              (m) => m.CurriculumEvaluationModule
-            ),
-        },
+        // {
+        //   path: 'curriculum-evaluation',
+        //   loadChildren: () =>
+        //     import('src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module').then(
+        //       (m) => m.CurriculumEvaluationModule
+        //     ),
+        // },
   
   
         {
@@ -597,21 +604,21 @@ const routes: Routes = [
           ).then((m) => m.NotificationModule),
       },
 
-      {
-        path: 'curriculum',
-        loadChildren: () =>
-          import(
-            'src/app/dashboard/users/evaluation/curriculum/curriculum.module'
-          ).then((m) => m.CurriculumModule),
-      },
+      // {
+      //   path: 'curriculum',
+      //   loadChildren: () =>
+      //     import(
+      //       'src/app/dashboard/users/evaluation/curriculum/curriculum.module'
+      //     ).then((m) => m.CurriculumModule),
+      // },
 
-      {
-        path: 'teacher',
-        loadChildren: () =>
-          import(
-            'src/app/dashboard/users/evaluation/teacher/teacher.module'
-          ).then((m) => m.TeacherModule),
-      },
+      // {
+      //   path: 'teacher',
+      //   loadChildren: () =>
+      //     import(
+      //       'src/app/dashboard/users/evaluation/teacher/teacher.module'
+      //     ).then((m) => m.TeacherModule),
+      // },
 
       {
         path: 'cls',
@@ -699,6 +706,7 @@ const routes: Routes = [
             (m) => m.TasksModule
           ),
       },
+      
       // school_admin:
 
       {

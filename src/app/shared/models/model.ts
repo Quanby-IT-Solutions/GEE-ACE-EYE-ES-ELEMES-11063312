@@ -5,6 +5,43 @@ export interface GuestUser {
   email: string;
   user_type: string;
 }
+export interface Material {
+  title: string;
+  link: string;
+}
+
+export interface Assignment {
+  name: string;
+  dueDate: Date | null;
+}
+
+export interface Exam {
+  name: string;
+  dueDate: Date;
+}
+
+export interface Module {
+  title: string;
+  description: string;
+  about: string;
+  materials: Material[];
+  assignments: Assignment[];
+  exams: Exam[];
+}
+
+export interface Course {
+  instructor: string;
+  instructor_profile: string;
+  course: string;
+  subject: string;
+  block: string;
+  time: string;
+  enrolled: string;
+  grade: string;
+  progress: string;
+  imageUrl: string;
+  modules: Module[];
+}
 
 export interface url {
   url: string;
