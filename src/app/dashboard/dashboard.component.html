@@ -38,6 +38,9 @@
     </main>
   </div>
 </div>
-
-<app-course-modal [class.hidden]="!isModalVisible" (close)="closeModal()"
-(save)="saveCourse($event)"></app-course-modal>
+<!-- 
+<app-modal [shown]="isModalVisible"
+(actions)="{
+  'close':closeModal,
+  'save':saveCourse
+}"></app-modal> -->

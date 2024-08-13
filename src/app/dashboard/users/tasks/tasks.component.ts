@@ -193,14 +193,38 @@ export class TasksComponent implements OnInit, OnDestroy {
   getCollapsables(){
     return  Object.keys(this.collapsables);
   }
+  
+  selectTask(task:any){
+    this.selectedTask = task;
+  }
 
   isDue(task:any){
     if(task.dueDate == null || task.submitted){
       return false;
     }
+    if(typeof task.dueDate == 'string' ){
+      task.dueDate = new Date(task.dueDate);
+    }
     const today = new Date();
     today.setDate(today.getDate() - 1);
     return today > task.dueDate;
+  }
+
+  formatDate(date: Date |string): string {
+    if(typeof date === 'string') { 
+      date = new Date(date);
+    }
+    if(date == null){
+      return 'No Due Date';
+    }
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formated = new Intl.DateTimeFormat('en-US', options).format(date);
+    const today = new Intl.DateTimeFormat('en-US', options).format(new Date())
+    if(formated == today){
+      return 'Today'
+    }
+    
+    return formated;
   }
 
   getCollapsableItems(){
@@ -230,6 +254,9 @@ export class TasksComponent implements OnInit, OnDestroy {
             startOfThisWeek.setHours(0, 0, 0, 0);
             const lastOfLastWeek = new Date(startOfThisWeek);
             lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+            if(typeof task.dueDate == 'string' ){
+              task.dueDate = new Date(task.dueDate);
+            }
             if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
               if(task.submitted){
                 this.taskSummary.completed +=1;
@@ -253,6 +280,9 @@ export class TasksComponent implements OnInit, OnDestroy {
           startOfThisWeek.setHours(0, 0, 0, 0);
           const lastOfLastWeek = new Date(startOfThisWeek);
           lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if(typeof task.dueDate == 'string' ){
+            task.dueDate = new Date(task.dueDate);
+          }
           if (task.dueDate >= startOfThisWeek && task.dueDate <= lastOfLastWeek){
             this.collapsableItems['This Week'].push(task);
             if(task.submitted){
@@ -268,14 +298,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   
         for(let assessment of module.exams ?? []){
           if(this.filterCourse !='all' && course.course != this.filterCourse){
-            const today = new Date();
-            const startOfThisWeek = new Date(today);
-            const day = startOfThisWeek.getDay();
-            const diff = startOfThisWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
-            startOfThisWeek.setDate(diff);
-            startOfThisWeek.setHours(0, 0, 0, 0);
-            const lastOfLastWeek = new Date(startOfThisWeek);
-            lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
             if(assessment.submitted){
               this.testResults.completed +=1;
             }
@@ -298,6 +320,9 @@ export class TasksComponent implements OnInit, OnDestroy {
           startOfThisWeek.setHours(0, 0, 0, 0);
           const lastOfLastWeek = new Date(startOfThisWeek);
           lastOfLastWeek.setDate(lastOfLastWeek.getDate() + 7);
+          if(typeof assessment.dueDate == 'string' ){
+            assessment.dueDate = new Date(assessment.dueDate);
+          }
           if (assessment.dueDate >= startOfThisWeek && assessment.dueDate <= lastOfLastWeek){
             this.collapsableItems['This Week'].push(assessment);
           } else if (assessment.dueDate >= lastOfLastWeek) {
@@ -326,7 +351,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   takeExam(){
     this.router.navigate([routes.quiz]);
-    // this.selectedTask.submitted = true;
+    this.selectedTask.submitted = true;
   }
 
   
@@ -352,7 +377,6 @@ export class TasksComponent implements OnInit, OnDestroy {
       }else{
         this.selectedTask.files = [...Array.from(input.files)];
       }
-      console.log(this.selectedTask.files)
     }
   }
 
@@ -382,7 +406,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.commentField = '';
   }
 
-  getTime(now:Date): string {
+  getTime(now:Date|string): string {
+    if(typeof now == 'string'){
+      now = new Date(now);
+    }
     return formatDate(now, 'h:mm a', 'en-US');
   }
 
@@ -392,19 +419,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     }
   }
 
-  formatDate(date: Date): string {
-    if(date == null){
-      return 'No Due Date';
-    }
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formated = new Intl.DateTimeFormat('en-US', options).format(date);
-    const today = new Intl.DateTimeFormat('en-US', options).format(new Date())
-    if(formated == today){
-      return 'Today'
-    }
-    
-    return formated;
-  }
+  
 
   getUserRole(): string | null {
     return this.userService.getUserRole();
@@ -419,9 +434,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectTask(task:any){
-    this.selectedTask = task;
-  }
+
 
 
   deselectTask() {

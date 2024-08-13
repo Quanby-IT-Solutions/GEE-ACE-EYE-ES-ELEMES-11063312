@@ -33,6 +33,7 @@ export class DataService {
       // Initialize courses from localStorage or use default courses
       this.courses = this.getCoursesFromStorage() || this.defaultCourses;
       // If localStorage was empty and default courses were used, save them to localStorage
+      console.log(this.courses);
       if (!localStorage.getItem('courses')) {
         this.saveCoursesToStorage();
       }
@@ -6078,6 +6079,7 @@ export class DataService {
 
   private getCoursesFromStorage(): any[] | null {
     const storedCourses = localStorage.getItem('courses');
+
     return storedCourses ? JSON.parse(storedCourses) : null;
   }
 

@@ -11,6 +11,8 @@ import { UserService } from 'src/app/shared/service/user/user.service';
 import { GuestUser } from 'src/app/shared/models/model';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
+import { ModalService } from 'src/app/shared/service/modal/modal.service';
+import { CreateAssignmentComponent } from '../../../modal/create-assignment/create-assignment.component';
 
 @Component({
   selector: 'app-subject-modules',
@@ -41,6 +43,7 @@ export class SubjectModulesComponent implements OnInit {
     private userService: UserService,
     private supabaseService: SupabaseService,
     private dataService: DataService,
+    private modalService:ModalService
 
   ) {}
 
@@ -133,10 +136,10 @@ export class SubjectModulesComponent implements OnInit {
   }
 
   addAssignment(): void {
-    this.course.modules[this.selectedModuleIndex].assignments.push({
-      name: '',
-      dueDate: '',
-    });
+    const modal$ = this.modalService.openModal( CreateAssignmentComponent ,{test:'data'}).subscribe(res =>{
+      console.log(res);
+      modal$.unsubscribe();
+    })
   }
 
   removeAssignment(index: number): void {

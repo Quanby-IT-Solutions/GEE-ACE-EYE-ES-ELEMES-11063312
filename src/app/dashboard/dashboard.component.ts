@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public searchQuery = '';
   public user: User | GuestUser | null = null;
   public isMainRouteActive: boolean = false;
-  public isModalVisible: boolean = false;
+  public isModalVisible: boolean = true;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public courses: any[] = [];
   private userSubscription: Subscription | undefined;

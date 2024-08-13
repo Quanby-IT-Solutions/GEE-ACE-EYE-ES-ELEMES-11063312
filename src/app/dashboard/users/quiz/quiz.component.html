@@ -1,12 +1,16 @@
-<div class="bg-green-600 text-white px-4 py-3 rounded-2xl shadow-sm mx-auto">
+<div class="{{totalScore / examQuestions.length < .5 && showResults ?  '!bg-blue-600' :''}} bg-green-600 text-white px-4 py-3 rounded-2xl shadow-sm mx-auto transition-all">
   <div class="text-lg flex justify-between items-center">
     <div>
-      <span > Goodluck </span><span class="font-semibold">Anton Caesar Cabais!</span>
+      <span > {{showResults ? totalScore / examQuestions.length >= .5 ?  'Congratulations you passed, ' :'Aweee its oki, ': 'Goodluck'}} </span><span class="font-semibold">Anton Caesar Cabais!</span>
       <div class="text-gray-300 text-sm">
-        Please answer truthfully. Your truthful answers will help you learn more effectively and improve your understanding.
+        {{showResults ? 
+          'Your exam has been recorded! Please click finish review to leave this page.'
+        : 'Please answer truthfully. Your truthful answers will help you learn more effectively and improve your understanding.'
+      }}
       </div>
     </div>
-    <i class="fa-regular fa-face-smile-wink text-3xl mr-4"></i>
+    <i *ngIf="totalScore / examQuestions.length >= .5 || !showResults" class="fa-regular fa-face-smile-wink text-3xl mr-4"></i>
+    <i *ngIf="totalScore / examQuestions.length < .5 && showResults" class="fa-regular fa-face-smile text-3xl mr-4"></i>
   </div>
 
 </div>
@@ -28,25 +32,67 @@
         <div class="text-gray-400">{{ timeLeft }} left</div>
       </div>
     </div>
+
+    <div class="mb-4" *ngIf="showResults">
+      <span class="text-gray-400">Score: </span> <span class="
+      {{totalScore / examQuestions.length < .5 ?'text-red-400':''}}
+      font-semibold text-lg">{{totalScore}}</span><span class="font-semibold {{totalScore / examQuestions.length < .5 ?'text-red-400':''}}"> / {{examQuestions.length}}</span>
+    </div>
   
-    <div *ngIf="currentQuestion">
+    <div *ngIf="currentQuestion && !showResults">
       <h2 class="text font-semibold mb-1">Question {{ currentIndex + 1 }}</h2>
       <p class="mb-6">{{ currentQuestion.question }}</p>
       <div *ngFor="let option of currentQuestion.options | keyvalue" class="  mb-3 ">
-        <label class="space-x-3  cursor-pointer rounded border-solid border-gray-600 border-2 hover:bg-blue-100 flex items-center px-3 py-3">
+        <label class="space-x-3  cursor-pointer rounded border-solid border-gray-600 border-2 {{currentQuestion.selectedAnswer == option.key ? 'bg-blue-100':''}} hover:bg-blue-100 flex items-center px-3 py-3">
           <input
             type="radio"
             name="option"
             [value]="option.key"
-            [(ngModel)]="selectedOption"
+            [(ngModel)]="currentQuestion.selectedAnswer"
             class="form-radio h-5 w-5 text-black"
           />
           <span>{{ option.value }}</span>
         </label>
       </div>
     </div>
+    
+    <div *ngIf="showResults">
+      <ng-container *ngFor="let question of examQuestions; let i = index">
+        <h2 class="text font-semibold mb-1">Question {{ i + 1 }}</h2>
+        <p class="mb-6">{{ question.question }}</p>
+        <div *ngFor="let option of question.options | keyvalue" class="  mb-3 ">
+          <label  class="space-x-3 pointer-events-none rounded border-solid border-gray-600 border-2 {{question.answer == option.key ? 'bg-green-100' : question.selectedAnswer ? '' : 'bg-gray-200'}} {{question.selectedAnswer != question.answer && question.selectedAnswer == option.key ? 'bg-red-200':question.selectedAnswer ? '' : 'bg-gray-200'}} hover:bg-blue-100 flex items-center px-3 py-3">
+            <input
+              type="radio"
+              name="option"
+              [value]="option.key"
+              [(ngModel)]="question.selectedAnswer"
+              class="form-radio h-5 w-5 text-black"
+            />
+            <span>{{ option.value }}</span>
+          </label>
+        </div>
+        <div class="font-semibold mt-1 mb-2 text-green-400" *ngIf="question.answer == question.selectedAnswer">
+          Your answer is correct!
+        </div>
+        <div class="font-semibold mt-1 mb-2 text-red-400" *ngIf="question.answer != question.selectedAnswer && question.selectedAnswer">
+          Your answer is wrong! <span class="text-gray-400 font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
+        </div>
+        <div  class="font-semibold mt-1 mb-2 text-gray-400" *ngIf="!question.selectedAnswer">
+          No answer! <span  class="font-normal">Correct answer is <span class="font-bold text-black">{{question.options[question.answer]}}</span></span>
+        </div>
+      </ng-container>
+      <div class="w-full flex justify-center">
+        <button
+          (click)="finishAttempt()"
+          class="px-4 py-2  bg-blue-500 text-white rounded disabled:opacity-50">
+          Finish Review
+        </button>
+      </div>
+    </div>
+    
   
-    <div class="flex justify-between mt-6">
+    <div *ngIf="!showResults" class="flex justify-between mt-6">
       <button
         (click)="prevQuestion()"
         [disabled]="currentIndex === 0"
@@ -56,10 +102,9 @@
       </button>
       <button
         (click)="nextQuestion()"
-        [disabled]="!selectedOption"
         class="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
       >
-        Next
+        {{this.currentIndex >= this.examQuestions.length - 1 ? 'Finish':'Next'}}
       </button>
     </div>
   </div>

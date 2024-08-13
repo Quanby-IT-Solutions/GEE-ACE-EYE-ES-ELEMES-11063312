@@ -41,7 +41,7 @@
     <div class="lg:w-3/4 w-full lg:ml-4">
       <!-- Editing Mode Toggle -->
 
-      @if (getUserRole() === 'instructor') {
+    @if (getUserRole() === 'instructor') {
       <div class="flex justify-end mb-4">
         <button
           class="bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 transition"
@@ -166,32 +166,40 @@
       </div>
 
       <div *ngIf="selectedTab === 'assignments'">
-        <h3 class="text-xl font-bold mb-4">Assignments</h3>
-        <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments; let i = index" class="mb-4 p-4 border border-gray-200 rounded-lg">
-          <div *ngIf="isEditing">
-            <input
-              type="text"
-              class="text-lg font-semibold w-full border border-gray-300 rounded-md p-2 mb-2"
-              [(ngModel)]="assignment.name"
-              placeholder="Assignment Name"
-            />
-            <input
-              type="date"
-              class="text-gray-700 w-full border border-gray-300 rounded-md p-2 mb-2"
-              [(ngModel)]="assignment.dueDate"
-              placeholder="Due Date"
-            />
-            <button class="bg-red-600 text-white rounded-md py-1 px-3 hover:bg-red-700 transition"
-              (click)="removeAssignment(i)">Remove</button>
-          </div>
-          <div *ngIf="!isEditing">
-            <h4 class="text-lg font-semibold">{{ assignment.name }}</h4>
-            <p class="text-gray-700 mb-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
-          </div>
-        </div>
-        <button *ngIf="isEditing" class="bg-green-600 text-white rounded-md py-1 px-3 hover:bg-green-700 transition"
+        <h3 class="text-xl font-bold mb-4 flex justify-between">
+          Assignments
+          <button *ngIf="isEditing" class="bg-green-600 text-base  text-white rounded-md py-1 px-3 hover:bg-green-700 transition"
           (click)="addAssignment()">Add Assignment</button>
+        </h3>
+        <ul *ngIf="course.modules[selectedModuleIndex].assignments.length > 0; else noItem">
+            <ng-container  *ngFor="let task of course.modules[selectedModuleIndex].assignments">
+              <li
+                class="course-item mb-2 p-4  bg-gray-100 hover:scale-105 [&>div>p]:hover:text-gray-200 [&>div>h3]:hover:text-white [&>span]:hover:bg-white 
+                [&>span>i]:hover:!text-green-600
+                  hover:bg-green-700
+                  rounded-md shadow-sm cursor-pointer transition-all
+                  flex items-center 
+                "
+              >
+                <div class="flex-1">
+                  <h3 class="text-base font-semibold "><i class="fa-regular fa-file-lines px-2"></i> {{ task.name }}</h3>
+                  <p class="px-[1.8rem] text-sm text-gray-600">{{ task.course }}</p>
+                  <p class="px-[1.8rem] text-sm  text-gray-600">{{task.dueDate ? 'Due' : ''}} {{ task.dueDate | date:'fullDate'}}</p>
+                </div>
+                <!-- <span *ngIf="task.submitted" class="rounded-full w-12 h-12 {{task.type == 'assignment'? 'bg-gray-600': 'bg-white'}} flex justify-center items-center mr-5">
+                  <i class="fa-solid fa-check text-lg "></i>
+                </span> -->
+              </li>
+            </ng-container>
+        </ul>
+        <ng-template #noItem>
+          <div>
+            No assignments listed.
+          </div>
+        </ng-template>
       </div>
+
+
 
       <div *ngIf="selectedTab === 'exams'">
         <h3 class="text-xl font-bold mb-4">Exams</h3>
@@ -344,4 +352,7 @@
       </div>
     </div>
   </div>
+
+
 </div>
+
