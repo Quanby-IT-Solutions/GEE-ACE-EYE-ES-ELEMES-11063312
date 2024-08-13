@@ -5293,6 +5293,120 @@ export class DataService {
   private defaultCourses = [
 
     // information technology
+    // {
+    //   instructor: 'Anton Caesar Cabais',
+    //   instructor_profile: 'assets/img/ton.jpg',
+    //   course: 'Information Technology',
+    //   subject: 'Information Technology',
+    //   block: 'A',
+    //   startDate: new Date(2024, 7, 20),
+    //   time: '09:00 - 10:00',
+    //   grade: '97',
+    //   enrollmentKey: '12345',
+    //   progress: '65',
+    //   imageUrl: 'assets/img/program.jpg',
+    //   enrolled: 'yes',
+      
+    //   modules: [
+    //     {
+    //       title: 'Introduction to Information Technology',
+    //       description: 'Overview of IT Concepts',
+    //       about: 'This module introduces you to the fundamental concepts of Information Technology, including hardware, software, networking, and databases.',
+    //       materials: [
+    //         { title: 'Introduction to IT - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+    //         { title: 'Introduction to IT - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+    //         { title: 'Introduction to IT - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+    //       ],
+    //       assignments: [
+    //         { name: 'IT Basics Homework 1', 
+    //           dueDate: new Date(2024, 7, 11), 
+    //           score: '10/12',  
+    //           details: 'This assignment covers the basics of IT, including understanding computer hardware and software.',
+    //           resources: [
+    //             { name: 'IT Basics', link: 'assets/courses/teach.pdf' }
+    //           ]            
+    //         },
+    //       ],
+          
+    //       exams: [
+    //         { name: 'IT Basics Quiz', dueDate: new Date(2024, 7, 15), score: '52/60' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Networking Fundamentals',
+    //       description: 'Understanding Network Structures',
+    //       about: 'This module covers the basics of networking, including types of networks, network topologies, and network protocols.',
+    //       materials: [
+    //         { title: 'Networking Fundamentals - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+    //         { title: 'Networking Fundamentals - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+    //         { title: 'Networking Fundamentals - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Networking Homework', dueDate: new Date(2024, 7, 20), score: '10/15' },
+    //         { name: 'Network Setup Assignment', dueDate: new Date(2024, 7, 25), score: '12/20' },
+    //         { 
+    //           name: 'Network Troubleshooting Homework', 
+    //           dueDate: new Date(2024, 7, 28), 
+    //           score: '13/15',
+    //           resources: [
+    //             { name: 'Network Troubleshooting Guide', link: 'assets/courses/teach.pdf' }
+    //           ]
+    //         }
+    //       ],
+          
+    //       exams: [
+    //         { name: 'Networking Fundamentals Test', dueDate: new Date(2024, 7, 28), score: '50/60' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Database Management',
+    //       description: 'Introduction to Databases',
+    //       about: 'In this module, you will learn about database management systems, including SQL, relational databases, and data modeling.',
+    //       materials: [
+    //         { title: 'Database Management - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+    //         { title: 'Database Management - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+    //         { title: 'Database Management - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Database Design Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
+    //         { name: 'SQL Query Assignment', dueDate: new Date(2024, 8, 10), score: '11/15' },
+    //         { 
+    //           name: 'Database Optimization Homework', 
+    //           dueDate: new Date(2024, 8, 15), 
+    //           score: '12/12',
+    //           resources: [
+    //             { name: 'SQL Optimization Guide', link: 'assets/courses/teach.pdf' }
+    //           ]
+    //         }
+    //       ],
+          
+    //       exams: [
+    //         { name: 'Database Management Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
+    //       ]
+    //     }
+    //   ],
+    //   enrolledStudents: [
+       
+    //     { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
+    //     { name: 'Emilia Aguinaldo', email: 'emiliaaguinaldo@gmail.com', progress: '50' },
+    //     { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', progress: '30' },
+    //     { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', progress: '70' },
+    //     { name: 'William Cruz', email: 'williamcruz@gmail.com', progress: '90' },
+    //     { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', progress: '60' },
+    //     { name: 'Jaime Tan', email: 'jaimetan@gmail.com', progress: '40' },
+    //     { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },
+    //     { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
+    //     { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
+    //     { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', progress: '30' },
+  
+    //     { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
+    //     { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', progress: '50' },
+    //     { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', progress: '40' },
+    //     { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
+    //     { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
+    //   ]
+      
+    // },
     {
       instructor: 'Anton Caesar Cabais',
       instructor_profile: 'assets/img/ton.jpg',
@@ -5318,18 +5432,58 @@ export class DataService {
             { title: 'Introduction to IT - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'IT Basics Homework 1', 
+            { 
+              name: 'IT Basics Homework 1', 
               dueDate: new Date(2024, 7, 11), 
               score: '10/12',  
               details: 'This assignment covers the basics of IT, including understanding computer hardware and software.',
               resources: [
                 { name: 'IT Basics', link: 'assets/courses/teach.pdf' }
-              ]            
-            },
+              ],
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '9/12' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '10/12' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '8/12' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '11/12' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '12/12' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '10/12' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '9/12' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '11/12' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '10/12' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '11/12' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '8/12' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '11/12' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '10/12' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '9/12' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '10/12' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '11/12' }
+              ]
+            }
           ],
-          
           exams: [
-            { name: 'IT Basics Quiz', dueDate: new Date(2024, 7, 15), score: '52/60' }
+            { 
+              name: 'IT Basics Quiz', 
+              dueDate: new Date(2024, 7, 15), 
+              score: '52/60',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '50/60' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '52/60' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '48/60' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '54/60' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '56/60' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '52/60' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '50/60' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '55/60' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '52/60' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '54/60' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '49/60' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '54/60' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '52/60' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '50/60' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '52/60' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '55/60' }
+              ]
+            }
           ]
         },
         {
@@ -5342,20 +5496,103 @@ export class DataService {
             { title: 'Networking Fundamentals - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Networking Homework', dueDate: new Date(2024, 7, 20), score: '10/15' },
-            { name: 'Network Setup Assignment', dueDate: new Date(2024, 7, 25), score: '12/20' },
+            { 
+              name: 'Networking Homework', 
+              dueDate: new Date(2024, 7, 20), 
+              score: '10/15',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '9/15' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '10/15' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '8/15' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '12/15' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '13/15' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '10/15' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '9/15' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '12/15' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '11/15' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '12/15' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '8/15' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '12/15' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '11/15' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '9/15' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '10/15' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '12/15' }
+              ]
+            },
+            { 
+              name: 'Network Setup Assignment', 
+              dueDate: new Date(2024, 7, 25), 
+              score: '12/20',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '11/20' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '12/20' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '10/20' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '14/20' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '15/20' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '12/20' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '11/20' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '14/20' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '13/20' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '14/20' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '10/20' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '14/20' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '13/20' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '11/20' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '12/20' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '14/20' }
+              ]
+            },
             { 
               name: 'Network Troubleshooting Homework', 
               dueDate: new Date(2024, 7, 28), 
               score: '13/15',
               resources: [
                 { name: 'Network Troubleshooting Guide', link: 'assets/courses/teach.pdf' }
+              ],
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '12/15' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '13/15' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '11/15' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '14/15' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '15/15' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '13/15' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '12/15' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '14/15' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '13/15' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '14/15' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '11/15' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '14/15' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '13/15' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '12/15' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '13/15' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '14/15' }
               ]
             }
           ],
-          
           exams: [
-            { name: 'Networking Fundamentals Test', dueDate: new Date(2024, 7, 28), score: '50/60' }
+            { 
+              name: 'Networking Fundamentals Test', 
+              dueDate: new Date(2024, 7, 28), 
+              score: '50/60',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '48/60' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '50/60' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '46/60' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '52/60' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '54/60' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '50/60' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '48/60' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '53/60' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '50/60' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '52/60' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '45/60' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '52/60' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '50/60' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '48/60' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '50/60' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '53/60' }
+              ]
+            }
           ]
         },
         {
@@ -5368,27 +5605,109 @@ export class DataService {
             { title: 'Database Management - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Database Design Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
-            { name: 'SQL Query Assignment', dueDate: new Date(2024, 8, 10), score: '11/15' },
+            { 
+              name: 'Database Design Homework', 
+              dueDate: new Date(2024, 8, 5), 
+              score: '10/12',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '9/12' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '10/12' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '8/12' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '11/12' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '12/12' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '10/12' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '9/12' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '11/12' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '10/12' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '11/12' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '8/12' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '11/12' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '10/12' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '9/12' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '10/12' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '11/12' }
+              ]
+            },
+            { 
+              name: 'SQL Query Assignment', 
+              dueDate: new Date(2024, 8, 10), 
+              score: '11/15',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '10/15' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '11/15' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '9/15' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '12/15' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '13/15' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '11/15' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '10/15' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '12/15' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '11/15' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '12/15' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '9/15' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '12/15' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '11/15' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '10/15' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '11/15' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '12/15' }
+              ]
+            },
             { 
               name: 'Database Optimization Homework', 
               dueDate: new Date(2024, 8, 15), 
               score: '12/12',
               resources: [
                 { name: 'SQL Optimization Guide', link: 'assets/courses/teach.pdf' }
+              ],
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '11/12' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '12/12' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '10/12' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '12/12' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '12/12' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '11/12' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '11/12' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '12/12' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '11/12' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '12/12' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '10/12' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '12/12' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '11/12' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '11/12' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '12/12' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '12/12' }
               ]
             }
           ],
-          
           exams: [
-            { name: 'Database Management Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
+            { 
+              name: 'Database Management Exam', 
+              dueDate: new Date(2024, 8, 20), 
+              score: '32/60',
+              scores: [
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '30/60' },
+                { name: 'Cabais Anton', email: 'student9@gmail.com', score: '32/60' },
+                { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', score: '28/60' },
+                { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', score: '35/60' },
+                { name: 'William Cruz', email: 'williamcruz@gmail.com', score: '38/60' },
+                { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', score: '32/60' },
+                { name: 'Jaime Tan', email: 'jaimetan@gmail.com', score: '30/60' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '36/60' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '32/60' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '35/60' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '29/60' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '34/60' },
+                { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', score: '32/60' },
+                { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', score: '30/60' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '32/60' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '35/60' }
+              ]
+            }
           ]
         }
       ],
       enrolledStudents: [
-       
         { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
-        { name: 'Emilia Aguinaldo', email: 'emiliaaguinaldo@gmail.com', progress: '50' },
+        { name: 'Cabais Anton', email: 'student9@gmail.com', progress: '100' },
         { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', progress: '30' },
         { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', progress: '70' },
         { name: 'William Cruz', email: 'williamcruz@gmail.com', progress: '90' },
@@ -5398,23 +5717,21 @@ export class DataService {
         { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
         { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
         { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', progress: '30' },
-  
         { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
         { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', progress: '50' },
         { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', progress: '40' },
         { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
         { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
       ]
-      
     },
     
 
     // cybersecurity
 
-   {
+    {
       instructor: 'Edward Rogers',
       instructor_profile: 'assets/img/tonn.jpeg',
-      course: 'Cybersecurity ',
+      course: 'Cybersecurity',
       subject: 'Cybersecurity',
       block: 'B',
       startDate: new Date(2024, 8, 1),
@@ -5447,11 +5764,43 @@ export class DataService {
               details: 'This assignment covers the basic concepts and importance of cybersecurity.',
               resources: [
                 { name: 'Cybersecurity Homework 1', link: 'assets/courses/teach.pdf' }
+              ],
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '13/20' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '15/20' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '14/20' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '16/20' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '15/20' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '14/20' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '12/20' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '14/20' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '17/20' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '16/20' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '15/20' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '17/20' }
               ]
-            },
+            }
           ],
           exams: [
-            { name: 'Cybersecurity Quiz', dueDate: new Date(2024, 8, 15), score: '45/50' }
+            { 
+              name: 'Cybersecurity Quiz', 
+              dueDate: new Date(2024, 8, 15), 
+              score: '45/50',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '43/50' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '45/50' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '42/50' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '46/50' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '44/50' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '43/50' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '41/50' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '44/50' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '47/50' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '46/50' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '44/50' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '47/50' }
+              ]
+            }
           ]
         },
         {
@@ -5464,19 +5813,87 @@ export class DataService {
             { title: 'Firewalls and IDS - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 7) }
           ],
           assignments: [
-            { name: 'Network Security Homework', dueDate: new Date(2024, 8, 20), score: '18/25' },
-            { name: 'Securing Networks', dueDate: new Date(2024, 8, 25), score: '20/25' },
+            { 
+              name: 'Network Security Homework', 
+              dueDate: new Date(2024, 8, 20), 
+              score: '18/25',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '16/25' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '18/25' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '17/25' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '19/25' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '18/25' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '17/25' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '15/25' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '17/25' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '20/25' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '19/25' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '18/25' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '20/25' }
+              ]
+            },
+            { 
+              name: 'Securing Networks', 
+              dueDate: new Date(2024, 8, 25), 
+              score: '20/25',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '18/25' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '20/25' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '19/25' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '21/25' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '20/25' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '19/25' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '17/25' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '19/25' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '22/25' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '21/25' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '20/25' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '22/25' }
+              ]
+            },
             { 
               name: 'Firewall Configuration Homework', 
               dueDate: new Date(2024, 8, 30), 
               score: '22/25',
               resources: [
                 { name: 'Firewall Setup Guide', link: '/assets/courses/teach.pdf' }
+              ],
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '20/25' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '22/25' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '21/25' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '23/25' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '22/25' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '21/25' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '19/25' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '21/25' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '24/25' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '23/25' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '22/25' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '24/25' }
               ]
             }
           ],
           exams: [
-            { name: 'Network Security Test', dueDate: new Date(2024, 9, 5), score: '40/50' }
+            { 
+              name: 'Network Security Test', 
+              dueDate: new Date(2024, 9, 5), 
+              score: '40/50',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '38/50' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '40/50' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '37/50' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '42/50' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '40/50' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '39/50' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '36/50' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '39/50' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '43/50' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '42/50' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '40/50' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '43/50' }
+              ]
+            }
           ]
         },
         {
@@ -5489,19 +5906,87 @@ export class DataService {
             { title: 'OWASP Top 10 - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 17) }
           ],
           assignments: [
-            { name: 'Secure Coding Homework', dueDate: new Date(2024, 9, 10), score: '19/20' },
-            { name: 'Threat Modeling Exercise', dueDate: new Date(2024, 9, 15), score: '18/20' },
+            { 
+              name: 'Secure Coding Homework', 
+              dueDate: new Date(2024, 9, 10), 
+              score: '19/20',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '18/20' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '19/20' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '18/20' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '20/20' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '19/20' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '18/20' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '17/20' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '18/20' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '20/20' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '19/20' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '19/20' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '20/20' }
+              ]
+            },
+            { 
+              name: 'Threat Modeling Exercise', 
+              dueDate: new Date(2024, 9, 15), 
+              score: '18/20',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '17/20' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '18/20' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '17/20' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '19/20' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '18/20' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '17/20' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '16/20' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '18/20' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '19/20' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '18/20' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '18/20' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '19/20' }
+              ]
+            },
             { 
               name: 'Application Security Homework', 
               dueDate: new Date(2024, 9, 20), 
               score: '20/20',
               resources: [
                 { name: 'Secure Coding Guide', link: '/assets/courses/teach.pdf' }
+              ],
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '19/20' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '20/20' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '19/20' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '20/20' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '19/20' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '18/20' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '18/20' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '19/20' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '20/20' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '20/20' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '19/20' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '20/20' }
               ]
             }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '85/100' }
+            { 
+              name: 'Final Exam', 
+              dueDate: new Date(2024, 9, 30), 
+              score: '85/100',
+              scores: [
+                { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', score: '82/100' },
+                { name: 'Maria Santos', email: 'mariasantos@gmail.com', score: '85/100' },
+                { name: 'Jose Rizal', email: 'joserizal@gmail.com', score: '80/100' },
+                { name: 'Ava Garcia', email: 'avagarcia@gmail.com', score: '87/100' },
+                { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', score: '84/100' },
+                { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', score: '85/100' },
+                { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', score: '79/100' },
+                { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', score: '83/100' },
+                { name: 'Lucas Santos', email: 'lucassantos@gmail.com', score: '88/100' },
+                { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', score: '86/100' },
+                { name: 'Ethan Flores', email: 'ethanflores@gmail.com', score: '84/100' },
+                { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', score: '89/100' }
+              ]
+            }
           ]
         }
       ],
@@ -5510,7 +5995,6 @@ export class DataService {
         { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', progress: '20' },
         { name: 'Maria Santos', email: 'mariasantos@gmail.com', progress: '60' },
         { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
-        
         { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },
         { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
         { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
@@ -5518,12 +6002,125 @@ export class DataService {
         { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', progress: '60' },
         { name: 'Lucas Santos', email: 'lucassantos@gmail.com', progress: '90' },
         { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
-  
         { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
         { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
       ]
-      
     },
+    
+
+  //  {
+  //     instructor: 'Edward Rogers',
+  //     instructor_profile: 'assets/img/tonn.jpeg',
+  //     course: 'Cybersecurity ',
+  //     subject: 'Cybersecurity',
+  //     block: 'B',
+  //     startDate: new Date(2024, 8, 1),
+  //     time: '14:00 - 15:00',
+  //     grade: '90',
+  //     enrollmentKey: 'cyber2024',
+  //     progress: '75',
+  //     imageUrl: 'assets/img/cybersec.jpg',
+  //     enrolled: 'yes',
+      
+  //     prerequisite: {
+  //       course: 'Information Technology'
+  //     },
+    
+  //     modules: [
+  //       {
+  //         title: 'Introduction to Cybersecurity',
+  //         description: 'Understanding the basics of Cybersecurity',
+  //         about: 'This module introduces the fundamental concepts of cybersecurity, including the importance of protecting digital information and systems from cyber threats.',
+  //         materials: [
+  //           { title: 'Cybersecurity Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 25) },
+  //           { title: 'Cybersecurity Basics - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 7, 26) },
+  //           { title: 'Cybersecurity Terminology - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 27) }
+  //         ],
+  //         assignments: [
+  //           { 
+  //             name: 'Cybersecurity Homework 1', 
+  //             dueDate: new Date(2024, 7, 15), 
+  //             score: '15/20',  
+  //             details: 'This assignment covers the basic concepts and importance of cybersecurity.',
+  //             resources: [
+  //               { name: 'Cybersecurity Homework 1', link: 'assets/courses/teach.pdf' }
+  //             ]
+  //           },
+  //         ],
+  //         exams: [
+  //           { name: 'Cybersecurity Quiz', dueDate: new Date(2024, 8, 15), score: '45/50' }
+  //         ]
+  //       },
+  //       {
+  //         title: 'Network Security',
+  //         description: 'Protecting network infrastructures from cyber threats',
+  //         about: 'This module covers the principles of securing network infrastructures, including firewalls, intrusion detection systems, and secure communication protocols.',
+  //         materials: [
+  //           { title: 'Network Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 5) },
+  //           { title: 'Network Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 6) },
+  //           { title: 'Firewalls and IDS - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 7) }
+  //         ],
+  //         assignments: [
+  //           { name: 'Network Security Homework', dueDate: new Date(2024, 8, 20), score: '18/25' },
+  //           { name: 'Securing Networks', dueDate: new Date(2024, 8, 25), score: '20/25' },
+  //           { 
+  //             name: 'Firewall Configuration Homework', 
+  //             dueDate: new Date(2024, 8, 30), 
+  //             score: '22/25',
+  //             resources: [
+  //               { name: 'Firewall Setup Guide', link: '/assets/courses/teach.pdf' }
+  //             ]
+  //           }
+  //         ],
+  //         exams: [
+  //           { name: 'Network Security Test', dueDate: new Date(2024, 9, 5), score: '40/50' }
+  //         ]
+  //       },
+  //       {
+  //         title: 'Application Security',
+  //         description: 'Ensuring the security of software applications',
+  //         about: 'In this module, you will learn how to secure software applications from vulnerabilities, including secure coding practices and threat modeling.',
+  //         materials: [
+  //           { title: 'Application Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 15) },
+  //           { title: 'Application Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 16) },
+  //           { title: 'OWASP Top 10 - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 17) }
+  //         ],
+  //         assignments: [
+  //           { name: 'Secure Coding Homework', dueDate: new Date(2024, 9, 10), score: '19/20' },
+  //           { name: 'Threat Modeling Exercise', dueDate: new Date(2024, 9, 15), score: '18/20' },
+  //           { 
+  //             name: 'Application Security Homework', 
+  //             dueDate: new Date(2024, 9, 20), 
+  //             score: '20/20',
+  //             resources: [
+  //               { name: 'Secure Coding Guide', link: '/assets/courses/teach.pdf' }
+  //             ]
+  //           }
+  //         ],
+  //         exams: [
+  //           { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '85/100' }
+  //         ]
+  //       }
+  //     ],
+    
+  //     enrolledStudents: [
+  //       { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', progress: '20' },
+  //       { name: 'Maria Santos', email: 'mariasantos@gmail.com', progress: '60' },
+  //       { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
+        
+  //       { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },
+  //       { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
+  //       { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
+  //       { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', progress: '30' },
+  //       { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', progress: '60' },
+  //       { name: 'Lucas Santos', email: 'lucassantos@gmail.com', progress: '90' },
+  //       { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
+  
+  //       { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
+  //       { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
+  //     ]
+      
+  //   },
 
     // privacy and data protection
 
@@ -5540,8 +6137,6 @@ export class DataService {
       progress: '70',
       imageUrl: 'assets/img/dataprivacy.webp',
       enrolled: 'yes',
-      
-   
       
       modules: [
         {
@@ -5561,11 +6156,43 @@ export class DataService {
               details: 'This assignment focuses on understanding the principles of data protection and privacy regulations.',
               resources: [
                 { name: 'Data Protection Homework 1', link: '/assets/courses/data_protection_basics.pdf'}
+              ],
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '16/20' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '17/20' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '18/20' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '15/20' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '19/20' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '18/20' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '17/20' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '15/20' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '19/20' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '18/20' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '16/20' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '20/20' }
               ]
-            },
+            }
           ],
           exams: [
-            { name: 'Data Protection Quiz', dueDate: new Date(2024, 8, 25), score: '40/50' }
+            { 
+              name: 'Data Protection Quiz', 
+              dueDate: new Date(2024, 8, 25), 
+              score: '40/50',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '38/50' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '40/50' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '39/50' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '36/50' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '42/50' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '40/50' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '41/50' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '35/50' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '42/50' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '44/50' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '39/50' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '45/50' }
+              ]
+            }
           ]
         },
         {
@@ -5578,19 +6205,87 @@ export class DataService {
             { title: 'CCPA Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/ccpa_overview.pdf', uploadDate: new Date(2024, 8, 7) }
           ],
           assignments: [
-            { name: 'Privacy Laws Homework', dueDate: new Date(2024, 8, 20), score: '22/25' },
-            { name: 'GDPR vs CCPA Analysis', dueDate: new Date(2024, 8, 25), score: '24/25' },
+            { 
+              name: 'Privacy Laws Homework', 
+              dueDate: new Date(2024, 8, 20), 
+              score: '22/25',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '20/25' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '21/25' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '22/25' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '19/25' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '23/25' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '21/25' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '23/25' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '18/25' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '22/25' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '24/25' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '21/25' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '25/25' }
+              ]
+            },
+            { 
+              name: 'GDPR vs CCPA Analysis', 
+              dueDate: new Date(2024, 8, 25), 
+              score: '24/25',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '23/25' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '24/25' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '22/25' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '21/25' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '24/25' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '23/25' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '24/25' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '20/25' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '23/25' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '25/25' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '22/25' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '25/25' }
+              ]
+            },
             { 
               name: 'Privacy Regulation Case Study', 
               dueDate: new Date(2024, 8, 30), 
               score: '23/25',
               resources: [
                 { name: 'Privacy Case Study Guide', link: '/assets/courses/privacy_case_study_guide.pdf' }
+              ],
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '21/25' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '22/25' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '23/25' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '20/25' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '23/25' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '24/25' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '23/25' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '19/25' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '22/25' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '24/25' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '21/25' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '25/25' }
               ]
             }
           ],
           exams: [
-            { name: 'Privacy Laws Test', dueDate: new Date(2024, 9, 5), score: '42/50' }
+            { 
+              name: 'Privacy Laws Test', 
+              dueDate: new Date(2024, 9, 5), 
+              score: '42/50',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '40/50' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '42/50' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '39/50' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '38/50' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '43/50' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '41/50' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '42/50' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '37/50' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '42/50' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '45/50' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '39/50' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '46/50' }
+              ]
+            }
           ]
         },
         {
@@ -5603,19 +6298,87 @@ export class DataService {
             { title: 'Breach Management - Supplementary Reading', type: 'pdf', link: '/assets/courses/breach_management.pdf', uploadDate: new Date(2024, 8, 17) }
           ],
           assignments: [
-            { name: 'Data Privacy Audit Exercise', dueDate: new Date(2024, 9, 10), score: '19/20' },
-            { name: 'Data Breach Response Plan', dueDate: new Date(2024, 9, 15), score: '20/20' },
+            { 
+              name: 'Data Privacy Audit Exercise', 
+              dueDate: new Date(2024, 9, 10), 
+              score: '19/20',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '17/20' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '19/20' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '18/20' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '16/20' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '20/20' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '19/20' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '18/20' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '15/20' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '19/20' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '20/20' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '18/20' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '20/20' }
+              ]
+            },
+            { 
+              name: 'Data Breach Response Plan', 
+              dueDate: new Date(2024, 9, 15), 
+              score: '20/20',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '19/20' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '20/20' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '18/20' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '17/20' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '20/20' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '19/20' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '18/20' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '16/20' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '19/20' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '20/20' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '19/20' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '20/20' }
+              ]
+            },
             { 
               name: 'Data Privacy Implementation Homework', 
               dueDate: new Date(2024, 9, 20), 
               score: '18/20',
               resources: [
                 { name: 'Data Privacy Audit Guide', link: '/assets/courses/data_privacy_audit_guide.pdf' }
+              ],
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '17/20' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '18/20' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '17/20' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '16/20' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '19/20' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '18/20' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '17/20' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '15/20' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '18/20' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '19/20' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '17/20' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '20/20' }
               ]
             }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '88/100' }
+            { 
+              name: 'Final Exam', 
+              dueDate: new Date(2024, 9, 30), 
+              score: '88/100',
+              scores: [
+                { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', score: '85/100' },
+                { name: 'Liam Martinez', email: 'liammartinez@gmail.com', score: '87/100' },
+                { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', score: '84/100' },
+                { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', score: '83/100' },
+                { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', score: '88/100' },
+                { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', score: '86/100' },
+                { name: 'Mia Diaz', email: 'miadiaz@gmail.com', score: '87/100' },
+                { name: 'Lucas Perez', email: 'lucasperez@gmail.com', score: '82/100' },
+                { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', score: '86/100' },
+                { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', score: '89/100' },
+                { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', score: '84/100' },
+                { name: 'Oliver Morales', email: 'olivermorales@gmail.com', score: '90/100' }
+              ]
+            }
           ]
         }
       ],
@@ -5635,6 +6398,227 @@ export class DataService {
         { name: 'Oliver Morales', email: 'olivermorales@gmail.com', progress: '90' }
       ]
     },
+    
+
+    // {
+    //   instructor: 'Kenneth James Belga',
+    //   instructor_profile: 'assets/img/kenB.jpg',
+    //   course: 'Privacy and Data Protection',
+    //   subject: 'Data Protection',
+    //   block: 'A',
+    //   startDate: new Date(2024, 8, 10),
+    //   time: '10:00 - 11:30',
+    //   grade: '85',
+    //   enrollmentKey: 'privacy2024',
+    //   progress: '70',
+    //   imageUrl: 'assets/img/dataprivacy.webp',
+    //   enrolled: 'yes',
+      
+   
+      
+    //   modules: [
+    //     {
+    //       title: 'Introduction to Data Protection',
+    //       description: 'Understanding the fundamentals of data protection',
+    //       about: 'This module covers the basic concepts of data protection, including the importance of safeguarding personal information and regulatory frameworks.',
+    //       materials: [
+    //         { title: 'Data Protection Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/data_protection_basics.pdf', uploadDate: new Date(2024, 7, 30) },
+    //         { title: 'Data Protection Basics - Video Lecture', type: 'video', link: '/assets/courses/data_protection_basics.mp4', uploadDate: new Date(2024, 7, 31) },
+    //         { title: 'GDPR Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/gdpr_overview.pdf', uploadDate: new Date(2024, 8, 1) }
+    //       ],
+    //       assignments: [
+    //         { 
+    //           name: 'Data Protection Homework 1', 
+    //           dueDate: new Date(2024, 8, 15), 
+    //           score: '18/20',  
+    //           details: 'This assignment focuses on understanding the principles of data protection and privacy regulations.',
+    //           resources: [
+    //             { name: 'Data Protection Homework 1', link: '/assets/courses/data_protection_basics.pdf'}
+    //           ]
+    //         },
+    //       ],
+    //       exams: [
+    //         { name: 'Data Protection Quiz', dueDate: new Date(2024, 8, 25), score: '40/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Privacy Laws and Regulations',
+    //       description: 'Exploring global privacy laws and regulations',
+    //       about: 'This module delves into the various privacy laws and regulations around the world, such as GDPR, CCPA, and others.',
+    //       materials: [
+    //         { title: 'Privacy Laws - Lecture Notes', type: 'pdf', link: '/assets/courses/privacy_laws_notes.pdf', uploadDate: new Date(2024, 8, 5) },
+    //         { title: 'Privacy Laws - Video Lecture', type: 'video', link: '/assets/courses/privacy_laws_lecture.mp4', uploadDate: new Date(2024, 8, 6) },
+    //         { title: 'CCPA Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/ccpa_overview.pdf', uploadDate: new Date(2024, 8, 7) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Privacy Laws Homework', dueDate: new Date(2024, 8, 20), score: '22/25' },
+    //         { name: 'GDPR vs CCPA Analysis', dueDate: new Date(2024, 8, 25), score: '24/25' },
+    //         { 
+    //           name: 'Privacy Regulation Case Study', 
+    //           dueDate: new Date(2024, 8, 30), 
+    //           score: '23/25',
+    //           resources: [
+    //             { name: 'Privacy Case Study Guide', link: '/assets/courses/privacy_case_study_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Privacy Laws Test', dueDate: new Date(2024, 9, 5), score: '42/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Data Privacy in Practice',
+    //       description: 'Implementing data privacy measures in organizations',
+    //       about: 'In this module, you will learn practical approaches to implementing data privacy measures within organizations, including data handling and breach management.',
+    //       materials: [
+    //         { title: 'Data Privacy Implementation - Lecture Notes', type: 'pdf', link: '/assets/courses/data_privacy_implementation.pdf', uploadDate: new Date(2024, 8, 15) },
+    //         { title: 'Data Privacy Implementation - Video Lecture', type: 'video', link: '/assets/courses/data_privacy_lecture.mp4', uploadDate: new Date(2024, 8, 16) },
+    //         { title: 'Breach Management - Supplementary Reading', type: 'pdf', link: '/assets/courses/breach_management.pdf', uploadDate: new Date(2024, 8, 17) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Data Privacy Audit Exercise', dueDate: new Date(2024, 9, 10), score: '19/20' },
+    //         { name: 'Data Breach Response Plan', dueDate: new Date(2024, 9, 15), score: '20/20' },
+    //         { 
+    //           name: 'Data Privacy Implementation Homework', 
+    //           dueDate: new Date(2024, 9, 20), 
+    //           score: '18/20',
+    //           resources: [
+    //             { name: 'Data Privacy Audit Guide', link: '/assets/courses/data_privacy_audit_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '88/100' }
+    //       ]
+    //     }
+    //   ],
+      
+    //   enrolledStudents: [
+    //     { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', progress: '30' },
+    //     { name: 'Liam Martinez', email: 'liammartinez@gmail.com', progress: '70' },
+    //     { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', progress: '50' },
+    //     { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', progress: '60' },
+    //     { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', progress: '80' },
+    //     { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', progress: '55' },
+    //     { name: 'Mia Diaz', email: 'miadiaz@gmail.com', progress: '75' },
+    //     { name: 'Lucas Perez', email: 'lucasperez@gmail.com', progress: '40' },
+    //     { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', progress: '65' },
+    //     { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', progress: '85' },
+    //     { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', progress: '45' },
+    //     { name: 'Oliver Morales', email: 'olivermorales@gmail.com', progress: '90' }
+    //   ]
+    // },
+
+    // {
+    //   instructor: 'Kenneth James Belga',
+    //   instructor_profile: 'assets/img/kenB.jpg',
+    //   course: 'Python Programming Language',
+    //   subject: 'Programming',
+    //   block: 'C',
+    //   startDate: new Date(2024, 8, 15),
+    //   time: '13:00 - 14:30',
+    //   grade: '92',
+    //   enrollmentKey: 'python2024',
+    //   progress: '85',
+    //   imageUrl: 'assets/img/pythonn.jpg', 
+    //   enrolled: 'yes',
+      
+    //   prerequisite: {
+    //     course: 'Introduction to Programming'
+    //   },
+      
+    //   modules: [
+    //     {
+    //       title: 'Getting Started with Python',
+    //       description: 'An introduction to Python programming',
+    //       about: 'This module covers the basics of Python programming, including setting up the environment, understanding Python syntax, and writing simple programs.',
+    //       materials: [
+    //         { title: 'Python Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/python_basics.pdf', uploadDate: new Date(2024, 8, 5) },
+    //         { title: 'Python Installation Guide - Video Tutorial', type: 'video', link: '/assets/courses/python_installation.mp4', uploadDate: new Date(2024, 8, 6) },
+    //         { title: 'Python Syntax Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/python_syntax.pdf', uploadDate: new Date(2024, 8, 7) }
+    //       ],
+    //       assignments: [
+    //         { 
+    //           name: 'Python Basics Homework 1', 
+    //           dueDate: new Date(2024, 8, 20), 
+    //           score: '18/20',  
+    //           details: 'This assignment involves writing basic Python programs to reinforce understanding of the syntax and simple operations.',
+    //           resources: [
+    //             {name: 'Python Basics Homework 1', link :'/assets/courses/python_basics.pdf'}
+    //           ],
+    //         },
+    //       ],
+    //       exams: [
+    //         { name: 'Python Basics Quiz', dueDate: new Date(2024, 8, 30), score: '45/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Data Structures in Python',
+    //       description: 'Understanding and using data structures in Python',
+    //       about: 'This module explores Python’s built-in data structures like lists, tuples, dictionaries, and sets, and how to use them effectively in programming.',
+    //       materials: [
+    //         { title: 'Python Data Structures - Lecture Notes', type: 'pdf', link: '/assets/courses/python_data_structures.pdf', uploadDate: new Date(2024, 8, 10) },
+    //         { title: 'Data Structures - Video Lecture', type: 'video', link: '/assets/courses/data_structures.mp4', uploadDate: new Date(2024, 8, 11) },
+    //         { title: 'Advanced Data Structures - Supplementary Reading', type: 'pdf', link: '/assets/courses/advanced_data_structures.pdf', uploadDate: new Date(2024, 8, 12) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Data Structures Homework', dueDate: new Date(2024, 9, 5), score: '23/25' },
+    //         { name: 'Building a Dictionary-based Application', dueDate: new Date(2024, 9, 10), score: '22/25' },
+    //         { 
+    //           name: 'List and Tuple Operations', 
+    //           dueDate: new Date(2024, 9, 15), 
+    //           score: '24/25',
+    //           resources: [
+    //             { name: 'Data Structures Guide', link: '/assets/courses/data_structures_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Data Structures Test', dueDate: new Date(2024, 9, 20), score: '47/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Object-Oriented Programming in Python',
+    //       description: 'Implementing OOP concepts in Python',
+    //       about: 'In this module, students learn how to implement object-oriented programming concepts in Python, such as classes, objects, inheritance, and polymorphism.',
+    //       materials: [
+    //         { title: 'OOP in Python - Lecture Notes', type: 'pdf', link: '/assets/courses/oop_python.pdf', uploadDate: new Date(2024, 9, 1) },
+    //         { title: 'Classes and Objects - Video Lecture', type: 'video', link: '/assets/courses/classes_objects.mp4', uploadDate: new Date(2024, 9, 2) },
+    //         { title: 'Inheritance and Polymorphism - Supplementary Reading', type: 'pdf', link: '/assets/courses/inheritance_polymorphism.pdf', uploadDate: new Date(2024, 9, 3) }
+    //       ],
+    //       assignments: [
+    //         { name: 'OOP Concepts Homework', dueDate: new Date(2024, 9, 20), score: '20/20' },
+    //         { name: 'Building a Python Class', dueDate: new Date(2024, 9, 25), score: '19/20' },
+    //         { 
+    //           name: 'OOP Project', 
+    //           dueDate: new Date(2024, 9, 30), 
+    //           score: '25/25',
+    //           resources: [
+    //             { name: 'OOP Project Guide', link: '/assets/courses/oop_project_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Final Exam', dueDate: new Date(2024, 10, 5), score: '90/100' }
+    //       ]
+    //     }
+    //   ],
+      
+    //   enrolledStudents: [
+    //     { name: 'John Smith', email: 'johnsmith@gmail.com', progress: '40' },
+    //     { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '80' },
+    //     { name: 'David Johnson', email: 'davidjohnson@gmail.com', progress: '60' },
+    //     { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', progress: '55' },
+    //     { name: 'Michael Brown', email: 'michaelbrown@gmail.com', progress: '70' },
+    //     { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', progress: '65' },
+    //     { name: 'James Anderson', email: 'jamesanderson@gmail.com', progress: '75' },
+    //     { name: 'Linda Moore', email: 'lindamoore@gmail.com', progress: '45' },
+    //     { name: 'Robert Jackson', email: 'robertjackson@gmail.com', progress: '85' },
+    //     { name: 'Karen Lee', email: 'karenlee@gmail.com', progress: '90' },
+    //     { name: 'Charles White', email: 'charleswhite@gmail.com', progress: '50' },
+    //     { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', progress: '95' }
+    //   ]
+    // },
 
     {
       instructor: 'Kenneth James Belga',
@@ -5668,15 +6652,47 @@ export class DataService {
             { 
               name: 'Python Basics Homework 1', 
               dueDate: new Date(2024, 8, 20), 
-              score: '18/20',  
               details: 'This assignment involves writing basic Python programs to reinforce understanding of the syntax and simple operations.',
               resources: [
-                {name: 'Python Basics Homework 1', link :'/assets/courses/python_basics.pdf'}
+                { name: 'Python Basics Homework 1', link: '/assets/courses/python_basics.pdf' }
               ],
-            },
+              score: '18/20',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '18/20' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '17/20' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '16/20' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '18/20' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '19/20' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '20/20' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '17/20' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '15/20' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '16/20' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '19/20' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '20/20' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '18/20' }
+              ]
+            }
           ],
           exams: [
-            { name: 'Python Basics Quiz', dueDate: new Date(2024, 8, 30), score: '45/50' }
+            { 
+              name: 'Python Basics Quiz', 
+              dueDate: new Date(2024, 8, 30), 
+              score: '45/50',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '45/50' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '43/50' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '44/50' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '40/50' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '46/50' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '48/50' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '42/50' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '44/50' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '45/50' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '47/50' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '49/50' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '50/50' }
+              ]
+            }
           ]
         },
         {
@@ -5689,19 +6705,87 @@ export class DataService {
             { title: 'Advanced Data Structures - Supplementary Reading', type: 'pdf', link: '/assets/courses/advanced_data_structures.pdf', uploadDate: new Date(2024, 8, 12) }
           ],
           assignments: [
-            { name: 'Data Structures Homework', dueDate: new Date(2024, 9, 5), score: '23/25' },
-            { name: 'Building a Dictionary-based Application', dueDate: new Date(2024, 9, 10), score: '22/25' },
+            { 
+              name: 'Data Structures Homework', 
+              dueDate: new Date(2024, 9, 5), 
+              score: '23/25',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '23/25' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '22/25' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '24/25' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '21/25' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '22/25' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '23/25' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '20/25' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '21/25' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '24/25' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '23/25' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '25/25' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '24/25' }
+              ]
+            },
+            { 
+              name: 'Building a Dictionary-based Application', 
+              dueDate: new Date(2024, 9, 10), 
+              score: '22/25',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '22/25' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '21/25' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '23/25' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '20/25' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '24/25' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '23/25' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '21/25' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '22/25' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '24/25' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '22/25' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '25/25' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '24/25' }
+              ]
+            },
             { 
               name: 'List and Tuple Operations', 
               dueDate: new Date(2024, 9, 15), 
-              score: '24/25',
               resources: [
                 { name: 'Data Structures Guide', link: '/assets/courses/data_structures_guide.pdf' }
+              ],
+              score: '24/25',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '24/25' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '23/25' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '24/25' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '21/25' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '23/25' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '25/25' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '22/25' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '23/25' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '24/25' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '23/25' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '25/25' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '24/25' }
               ]
             }
           ],
           exams: [
-            { name: 'Data Structures Test', dueDate: new Date(2024, 9, 20), score: '47/50' }
+            { 
+              name: 'Data Structures Test', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '47/50',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '47/50' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '46/50' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '45/50' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '44/50' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '48/50' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '49/50' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '43/50' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '44/50' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '46/50' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '47/50' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '48/50' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '50/50' }
+              ]
+            }
           ]
         },
         {
@@ -5714,19 +6798,87 @@ export class DataService {
             { title: 'Inheritance and Polymorphism - Supplementary Reading', type: 'pdf', link: '/assets/courses/inheritance_polymorphism.pdf', uploadDate: new Date(2024, 9, 3) }
           ],
           assignments: [
-            { name: 'OOP Concepts Homework', dueDate: new Date(2024, 9, 20), score: '20/20' },
-            { name: 'Building a Python Class', dueDate: new Date(2024, 9, 25), score: '19/20' },
+            { 
+              name: 'OOP Concepts Homework', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '20/20',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '20/20' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '19/20' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '18/20' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '19/20' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '20/20' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '19/20' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '18/20' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '17/20' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '19/20' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '20/20' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '19/20' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '20/20' }
+              ]
+            },
+            { 
+              name: 'Building a Python Class', 
+              dueDate: new Date(2024, 9, 25), 
+              score: '19/20',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '19/20' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '18/20' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '19/20' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '17/20' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '20/20' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '18/20' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '19/20' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '18/20' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '20/20' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '19/20' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '18/20' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '20/20' }
+              ]
+            },
             { 
               name: 'OOP Project', 
               dueDate: new Date(2024, 9, 30), 
-              score: '25/25',
               resources: [
                 { name: 'OOP Project Guide', link: '/assets/courses/oop_project_guide.pdf' }
+              ],
+              score: '25/25',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '25/25' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '24/25' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '23/25' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '22/25' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '25/25' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '24/25' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '24/25' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '23/25' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '24/25' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '23/25' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '25/25' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '25/25' }
               ]
             }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 10, 5), score: '90/100' }
+            { 
+              name: 'Final Exam', 
+              dueDate: new Date(2024, 10, 5), 
+              score: '90/100',
+              scores: [
+                { name: 'John Smith', email: 'johnsmith@gmail.com', score: '90/100' },
+                { name: 'Emily Davis', email: 'emilydavis@gmail.com', score: '88/100' },
+                { name: 'David Johnson', email: 'davidjohnson@gmail.com', score: '87/100' },
+                { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', score: '86/100' },
+                { name: 'Michael Brown', email: 'michaelbrown@gmail.com', score: '89/100' },
+                { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', score: '90/100' },
+                { name: 'James Anderson', email: 'jamesanderson@gmail.com', score: '85/100' },
+                { name: 'Linda Moore', email: 'lindamoore@gmail.com', score: '87/100' },
+                { name: 'Robert Jackson', email: 'robertjackson@gmail.com', score: '90/100' },
+                { name: 'Karen Lee', email: 'karenlee@gmail.com', score: '89/100' },
+                { name: 'Charles White', email: 'charleswhite@gmail.com', score: '91/100' },
+                { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', score: '92/100' }
+              ]
+            }
           ]
         }
       ],
@@ -5746,6 +6898,116 @@ export class DataService {
         { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', progress: '95' }
       ]
     },
+    
+
+    // {
+    //   instructor: 'Anton Caesar Cabais',
+    //   instructor_profile: 'assets/img/tonn.jpeg',
+    //   course: 'Introduction to Programming',
+    //   subject: 'Programming',
+    //   block: 'D',
+    //   startDate: new Date(2024, 8, 20),
+    //   time: '09:00 - 10:30',
+    //   grade: '88',
+    //   enrollmentKey: 'introprog2024',
+    //   progress: '65',
+    //   imageUrl: 'assets/img/introtoprog.png',
+    //   enrolled: 'yes',
+      
+      
+    //   modules: [
+    //     {
+    //       title: 'Understanding Programming Concepts',
+    //       description: 'Introduction to basic programming concepts',
+    //       about: 'This module covers fundamental programming concepts such as variables, data types, and control structures. It is designed for complete beginners.',
+    //       materials: [
+    //         { title: 'Programming Concepts - Lecture Notes', type: 'pdf', link: '/assets/courses/programming_concepts.pdf', uploadDate: new Date(2024, 8, 10) },
+    //         { title: 'Variables and Data Types - Video Lecture', type: 'video', link: '/assets/courses/variables_datatypes.mp4', uploadDate: new Date(2024, 8, 11) },
+    //         { title: 'Control Structures - Supplementary Reading', type: 'pdf', link: '/assets/courses/control_structures.pdf', uploadDate: new Date(2024, 8, 12) }
+    //       ],
+    //       assignments: [
+    //         { 
+    //           name: 'Basic Concepts Homework', 
+    //           dueDate: new Date(2024, 8, 25), 
+    //           score: '17/20',  
+    //           details: 'This assignment focuses on understanding and applying basic programming concepts covered in the lectures.',
+    //           resources: [
+    //             {name: 'Basic Concepts Homework', link: '/assets/courses/programming_concepts.pdf'}
+    //           ],
+    //         },
+    //       ],
+    //       exams: [
+    //         { name: 'Concepts Quiz', dueDate: new Date(2024, 9, 5), score: '42/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Introduction to Algorithms',
+    //       description: 'Learning the basics of algorithms',
+    //       about: 'This module introduces students to algorithms and their importance in programming. It covers basic algorithmic thinking and problem-solving techniques.',
+    //       materials: [
+    //         { title: 'Algorithms - Lecture Notes', type: 'pdf', link: '/assets/courses/algorithms_notes.pdf', uploadDate: new Date(2024, 8, 20) },
+    //         { title: 'Algorithm Basics - Video Lecture', type: 'video', link: '/assets/courses/algorithm_basics.mp4', uploadDate: new Date(2024, 8, 21) },
+    //         { title: 'Sorting and Searching Algorithms - Supplementary Reading', type: 'pdf', link: '/assets/courses/sorting_searching.pdf', uploadDate: new Date(2024, 8, 22) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Algorithm Practice Homework', dueDate: new Date(2024, 9, 10), score: '20/25' },
+    //         { name: 'Sorting Algorithms Exercise', dueDate: new Date(2024, 9, 15), score: '22/25' },
+    //         { 
+    //           name: 'Algorithm Design Task', 
+    //           dueDate: new Date(2024, 9, 20), 
+    //           score: '23/25',
+    //           resources: [
+    //             { name: 'Algorithm Design Guide', link: '/assets/courses/algorithm_design_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Algorithm Quiz', dueDate: new Date(2024, 9, 25), score: '45/50' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Introduction to Programming Languages',
+    //       description: 'An overview of various programming languages',
+    //       about: 'This module gives an overview of different programming languages, their use cases, and the basics of writing code in languages like Python, JavaScript, and Java.',
+    //       materials: [
+    //         { title: 'Programming Languages Overview - Lecture Notes', type: 'pdf', link: '/assets/courses/programming_languages.pdf', uploadDate: new Date(2024, 9, 1) },
+    //         { title: 'Python vs JavaScript - Video Lecture', type: 'video', link: '/assets/courses/python_vs_js.mp4', uploadDate: new Date(2024, 9, 2) },
+    //         { title: 'Introduction to Python - Supplementary Reading', type: 'pdf', link: '/assets/courses/intro_python.pdf', uploadDate: new Date(2024, 9, 3) }
+    //       ],
+    //       assignments: [
+    //         { name: 'Programming Languages Comparison Homework', dueDate: new Date(2024, 9, 20), score: '18/20' },
+    //         { name: 'Basic Python Programming Task', dueDate: new Date(2024, 9, 25), score: '19/20' },
+    //         { 
+    //           name: 'Writing Simple Programs', 
+    //           dueDate: new Date(2024, 9, 30), 
+    //           score: '20/20',
+    //           resources: [
+    //             { name: 'Programming Basics Guide', link: '/assets/courses/programming_basics_guide.pdf' }
+    //           ]
+    //         }
+    //       ],
+    //       exams: [
+    //         { name: 'Final Exam', dueDate: new Date(2024, 10, 10), score: '85/100' }
+    //       ]
+    //     }
+    //   ],
+      
+    //   enrolledStudents: [
+    //     { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', progress: '25' },
+    //     { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', progress: '70' },
+    //     { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', progress: '50' },
+    //     { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', progress: '60' },
+    //     { name: 'Emma Jones', email: 'emmajones@gmail.com', progress: '80' },
+    //     { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', progress: '55' },
+    //     { name: 'Mia Martinez', email: 'miamartinez@gmail.com', progress: '75' },
+    //     { name: 'Ethan Davis', email: 'ethandavis@gmail.com', progress: '40' },
+    //     { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', progress: '85' },
+    //     { name: 'Noah Wilson', email: 'noahwilson@gmail.com', progress: '90' },
+    //     { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', progress: '45' },
+    //     { name: 'James Harris', email: 'jamesharris@gmail.com', progress: '95' }
+    //   ]
+    // }
+    
 
     {
       instructor: 'Anton Caesar Cabais',
@@ -5760,7 +7022,6 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/introtoprog.png',
       enrolled: 'yes',
-      
       
       modules: [
         {
@@ -5779,12 +7040,44 @@ export class DataService {
               score: '17/20',  
               details: 'This assignment focuses on understanding and applying basic programming concepts covered in the lectures.',
               resources: [
-                {name: 'Basic Concepts Homework', link: '/assets/courses/programming_concepts.pdf'}
+                { name: 'Basic Concepts Homework', link: '/assets/courses/programming_concepts.pdf' }
               ],
-            },
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '15/20' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '16/20' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '17/20' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '14/20' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '18/20' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '16/20' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '17/20' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '15/20' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '19/20' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '18/20' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '17/20' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '20/20' }
+              ]
+            }
           ],
           exams: [
-            { name: 'Concepts Quiz', dueDate: new Date(2024, 9, 5), score: '42/50' }
+            { 
+              name: 'Concepts Quiz', 
+              dueDate: new Date(2024, 9, 5), 
+              score: '42/50',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '40/50' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '42/50' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '38/50' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '39/50' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '44/50' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '41/50' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '43/50' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '37/50' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '46/50' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '45/50' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '39/50' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '48/50' }
+              ]
+            }
           ]
         },
         {
@@ -5797,19 +7090,87 @@ export class DataService {
             { title: 'Sorting and Searching Algorithms - Supplementary Reading', type: 'pdf', link: '/assets/courses/sorting_searching.pdf', uploadDate: new Date(2024, 8, 22) }
           ],
           assignments: [
-            { name: 'Algorithm Practice Homework', dueDate: new Date(2024, 9, 10), score: '20/25' },
-            { name: 'Sorting Algorithms Exercise', dueDate: new Date(2024, 9, 15), score: '22/25' },
+            { 
+              name: 'Algorithm Practice Homework', 
+              dueDate: new Date(2024, 9, 10), 
+              score: '20/25',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '18/25' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '20/25' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '19/25' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '17/25' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '21/25' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '19/25' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '20/25' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '17/25' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '22/25' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '21/25' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '18/25' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '23/25' }
+              ]
+            },
+            { 
+              name: 'Sorting Algorithms Exercise', 
+              dueDate: new Date(2024, 9, 15), 
+              score: '22/25',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '20/25' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '22/25' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '21/25' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '19/25' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '23/25' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '21/25' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '22/25' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '20/25' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '24/25' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '23/25' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '20/25' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '25/25' }
+              ]
+            },
             { 
               name: 'Algorithm Design Task', 
               dueDate: new Date(2024, 9, 20), 
               score: '23/25',
               resources: [
                 { name: 'Algorithm Design Guide', link: '/assets/courses/algorithm_design_guide.pdf' }
+              ],
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '21/25' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '23/25' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '22/25' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '20/25' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '24/25' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '22/25' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '23/25' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '21/25' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '25/25' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '24/25' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '22/25' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '25/25' }
               ]
             }
           ],
           exams: [
-            { name: 'Algorithm Quiz', dueDate: new Date(2024, 9, 25), score: '45/50' }
+            { 
+              name: 'Algorithm Quiz', 
+              dueDate: new Date(2024, 9, 25), 
+              score: '45/50',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '43/50' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '45/50' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '42/50' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '41/50' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '46/50' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '44/50' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '45/50' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '40/50' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '48/50' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '47/50' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '42/50' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '49/50' }
+              ]
+            }
           ]
         },
         {
@@ -5822,19 +7183,87 @@ export class DataService {
             { title: 'Introduction to Python - Supplementary Reading', type: 'pdf', link: '/assets/courses/intro_python.pdf', uploadDate: new Date(2024, 9, 3) }
           ],
           assignments: [
-            { name: 'Programming Languages Comparison Homework', dueDate: new Date(2024, 9, 20), score: '18/20' },
-            { name: 'Basic Python Programming Task', dueDate: new Date(2024, 9, 25), score: '19/20' },
+            { 
+              name: 'Programming Languages Comparison Homework', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '18/20',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '16/20' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '18/20' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '17/20' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '15/20' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '19/20' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '17/20' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '18/20' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '16/20' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '19/20' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '18/20' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '17/20' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '20/20' }
+              ]
+            },
+            { 
+              name: 'Basic Python Programming Task', 
+              dueDate: new Date(2024, 9, 25), 
+              score: '19/20',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '18/20' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '19/20' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '18/20' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '17/20' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '20/20' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '18/20' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '19/20' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '17/20' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '20/20' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '19/20' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '18/20' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '20/20' }
+              ]
+            },
             { 
               name: 'Writing Simple Programs', 
               dueDate: new Date(2024, 9, 30), 
               score: '20/20',
               resources: [
                 { name: 'Programming Basics Guide', link: '/assets/courses/programming_basics_guide.pdf' }
+              ],
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '19/20' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '20/20' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '18/20' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '17/20' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '20/20' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '19/20' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '20/20' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '18/20' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '20/20' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '19/20' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '19/20' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '20/20' }
               ]
             }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 10, 10), score: '85/100' }
+            { 
+              name: 'Final Exam', 
+              dueDate: new Date(2024, 10, 10), 
+              score: '85/100',
+              scores: [
+                { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', score: '83/100' },
+                { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', score: '85/100' },
+                { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', score: '82/100' },
+                { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', score: '81/100' },
+                { name: 'Emma Jones', email: 'emmajones@gmail.com', score: '86/100' },
+                { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', score: '84/100' },
+                { name: 'Mia Martinez', email: 'miamartinez@gmail.com', score: '85/100' },
+                { name: 'Ethan Davis', email: 'ethandavis@gmail.com', score: '80/100' },
+                { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', score: '88/100' },
+                { name: 'Noah Wilson', email: 'noahwilson@gmail.com', score: '87/100' },
+                { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', score: '82/100' },
+                { name: 'James Harris', email: 'jamesharris@gmail.com', score: '90/100' }
+              ]
+            }
           ]
         }
       ],

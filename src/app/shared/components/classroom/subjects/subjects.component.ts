@@ -167,4 +167,12 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   navigateToModules(): void {
     this.router.navigate([routes.add_course]);
   }
+
+  getUserProgress(course: any): number {
+    const fullName = `${this.currentUser.first_name} ${this.currentUser.last_name}`;
+    const student = course.enrolledStudents.find((student: { name: string }) => student.name === fullName);
+    return student && student.progress ? parseInt(student.progress, 10) : 0;
+  }
+  
+  
 }

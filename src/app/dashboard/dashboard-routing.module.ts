@@ -200,6 +200,15 @@ const routes: Routes = [
           ),
       },
 
+
+      {
+        path: 'reports',
+        loadChildren: () =>
+          import('src/app/shared/components/classroom/reports/reports.module').then(
+            (m) => m.ReportsModule
+          ),
+      },
+
       {
         path: 'curriculum-evaluation',
         loadChildren: () =>

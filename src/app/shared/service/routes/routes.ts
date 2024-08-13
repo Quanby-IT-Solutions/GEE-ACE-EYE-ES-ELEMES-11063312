@@ -521,6 +521,10 @@ export class routes {
   }
 
 
+  public static get reports(): string {
+    return this.users_dashboard + '/reports';
+  }
+
   public static get curriculum_evaluation(): string {
     return this.users_dashboard + '/curriculum-evaluation';
   }
@@ -645,6 +649,8 @@ export class routes {
 public static get manage_courses(): string {
   return this.users_dashboard + '/manage-courses';
 } 
+
+
 
 public static get training_calendar(): string {
   return this.users_dashboard + '/training-calendar';
