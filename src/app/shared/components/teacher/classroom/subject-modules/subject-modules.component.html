@@ -99,19 +99,30 @@
             Assignments
           </button>
 
-          <button 
-          (click)="selectTab('quiz')"
-          [ngClass]="{ 'text-green-600': selectedTab === 'quiz', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'assignments' }">
-          Quiz
-        </button>
-
-          <button 
-            (click)="selectTab('exams')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'exams', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'exams' }">
-            Summative Exams
+          @if (getUserRole() === 'student') {
+            <button 
+            (click)="selectTab('quiz')"
+            [ngClass]="{ 'text-green-600': selectedTab === 'quiz', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'assignments' }">
+            Quiz
           </button>
+  
+            <button 
+              (click)="selectTab('exams')"
+              [ngClass]="{ 'text-green-600': selectedTab === 'exams', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'exams' }">
+              Summative Exams
+            </button>
+  
 
+          }
+
+       
          @if (getUserRole() === 'instructor') {
+
+          <button 
+            (click)="selectTab('quiz')"
+            [ngClass]="{ 'text-green-600': selectedTab === 'quiz', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'assignments' }">
+            Assessments
+          </button>
           
           <button 
             (click)="selectTab('studentManagement')"
@@ -211,7 +222,7 @@
               </div>
             </div>
             <p *ngIf="!selectedAssignment.resources" class="text-gray-600">
-              No resources available.
+              No resources available.x
             </p>
       
             <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Submission</h2>
