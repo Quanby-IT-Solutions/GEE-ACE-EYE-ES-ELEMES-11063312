@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { Subscription } from 'rxjs';
 import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { GuestUser } from 'src/app/shared/models/model';
+import { Router } from '@angular/router';
+
 import { routes } from 'src/app/shared/service/routes/routes';
 
 interface Material {
@@ -100,10 +101,13 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
   fetchCourses(): void {
     if (!this.user) return;
-
+  
     const instructorFullName = this.getInstructorFullName(this.user);
-
-    if (this.role === 'instructor') {
+  
+    if (this.role === 'department_admin') {
+      // Display all courses for admin
+      this.courses = this.dataService.getCourses();
+    } else if (this.role === 'instructor') {
       // Display courses created by the instructor
       this.courses = this.dataService.getCourses().filter(course =>
         course.instructor === instructorFullName
@@ -117,11 +121,18 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       // If no user is logged in, or there's an issue, don't show any courses
       this.courses = [];
     }
-
+  
     this.filteredCourses = this.courses;
   }
-
+  
   getInstructorFullName(user: User | GuestUser): string {
+    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
+      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
+    }
+    return '';
+  }
+
+  getDepartminAdmin(user: User | GuestUser): string {
     if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
       return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
     }
