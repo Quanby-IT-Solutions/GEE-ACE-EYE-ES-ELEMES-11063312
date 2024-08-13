@@ -51,9 +51,17 @@
         </svg>
       </button>
       <h2 class="text-2xl font-bold mb-6 text-gray-900 text-center">Training for {{ selectedDate | date:'MMMM d, yyyy' }}</h2>
-      <div *ngFor="let event of selectedEvents" class="mb-4 flex items-center justify-between">
+      <div *ngFor="let event of selectedEvents" class="mb-4">
         <span class="text-lg font-medium text-gray-800">{{ event.course }} - {{ event.instructor }}</span>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition focus:ring focus:ring-blue-300" (click)="enrollInTraining(event)">Enroll Now</button>
+        <div class="mt-4">
+          <label class="block text-sm font-medium text-gray-700">Enrollment Key</label>
+          <input type="text" 
+                 class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                 placeholder="Enter enrollment key" 
+                 (input)="onEnrollmentKeyChange($event)"> <!-- Capture input value -->
+        </div>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition focus:ring focus:ring-blue-300" 
+                (click)="enrollInTraining(event)">Enroll Now</button>
       </div>
       <div *ngIf="selectedEvents.length === 0" class="text-center text-gray-500">No training available on this date.</div>
     </div>

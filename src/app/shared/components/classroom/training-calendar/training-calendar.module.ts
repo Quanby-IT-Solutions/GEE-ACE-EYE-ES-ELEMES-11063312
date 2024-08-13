@@ -8,7 +8,8 @@ import { TrainingCalendarRoutingModule } from './training-calendar-routing.modul
   declarations: [],
   imports: [
     CommonModule,
-    TrainingCalendarRoutingModule
+    TrainingCalendarRoutingModule,
+    
   ]
 })
 export class TrainingCalendarModule { }

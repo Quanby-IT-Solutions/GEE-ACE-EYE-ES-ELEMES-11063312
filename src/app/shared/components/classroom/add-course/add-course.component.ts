@@ -30,6 +30,7 @@ export class AddCourseComponent {
   courseCourse: string = '';
   courseSection: string = '';
   enrollmentKey: string = ''; 
+  courseStartDate: string = '';
   coverPhotoUrl: string | null = null;
 
   modules: any[] = [];
@@ -203,6 +204,7 @@ export class AddCourseComponent {
       block: this.courseSection,
       enrollmentKey: this.enrollmentKey,
       time: '10:00 - 11:00',
+      startDate: new Date(this.courseStartDate),
       grade: 'N/A',
       progress: '0',
       imageUrl: this.coverPhotoUrl,
@@ -210,9 +212,11 @@ export class AddCourseComponent {
       modules: this.modules,
       enrolledStudents: []
     };
+
+    alert(`${this.courseTitle} is successfuly created.`);
     
     console.log('New Course:', newCourse); // Debugging: Log the new course to verify the data structure
-
+    
     this.dataService.addCourse(newCourse);
     
     console.log('Course list after addition:', this.dataService.getCourses()); // Debugging: Log the updated list of courses

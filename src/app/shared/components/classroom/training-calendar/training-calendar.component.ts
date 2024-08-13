@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';  // Import FormsModule for ngModel
+import { routes } from 'src/app/shared/service/routes/routes';
 
 @Component({
   selector: 'app-training-calendar',
   templateUrl: './training-calendar.component.html',
   styleUrls: ['./training-calendar.component.scss'], 
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]  // Add FormsModule to the imports
 })
 export class TrainingCalendarComponent implements OnInit {
   currentDate = new Date();
@@ -20,6 +22,7 @@ export class TrainingCalendarComponent implements OnInit {
   modalOpen = false;
   selectedDate: Date | null = null;
   selectedEvents: any[] = [];
+  enrollmentKey: string = '';  // To store the enrollment key input by the user
 
   constructor(
     private dataService: DataService,
@@ -28,8 +31,12 @@ export class TrainingCalendarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.trainingEvents = this.dataService.trainingSchedule(); // Load the training schedule
+    this.fetchCourses();
     this.generateCalendarDates(this.currentDate);
+  }
+
+  fetchCourses(): void {
+    this.trainingEvents = this.dataService.trainingSchedule(); // Fetch courses from local storage and set to trainingEvents
   }
 
   changeMonth(offset: number): void {
@@ -82,27 +89,48 @@ export class TrainingCalendarComponent implements OnInit {
     this.modalOpen = false;
     this.selectedDate = null;
     this.selectedEvents = [];
+    this.enrollmentKey = ''; // Reset the enrollment key input
+  }
+
+  onEnrollmentKeyChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.enrollmentKey = inputElement.value;
   }
 
   async enrollInTraining(event: any): Promise<void> {
+    if (this.enrollmentKey !== event.enrollmentKey) {
+        alert('The enrollment key is incorrect. Please try again.');
+        return;
+    }
+
     try {
-      const currentUser = await this.userService.getUser(); // Fetch the authenticated user's details
+        const currentUser = await this.userService.getUser();
 
-      // Construct the full name using first_name and last_name
-      const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
-      const student = { name: fullName, email: currentUser.email };
+        const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
+        const student = { name: fullName, email: currentUser.email };
 
-      this.dataService.enrollStudentInCourse(
-        this.trainingEvents.indexOf(event), 
-        student
-      );
+        const courseList = this.dataService.getCourses();
+        const updatedCourse = courseList.find(c => c.course === event.course);
 
-      // Mark the course as enrolled
-      alert(`${fullName} has been successfully enrolled in ${event.course}!`);
-      this.closeModal();
+        if (updatedCourse) {
+            updatedCourse.enrolledStudents.push(student);
+            updatedCourse.enrolled = 'yes';
+
+            this.dataService.updateCourse(updatedCourse);
+
+            this.fetchCourses();  // Reload training events after enrollment
+            this.generateCalendarDates(this.currentDate);
+
+            alert(`${fullName} has been successfully enrolled in ${event.course}!`);
+            this.closeModal();
+
+            this.router.navigate([routes.subjects]);
+        } else {
+            alert('Course not found. Please try again.');
+        }
     } catch (error) {
-      console.error('Error enrolling in course:', error);
-      alert('There was an issue enrolling in the course. Please try again.');
+        console.error('Error enrolling in course:', error);
+        alert('There was an issue enrolling in the course. Please try again.');
     }
   }
 }

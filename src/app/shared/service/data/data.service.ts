@@ -5300,7 +5300,7 @@ export class DataService {
       progress: '65',
       imageUrl: 'assets/img/math.png',
       enrolled: 'yes',
-
+      
       modules: [
         {
           title: 'Introduction to Algebra',
@@ -6167,25 +6167,16 @@ export class DataService {
   }
 
   trainingSchedule(): { date: Date, course: string, instructor: string, enrollmentKey: string }[] {
-    console.log("Processing courses for the training schedule...");
-  
-    return this.defaultCourses
-      .filter(course => {
-        const isValidDate = course.startDate instanceof Date && !isNaN(course.startDate as any);
-        console.log(`Course: ${course.course}, StartDate: ${course.startDate}, Valid: ${isValidDate}`);
-        return isValidDate;
-      })
-      .map(course => {
-        const date = new Date(course.startDate as Date);
-        console.log(`Mapped Course: ${course.course}, Date: ${date}, Instructor: ${course.instructor}`);
-        return {
-          date: date,
-          course: course.course,
-          instructor: course.instructor,
-          enrollmentKey: course.enrollmentKey
-        };
-      });
+    const courses = JSON.parse(localStorage.getItem('courses') || '[]');
+    return courses.map((course: { startDate: string | Date; course: string; instructor: string; enrollmentKey: string }) => ({
+      date: new Date(course.startDate),
+      course: course.course,
+      instructor: course.instructor,
+      enrollmentKey: course.enrollmentKey
+    }));
   }
+  
+
   
   
   
