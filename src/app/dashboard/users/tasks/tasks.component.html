@@ -221,7 +221,14 @@
                 See you around
               </div>
         
-              <div class="w-72 h-16 mt-2 hover:bg-gray-100  border-solid border-black border-[1px]  rounded cursor-pointer"></div>
+              <div>
+                <a href="{{resource.link}}" *ngFor="let resource of selectedTask.resources" class="w-72 mt-2 px-4 py-2 hover:bg-gray-100  border-solid border-black border-[1px] rounded cursor-pointer
+                  flex justify-center flex-col
+                ">  
+                  <span class="text-blue-400">{{resource.name}}</span>
+                  <span *ngIf="resource.link.split('.').length > 1" class="text-sm text-gray-400">{{resource.link.split('.')[1].toUpperCase()}} File</span>
+              </a>
+              </div>
               
               <div *ngIf="selectedTask.type == 'exam' && !selectedTask.submitted" class="w-full flex justify-center flex-col items-center mt-2">
                 <div (click)="takeExam()" class="select-none px-8 py-2 bg-green-700 hover:bg-green-600 rounded cursor-pointer text-white">

@@ -103,7 +103,7 @@
 
 
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
@@ -125,6 +125,7 @@ interface Task {
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit, OnDestroy {
+  @Input() type:string = 'all';
   public user: User | GuestUser | null = null;
   private userSubscription: Subscription | undefined;
   userRole: string | null = null;
@@ -193,7 +194,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   getCollapsables(){
     return  Object.keys(this.collapsables);
   }
-  
+
   selectTask(task:any){
     this.selectedTask = task;
   }
