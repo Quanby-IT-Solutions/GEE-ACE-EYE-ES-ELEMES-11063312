@@ -42,6 +42,8 @@ interface Course {
   progress: string;
   imageUrl: string;
   modules: Module[];
+  prerequisite?: { course: string }; // Add this line
+
   enrollmentKey: string;
   enrolledStudents: { name: string; email: string }[];
 }
@@ -98,10 +100,44 @@ export class ExploreCoursesComponent implements OnInit {
     this.sortMenuOpen = false;
   }
 
+  // selectCourse(course: Course): void {
+  //   this.selectedCourse = course;
+  //   this.enrollmentModalOpen = true;
+  // }
+
+  prerequisiteModalOpen: boolean = false;
+  prerequisiteCourseName: string = '';
+
+  // Other methods...
+
   selectCourse(course: Course): void {
+    if (course.prerequisite && !this.hasCompletedPrerequisite(course.prerequisite.course)) {
+      this.prerequisiteCourseName = course.prerequisite.course;
+      this.openPrerequisiteModal();
+      return;
+    }
     this.selectedCourse = course;
     this.enrollmentModalOpen = true;
   }
+
+  openPrerequisiteModal(): void {
+    this.prerequisiteModalOpen = true;
+  }
+
+  closePrerequisiteModal(): void {
+    this.prerequisiteModalOpen = false;
+    this.prerequisiteCourseName = '';
+  }
+
+
+
+// Check if the user has completed the prerequisite course
+hasCompletedPrerequisite(courseName: string): boolean {
+    // Replace with the actual logic to check if the prerequisite course is completed
+    // For demonstration, let's assume all prerequisite courses are not completed
+    return false;
+}
+
 
   closeEnrollmentModal(): void {
     this.enrollmentModalOpen = false;

@@ -5288,92 +5288,92 @@ export class DataService {
   private course: any;
   private defaultCourses = [
     {
-      instructor: 'Michael Maxwell',
-      instructor_profile: 'assets/img/bini.jpeg',
-      course: 'Mathematics 101',
-      subject: 'Algebra',
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/ton.jpg',
+      course: 'Information Technology',
+      subject: 'Information Technology',
       block: 'A',
       startDate: new Date(2024, 7, 20),
       time: '09:00 - 10:00',
       grade: '97',
       enrollmentKey: '12345',
       progress: '65',
-      imageUrl: 'assets/img/math.png',
+      imageUrl: 'assets/img/program.jpg',
       enrolled: 'yes',
       
       modules: [
         {
-          title: 'Introduction to Algebra',
-          description: 'Overview of Algebraic Concepts',
-          about: 'This module introduces you to the basic concepts of algebra, focusing on variables, expressions, and equations.',
+          title: 'Introduction to Information Technology',
+          description: 'Overview of IT Concepts',
+          about: 'This module introduces you to the fundamental concepts of Information Technology, including hardware, software, networking, and databases.',
           materials: [
-            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to IT - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to IT - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Introduction to IT - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Algebra Homework 1', 
+            { name: 'IT Basics Homework 1', 
               dueDate: new Date(2024, 7, 11), 
               score: '10/12',  
-              details: 'This assignment covers the basics of plant biology, including plant structure, function, and growth.',
-              resources: '/assets/courses/teach.pdf' ,
+              details: 'This assignment covers the basics of IT, including understanding computer hardware and software.',
+              resources: '/assets/courses/teach.pdf',
             },
           ],
           
           exams: [
-            { name: 'Quiz', dueDate: new Date(2024, 7, 15), score: '52/60'  }
+            { name: 'IT Basics Quiz', dueDate: new Date(2024, 7, 15), score: '52/60' }
           ]
         },
         {
-          title: 'Algebraic Operations',
-          description: 'Working with Algebraic Expressions',
-          about: 'This module covers the operations involving algebraic expressions, including addition, subtraction, and factoring.',
+          title: 'Networking Fundamentals',
+          description: 'Understanding Network Structures',
+          about: 'This module covers the basics of networking, including types of networks, network topologies, and network protocols.',
           materials: [
-            { title: 'Algebraic Operations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Algebraic Operations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Algebraic Operations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Networking Fundamentals - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Networking Fundamentals - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Networking Fundamentals - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Operations Homework', dueDate: new Date(2024, 7, 20), score: '10/15'  },
-            { name: 'Operations ', dueDate: new Date(2024, 7, 25), score: '12/20'  },
+            { name: 'Networking Homework', dueDate: new Date(2024, 7, 20), score: '10/15' },
+            { name: 'Network Setup Assignment', dueDate: new Date(2024, 7, 25), score: '12/20' },
             { 
-              name: 'Operations Homework 2', 
+              name: 'Network Troubleshooting Homework', 
               dueDate: new Date(2024, 7, 28), 
               score: '13/15',
               resources: [
-                { name: 'Operations Guide', link: 'assets/courses/teach.pdf' }
+                { name: 'Network Troubleshooting Guide', link: 'assets/courses/teach.pdf' }
               ]
             }
           ],
           
           exams: [
-            { name: 'Operations Test', dueDate: new Date(2024, 7, 28), score: '50/60'  }
+            { name: 'Networking Fundamentals Test', dueDate: new Date(2024, 7, 28), score: '50/60' }
           ]
         },
         {
-          title: 'Quadratic Equations',
-          description: 'Solving Quadratic Equations',
-          about: 'In this module, you will learn how to solve quadratic equations using various methods, including factoring, completing the square, and the quadratic formula.',
+          title: 'Database Management',
+          description: 'Introduction to Databases',
+          about: 'In this module, you will learn about database management systems, including SQL, relational databases, and data modeling.',
           materials: [
-            { title: 'Quadratic Equations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Quadratic Equations - Video Lecture', type: 'video', link: 'assets/courses/bini.pdf', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Database Management - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Database Management - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Database Management - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
-            { name: 'Quadratic ', dueDate: new Date(2024, 8, 10), score: '11/15' },
+            { name: 'Database Design Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
+            { name: 'SQL Query Assignment', dueDate: new Date(2024, 8, 10), score: '11/15' },
             { 
-              name: 'Quadratic Homework 2', 
+              name: 'Database Optimization Homework', 
               dueDate: new Date(2024, 8, 15), 
               score: '12/12',
               resources: [
-                { name: 'Quadratic Guide', link: 'assets/courses/teach.pdf' }
+                { name: 'SQL Optimization Guide', link: 'assets/courses/teach.pdf' }
               ]
             }
           ],
           
           exams: [
-            { name: 'Summative Test', dueDate: new Date(2024, 8, 20), score: '32/60' }
+            { name: 'Database Management Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
           ]
         }
       ],
@@ -5400,6 +5400,125 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80' }
       ]
     },
+    
+
+   {
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/ton.jpg',
+      course: 'Cybersecurity Fundamentals',
+      subject: 'Cybersecurity',
+      block: 'B',
+      startDate: new Date(2024, 8, 1),
+      time: '14:00 - 15:00',
+      grade: '90',
+      enrollmentKey: 'cyber2024',
+      progress: '75',
+      imageUrl: 'assets/img/cybersec.jpg',
+      enrolled: 'yes',
+      
+      prerequisite: {
+        course: 'Information Technology'
+      },
+    
+      modules: [
+        {
+          title: 'Introduction to Cybersecurity',
+          description: 'Understanding the basics of Cybersecurity',
+          about: 'This module introduces the fundamental concepts of cybersecurity, including the importance of protecting digital information and systems from cyber threats.',
+          materials: [
+            { title: 'Cybersecurity Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 25) },
+            { title: 'Cybersecurity Basics - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 7, 26) },
+            { title: 'Cybersecurity Terminology - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 27) }
+          ],
+          assignments: [
+            { 
+              name: 'Cybersecurity Homework 1', 
+              dueDate: new Date(2024, 8, 10), 
+              score: '15/20',  
+              details: 'This assignment covers the basic concepts and importance of cybersecurity.',
+              resources: '/assets/courses/teach.pdf',
+            },
+          ],
+          exams: [
+            { name: 'Cybersecurity Quiz', dueDate: new Date(2024, 8, 15), score: '45/50' }
+          ]
+        },
+        {
+          title: 'Network Security',
+          description: 'Protecting network infrastructures from cyber threats',
+          about: 'This module covers the principles of securing network infrastructures, including firewalls, intrusion detection systems, and secure communication protocols.',
+          materials: [
+            { title: 'Network Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 5) },
+            { title: 'Network Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 6) },
+            { title: 'Firewalls and IDS - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 7) }
+          ],
+          assignments: [
+            { name: 'Network Security Homework', dueDate: new Date(2024, 8, 20), score: '18/25' },
+            { name: 'Securing Networks', dueDate: new Date(2024, 8, 25), score: '20/25' },
+            { 
+              name: 'Firewall Configuration Homework', 
+              dueDate: new Date(2024, 8, 30), 
+              score: '22/25',
+              resources: [
+                { name: 'Firewall Setup Guide', link: '/assets/courses/teach.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Network Security Test', dueDate: new Date(2024, 9, 5), score: '40/50' }
+          ]
+        },
+        {
+          title: 'Application Security',
+          description: 'Ensuring the security of software applications',
+          about: 'In this module, you will learn how to secure software applications from vulnerabilities, including secure coding practices and threat modeling.',
+          materials: [
+            { title: 'Application Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 15) },
+            { title: 'Application Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 16) },
+            { title: 'OWASP Top 10 - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 17) }
+          ],
+          assignments: [
+            { name: 'Secure Coding Homework', dueDate: new Date(2024, 9, 10), score: '19/20' },
+            { name: 'Threat Modeling Exercise', dueDate: new Date(2024, 9, 15), score: '18/20' },
+            { 
+              name: 'Application Security Homework', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '20/20',
+              resources: [
+                { name: 'Secure Coding Guide', link: '/assets/courses/teach.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '85/100' }
+          ]
+        }
+      ],
+    
+      enrolledStudents: [
+        { name: 'Alice Johnson', email: 'alicejohnson@gmail.com', progress: '25' },
+        { name: 'Bob Smith', email: 'bobsmith@gmail.com', progress: '70' },
+        { name: 'Charlie Brown', email: 'charliebrown@gmail.com', progress: '45' },
+        { name: 'Diana Prince', email: 'dianaprince@gmail.com', progress: '60' },
+        { name: 'Ethan Hunt', email: 'ethanhunt@gmail.com', progress: '30' },
+        { name: 'Fiona Gallagher', email: 'fionagallagher@gmail.com', progress: '75' },
+        { name: 'George Miller', email: 'georgemiller@gmail.com', progress: '85' },
+        { name: 'Hannah Wilson', email: 'hannahwilson@gmail.com', progress: '55' },
+        { name: 'Ian Fleming', email: 'ianfleming@gmail.com', progress: '40' },
+        { name: 'Jack Ryan', email: 'jackryan@gmail.com', progress: '65' },
+        { name: 'Katherine Johnson', email: 'katherinejohnson@gmail.com', progress: '50' },
+        { name: 'Liam Neeson', email: 'liamneeson@gmail.com', progress: '80' },
+        { name: 'Mona Lisa', email: 'monalisa@gmail.com', progress: '70' },
+        { name: 'Nathan Drake', email: 'nathandrake@gmail.com', progress: '60' },
+        { name: 'Olivia Pope', email: 'oliviapope@gmail.com', progress: '90' },
+        { name: 'Patrick Jane', email: 'patrickjane@gmail.com', progress: '75' },
+        { name: 'Quinn Fabray', email: 'quinnfabray@gmail.com', progress: '65' },
+        { name: 'Riley Matthews', email: 'rileymatthews@gmail.com', progress: '70' },
+        { name: 'Sophia Loren', email: 'sophialoren@gmail.com', progress: '85' },
+        { name: 'Tony Stark', email: 'tonystark@gmail.com', progress: '95' }
+      ]
+    },
+    
 
 
     
