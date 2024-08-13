@@ -59,7 +59,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   
   constructor(
     private dataService: DataService,
-    private router: Router,
+    private router: Router, 
     private userService: UserService
   ) {}
 
@@ -72,18 +72,34 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     return this.role;
   }
 
+  // async ngOnInit() {
+  //   this.fetchCourses();
+
+  //   const _user = await this.userService.getUser();
+  //   this.role = _user.role;
+
+  //   this.userSubscription = this.userService.currentUser.subscribe(
+  //     (user) => {
+  //       this.user = user;
+  //     }
+  //   );
+  // }
+
   async ngOnInit() {
-    this.fetchCourses();
-
     const _user = await this.userService.getUser();
+    this.user = _user;
     this.role = _user.role;
-
+  
+    this.fetchCourses(); // Fetch courses after setting the user
+  
     this.userSubscription = this.userService.currentUser.subscribe(
       (user) => {
         this.user = user;
+        this.fetchCourses(); // Re-fetch courses if the user changes
       }
     );
   }
+  
 
   ngOnDestroy() {
     if (this.userSubscription) {
@@ -91,10 +107,28 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // fetchCourses(): void {
+  //   this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
+  //   this.filteredCourses = this.courses;
+  // }
+
   fetchCourses(): void {
-    this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
-    this.filteredCourses = this.courses;
+    // Get the current user's email
+    const currentUserEmail = this.user ? this.user.email : null;
+  
+    if (currentUserEmail) {
+      // Filter courses where the user is enrolled
+      this.courses = this.dataService.getCourses().filter(course =>
+        course.enrolledStudents.some((student: { email: string }) => student.email === currentUserEmail)
+      );
+      this.filteredCourses = this.courses;
+    } else {
+      // If no user is logged in, or there's an issue, don't show any courses
+      this.courses = [];
+      this.filteredCourses = [];
+    }
   }
+  
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
