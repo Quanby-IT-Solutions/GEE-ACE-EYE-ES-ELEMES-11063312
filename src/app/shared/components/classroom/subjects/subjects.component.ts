@@ -56,7 +56,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   sortMenuOpen: boolean = false;  
 
-  
   constructor(
     private dataService: DataService,
     private router: Router, 
@@ -67,25 +66,18 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
   public user: User | GuestUser | null = null;  
   role: string | null = null;
+  currentUser: any; // To hold the current user's details
+
 
   getUserRole() {
     return this.role;
   }
 
-  // async ngOnInit() {
-  //   this.fetchCourses();
-
-  //   const _user = await this.userService.getUser();
-  //   this.role = _user.role;
-
-  //   this.userSubscription = this.userService.currentUser.subscribe(
-  //     (user) => {
-  //       this.user = user;
-  //     }
-  //   );
-  // }
-
   async ngOnInit() {
+
+    this.currentUser = await this.userService.getUser();
+
+
     const _user = await this.userService.getUser();
     this.user = _user;
     this.role = _user.role;
@@ -99,7 +91,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
 
   ngOnDestroy() {
     if (this.userSubscription) {
@@ -107,28 +98,35 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // fetchCourses(): void {
-  //   this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
-  //   this.filteredCourses = this.courses;
-  // }
-
   fetchCourses(): void {
-    // Get the current user's email
-    const currentUserEmail = this.user ? this.user.email : null;
-  
-    if (currentUserEmail) {
-      // Filter courses where the user is enrolled
+    if (!this.user) return;
+
+    const instructorFullName = this.getInstructorFullName(this.user);
+
+    if (this.role === 'instructor') {
+      // Display courses created by the instructor
       this.courses = this.dataService.getCourses().filter(course =>
-        course.enrolledStudents.some((student: { email: string }) => student.email === currentUserEmail)
+        course.instructor === instructorFullName
       );
-      this.filteredCourses = this.courses;
+    } else if (this.role === 'student') {
+      // Display courses where the student is enrolled
+      this.courses = this.dataService.getCourses().filter(course =>
+        course.enrolledStudents.some((student: { email: string }) => student.email === this.user!.email)
+      );
     } else {
       // If no user is logged in, or there's an issue, don't show any courses
       this.courses = [];
-      this.filteredCourses = [];
     }
+
+    this.filteredCourses = this.courses;
   }
-  
+
+  getInstructorFullName(user: User | GuestUser): string {
+    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
+      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
+    }
+    return '';
+  }
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
@@ -150,9 +148,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     );
     this.sortMenuOpen = false;
   }
-
-
-
 
   selectCourse(course: Course): void {
     this.router.navigate([routes.subject_modules], { state: { course } });

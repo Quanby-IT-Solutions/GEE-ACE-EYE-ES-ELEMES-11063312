@@ -5409,7 +5409,7 @@ export class DataService {
     // cybersecurity
 
    {
-      instructor: 'Anton Caesar Cabais',
+      instructor: 'Edward Rogers',
       instructor_profile: 'assets/img/tonn.jpeg',
       course: 'Cybersecurity ',
       subject: 'Cybersecurity',
