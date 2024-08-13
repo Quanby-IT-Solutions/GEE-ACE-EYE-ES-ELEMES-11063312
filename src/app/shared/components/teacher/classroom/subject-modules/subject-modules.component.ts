@@ -292,3 +292,4 @@ export class SubjectModulesComponent implements OnInit {
   }
   
 }
+
