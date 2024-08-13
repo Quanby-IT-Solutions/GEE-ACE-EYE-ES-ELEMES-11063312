@@ -56,6 +56,14 @@ const routes: Routes = [
             'src/app/shared/components/classroom/progress/progress.module'
           ).then((m) => m.ProgressModule),
       },
+
+      {
+        path: 'training-calendar',
+        loadChildren: () =>
+          import(
+            'src/app/shared/components/classroom/training-calendar/training-calendar.module'
+          ).then((m) => m.TrainingCalendarModule),
+      },
    
 
 

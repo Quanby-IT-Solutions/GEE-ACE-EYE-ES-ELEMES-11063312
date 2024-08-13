@@ -1,50 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { SafeUrlPipe } from 'src/app/shared/pipes/safe-url.pipe';
 import { Subscription } from 'rxjs';
-import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
-import { GuestUser } from 'src/app/shared/models/model';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
-import { ModalService } from 'src/app/shared/service/modal/modal.service';
-import { CreateAssignmentComponent } from '../../../modal/create-assignment/create-assignment.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [CommonModule, SafeUrlPipe, PdfViewerModule, FormsModule]
+  imports: [FormsModule, PdfViewerModule, CommonModule]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
-  selectedTab: string = 'about'; // Default tab
-  selectedModuleIndex: number = 0; // Track the selected module
-  selectedMaterial: any = null; // Track the selected material
-  isEditing: boolean = false; // Track if editing mode is enabled
-
-  searchTerm: string = '';
-  allUsers: any[] = []; // Track all users
-  showEnrollModal: boolean = false;
-
+  selectedTab = 'about';
+  selectedModuleIndex = 0;
+  selectedMaterial: any = null;
+  isEditing = false;
+  searchTerm = '';
+  allUsers: any[] = [];
+  showEnrollModal = false;
   private userSubscription: Subscription | undefined;
-
-  public user: User | GuestUser | null = null;
+  user: any = null;
   role: string | null = null;
+
+  tabs = [
+    { key: 'materials', label: 'Materials' },
+    { key: 'assignments', label: 'Assignments' },
+    { key: 'quiz', label: 'Quiz' },
+    { key: 'exams', label: 'Exams' },
+    { key: 'studentManagement', label: 'Student Management' }
+  ];
 
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer,
     private userService: UserService,
     private supabaseService: SupabaseService,
-    private dataService: DataService,
-    private modalService:ModalService
-
+    private dataService: DataService
   ) {}
 
   getUserRole() {
@@ -54,48 +52,50 @@ export class SubjectModulesComponent implements OnInit {
   async ngOnInit() {
     const _user = await this.userService.getUser();
     this.role = _user.role;
-
+  
     this.userSubscription = this.userService.currentUser.subscribe((user) => {
       this.user = user;
     });
-
+  
     this.course = history.state.course || this.fetchCourseData();
-
     if (!this.course) {
-      this.router.navigate(['/']);  // Redirect if course data is missing
+      this.router.navigate(['/']);
     } else {
-      // Ensure consistent structure for students
       this.course.enrolledStudents = this.course.enrolledStudents || [];
-
-      // Fetch all users
+  
+      // Initialize filteredEnrolledStudents with the full list of enrolled students
+      this.filteredEnrolledStudents = [...this.course.enrolledStudents];
+  
       this.allUsers = await this.userService.getAllUsers();
     }
   }
+  
+  
 
-  fetchCourseData(): any {
-    return null; // Replace this with actual data fetching logic
+  fetchCourseData() {
+    return null;
   }
 
-  selectTab(tab: string): void {
+  selectTab(tab: string) {
     this.selectedTab = tab;
-    this.selectedMaterial = null; // Reset selected material when changing tabs
+    this.selectedMaterial = null;
   }
 
-  selectModule(index: number): void {
+  selectModule(index: number) {
     this.selectedModuleIndex = index;
-    this.sortMaterialsByDate(); // Sort materials when the module changes
-    this.selectedMaterial = null; // Reset selected material when changing modules
+    this.sortMaterialsByDate();
+    this.selectedMaterial = null;
   }
 
-  goToNextModule(): void {
+  goToNextModule() {
     if (this.selectedModuleIndex < this.course.modules.length - 1) {
       this.selectedModuleIndex++;
-      this.sortMaterialsByDate(); // Sort materials when navigating to the next module
-      this.selectedMaterial = null; // Reset selected material when moving to the next module
+      this.sortMaterialsByDate();
+      this.selectedMaterial = null;
     }
   }
 
-  selectMaterial(material: any): void {
+  selectMaterial(material: any) {
     this.selectedMaterial = material;
     if (!material.link) {
       console.error('No link provided for this material');
@@ -112,7 +112,7 @@ export class SubjectModulesComponent implements OnInit {
     }
   }
 
-  downloadMaterial(material: any, event: Event): void {
+  downloadMaterial(material: any, event: Event) {
     event.stopPropagation();
     const link = document.createElement('a');
     link.href = material.link;
@@ -120,7 +120,7 @@ export class SubjectModulesComponent implements OnInit {
     link.click();
   }
 
-  replaceMaterialFile(material: any, event: any): void {
+  replaceMaterialFile(material: any, event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -131,129 +131,165 @@ export class SubjectModulesComponent implements OnInit {
     }
   }
 
-  toggleEditing(): void {
+  toggleEditing() {
     this.isEditing = !this.isEditing;
   }
 
-  addAssignment(): void {
-    const modal$ = this.modalService.openModal( CreateAssignmentComponent ,{test:'data'}).subscribe(res =>{
-      console.log(res);
-      modal$.unsubscribe();
-    })
-  }
-
-  removeAssignment(index: number): void {
-    this.course.modules[this.selectedModuleIndex].assignments.splice(index, 1);
-  }
-
-  addExam(): void {
+  addExam() {
     this.course.modules[this.selectedModuleIndex].exams.push({
       name: '',
-      dueDate: '',
+      dueDate: ''
     });
   }
 
-  removeExam(index: number): void {
+  removeExam(index: number) {
     this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
   }
 
-  // enrollStudent(user: any): void {
-  //   // Check if the user is already enrolled
-  //   const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
+  // enrollStudent(user: any) {
+  //   const alreadyEnrolled = this.course.enrolledStudents.some(
+  //     (student: any) => student.email === user.email
+  //   );
 
   //   if (!alreadyEnrolled) {
-  //       // Add the user to the enrolledStudents list
-  //       this.course.enrolledStudents.push({
-  //           name: user.name,
-  //           email: user.email,
-  //           progress: 0 // You can adjust the default progress if needed
-  //       });
+  //     const fullName = `${user.first_name} ${user.last_name}`;
+  //     this.course.enrolledStudents.push({
+  //       name: fullName,
+  //       email: user.email,
+  //       progress: 0
+  //     });
 
-  //       // Save the updated course data to local storage
-  //       localStorage.setItem('courseData', JSON.stringify(this.course));
-
-  //       // Remove the user from the allUsers list to prevent re-enrollment
-  //       const index = this.allUsers.indexOf(user);
-  //       if (index !== -1) {
-  //           this.allUsers.splice(index, 1);
-  //       }
+  //     this.dataService.updateCourse(this.course);
+  //     this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+  //     alert(`${fullName} has been successfully enrolled in the course.`);
   //   }
   // }
 
-  // openEnrollModal(): void {
-  //   this.userService.getAllUsers().then(users => {
-  //     this.allUsers = users; // Fetch and assign all users to the allUsers array
-  //   }).catch(error => {
-  //     console.error('Failed to fetch users:', error);
-  //   });
-  //   this.showEnrollModal = true;
-  // }
-
-  enrollStudent(user: any): void {
-    // Check if the user is already enrolled
-    const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
-
+  enrollStudent(user: any) {
+    const alreadyEnrolled = this.course.enrolledStudents.some(
+      (student: any) => student.email === user.email
+    );
+  
     if (!alreadyEnrolled) {
-        // Construct the full name using first_name and last_name
-        const fullName = `${user.first_name} ${user.last_name}`;
-        
-        // Add the user to the enrolledStudents list
-        this.course.enrolledStudents.push({
-            name: fullName,
-            email: user.email,
-            progress: 0 // You can adjust the default progress if needed
-        });
-
-        // Update the course data in the service
-        this.dataService.updateCourse(this.course);
-
-        // Remove the user from the allUsers list to prevent re-enrollment
-        this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
-
-        // Notify the user
-        alert(`${fullName} has been successfully enrolled in the course.`);
+      const fullName = `${user.first_name} ${user.last_name}`;
+      const newStudent = {
+        name: fullName,
+        email: user.email,
+        progress: 0
+      };
+  
+      // Add the new student to the enrolledStudents array
+      this.course.enrolledStudents.push(newStudent);
+  
+      // Also add the new student to the filteredEnrolledStudents array
+      this.filteredEnrolledStudents.push(newStudent);
+  
+      // Update the course data in the service
+      this.dataService.updateCourse(this.course);
+  
+      // Remove the user from the allUsers list to prevent re-enrollment
+      this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+  
+      // Optionally, close the modal after enrolling the student
+      this.closeEnrollModal();
+  
+      alert(`${fullName} has been successfully enrolled in the course.`);
     }
-}
+  }
+  
 
-
-  openEnrollModal(): void {
+  openEnrollModal() {
     this.showEnrollModal = true;
   }
 
-  closeEnrollModal(): void {
+  closeEnrollModal() {
     this.showEnrollModal = false;
   }
 
-  searchStudents(): void {
+  filteredEnrolledStudents: any[] = [];
+
+
+  searchStudents() {
     const term = this.searchTerm.toLowerCase();
-
-    this.allUsers = this.allUsers.filter((student: any) =>
-      student.name.toLowerCase().includes(term) || student.email.toLowerCase().includes(term)
-    );
-  }
-
-  getMaterialIcon(type: string): string {
-    switch (type) {
-      case 'pdf':
-        return 'fa-book';
-      case 'video':
-        return 'fa-video';
-      case 'image':
-        return 'fa-image';
-      default:
-        return 'fa-file';
+  
+    if (term === '') {
+      // Reset the filtered array to show all students if the search term is empty
+      this.filteredEnrolledStudents = [...this.course.enrolledStudents];
+    } else {
+      this.filteredEnrolledStudents = this.course.enrolledStudents.filter(
+        (student: any) =>
+          student.name.toLowerCase().includes(term) ||
+          student.email.toLowerCase().includes(term)
+      );
     }
   }
+  
+  
 
-  closeMaterialView(): void {
+  getMaterialIcon(type: string): string {
+    return {
+      pdf: 'fa-book',
+      video: 'fa-video',
+      image: 'fa-image'
+    }[type] || 'fa-file';
+  }
+
+  closeMaterialView() {
     this.selectedMaterial = null;
   }
 
-  private sortMaterialsByDate(): void {
+  private sortMaterialsByDate() {
     const materials = this.course.modules[this.selectedModuleIndex].materials;
-    materials.sort((a: any, b: any) => new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime());
+    materials.sort((a: any, b: any) =>
+      new Date(a.uploadDate).getTime() > new Date(b.uploadDate).getTime() ? 1 : -1
+    );
     materials.forEach((material: any, index: number) => {
       material.index = index + 1;
     });
   }
+
+  // Assignments methods
+  showAssignmentDetails = false;
+  selectedAssignment: any = null;
+
+  showDetails(index: number) {
+    this.selectedAssignment =
+      this.course.modules[this.selectedModuleIndex].assignments[index];
+    console.log('Selected Assignment:', this.selectedAssignment);
+    this.showAssignmentDetails = true;
+  }
+
+  hideDetails() {
+    this.selectedAssignment = null;
+    this.showAssignmentDetails = false;
+  }
+
+  fileUploaded = false;  // Track if a file has been uploaded
+  uploadedFileName: string | null = null; // Store the uploaded file name
+  
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedAssignment.submittedFile = file;
+      this.fileUploaded = true; // Mark that a file has been uploaded
+      this.uploadedFileName = file.name; // Store the file name
+    }
+  }
+  
+  changeFile() {
+    this.fileUploaded = false; // Reset the file upload state
+    this.uploadedFileName = null; // Clear the uploaded file name
+  }
+  
+  submitAssignment() {
+    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
+      this.selectedAssignment.submitted = true;
+      alert('Assignment submitted successfully!');
+      // Optionally reset fileUploaded state if needed for future uploads
+    } else {
+      alert('Please select a file to submit.');
+    }
+  }
+  
 }
+

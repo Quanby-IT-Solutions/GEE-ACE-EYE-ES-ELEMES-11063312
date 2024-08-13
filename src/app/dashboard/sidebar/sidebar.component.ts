@@ -106,7 +106,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
 
   public student_no = [
     { title: 'Home', route: this.routes.dashboard },
-    { title: 'Explore Courses', route: this.routes.explore_courses },
+    { title: 'Course Offerings', route: this.routes.explore_courses },
 
     {
       title: 'My Courses',
@@ -117,7 +117,8 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     },
     { title: 'Progress', route: this.routes.progress },
 
-    { title: 'Calendar', route: this.routes.schedules },
+    { title: 'Training Calendar', route: this.routes.training_calendar },
+
   ];
 
   public instructor = [

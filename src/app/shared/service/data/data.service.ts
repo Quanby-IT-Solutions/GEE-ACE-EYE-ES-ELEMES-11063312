@@ -4527,12 +4527,12 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'My Quiz Attempts',
+          menuValue: 'My  Attempts',
           route: routes.instructorQuizAttempts,
           hasSubRoute: false,
           showSubRoute: false,
           base: 'instructor',
-          page: 'instructor-quiz-attempts',
+          page: 'instructor--attempts',
           last: '',
           subMenus: [],
         },
@@ -4697,12 +4697,12 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'My Quiz Attempts',
-          route: routes.studentsQuiz,
+          menuValue: 'My  Attempts',
+          route: routes.students,
           hasSubRoute: false,
           showSubRoute: false,
           base: 'student',
-          page: 'student-quiz',
+          page: 'student-',
           last: '',
           subMenus: [],
         },
@@ -5289,66 +5289,92 @@ export class DataService {
   private course: any;
   private defaultCourses = [
     {
-      instructor: 'Michael Maxwell',
-      instructor_profile: 'assets/img/bini.jpeg',
-      course: 'Mathematics 101',
-      subject: 'Algebra',
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/ton.jpg',
+      course: 'Information Technology',
+      subject: 'Information Technology',
       block: 'A',
+      startDate: new Date(2024, 7, 20),
       time: '09:00 - 10:00',
       grade: '97',
+      enrollmentKey: '12345',
       progress: '65',
-      imageUrl: 'assets/img/math.png',
+      imageUrl: 'assets/img/program.jpg',
       enrolled: 'yes',
+      
       modules: [
         {
-          title: 'Introduction to Algebra',
-          description: 'Overview of Algebraic Concepts',
-          about: 'This module introduces you to the basic concepts of algebra, focusing on variables, expressions, and equations.',
+          title: 'Introduction to Information Technology',
+          description: 'Overview of IT Concepts',
+          about: 'This module introduces you to the fundamental concepts of Information Technology, including hardware, software, networking, and databases.',
           materials: [
-            { title: 'Introduction to Algebra - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-            { title: 'Introduction to Algebra - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-            { title: 'Introduction to Algebra - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
+            { title: 'Introduction to IT - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
+            { title: 'Introduction to IT - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
+            { title: 'Introduction to IT - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
           ],
           assignments: [
-            { name: 'Algebra Homework 1', dueDate: new Date(2024, 7, 11), score: '10/12' },
-            { name: 'Algebra Quiz 1', dueDate: new Date(2024, 7, 9), score: '20/20'  }
+            { name: 'IT Basics Homework 1', 
+              dueDate: new Date(2024, 7, 11), 
+              score: '10/12',  
+              details: 'This assignment covers the basics of IT, including understanding computer hardware and software.',
+              resources: '/assets/courses/teach.pdf',
+            },
           ],
+          
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15), score: '52/60'  }
+            { name: 'IT Basics Quiz', dueDate: new Date(2024, 7, 15), score: '52/60' }
           ]
         },
         {
-          title: 'Algebraic Operations',
-          description: 'Working with Algebraic Expressions',
-          about: 'This module covers the operations involving algebraic expressions, including addition, subtraction, and factoring.',
+          title: 'Networking Fundamentals',
+          description: 'Understanding Network Structures',
+          about: 'This module covers the basics of networking, including types of networks, network topologies, and network protocols.',
           materials: [
-            { title: 'Algebraic Operations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-            { title: 'Algebraic Operations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-            { title: 'Practice Problems on Algebraic Operations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
+            { title: 'Networking Fundamentals - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
+            { title: 'Networking Fundamentals - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
+            { title: 'Networking Fundamentals - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
           ],
           assignments: [
-            { name: 'Operations Homework', dueDate: new Date(2024, 7, 20), score: '10/15'  },
-            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25), score: '12/20'  }
+            { name: 'Networking Homework', dueDate: new Date(2024, 7, 20), score: '10/15' },
+            { name: 'Network Setup Assignment', dueDate: new Date(2024, 7, 25), score: '12/20' },
+            { 
+              name: 'Network Troubleshooting Homework', 
+              dueDate: new Date(2024, 7, 28), 
+              score: '13/15',
+              resources: [
+                { name: 'Network Troubleshooting Guide', link: 'assets/courses/teach.pdf' }
+              ]
+            }
           ],
+          
           exams: [
-            { name: 'Operations Test', dueDate: new Date(2024, 7, 28), score: '50/60'  }
+            { name: 'Networking Fundamentals Test', dueDate: new Date(2024, 7, 28), score: '50/60' }
           ]
         },
         {
-          title: 'Quadratic Equations',
-          description: 'Solving Quadratic Equations',
-          about: 'In this module, you will learn how to solve quadratic equations using various methods, including factoring, completing the square, and the quadratic formula.',
+          title: 'Database Management',
+          description: 'Introduction to Databases',
+          about: 'In this module, you will learn about database management systems, including SQL, relational databases, and data modeling.',
           materials: [
-            { title: 'Quadratic Equations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-            { title: 'Quadratic Equations - Video Lecture', type: 'video', link: 'assets/courses/bini.pdf', uploadDate: new Date(2024, 6, 16) },
-            { title: 'Example Problems on Quadratic Equations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
+            { title: 'Database Management - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
+            { title: 'Database Management - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
+            { title: 'Database Management - Supplementary Reading', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
           ],
           assignments: [
-            { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
-            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10), score: '11/15' }
+            { name: 'Database Design Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
+            { name: 'SQL Query Assignment', dueDate: new Date(2024, 8, 10), score: '11/15' },
+            { 
+              name: 'Database Optimization Homework', 
+              dueDate: new Date(2024, 8, 15), 
+              score: '12/12',
+              resources: [
+                { name: 'SQL Optimization Guide', link: 'assets/courses/teach.pdf' }
+              ]
+            }
           ],
+          
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
+            { name: 'Database Management Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
           ]
         }
       ],
@@ -5375,6 +5401,125 @@ export class DataService {
         { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80' }
       ]
     },
+    
+
+   {
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/ton.jpg',
+      course: 'Cybersecurity Fundamentals',
+      subject: 'Cybersecurity',
+      block: 'B',
+      startDate: new Date(2024, 8, 1),
+      time: '14:00 - 15:00',
+      grade: '90',
+      enrollmentKey: 'cyber2024',
+      progress: '75',
+      imageUrl: 'assets/img/cybersec.jpg',
+      enrolled: 'yes',
+      
+      prerequisite: {
+        course: 'Information Technology'
+      },
+    
+      modules: [
+        {
+          title: 'Introduction to Cybersecurity',
+          description: 'Understanding the basics of Cybersecurity',
+          about: 'This module introduces the fundamental concepts of cybersecurity, including the importance of protecting digital information and systems from cyber threats.',
+          materials: [
+            { title: 'Cybersecurity Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 25) },
+            { title: 'Cybersecurity Basics - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 7, 26) },
+            { title: 'Cybersecurity Terminology - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 7, 27) }
+          ],
+          assignments: [
+            { 
+              name: 'Cybersecurity Homework 1', 
+              dueDate: new Date(2024, 8, 10), 
+              score: '15/20',  
+              details: 'This assignment covers the basic concepts and importance of cybersecurity.',
+              resources: '/assets/courses/teach.pdf',
+            },
+          ],
+          exams: [
+            { name: 'Cybersecurity Quiz', dueDate: new Date(2024, 8, 15), score: '45/50' }
+          ]
+        },
+        {
+          title: 'Network Security',
+          description: 'Protecting network infrastructures from cyber threats',
+          about: 'This module covers the principles of securing network infrastructures, including firewalls, intrusion detection systems, and secure communication protocols.',
+          materials: [
+            { title: 'Network Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 5) },
+            { title: 'Network Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 6) },
+            { title: 'Firewalls and IDS - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 7) }
+          ],
+          assignments: [
+            { name: 'Network Security Homework', dueDate: new Date(2024, 8, 20), score: '18/25' },
+            { name: 'Securing Networks', dueDate: new Date(2024, 8, 25), score: '20/25' },
+            { 
+              name: 'Firewall Configuration Homework', 
+              dueDate: new Date(2024, 8, 30), 
+              score: '22/25',
+              resources: [
+                { name: 'Firewall Setup Guide', link: '/assets/courses/teach.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Network Security Test', dueDate: new Date(2024, 9, 5), score: '40/50' }
+          ]
+        },
+        {
+          title: 'Application Security',
+          description: 'Ensuring the security of software applications',
+          about: 'In this module, you will learn how to secure software applications from vulnerabilities, including secure coding practices and threat modeling.',
+          materials: [
+            { title: 'Application Security - Lecture Notes', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 15) },
+            { title: 'Application Security - Video Lecture', type: 'video', link: '/assets/courses/bini.mp4', uploadDate: new Date(2024, 8, 16) },
+            { title: 'OWASP Top 10 - Supplementary Reading', type: 'pdf', link: '/assets/courses/teach.pdf', uploadDate: new Date(2024, 8, 17) }
+          ],
+          assignments: [
+            { name: 'Secure Coding Homework', dueDate: new Date(2024, 9, 10), score: '19/20' },
+            { name: 'Threat Modeling Exercise', dueDate: new Date(2024, 9, 15), score: '18/20' },
+            { 
+              name: 'Application Security Homework', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '20/20',
+              resources: [
+                { name: 'Secure Coding Guide', link: '/assets/courses/teach.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '85/100' }
+          ]
+        }
+      ],
+    
+      enrolledStudents: [
+        { name: 'Alice Johnson', email: 'alicejohnson@gmail.com', progress: '25' },
+        { name: 'Bob Smith', email: 'bobsmith@gmail.com', progress: '70' },
+        { name: 'Charlie Brown', email: 'charliebrown@gmail.com', progress: '45' },
+        { name: 'Diana Prince', email: 'dianaprince@gmail.com', progress: '60' },
+        { name: 'Ethan Hunt', email: 'ethanhunt@gmail.com', progress: '30' },
+        { name: 'Fiona Gallagher', email: 'fionagallagher@gmail.com', progress: '75' },
+        { name: 'George Miller', email: 'georgemiller@gmail.com', progress: '85' },
+        { name: 'Hannah Wilson', email: 'hannahwilson@gmail.com', progress: '55' },
+        { name: 'Ian Fleming', email: 'ianfleming@gmail.com', progress: '40' },
+        { name: 'Jack Ryan', email: 'jackryan@gmail.com', progress: '65' },
+        { name: 'Katherine Johnson', email: 'katherinejohnson@gmail.com', progress: '50' },
+        { name: 'Liam Neeson', email: 'liamneeson@gmail.com', progress: '80' },
+        { name: 'Mona Lisa', email: 'monalisa@gmail.com', progress: '70' },
+        { name: 'Nathan Drake', email: 'nathandrake@gmail.com', progress: '60' },
+        { name: 'Olivia Pope', email: 'oliviapope@gmail.com', progress: '90' },
+        { name: 'Patrick Jane', email: 'patrickjane@gmail.com', progress: '75' },
+        { name: 'Quinn Fabray', email: 'quinnfabray@gmail.com', progress: '65' },
+        { name: 'Riley Matthews', email: 'rileymatthews@gmail.com', progress: '70' },
+        { name: 'Sophia Loren', email: 'sophialoren@gmail.com', progress: '85' },
+        { name: 'Tony Stark', email: 'tonystark@gmail.com', progress: '95' }
+      ]
+    },
+    
 
 
     
@@ -5385,6 +5530,9 @@ export class DataService {
         course: 'Physics 201',
         subject: 'Mechanics',
         block: 'B',
+        startDate: new Date(2024, 8, 21),
+        enrollmentKey: '12345',
+
         time: '10:00 - 11:00',
         grade: '92',
         progress: '85',
@@ -5403,10 +5551,19 @@ export class DataService {
             ],
             assignments: [
               { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+              { name: 'Mechanics  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { 
+                name: 'Mechanics Homework 2', 
+                dueDate: new Date(2024, 7, 22), 
+                score: '11/12',
+                resources: [
+                  { name: 'Mechanics Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '40/60'  }
             ]
           },
           {
@@ -5420,8 +5577,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
+              { name: 'Newton ', dueDate: new Date(2024, 8, 3), score: '10/12'  },
+              { 
+                name: 'Newton Homework 2', 
+                dueDate: new Date(2024, 8, 6), 
+                score: '12/12',
+                resources: [
+                  { name: 'Newton Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
             ]
@@ -5437,10 +5603,19 @@ export class DataService {
             ],
             assignments: [
               { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-              { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
+              { name: 'Energy ', dueDate: new Date(2024, 8, 17), score: '12/12'  },
+              { 
+                name: 'Energy Homework 2', 
+                dueDate: new Date(2024, 8, 20), 
+                score: '12/12',
+                resources: [
+                  { name: 'Energy Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '10/60'  }
             ]
           }
         ],
@@ -5481,7 +5656,8 @@ export class DataService {
         progress: '85',
         imageUrl: 'assets/img/chemistry.png',
         enrolled: 'no',
-  
+        enrollmentKey: '12345',
+
         modules: [
           {
             title: 'Organic Molecules and Structures',
@@ -5494,8 +5670,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-              { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
+              { name: 'Molecules ', dueDate: new Date(2024, 7, 25) , score: '10/12' },
+              { 
+                name: 'Molecules Homework 2', 
+                dueDate: new Date(2024, 7, 28), 
+                score: '12/12',
+                resources: [
+                  { name: 'Molecules Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
             ]
@@ -5511,8 +5696,17 @@ export class DataService {
             ],
             assignments: [
               { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-              { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
+              { name: 'Reactions ', dueDate: new Date(2024, 8, 15) , score: '10/12' },
+              { 
+                name: 'Reactions Homework 2', 
+                dueDate: new Date(2024, 8, 18), 
+                score: '12/12',
+                resources: [
+                  { name: 'Reactions Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
               { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
             ]
@@ -5528,10 +5722,19 @@ export class DataService {
             ],
             assignments: [
               { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-              { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
+              { name: 'Stereochemistry ', dueDate: new Date(2024, 8, 28) , score: '10/12' },
+              { 
+                name: 'Stereochemistry Homework 2', 
+                dueDate: new Date(2024, 8, 30), 
+                score: '11/12',
+                resources: [
+                  { name: 'Stereochemistry Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 9, 5), score: '10/40'  }
             ]
           }
         ],
@@ -5567,12 +5770,15 @@ export class DataService {
         course: 'Biology 101',
         subject: 'Botany',
         block: 'D',
+        startDate: new Date(2024, 8, 23),
+        enrollmentKey: '12345',
+
         time: '12:00 - 13:00',
         grade: '90',
         progress: '85',
         imageUrl: 'assets/img/biology.png',
         enrolled: 'yes',
-  
+        
         modules: [
           {
             title: 'Introduction to Botany',
@@ -5585,10 +5791,20 @@ export class DataService {
             ],
             assignments: [
               { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+              { name: 'Botany  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { 
+                name: 'Botany Homework 2', 
+                dueDate: new Date(2024, 7, 22), 
+                score: '11/12',
+                resources: [
+                  { name: 'Botany Guide', link: 'assets/courses/teach.pdf' }
+                ]
+              }
             ],
+            
+            
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '32/40'  }
             ]
           },
           {
@@ -5602,7 +5818,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
-              { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
+              { name: 'Physiology ', dueDate: new Date(2024, 8, 3) , score: '10/15' }
             ],
             exams: [
               { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
@@ -5619,10 +5835,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
-              { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
+              { name: 'Ecology ', dueDate: new Date(2024, 8, 17), score: '12/30'  }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '80/120' }
             ]
           }
         ],
@@ -5658,12 +5874,14 @@ export class DataService {
         course: 'Computer Science 101',
         subject: 'Programming',
         block: 'E',
+        startDate: new Date(2024, 8, 25),
         time: '13:00 - 14:00',
         grade: '93',
         progress: '85',
         imageUrl: 'assets/img/compsci.png',
         enrolled: 'yes',
-  
+        enrollmentKey: '12345',
+
         modules: [
           {
             title: 'Introduction to Programming',
@@ -5676,10 +5894,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
-              { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
+              { name: 'Programming  1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '119/120' }
             ]
           },
           {
@@ -5693,7 +5911,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
-              { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
+              { name: 'Data Structures ', dueDate: new Date(2024, 8, 3) , score: '0/20' }
             ],
             exams: [
               { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
@@ -5710,10 +5928,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
-              { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
+              { name: 'Algorithms ', dueDate: new Date(2024, 8, 17) , score: '11/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '41/60' }
             ]
           }
         ],
@@ -5749,6 +5967,9 @@ export class DataService {
         course: 'History 101',
         subject: 'World History',
         block: 'F',
+        startDate: new Date(2024, 8, 27),
+        enrollmentKey: '12345',
+
         time: '14:00 - 15:00',
         grade: '88',
         progress: '85',
@@ -5767,10 +5988,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+              { name: 'Ancient Civilizations ', dueDate: new Date(2024, 7, 18) , score: '10/12' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '15/60'  }
             ]
           },
           {
@@ -5784,7 +6005,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
+              { name: 'Medieval Times ', dueDate: new Date(2024, 8, 3), score: '9/12'  }
             ],
             exams: [
               { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
@@ -5801,10 +6022,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
-              { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
+              { name: 'Modern History ', dueDate: new Date(2024, 8, 17) , score: '4/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '12/60'  }
             ]
           }
         ],
@@ -5840,6 +6061,9 @@ export class DataService {
         course: 'Geography 101',
         subject: 'Physical Geography',
         block: 'G',
+        startDate: new Date(2024, 8, 19),
+        enrollmentKey: '12345',
+
         time: '15:00 - 16:00',
         grade: '81',
         progress: '65',
@@ -5858,10 +6082,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
-              { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+              { name: 'Geography  1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '30/40' }
             ]
           },
           {
@@ -5875,7 +6099,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+              { name: 'Climate ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
             ],
             exams: [
               { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
@@ -5892,10 +6116,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
-              { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
+              { name: 'Landforms ', dueDate: new Date(2024, 8, 17) , score: '15/30' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '34/50' }
             ]
           }
         ],
@@ -5931,6 +6155,9 @@ export class DataService {
         course: 'Literature 101',
         subject: 'English Literature',
         block: 'H',
+        startDate: new Date(2024, 8, 18),
+        enrollmentKey: '12345',
+
         time: '16:00 - 17:00',
         grade: '75',
         progress: '65',
@@ -5949,10 +6176,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
+              { name: 'Literature  1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '12/20' }
             ]
           },
           {
@@ -5966,7 +6193,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+              { name: 'Prose ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
             ],
             exams: [
               { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
@@ -5983,10 +6210,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
-              { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
+              { name: 'Shakespeare ', dueDate: new Date(2024, 8, 17) , score: '10/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '105/120'  }
             ]
           }
         ],
@@ -6058,6 +6285,21 @@ export class DataService {
   getCourses(): any[] {
     return this.courses;
   }
+
+  trainingSchedule(): { date: Date, course: string, instructor: string, enrollmentKey: string }[] {
+    const courses = JSON.parse(localStorage.getItem('courses') || '[]');
+    return courses.map((course: { startDate: string | Date; course: string; instructor: string; enrollmentKey: string }) => ({
+      date: new Date(course.startDate),
+      course: course.course,
+      instructor: course.instructor,
+      enrollmentKey: course.enrollmentKey
+    }));
+  }
+  
+
+  
+  
+  
 
   getStudents(): any[] {
     return [
@@ -6190,10 +6432,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            { name: 'Mechanics  1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '40/60'  }
           ]
         },
         {
@@ -6207,7 +6449,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
+            { name: 'Newton ', dueDate: new Date(2024, 8, 3), score: '10/12'  }
           ],
           exams: [
             { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
@@ -6224,10 +6466,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-            { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
+            { name: 'Energy ', dueDate: new Date(2024, 8, 17), score: '12/12'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '10/60'  }
           ]
         }
       ],
@@ -6281,7 +6523,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-            { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
+            { name: 'Molecules ', dueDate: new Date(2024, 7, 25) , score: '10/12' }
           ],
           exams: [
             { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
@@ -6298,7 +6540,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-            { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
+            { name: 'Reactions ', dueDate: new Date(2024, 8, 15) , score: '10/12' }
           ],
           exams: [
             { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
@@ -6315,10 +6557,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-            { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
+            { name: 'Stereochemistry ', dueDate: new Date(2024, 8, 28) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
+            { name: 'Summative Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
           ]
         }
       ],
@@ -6372,10 +6614,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            { name: 'Botany  1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '32/40'  }
           ]
         },
         {
@@ -6389,7 +6631,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
-            { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
+            { name: 'Physiology ', dueDate: new Date(2024, 8, 3) , score: '10/15' }
           ],
           exams: [
             { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
@@ -6406,10 +6648,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
-            { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
+            { name: 'Ecology ', dueDate: new Date(2024, 8, 17), score: '12/30'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '80/120' }
           ]
         }
       ],
@@ -6463,10 +6705,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
-            { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
+            { name: 'Programming  1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '119/120' }
           ]
         },
         {
@@ -6480,7 +6722,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
-            { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
+            { name: 'Data Structures ', dueDate: new Date(2024, 8, 3) , score: '0/20' }
           ],
           exams: [
             { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
@@ -6497,10 +6739,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
-            { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
+            { name: 'Algorithms ', dueDate: new Date(2024, 8, 17) , score: '11/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '41/60' }
           ]
         }
       ],
@@ -6554,10 +6796,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            { name: 'Ancient Civilizations ', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '15/60'  }
           ]
         },
         {
@@ -6571,7 +6813,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
+            { name: 'Medieval Times ', dueDate: new Date(2024, 8, 3), score: '9/12'  }
           ],
           exams: [
             { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
@@ -6588,10 +6830,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
-            { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
+            { name: 'Modern History ', dueDate: new Date(2024, 8, 17) , score: '4/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '12/60'  }
           ]
         }
       ],
@@ -6645,10 +6887,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
-            { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            { name: 'Geography  1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '30/40' }
           ]
         },
         {
@@ -6662,7 +6904,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            { name: 'Climate ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
             { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
@@ -6679,10 +6921,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
-            { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
+            { name: 'Landforms ', dueDate: new Date(2024, 8, 17) , score: '15/30' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '34/50' }
           ]
         }
       ],
@@ -6736,10 +6978,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
+            { name: 'Literature  1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '12/20' }
           ]
         },
         {
@@ -6753,7 +6995,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            { name: 'Prose ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
             { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
@@ -6770,10 +7012,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
-            { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
+            { name: 'Shakespeare ', dueDate: new Date(2024, 8, 17) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '105/120'  }
           ]
         }
       ],
@@ -7383,10 +7625,10 @@ export class DataService {
   //       { title: 'Course Levels', route: this.routes.courses_levels },
   //       { title: 'Course Settings', route: this.routes.courses_settings },
   //       { title: 'Course Subjects', route: this.routes.courses_subjects },
-  //       { title: 'Question Groups', route: this.routes.quizzes_question_groups },
-  //       { title: 'Question Banks', route: this.routes.quizzes_question_banks },
-  //       { title: 'Quiz Setups', route: this.routes.quizzes_setups },
-  //       { title: 'Quiz Results', route: this.routes.quizzes_results },
+  //       { title: 'Question Groups', route: this.routes.zes_question_groups },
+  //       { title: 'Question Banks', route: this.routes.zes_question_banks },
+  //       { title: ' Setups', route: this.routes.zes_setups },
+  //       { title: ' Results', route: this.routes.zes_results },
   //       { title: 'Virtual Classes', route: this.routes.virtual_classes },
   //       { title: 'Zoom Settings', route: this.routes.zoom_settings },
   //       { title: 'Certificates', route: this.routes.certificates },

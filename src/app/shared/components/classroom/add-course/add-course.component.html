@@ -1,6 +1,6 @@
 <div class="max-w-6xl mx-auto">
   <!-- Page Title -->
-  <h1 class="text-3xl font-bold mb-10 text-gray-800 text-left md:text-left">Create a New Course</h1>
+  <h1 class="text-3xl font-bold mb-10 text-gray-800 text-left">Create a New Course</h1>
 
   <!-- Course Cover Photo -->
   <div class="mb-10">
@@ -16,7 +16,7 @@
       </label>
       <input id="coverPhotoInput" type="file" accept="image/*" (change)="onCoverPhotoUpload($event)" class="hidden" />
     </div>
-    <p class="text-sm text-gray-500 mt-2 text-center md:text-left">You can always edit this information later</p>
+    <p class="text-sm text-gray-500 mt-2 text-center">You can always edit this information later</p>
   </div>
 
   <!-- Course Information Form -->
@@ -31,16 +31,16 @@
       <textarea [(ngModel)]="courseDescription" (input)="adjustTextareaHeight($event)" rows="1" placeholder="Enter the course description" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 overflow-hidden resize-none"></textarea>
     </div>
 
-    <!-- Course, Section, and Enrollment Key -->
     <div>
       <label class="block text-lg font-medium text-gray-700">Course</label>
       <select [(ngModel)]="courseCourse" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
         <option disabled selected>Select course</option>
-        <option>Computer Science</option>
-        <option>Biology</option>
-        <option>Information Technology</option>
+        <option>Mathematics 101</option>
+        <option>Biology 101</option>
+        <option>Computer Science 101</option>
       </select>
     </div>
+
     <div>
       <label class="block text-lg font-medium text-gray-700">Section</label>
       <select [(ngModel)]="courseSection" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -50,17 +50,35 @@
         <option>C</option>
       </select>
     </div>
-    <div class="col-span-2">
+
+    <div>
+      <label class="block text-lg font-medium text-gray-700">Start Date</label>
+      <input [(ngModel)]="courseStartDate" type="date" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+
+
+    <div>
       <label class="block text-lg font-medium text-gray-700">Enrollment Key</label>
       <input [(ngModel)]="enrollmentKey" type="text" placeholder="Enter the enrollment key" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
     </div>
+
+   
+    
   </div>
 
-  <button (click)="addModule()" class="bg-green-600 text-white py-2 px-4 rounded-lg mb-4">Add Module</button>
+  <button (click)="addModule()" class="bg-green-600 text-white py-2 px-4 rounded-lg mb-4 hover:bg-green-700 transition">Add Module</button>
 
   <!-- Modules Section -->
-  <div *ngFor="let module of modules; let moduleIndex = index" class="mb-10">
+  <div *ngFor="let module of modules; let moduleIndex = index" class="mb-10 border-t border-gray-300 pt-8 relative">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Module {{ moduleIndex + 1 }}</h3>
+
+    <!-- Delete Module Icon -->
+    <button (click)="deleteModule(moduleIndex)" class="absolute top-0 right-0 text-red-600 hover:text-red-800 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div class="col-span-2">
         <label class="block text-lg font-medium text-gray-700">Module Title</label>
@@ -71,37 +89,61 @@
     <!-- Materials Section -->
     <div class="mb-6">
       <h4 class="text-lg font-semibold text-gray-800 mb-2">Materials</h4>
-      <div *ngFor="let material of module.materials; let materialIndex = index" class="mb-4">
+      <div *ngFor="let material of module.materials; let materialIndex = index" class="relative mb-4">
         <input [(ngModel)]="material.title" type="text" placeholder="Material Title" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
         <textarea [(ngModel)]="material.description" rows="2" placeholder="Enter description" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        
+        <!-- Delete Material Icon -->
+        <button (click)="deleteMaterial(moduleIndex, materialIndex)" class="absolute top-2 right-0 text-red-600 hover:text-red-800 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <p *ngIf="material.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ material.fileName }}</p>
-        <button (click)="openUploadModal('material', moduleIndex, materialIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+        <button (click)="openUploadModal('material', moduleIndex, materialIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2 hover:bg-green-700 transition">Upload File</button>
       </div>
-      <button (click)="addMaterial(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Material</button>
+      <button (click)="addMaterial(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Add Material</button>
     </div>
 
     <!-- Assignments Section -->
     <div class="mb-6">
       <h4 class="text-lg font-semibold text-gray-800 mb-2">Assignments</h4>
-      <div *ngFor="let assignment of module.assignments; let assignmentIndex = index" class="mb-4">
+      <div *ngFor="let assignment of module.assignments; let assignmentIndex = index" class="relative mb-4">
         <input [(ngModel)]="assignment.title" type="text" placeholder="Assignment Title" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
         <textarea [(ngModel)]="assignment.description" rows="2" placeholder="Enter description" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        
+        <!-- Delete Assignment Icon -->
+        <button (click)="deleteAssignment(moduleIndex, assignmentIndex)" class="absolute top-2 right-0 text-red-600 hover:text-red-800 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <p *ngIf="assignment.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ assignment.fileName }}</p>
-        <button (click)="openUploadModal('assignment', moduleIndex, assignmentIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+        <button (click)="openUploadModal('assignment', moduleIndex, assignmentIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2 hover:bg-green-700 transition">Upload File</button>
       </div>
-      <button (click)="addAssignment(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Assignment</button>
+      <button (click)="addAssignment(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Add Assignment</button>
     </div>
 
     <!-- Exams Section -->
     <div class="mb-6">
       <h4 class="text-lg font-semibold text-gray-800 mb-2">Exams</h4>
-      <div *ngFor="let exam of module.exams; let examIndex = index" class="mb-4">
+      <div *ngFor="let exam of module.exams; let examIndex = index" class="relative mb-4">
         <input [(ngModel)]="exam.title" type="text" placeholder="Exam Title" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
         <textarea [(ngModel)]="exam.description" rows="2" placeholder="Enter description" class="mt-2 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        
+        <!-- Delete Exam Icon -->
+        <button (click)="deleteExam(moduleIndex, examIndex)" class="absolute top-2 right-0 text-red-600 hover:text-red-800 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <p *ngIf="exam.fileName" class="text-gray-500 text-sm mt-2">Uploaded: {{ exam.fileName }}</p>
-        <button (click)="openUploadModal('exam', moduleIndex, examIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2">Upload File</button>
+        <button (click)="openUploadModal('exam', moduleIndex, examIndex)" class="bg-green-600 text-white py-2 px-4 rounded-lg mt-2 hover:bg-green-700 transition">Upload File</button>
       </div>
-      <button (click)="addExam(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Add Exam</button>
+      <button (click)="addExam(moduleIndex)" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Add Exam</button>
     </div>
   </div>
 
@@ -111,6 +153,30 @@
     <button (click)="cancelCourseCreation()" class="bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition">Cancel</button>
   </div>
 </div>
+
+<!-- Confirmation Modal -->
+<!-- <div *ngIf="isConfirmationModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h3 class="text-xl font-semibold mb-4 text-center">{{ confirmationMessage }}</h3>
+    <div class="flex justify-center space-x-4 mt-6">
+      <button (click)="confirmAction()" class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition">OK</button>
+    </div>
+  </div>
+</div> -->
+<!-- Confirmation Modal -->
+<div *ngIf="isConfirmationModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h3 class="text-xl font-semibold mb-4 text-center">{{ confirmationMessage }}</h3>
+    <div class="flex justify-center space-x-4 mt-6">
+      <button *ngIf="confirmationAction" (click)="confirmAction()" class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition">Yes</button>
+      <button *ngIf="confirmationAction" (click)="closeModal()" class="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition">No</button>
+      <button *ngIf="!confirmationAction" (click)="closeModal()" class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition">OK</button>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!-- File Upload Modal -->
 <div *ngIf="isUploadModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

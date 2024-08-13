@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CertificatesComponent {
 
+  selectedTemplate: any = null;
+  showGenerateCertificateSection = false;
+searchTerm: string = '';
+  filteredCourses: any[] = [];
   certificateTemplates = [
+   
     {
       id: 1,
       title: 'Certificate of completion',
@@ -69,5 +74,44 @@ export class CertificatesComponent {
       imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/9a5f152d9134f7fa6dbc45fd1df06b3a2bb1e257f0587b0be32a66f57e9283a8?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
     }
   ];
+
+  courses = [
+    {
+      id: 1,
+      title: 'Financial management course',
+      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f1b0c5d6406260cc2c66795266112094af8fec896ecbbf8450c0a03e851a2e78?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
+    },
+    {
+      id: 2,
+      title: 'Programming course',
+      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f1b0c5d6406260cc2c66795266112094af8fec896ecbbf8450c0a03e851a2e78?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
+    },
+    {
+      id: 3,
+      title: 'Management course',
+      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f1b0c5d6406260cc2c66795266112094af8fec896ecbbf8450c0a03e851a2e78?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
+    },
+    {
+      id: 4,
+      title: 'UI/UX course',
+      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f1b0c5d6406260cc2c66795266112094af8fec896ecbbf8450c0a03e851a2e78?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
+    },
+    {
+      id: 5,
+      title: 'HTML & CSS course',
+      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f1b0c5d6406260cc2c66795266112094af8fec896ecbbf8450c0a03e851a2e78?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04'
+    }
+  ];
+
+
+  onGenerateCertificateClick() {
+    this.showGenerateCertificateSection = true;
+  }
   
+
+  selectTemplate(template: any) {
+    this.selectedTemplate = template;
+  }
+
+
 }

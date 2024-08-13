@@ -1,338 +1,304 @@
-<div class="container mx-auto p-4">
-  <div class="flex flex-col lg:flex-row">
+<div class="container mx-auto py-6">
+  <div class="flex flex-col lg:flex-row gap-6">
     <!-- Sidebar -->
-    <div class="lg:w-1/4 w-full bg-white rounded-lg shadow-md p-6 mb-6 lg:mb-0">
-      <h2 class="text-2xl font-bold mb-4">{{ course.course }}</h2>
-      <div class="flex items-center mb-4">
-        <img
-          [src]="course.instructor_profile"
-          alt="Instructor Profile"
-          class="w-12 h-12 rounded-full mr-3"
-        />
-        <div>
-          <p class="text-gray-800 font-semibold">{{ course.instructor }}</p>
-          <p class="text-gray-500 text-sm">{{ course.enrolledStudents.length || 'N/A' }} Students | {{ course.modules.length }} Modules | {{ course.time }}</p>
+    <aside class="lg:w-1/4 w-full bg-white shadow-lg rounded-lg p-6">
+      <div class="mb-4">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ course.course }}</h2>
+
+     
+
+        <div class="flex items-center mb-4">
+          <img [src]="course.instructor_profile" alt="Instructor" class="w-12 h-12 rounded-xl mr-4" />
+          <div>
+            <p class="text-lg font-semibold text-gray-600">{{ course.instructor }}</p>
+          </div>
         </div>
       </div>
-      <ul class="mb-6">
-        <li 
-          *ngFor="let module of course.modules; let i = index" 
-          class="mb-2 cursor-pointer"
-          (click)="selectModule(i)"
-        >
-          <div 
-            class="block text-gray-700 hover:text-green-600 p-2 rounded-lg"
-            [ngClass]="{ 'bg-green-100 text-green-700': selectedModuleIndex === i, 'hover:bg-green-100': selectedModuleIndex !== i }"
+    
+      <div class="flex justify-between text-gray-500 text-sm my-4">
+        <div class="flex items-center">
+          <i class="fas fa-user mr-2 text-green-500"></i>
+          <span>{{ course.enrolledStudents.length }} Students</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-book mr-2 text-green-500 "></i>
+          <span>{{ course.modules.length }} Modules</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-clock mr-2 text-green-500"></i>
+          <span>{{ course.time }}</span>
+        </div>
+      </div>
+    
+      <div class="flex justify-between items-center text-gray-700 mb-4">
+        <span class="text-lg font-semibold">Course Modules</span>
+      </div>
+    
+      <ul class="space-y-3">
+        <li *ngFor="let module of course.modules; let i = index" class="cursor-pointer">
+          <div
+            class="flex items-center justify-between p-3 rounded-lg transition-colors duration-300"
+            [ngClass]="{
+              'bg-gray-100 text-gray-900 font-semibold': selectedModuleIndex === i,
+              'bg-white hover:bg-gray-50 text-gray-700': selectedModuleIndex !== i
+            }"
+            (click)="selectModule(i)"
           >
-            {{ module.title }}
+            <div class="flex items-center">
+              <span class="text-lg w-10 h-10 flex items-center justify-center bg-gray-200 rounded-xl mr-4">{{ i + 1 }}</span>
+              <span>{{ module.title }}</span>
+            </div>
+            <span class="text-sm text-gray-500">{{ module.duration }}</span>
           </div>
         </li>
       </ul>
-      <button 
-        class="w-full bg-green-600 text-white rounded-md py-2 mt-4 hover:bg-green-700 transition"
-        [disabled]="selectedModuleIndex >= course.modules.length - 1"
-        (click)="goToNextModule()"
-      >
-        NEXT
-      </button>
-    </div>
+    
+      <div class="flex justify-center mt-6">
+        <button
+          class="w-full py-2 text-lg font-semibold bg-green-500 text-white rounded-md hover:bg-green-600 transition-all duration-300"
+          [disabled]="selectedModuleIndex >= course.modules.length - 1"
+          (click)="goToNextModule()"
+        >
+          NEXT
+        </button>
+      </div>
+    </aside>
+    
+    
+    
 
     <!-- Main Content -->
-    <div class="lg:w-3/4 w-full lg:ml-4">
+    <main class="lg:w-3/4 w-full space-y-6">
       <!-- Editing Mode Toggle -->
-
-    @if (getUserRole() === 'instructor') {
-      <div class="flex justify-end mb-4">
-        <button
-          class="bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 transition"
-          (click)="toggleEditing()"
-        >
+    <div *ngIf="getUserRole() === 'instructor'" class="flex justify-end">
+        <button class="py-2 px-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-300" (click)="toggleEditing()">
           {{ isEditing ? 'Save' : 'Edit' }}
         </button>
       </div>
-    }
 
       <!-- Module Content -->
-      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-        <input
-          *ngIf="isEditing"
-          type="text"
-          class="text-2xl font-bold mb-2 w-full border border-gray-300 rounded-md p-2"
-          [(ngModel)]="course.modules[selectedModuleIndex].title"
-        />
-        <h2 *ngIf="!isEditing" class="text-2xl font-bold mb-2">
-          {{ course.modules[selectedModuleIndex].title }}
-        </h2>
-        <textarea
-          *ngIf="isEditing"
-          class="text-gray-700 w-full border border-gray-300 rounded-md p-2"
-          [(ngModel)]="course.modules[selectedModuleIndex].description"
-        ></textarea>
-        <p *ngIf="!isEditing" class="text-gray-700">
-          {{ course.modules[selectedModuleIndex].description }}
-        </p>
-        <div class="mt-4">
-          <textarea
-            *ngIf="isEditing"
-            class="text-gray-600 w-full border border-gray-300 rounded-md p-2"
-            [(ngModel)]="course.modules[selectedModuleIndex].about"
-          ></textarea>
-          <p *ngIf="!isEditing" class="text-gray-600">
-            {{ course.modules[selectedModuleIndex].about }}
-          </p>
-        </div>
-      </div>
+      <section class="bg-white shadow-lg rounded-lg p-6">
+        <h2 *ngIf="!isEditing" class="text-3xl font-bold text-gray-800 mb-4">{{ course.modules[selectedModuleIndex].title }}</h2>
+        <input *ngIf="isEditing" type="text" class="w-full text-3xl font-bold mb-4 p-3 border border-gray-300 rounded-md" [(ngModel)]="course.modules[selectedModuleIndex].title" />
+
+        <p *ngIf="!isEditing" class="text-gray-700">{{ course.modules[selectedModuleIndex].description }}</p>
+        <textarea *ngIf="isEditing" class="w-full text-gray-700 p-3 border border-gray-300 rounded-md mt-4" [(ngModel)]="course.modules[selectedModuleIndex].description"></textarea>
+
+        <p *ngIf="!isEditing" class="text-gray-600 mt-6">{{ course.modules[selectedModuleIndex].about }}</p>
+        <textarea *ngIf="isEditing" class="w-full text-gray-600 p-3 border border-gray-300 rounded-md mt-4" [(ngModel)]="course.modules[selectedModuleIndex].about"></textarea>
+      </section>
 
       <!-- Tab Navigation -->
-      <div class="border-b border-gray-200 mb-4">
-        <nav class="flex space-x-4">
-          <button 
-            (click)="selectTab('about')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'about', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'about' }">
-            About
+      <nav class="border-b border-gray-300 mb-4">
+        <div class="flex space-x-8">
+          <button *ngFor="let tab of tabs" (click)="selectTab(tab.key)" [ngClass]="{ 'text-green-600 border-b-4 border-green-600': selectedTab === tab.key, 'text-gray-500 hover:text-gray-700 hover:border-gray-300 pb-3 border-b-4 border-transparent transition-all duration-300': selectedTab !== tab.key }" class="text-lg font-medium">
+            {{ tab.label }}
           </button>
-          <button 
-            (click)="selectTab('materials')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'materials', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'materials' }">
-            Materials
-          </button>
-         @if (getUserRole() === 'instructor') {
-          <button 
-            (click)="selectTab('assignments')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'assignments', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'assignments' }">
-            Assignments
-          </button>
-          <button 
-            (click)="selectTab('exams')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'exams', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'exams' }">
-            Exams
-          </button>
-          <button 
-            (click)="selectTab('studentManagement')"
-            [ngClass]="{ 'text-green-600': selectedTab === 'studentManagement', 'text-gray-500 hover:text-gray-900 pb-2 border-b-2 border-transparent hover:border-gray-900': selectedTab !== 'studentManagement' }">
-            Student Management
-          </button>
-        }
-        </nav>
-      </div>
+        </div>
+      </nav>
 
       <!-- Tab Content -->
-      <div *ngIf="selectedTab === 'about'">
-        <h3 class="text-xl font-bold mb-4">Course Overview</h3>
-        <textarea
-          *ngIf="isEditing"
-          class="text-gray-700 w-full border border-gray-300 rounded-md p-2 mb-4"
-          [(ngModel)]="course.modules[selectedModuleIndex].about"
-        ></textarea>
-        <p *ngIf="!isEditing" class="text-gray-700 mb-4">{{ course.modules[selectedModuleIndex].about }}</p>
-      </div>
-
-      <div *ngIf="selectedTab === 'materials'">
-        <h3 class="text-xl font-bold mb-4">Materials</h3>
-        <div 
-          *ngFor="let material of course.modules[selectedModuleIndex].materials" 
-          class="mb-4 p-4 border border-gray-200 rounded-lg flex items-center cursor-pointer" 
-          (click)="selectMaterial(material)"
-        >
-          <div class="text-lg font-semibold text-gray-700 mr-4">
-            <i class="fas" [ngClass]="getMaterialIcon(material.type)"></i>
-          </div>
-          <div class="flex-grow">
-            <input
-              *ngIf="isEditing"
-              type="text"
-              class="text-lg font-semibold text-black w-full border border-gray-300 rounded-md p-2"
-              [(ngModel)]="material.title"
-            />
-            <h4 *ngIf="!isEditing" class="text-lg font-semibold text-black">
-              {{ material.index }}. {{ material.title }}
-            </h4>
+      <section *ngIf="selectedTab === 'materials'" class="space-y-4">
+        <h3 class="text-2xl font-bold text-gray-800">Materials</h3>
+        <div *ngFor="let material of course.modules[selectedModuleIndex].materials" class="p-4 border border-gray-200 rounded-lg flex items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-md">
+          <div class="flex items-center">
+            <i class="fas" [ngClass]="getMaterialIcon(material.type)" class="text-xl text-gray-700 mr-4"></i>
+            <div>
+              <h4 *ngIf="!isEditing" class="text-lg font-semibold text-gray-800">{{ material.index }}. {{ material.title }}</h4>
+              <input *ngIf="isEditing" type="text" class="w-full text-lg font-semibold p-2 border border-gray-300 rounded-md" [(ngModel)]="material.title" />
+            </div>
           </div>
           <div class="text-sm text-gray-500 flex items-center">
-            <button 
-              *ngIf="!isEditing"
-              (click)="downloadMaterial(material, $event)"
-              class="text-blue-500 hover:text-blue-700 transition">
+            <button *ngIf="!isEditing" (click)="downloadMaterial(material, $event)" class="text-blue-500 hover:text-blue-700 transition-all duration-300">
               <i class="fas fa-download"></i>
             </button>
-            <input
-              *ngIf="isEditing"
-              type="file"
-              (change)="replaceMaterialFile(material, $event)"
-              class="ml-4"
-            />
+            <input *ngIf="isEditing" type="file" (change)="replaceMaterialFile(material, $event)" class="ml-4" />
           </div>
         </div>
-      </div>
+      </section>
 
-      <div *ngIf="selectedTab === 'assignments'">
-        <h3 class="text-xl font-bold mb-4 flex justify-between">
-          Assignments
-          <button *ngIf="isEditing" class="bg-green-600 text-base  text-white rounded-md py-1 px-3 hover:bg-green-700 transition"
-          (click)="addAssignment()">Add Assignment</button>
-        </h3>
-        <ul *ngIf="course.modules[selectedModuleIndex].assignments.length > 0; else noItem">
-            <ng-container  *ngFor="let task of course.modules[selectedModuleIndex].assignments">
-              <li
-                class="course-item mb-2 p-4  bg-gray-100 hover:scale-105 [&>div>p]:hover:text-gray-200 [&>div>h3]:hover:text-white [&>span]:hover:bg-white 
-                [&>span>i]:hover:!text-green-600
-                  hover:bg-green-700
-                  rounded-md shadow-sm cursor-pointer transition-all
-                  flex items-center 
-                "
-              >
-                <div class="flex-1">
-                  <h3 class="text-base font-semibold "><i class="fa-regular fa-file-lines px-2"></i> {{ task.name }}</h3>
-                  <p class="px-[1.8rem] text-sm text-gray-600">{{ task.course }}</p>
-                  <p class="px-[1.8rem] text-sm  text-gray-600">{{task.dueDate ? 'Due' : ''}} {{ task.dueDate | date:'fullDate'}}</p>
-                </div>
-                <!-- <span *ngIf="task.submitted" class="rounded-full w-12 h-12 {{task.type == 'assignment'? 'bg-gray-600': 'bg-white'}} flex justify-center items-center mr-5">
-                  <i class="fa-solid fa-check text-lg "></i>
-                </span> -->
-              </li>
-            </ng-container>
-        </ul>
-        <ng-template #noItem>
-          <div>
-            No assignments listed.
+      <section *ngIf="selectedTab === 'assignments'" class="space-y-6">
+        <div *ngIf="!showAssignmentDetails" class="space-y-4">
+          <h3 class="text-2xl font-bold text-gray-800">Assignments</h3>
+          <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showDetails(i)">
+            <h4 class="text-lg font-semibold text-gray-800">{{ assignment.name }}</h4>
+            <p class="text-gray-600 mt-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
           </div>
-        </ng-template>
-      </div>
+        </div>
+        <div *ngIf="showAssignmentDetails" class="bg-white p-8 rounded-lg shadow-md">
+          <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Assignments
+          </button>
+          <div *ngIf="selectedAssignment">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ selectedAssignment.name }}</h1>
+            <p class="text-sm text-gray-500">{{ selectedAssignment.instructor }}</p>
+            <p class="text-lg text-gray-600 mt-4 mb-6">Due Date: {{ selectedAssignment.dueDate | date:'fullDate' }}</p>
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Details</h2>
+            <p class="text-gray-700 leading-relaxed">{{ selectedAssignment.details || 'No details available.' }}</p>
+            <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Resources</h2>
+            <div *ngIf="selectedAssignment.resources" class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-file-pdf text-red-500"></i>
+                <a [href]="selectedAssignment.resources" target="_blank" class="text-blue-600 hover:underline font-medium">View Resource</a>
+              </div>
+            </div>
+            <p *ngIf="!selectedAssignment.resources" class="text-gray-600">No resources available.</p>
+            <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Submission</h2>
+            <p *ngIf="!selectedAssignment.submitted" class="text-gray-600 mb-4">You have not submitted this assignment yet.</p>
+            <div *ngIf="!selectedAssignment.submitted">
+              <div *ngIf="!fileUploaded" class="flex items-center space-x-4">
+                <div class="relative">
+                  <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="hidden" />
+                  <label for="fileUpload" class="flex items-center justify-center w-full max-w-xs px-5 py-3 bg-green-500 text-white text-lg font-semibold rounded-lg shadow-md cursor-pointer hover:bg-green-600 transition-all duration-300">
+                    <i class="fas fa-upload mr-2"></i> Choose File
+                  </label>
+                </div>
+              </div>
+            
+              <div *ngIf="fileUploaded" class="flex items-center space-x-4">
+                <button class="py-3 px-8 bg-yellow-500 text-white text-lg font-semibold rounded-lg hover:bg-yellow-600 shadow-md transition-all duration-300" (click)="changeFile()">Change File</button>
+                <button class="py-3 px-8 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 shadow-md transition-all duration-300" (click)="submitAssignment()">Submit</button>
+              </div>
+            </div>
+            
+            
+            <div *ngIf="selectedAssignment.submitted" class="text-green-600 mt-4 font-medium">
+              <p>Assignment submitted successfully!</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-
-
-      <div *ngIf="selectedTab === 'exams'">
-        <h3 class="text-xl font-bold mb-4">Exams</h3>
-        <div *ngFor="let exam of course.modules[selectedModuleIndex].exams; let i = index" class="mb-4 p-4 border border-gray-200 rounded-lg">
+      <section *ngIf="selectedTab === 'exams'" class="space-y-4">
+        <h3 class="text-2xl font-bold text-gray-800">Exams</h3>
+        <div *ngFor="let exam of course.modules[selectedModuleIndex].exams; let i = index" class="p-4 border border-gray-200 rounded-lg">
           <div *ngIf="isEditing">
-            <input
-              type="text"
-              class="text-lg font-semibold w-full border border-gray-300 rounded-md p-2 mb-2"
-              [(ngModel)]="exam.name"
-              placeholder="Exam Name"
-            />
-            <input
-              type="date"
-              class="text-gray-700 w-full border border-gray-300 rounded-md p-2 mb-2"
-              [(ngModel)]="exam.dueDate"
-              placeholder="Exam Date"
-            />
-            <button class="bg-red-600 text-white rounded-md py-1 px-3 hover:bg-red-700 transition"
-              (click)="removeExam(i)">Remove</button>
+            <input type="text" class="w-full text-lg font-semibold p-2 border border-gray-300 rounded-md mb-2" [(ngModel)]="exam.name" placeholder="Exam Name" />
+            <input type="date" class="w-full text-gray-700 p-2 border border-gray-300 rounded-md mb-2" [(ngModel)]="exam.dueDate" placeholder="Exam Date" />
+            <button class="bg-red-600 text-white rounded-md py-1 px-3 hover:bg-red-700 transition-all duration-300" (click)="removeExam(i)">Remove</button>
           </div>
           <div *ngIf="!isEditing">
-            <h4 class="text-lg font-semibold">{{ exam.name }}</h4>
-            <p class="text-gray-700 mb-2">Exam Date: {{ exam.dueDate | date:'fullDate' }}</p>
+            <h4 class="text-lg font-semibold text-gray-800">{{ exam.name }}</h4>
+            <p class="text-gray-700 mt-2">Exam Date: {{ exam.dueDate | date:'fullDate' }}</p>
           </div>
         </div>
-        <button *ngIf="isEditing" class="bg-green-600 text-white rounded-md py-1 px-3 hover:bg-green-700 transition"
-          (click)="addExam()">Add Exam</button>
-      </div>
+        <button *ngIf="isEditing" class="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all duration-300" (click)="addExam()">Add Exam</button>
+      </section>
 
-      <div *ngIf="selectedTab === 'studentManagement'">
-        <h3 class="text-xl font-bold mb-4">Student Management</h3>
-        
-        <div class="mb-4">
-          <input 
-            type="text" 
-            class="w-full p-2 border border-gray-300 rounded-md" 
-            placeholder="Search for students by name or email" 
-            [(ngModel)]="searchTerm" 
+      <section *ngIf="selectedTab === 'studentManagement'" class="space-y-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800">Student Management</h3>
+          <button
+            class="py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600 transition-all duration-300"
+            (click)="openEnrollModal()"
+          >
+            Enroll a Student
+          </button>
+        </div>
+      
+        <div *ngIf="filteredEnrolledStudents.length > 0">
+          <input
+            type="text"
+            class="w-full p-3 mb-4 border border-gray-300 rounded-md"
+            placeholder="Search for students by name or email"
+            [(ngModel)]="searchTerm"
             (input)="searchStudents()"
           />
-        </div>
       
-        <button 
-          class="bg-green-600 text-white rounded-md py-2 px-4 hover:bg-green-700 transition mb-4"
-          (click)="openEnrollModal()"
-        >
-          Enroll a Student
-        </button>
-      
-        <div *ngIf="course.enrolledStudents.length > 0">
-          <h4 class="text-lg font-semibold mb-2">Enrolled Students</h4>
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr>
-                <th class="border-b-2 border-gray-300 p-2">Name</th>
-                <th class="border-b-2 border-gray-300 p-2">Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let student of course.enrolledStudents">
-                <td class="border-b border-gray-300 p-2">{{ student.name }}</td>
-                <td class="border-b border-gray-300 p-2">{{ student.email }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow rounded-lg">
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="p-4 text-left font-medium text-gray-700">Name</th>
+                  <th class="p-4 text-left font-medium text-gray-700">Email</th>
+                  <th class="p-4 text-left font-medium text-gray-700">Progress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let student of filteredEnrolledStudents"
+                  class="border-b hover:bg-gray-100"
+                >
+                  <td class="p-4 text-gray-800">{{ student.name }}</td>
+                  <td class="p-4 text-gray-800">{{ student.email }}</td>
+                  <td class="p-4 text-gray-800">{{ student.progress }}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        
-        <div *ngIf="course.enrolledStudents.length === 0" class="text-gray-500">No enrolled students found.</div>
+        <div *ngIf="filteredEnrolledStudents.length === 0" class="text-gray-500">
+          No enrolled students found.
+        </div>
       
         <!-- Enroll Students Modal -->
-        <div *ngIf="showEnrollModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div
+          *ngIf="showEnrollModal"
+          class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+        >
           <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg relative overflow-auto h-3/4">
             <div class="flex justify-between items-center mb-4">
               <h3 class="text-2xl font-semibold text-gray-800">Enroll Students</h3>
-              <button 
+              <button
                 class="text-red-600 hover:text-red-800 focus:outline-none"
-                (click)="closeEnrollModal()">
+                (click)="closeEnrollModal()"
+              >
                 <i class="fas fa-times"></i>
               </button>
             </div>
-            
+            <input
+              type="text"
+              class="w-full p-3 mb-4 border border-gray-300 rounded-md"
+              placeholder="Search for students by name or email"
+              [(ngModel)]="searchTerm"
+              (input)="searchStudents()"
+            />
             <div class="overflow-y-auto max-full">
-              <input 
-                type="text" 
-                class="w-full p-2 mb-4 border border-gray-300 rounded-md" 
-                placeholder="Search for students by name or email" 
-                [(ngModel)]="searchTerm" 
-                (input)="searchStudents()"
-              />
               <table class="w-full text-left border-collapse">
                 <thead>
                   <tr class="bg-gray-100">
-                    <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">Name</th>
-                    <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">Email</th>
+                    <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">
+                      Name
+                    </th>
+                    <th class="border-b-2 border-gray-300 p-3 text-gray-600 font-medium">
+                      Email
+                    </th>
                     <th class="border-b-2 border-gray-300 p-3 text-right"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let user of allUsers" class="hover:bg-gray-50">
-                    <td class="border-b border-gray-200 p-3 text-gray-700">{{ user.first_name }} {{ user.last_name }}</td>
+                    <td class="border-b border-gray-200 p-3 text-gray-700">
+                      {{ user.first_name }} {{ user.last_name }}
+                    </td>
                     <td class="border-b border-gray-200 p-3 text-gray-700">{{ user.email }}</td>
                     <td class="border-b border-gray-200 p-3 text-right">
-                      <button 
-                        class="bg-green-500 text-white rounded-full py-1 px-4 hover:bg-green-600 transition focus:outline-none"
-                        (click)="enrollStudent(user)">
+                      <button
+                        class="bg-green-500 text-white rounded-full py-1 px-4 hover:bg-green-600 transition-all duration-300 focus:outline-none"
+                        (click)="enrollStudent(user)"
+                      >
                         Enroll
                       </button>
                     </td>
                   </tr>
                   <tr *ngIf="allUsers.length === 0">
-                    <td colspan="3" class="text-center text-gray-500 p-3">No users found.</td>
+                    <td colspan="3" class="text-center text-gray-500 p-3">
+                      No users found.
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      
       
 
       <!-- Display Material Content -->
-      <div 
-        *ngIf="selectedMaterial" 
-        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-        (click)="closeMaterialView()"
-      >
-        <div 
-          class="bg-white rounded-lg shadow-md p-6 max-w-3xl w-full"
-          (click)="$event.stopPropagation()"
-        >
-          <button 
-            class="absolute top-2 right-2 text-red-600 hover:text-red-800"
-            (click)="closeMaterialView()">
+      <section *ngIf="selectedMaterial" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" (click)="closeMaterialView()">
+        <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl w-full" (click)="$event.stopPropagation()">
+          <button class="absolute top-2 right-2 text-red-600 hover:text-red-800" (click)="closeMaterialView()">
             <i class="fas fa-times"></i>
           </button>
           <h3 class="text-2xl font-bold mb-4">{{ selectedMaterial.title }}</h3>
@@ -342,15 +308,15 @@
             </div>
             <div *ngSwitchCase="'video'" class="video-container">
               <video width="100%" controls>
-                <source [src]="selectedMaterial.link" type="video/mp4">
+                <source [src]="selectedMaterial.link" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
             <div *ngSwitchDefault class="text-gray-500">Unsupported material type</div>
           </ng-container>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
 
 
