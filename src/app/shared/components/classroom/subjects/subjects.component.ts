@@ -64,6 +64,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   ) {}
 
   private userSubscription: Subscription | undefined;
+
   public user: User | GuestUser | null = null;  
   role: string | null = null;
   currentUser: any; // To hold the current user's details
@@ -79,26 +80,14 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
 
     const _user = await this.userService.getUser();
-    
-    if (this.isUser(_user)) {
-      this.user = _user;
-      this.role = _user.role || null;
-    } else {
-      this.user = null;
-      this.role = null;
-    }
+    this.user = _user;
+    this.role = _user.role;
   
     this.fetchCourses(); // Fetch courses after setting the user
   
     this.userSubscription = this.userService.currentUser.subscribe(
       (user) => {
-        if (this.isUser(user)) {
-          this.user = user;
-          this.role = user.role || null;
-        } else {
-          this.user = null;
-          this.role = null;
-        }
+        this.user = user;
         this.fetchCourses(); // Re-fetch courses if the user changes
       }
     );
@@ -131,13 +120,24 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     } else {
       // If no user is logged in, or there's an issue, don't show any courses
       this.courses = [];
-      this.filteredCourses = [];
     }
-  }
-  getInstructorFullName(user: User | GuestUser) {
-    throw new Error('Method not implemented.');
+  
+    this.filteredCourses = this.courses;
   }
   
+  getInstructorFullName(user: User | GuestUser): string {
+    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
+      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
+    }
+    return '';
+  }
+
+  getDepartminAdmin(user: User | GuestUser): string {
+    if ('first_name' in this.currentUser && 'last_name' in this.currentUser) {
+      return `${this.currentUser.first_name} ${this.currentUser.last_name}`;
+    }
+    return '';
+  }
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
@@ -172,11 +172,5 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     const fullName = `${this.currentUser.first_name} ${this.currentUser.last_name}`;
     const student = course.enrolledStudents.find((student: { name: string }) => student.name === fullName);
     return student && student.progress ? parseInt(student.progress, 10) : 0;
-  }
-  
-  
-  // Type guard to check if the user is of type User
-  private isUser(user: any): user is User {
-    return user && 'app_metadata' in user && 'user_metadata' in user;
   }
 }
