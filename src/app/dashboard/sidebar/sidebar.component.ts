@@ -217,7 +217,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
     { title: 'User-Management', route: this.routes.user_management },
     { title: 'Manage Courses', route: this.routes.subjects },
     { title: 'Certificates', route: this.routes.certificates },
-    { title: 'Reports', route: this.routes.meet },
+    { title: 'Reports', route: this.routes.reports },
     { title: 'Site Settings', route: this.routes.sitesettings },
 
     // {

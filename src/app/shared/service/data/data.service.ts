@@ -5992,7 +5992,7 @@ export class DataService {
       ],
     
       enrolledStudents: [
-        { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', progress: '20' },
+        { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', progress: '100' },
         { name: 'Maria Santos', email: 'mariasantos@gmail.com', progress: '60' },
         { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
         { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },

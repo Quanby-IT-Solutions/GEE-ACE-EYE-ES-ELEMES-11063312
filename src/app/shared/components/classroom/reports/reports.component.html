@@ -109,6 +109,14 @@
                           </div>
   
                         </div>
+
+                        <!-- Certificate Download Section -->
+                        <div class="mt-6" *ngIf="getStudentProgress(student) === 100">
+                          <button (click)="generateCertificate(student.name)" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+                            Download Certificate of Completion
+                          </button>
+                        </div>
+
                       </td>
                     </tr>
                   </ng-container>
@@ -120,4 +128,3 @@
       </div>
     </div>
   </div>
-  
