@@ -207,7 +207,6 @@ const routes: Routes = [
           ),
       },
 
-<<<<<<< HEAD
 
       {
         path: 'reports',
@@ -224,15 +223,6 @@ const routes: Routes = [
             'src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module'
           ).then((m) => m.CurriculumEvaluationModule),
       },
-=======
-      // {
-      //   path: 'curriculum-evaluation',
-      //   loadChildren: () =>
-      //     import(
-      //       'src/app/shared/components/reports/curriculum-evaluation/curriculum-evaluation.module'
-      //     ).then((m) => m.CurriculumEvaluationModule),
-      // },
->>>>>>> 345d0e3b6646088adc4d612d3faa0ac59d10e5c0
 
       {
         path: 'statement-accounts',

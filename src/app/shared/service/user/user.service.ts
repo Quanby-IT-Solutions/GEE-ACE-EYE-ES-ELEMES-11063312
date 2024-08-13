@@ -54,7 +54,7 @@ export class UserService {
     const { data, error } = await this.supabaseService.client
       .from('users_tb')
       .select('*');
-      
+        
     if (error) {
       console.error('Error fetching users:', error);
       throw error;

@@ -522,7 +522,6 @@ export class routes {
   }
 
 
-<<<<<<< HEAD
   public static get reports(): string {
     return this.users_dashboard + '/reports';
   }
@@ -530,11 +529,6 @@ export class routes {
   public static get curriculum_evaluation(): string {
     return this.users_dashboard + '/curriculum-evaluation';
   }
-=======
-  // public static get curriculum_evaluation(): string {
-  //   return this.users_dashboard + '/curriculum-evaluation';
-  // }
->>>>>>> 345d0e3b6646088adc4d612d3faa0ac59d10e5c0
 
 
   public static get statement_accounts(): string {
