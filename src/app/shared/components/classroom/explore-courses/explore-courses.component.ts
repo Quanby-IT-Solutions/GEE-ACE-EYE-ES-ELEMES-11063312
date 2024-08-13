@@ -72,6 +72,7 @@ export class ExploreCoursesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.fetchCourses();
   }
 
