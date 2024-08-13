@@ -8,13 +8,17 @@ import { UserService } from 'src/app/shared/service/user/user.service';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { CommonModule } from '@angular/common';
+import { TaskViewComponent } from '../../../classroom/task-view/task-view.component';
+import { ModalService } from 'src/app/shared/service/modal/modal.service';
+import { title } from 'process';
+import { QuizComponent } from 'src/app/dashboard/users/quiz/quiz.component';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [FormsModule, PdfViewerModule, CommonModule]
+  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent, QuizComponent]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
@@ -42,6 +46,7 @@ export class SubjectModulesComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private userService: UserService,
     private supabaseService: SupabaseService,
+    private modalService: ModalService,
     private dataService: DataService
   ) {}
 
@@ -58,6 +63,7 @@ export class SubjectModulesComponent implements OnInit {
     });
   
     this.course = history.state.course || this.fetchCourseData();
+    console.log('THIS COURSE',this.course);
     if (!this.course) {
       this.router.navigate(['/']);
     } else {
@@ -79,6 +85,8 @@ export class SubjectModulesComponent implements OnInit {
   selectTab(tab: string) {
     this.selectedTab = tab;
     this.selectedMaterial = null;
+    this.selectedTask = null;
+    this.showTaskDetails = false;
   }
 
   selectModule(index: number) {
@@ -133,15 +141,79 @@ export class SubjectModulesComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+    if(!this.isEditing){
+      this.saveData();
+    }
+  }
+
+  addAssignment() {
+    const index = this.course.modules[this.selectedModuleIndex].assignments.length;
+    if(this.course.modules[this.selectedModuleIndex].assignments){
+      this.course.modules[this.selectedModuleIndex].assignments.push({
+        index: index,
+        name: 'New Assignment',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'assignment',
+      });
+    }else{
+      this.course.modules[this.selectedModuleIndex].assignments = [{
+        index: index,
+        name: 'New Assignment',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'assignment',
+      }]
+    }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].assignments[index];
+    this.showTaskDetails = true;
   }
 
   addExam() {
-    this.course.modules[this.selectedModuleIndex].exams.push({
-      name: '',
-      dueDate: ''
-    });
+    const index = this.course.modules[this.selectedModuleIndex].exams?.length ?? 0;
+    if(this.course.modules[this.selectedModuleIndex].exams){
+      this.course.modules[this.selectedModuleIndex].exams.push({
+        index: index,
+        name: 'New Examination',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'exam',
+      });
+    }else{
+      this.course.modules[this.selectedModuleIndex].exams = [{
+        index: index,
+        name: 'New Examination',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'exam',
+      }]
+    }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].exams[index];
+    this.showTaskDetails = true;
   }
 
+  addQuiz() {
+    const index = this.course.modules[this.selectedModuleIndex].quizzes?.length ?? 0;
+   if( this.course.modules[this.selectedModuleIndex].quizzes){
+    this.course.modules[this.selectedModuleIndex].quizzes.push({
+      index: index,
+      name: 'New Quiz',
+      dueDate: new Date(),
+      course: this.course.course,
+      type: 'exam',
+    });
+   }else{
+    this.course.modules[this.selectedModuleIndex].quizzes = [{
+      index: index,
+      name: 'New Quiz',
+      dueDate: new Date(),
+      course: this.course.course,
+      type: 'exam',
+    }]
+   }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].quizzes[index];
+    this.showTaskDetails = true;
+  }
   removeExam(index: number) {
     this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
   }
@@ -249,19 +321,42 @@ export class SubjectModulesComponent implements OnInit {
   }
 
   // Assignments methods
-  showAssignmentDetails = false;
-  selectedAssignment: any = null;
+  showTaskDetails = false;
+  selectedTask: any = null;
 
   showDetails(index: number) {
-    this.selectedAssignment =
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].assignments[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].assignments[index].index = index;
+    this.course.modules[this.selectedModuleIndex].assignments[index].type = 'assignment';
+    this.selectedTask =
       this.course.modules[this.selectedModuleIndex].assignments[index];
-    console.log('Selected Assignment:', this.selectedAssignment);
-    this.showAssignmentDetails = true;
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
+  }
+  showExamDetails(index: number) {
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].exams[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].exams[index].index = index;
+    this.selectedTask =
+      this.course.modules[this.selectedModuleIndex].exams[index];
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
+  }
+
+  showQuizDetails(index: number) {
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].quizzes[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].quizzes[index].index = index;
+    this.selectedTask =
+      this.course.modules[this.selectedModuleIndex].quizzes[index];
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
   }
 
   hideDetails() {
-    this.selectedAssignment = null;
-    this.showAssignmentDetails = false;
+    this.selectedTask = null;
+    this.showTaskDetails = false;
   }
 
   fileUploaded = false;  // Track if a file has been uploaded
@@ -270,7 +365,7 @@ export class SubjectModulesComponent implements OnInit {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.selectedAssignment.submittedFile = file;
+      this.selectedTask.submittedFile = file;
       this.fileUploaded = true; // Mark that a file has been uploaded
       this.uploadedFileName = file.name; // Store the file name
     }
@@ -282,13 +377,38 @@ export class SubjectModulesComponent implements OnInit {
   }
   
   submitAssignment() {
-    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
-      this.selectedAssignment.submitted = true;
+    if (this.selectedTask && this.selectedTask.submittedFile) {
+      this.selectedTask.submitted = true;
       alert('Assignment submitted successfully!');
       // Optionally reset fileUploaded state if needed for future uploads
     } else {
       alert('Please select a file to submit.');
     }
+  }
+
+  deleteTask(){
+ 
+    const modal$ = this.modalService.openConfirmationModal({
+      title: 'Confirm delete',
+      description: `Are you sure you want to delete this ${this.selectedTask.type}?`,      
+    }).subscribe(result=>{
+      if(result){
+        if(this.selectedTask.type == 'exam'){
+          this.course.modules[this.selectedModuleIndex].exams.splice(this.selectedTask.index, 1)
+        }else if(this.selectedTask.type == 'assignment'){
+          this.course.modules[this.selectedModuleIndex].assignments.splice(this.selectedTask.index, 1)
+        }else{
+          this.course.modules[this.selectedModuleIndex].quizzes.splice(this.selectedTask.index, 1)
+        }
+        this.saveData();
+      }
+      modal$.unsubscribe();
+    })
+  }
+
+  saveData(){
+    console.log(this.course)
+    this.dataService.updateCourse(this.course);
   }
   
 }

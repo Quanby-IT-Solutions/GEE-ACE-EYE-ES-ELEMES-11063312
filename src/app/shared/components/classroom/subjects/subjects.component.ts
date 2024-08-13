@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { Subscription } from 'rxjs';
 import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
 import { GuestUser } from 'src/app/shared/models/model';
+import { Router } from '@angular/router';
+
 import { routes } from 'src/app/shared/service/routes/routes';
 
 interface Material {
@@ -51,7 +52,7 @@ interface Course {
   styleUrls: ['./subjects.component.scss'],
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
-  courses: Course[] = [];
+  courses: any[] = [];
   filteredCourses: Course[] = [];
   searchTerm: string = '';
   sortMenuOpen: boolean = false;  
@@ -65,12 +66,18 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription | undefined;
   public user: User | GuestUser | null = null;  
   role: string | null = null;
+  currentUser: any; // To hold the current user's details
+
 
   getUserRole() {
     return this.role;
   }
 
   async ngOnInit() {
+
+    this.currentUser = await this.userService.getUser();
+
+
     const _user = await this.userService.getUser();
     
     if (this.isUser(_user)) {
@@ -104,25 +111,34 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   }
 
   fetchCourses(): void {
-    // Get the current user's email
-    const currentUserEmail = this.user ? this.user.email : null;
+    if (!this.user) return;
   
-    if (currentUserEmail) {
-      // Filter courses where the user is enrolled
+    const instructorFullName = this.getInstructorFullName(this.user);
+  
+    if (this.role === 'department_admin') {
+      // Display all courses for admin
+      this.courses = this.dataService.getCourses();
+    } else if (this.role === 'instructor') {
+      // Display courses created by the instructor
       this.courses = this.dataService.getCourses().filter(course =>
-        course.enrolledStudents.some((student: { email: string }) => student.email === currentUserEmail)
+        course.instructor === instructorFullName
       );
-      this.filteredCourses = this.courses;
+    } else if (this.role === 'student') {
+      // Display courses where the student is enrolled
+      this.courses = this.dataService.getCourses().filter(course =>
+        course.enrolledStudents.some((student: { email: string }) => student.email === this.user!.email)
+      );
     } else {
       // If no user is logged in, or there's an issue, don't show any courses
       this.courses = [];
       this.filteredCourses = [];
     }
   }
+  
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
-      (course) =>
+      (course:any) =>
         course.course.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         course.instructor.toLowerCase().includes(this.searchTerm.toLowerCase())
     );

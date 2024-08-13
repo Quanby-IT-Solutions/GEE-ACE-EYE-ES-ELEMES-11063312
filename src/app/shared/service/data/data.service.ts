@@ -28,6 +28,9 @@ export class DataService {
   messages = '';
   message: BehaviorSubject<string>;
   constructor(private http: HttpClient) {
+
+    this.loadCoursesFromLocalStorage();
+
     this.message = new BehaviorSubject(this.messages);
 
       // Initialize courses from localStorage or use default courses
@@ -5409,7 +5412,7 @@ export class DataService {
     // cybersecurity
 
    {
-      instructor: 'Anton Caesar Cabais',
+      instructor: 'Edward Rogers',
       instructor_profile: 'assets/img/tonn.jpeg',
       course: 'Cybersecurity ',
       subject: 'Cybersecurity',
@@ -5930,8 +5933,8 @@ export class DataService {
     this.saveCoursesToStorage(); // Save to localStorage
   }
 
-  private saveCoursesToStorage(): void {
-    localStorage.setItem('courses', JSON.stringify(this.courses));
+   saveCoursesToStorage(courses:any = undefined): void {
+    localStorage.setItem('courses', JSON.stringify( courses ?? this.courses));
   }
 
   private getCoursesFromStorage(): any[] | null {
@@ -5963,6 +5966,22 @@ export class DataService {
     });
   }
 
+
+  deleteCourse(courseName: string): void {
+    this.courses = this.courses.filter(course => course.course !== courseName);
+    this.saveCoursesToLocalStorage();
+  }
+
+  private saveCoursesToLocalStorage(): void {
+    localStorage.setItem('courses', JSON.stringify(this.courses));
+  }
+
+  private loadCoursesFromLocalStorage(): void {
+    const savedCourses = localStorage.getItem('courses');
+    if (savedCourses) {
+      this.courses = JSON.parse(savedCourses);
+    }
+  }
 
 
   private students = [
