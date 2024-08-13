@@ -22,6 +22,13 @@ interface Course {
   progress: number;
 }
 
+interface Feature {
+  name: string;
+  description: string;
+  enabled: boolean;
+  icon: string;
+}
+
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -62,6 +69,33 @@ export class UserProfileComponent {
     },
   ];
 
+  features: Feature[] = [
+    {
+      name: 'Pages',
+      description: 'Blogs, wikis, and other content creation tools',
+      enabled: false,
+      icon: 'fas fa-file-alt',
+    },
+    {
+      name: 'Calendar',
+      description: 'Create and manage events for your organization',
+      enabled: false,
+      icon: 'fas fa-calendar-alt',
+    },
+    {
+      name: 'Chat',
+      description: 'Conversations in your organization',
+      enabled: false,
+      icon: 'fas fa-comments',
+    },
+    {
+      name: 'Checklist',
+      description: 'Create and manage tasks',
+      enabled: false,
+      icon: 'fas fa-tasks',
+    },
+  ];
+
   startEditing() {
     this.isEditing = true;
     this.editedUser = { ...this.user! };
@@ -85,5 +119,15 @@ export class UserProfileComponent {
 
   toggleCourseProgress() {
     this.showCourseProgress = !this.showCourseProgress;
+  }
+
+  toggleFeature(feature: Feature) {
+    feature.enabled = !feature.enabled;
+  }
+
+  saveFeatures() {
+    // Send the updated features to a backend service
+    console.log('Saving features:', this.features);
+    // You can add logic here to update the user's features on the server
   }
 }
