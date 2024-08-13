@@ -119,7 +119,7 @@
           <table class="w-full">
             <thead>
               <tr
-                class="bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                class="bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
                 <th class="p-3">User ID</th>
                 <th class="p-3">First Name</th>
@@ -161,15 +161,9 @@
           </table>
         </div>
         } @if (activeView === 'reports') {
-        <div class="bg-white rounded-lg shadow p-4">
-          <h2 class="text-xl font-semibold mb-4">Reports</h2>
-          <p>Content for Reports will be added here.</p>
-        </div>
+        <app-reports></app-reports>
         } @if (activeView === 'newUserApproval') {
-        <div class="bg-white rounded-lg shadow p-4">
-          <h2 class="text-xl font-semibold mb-4">New User Approval</h2>
-          <p>Content for New User Approval will be added here.</p>
-        </div>
+        <app-new-user-approval></app-new-user-approval>
         }
       </div>
     </div>
