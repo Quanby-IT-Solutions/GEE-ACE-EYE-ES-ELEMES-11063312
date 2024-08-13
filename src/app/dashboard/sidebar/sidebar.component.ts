@@ -134,8 +134,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   //     { title: 'Assignments', route: this.routes.tasks },
   // ], 
   //    },
-    { title: 'Student Progress', route: this.routes.assessments },
-    { title: 'Reports', route: this.routes.reports },
+    { title: 'Student Progress', route: this.routes.reports },
     { title: 'Evaluation', route: this.routes.evaluation },
 
     { title: 'Help', route: this.routes.meet }, // arog kaine padi
