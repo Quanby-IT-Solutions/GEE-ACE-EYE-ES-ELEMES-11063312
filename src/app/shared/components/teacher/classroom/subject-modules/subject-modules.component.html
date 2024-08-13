@@ -222,7 +222,7 @@
           </button>
           <div *ngIf="selectedTask">
             <app-task-view [onDelete]="deleteTask.bind(this)"  [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
-            <app-quiz [showResults]="true" [role]="'instructor'"></app-quiz>
+            <app-quiz [editing]="isEditing" [showResults]="true" [role]="'instructor'"></app-quiz>
           </div>
         </div>
       </section>
@@ -256,7 +256,7 @@
           </button>
           <div *ngIf="selectedTask">
             <app-task-view [onDelete]="deleteTask.bind(this)"  [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
-            <app-quiz [showResults]="true" [role]="'instructor'"></app-quiz>
+            <app-quiz [editing]="isEditing" [showResults]="true" [role]="'instructor'"></app-quiz>
           </div>
         </div>
       </section>

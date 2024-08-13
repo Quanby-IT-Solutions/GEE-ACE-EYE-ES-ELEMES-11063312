@@ -23,6 +23,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   user:any;
   @Input() showResults:boolean = false;
   @Input() role:string = 'student';
+  @Input() editing:boolean = false;
   
   private totalSeconds: number = 3600; // 1 hour in seconds
   private remainingSeconds: number = this.totalSeconds;
@@ -120,5 +121,19 @@ export class QuizComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isShaking = false;
     }, 300);
+  }
+  addItem(){
+    const index = this.examQuestions.length;
+    this.examQuestions.push( {
+      id: `q${index + 1}`,
+      question: 'Sample Question',
+      options: {
+        a: 'Sample option 1',
+        b: 'Sample option 2',
+        c: 'Sample option 3',
+        d: 'Sample option 4'
+      },
+      answer: 'a'
+    },)
   }
 }
