@@ -5442,7 +5442,9 @@ export class DataService {
               dueDate: new Date(2024, 7, 15), 
               score: '15/20',  
               details: 'This assignment covers the basic concepts and importance of cybersecurity.',
-              resources: '/assets/courses/teach.pdf',
+              resources: [
+                { name: 'Cybersecurity Homework 1', link: 'assets/courses/teach.pdf' }
+              ]
             },
           ],
           exams: [
@@ -5554,7 +5556,9 @@ export class DataService {
               dueDate: new Date(2024, 8, 15), 
               score: '18/20',  
               details: 'This assignment focuses on understanding the principles of data protection and privacy regulations.',
-              resources: '/assets/courses/data_protection_basics.pdf',
+              resources: [
+                { name: 'Data Protection Homework 1', link: '/assets/courses/data_protection_basics.pdf'}
+              ]
             },
           ],
           exams: [
@@ -5663,7 +5667,9 @@ export class DataService {
               dueDate: new Date(2024, 8, 20), 
               score: '18/20',  
               details: 'This assignment involves writing basic Python programs to reinforce understanding of the syntax and simple operations.',
-              resources: '/assets/courses/python_basics.pdf',
+              resources: [
+                {name: 'Python Basics Homework 1', link :'/assets/courses/python_basics.pdf'}
+              ],
             },
           ],
           exams: [
@@ -5769,7 +5775,9 @@ export class DataService {
               dueDate: new Date(2024, 8, 25), 
               score: '17/20',  
               details: 'This assignment focuses on understanding and applying basic programming concepts covered in the lectures.',
-              resources: '/assets/courses/programming_concepts.pdf',
+              resources: [
+                {name: 'Basic Concepts Homework', link: '/assets/courses/programming_concepts.pdf'}
+              ],
             },
           ],
           exams: [
