@@ -109,32 +109,63 @@ export class ExploreCoursesComponent implements OnInit {
     this.selectedCourse = null;
   }
 
-  async enrollInCourse(): Promise<void> {
-    if (this.selectedCourse && this.enrollmentKeyInput === this.selectedCourse.enrollmentKey) {
-      try {
-        const currentUser = await this.userService.getUser(); // Fetch the authenticated user's details
+//   async enrollInCourse(): Promise<void> {
+//     if (this.selectedCourse && this.enrollmentKeyInput === this.selectedCourse.enrollmentKey) {
+//       try {
+//         const currentUser = await this.userService.getUser(); // Fetch the authenticated user's details
         
-        // Construct the full name using first_name and last_name
-        const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
-        const student = { name: fullName, email: currentUser.email };
+//         // Construct the full name using first_name and last_name
+//         const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
+//         const student = { name: fullName, email: currentUser.email };
 
-        this.dataService.enrollStudentInCourse(this.courses.indexOf(this.selectedCourse), student);
+//         this.dataService.enrollStudentInCourse(this.courses.indexOf(this.selectedCourse), student);
 
-        // Mark the course as enrolled
-        this.selectedCourse.enrolled = 'yes';
+//         // Mark the course as enrolled
+//         this.selectedCourse.enrolled = 'yes';
 
-        this.dataService.updateCourse(this.selectedCourse); // Update the course in the service
-        alert(`${fullName} has been successfully enrolled in the course!`);
-        this.closeEnrollmentModal();
-        this.router.navigate([routes.subject_modules]); // Navigate to the subjects page
-      } catch (error) {
-        console.error('Error enrolling in course:', error);
-        alert('There was an issue enrolling in the course. Please try again.');
-      }
-    } else {
-      alert('Incorrect enrollment key. Please try again.');
+//         this.dataService.updateCourse(this.selectedCourse); // Update the course in the service
+//         alert(`${fullName} has been successfully enrolled in the course!`);
+//         this.closeEnrollmentModal();
+//         this.router.navigate([routes.subject_modules]); // Navigate to the subjects page
+//       } catch (error) {
+//         console.error('Error enrolling in course:', error);
+//         alert('There was an issue enrolling in the course. Please try again.');
+//       }
+//     } else {
+//       alert('Incorrect enrollment key. Please try again.');
+//     }
+// }
+
+async enrollInCourse(): Promise<void> {
+  if (this.selectedCourse && this.enrollmentKeyInput === this.selectedCourse.enrollmentKey) {
+    try {
+      const currentUser = await this.userService.getUser(); // Fetch the authenticated user's details
+      
+      // Construct the full name using first_name and last_name
+      const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
+      const student = { name: fullName, email: currentUser.email };
+
+      this.dataService.enrollStudentInCourse(this.courses.indexOf(this.selectedCourse), student);
+
+      // Mark the course as enrolled
+      this.selectedCourse.enrolled = 'yes';
+
+      this.dataService.updateCourse(this.selectedCourse); // Update the course in the service
+      alert(`${fullName} has been successfully enrolled in the course!`);
+      this.closeEnrollmentModal();
+
+      // Update the course list to reflect the enrollment
+      this.fetchCourses();
+
+    } catch (error) {
+      console.error('Error enrolling in course:', error);
+      alert('There was an issue enrolling in the course. Please try again.');
     }
+  } else {
+    alert('Incorrect enrollment key. Please try again.');
+  }
 }
+
 
 
   clearLocalStorage(): void {
