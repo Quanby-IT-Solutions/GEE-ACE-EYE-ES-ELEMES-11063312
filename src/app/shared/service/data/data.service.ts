@@ -4526,12 +4526,12 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'My Quiz Attempts',
+          menuValue: 'My  Attempts',
           route: routes.instructorQuizAttempts,
           hasSubRoute: false,
           showSubRoute: false,
           base: 'instructor',
-          page: 'instructor-quiz-attempts',
+          page: 'instructor--attempts',
           last: '',
           subMenus: [],
         },
@@ -4696,12 +4696,12 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'My Quiz Attempts',
-          route: routes.studentsQuiz,
+          menuValue: 'My  Attempts',
+          route: routes.students,
           hasSubRoute: false,
           showSubRoute: false,
           base: 'student',
-          page: 'student-quiz',
+          page: 'student-',
           last: '',
           subMenus: [],
         },
@@ -5321,7 +5321,7 @@ export class DataService {
           ],
           
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 15), score: '52/60'  }
+            { name: 'Quiz', dueDate: new Date(2024, 7, 15), score: '52/60'  }
           ]
         },
         {
@@ -5335,7 +5335,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Operations Homework', dueDate: new Date(2024, 7, 20), score: '10/15'  },
-            { name: 'Operations Quiz', dueDate: new Date(2024, 7, 25), score: '12/20'  },
+            { name: 'Operations ', dueDate: new Date(2024, 7, 25), score: '12/20'  },
             { 
               name: 'Operations Homework 2', 
               dueDate: new Date(2024, 7, 28), 
@@ -5361,7 +5361,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Quadratic Homework', dueDate: new Date(2024, 8, 5), score: '10/12' },
-            { name: 'Quadratic Quiz', dueDate: new Date(2024, 8, 10), score: '11/15' },
+            { name: 'Quadratic ', dueDate: new Date(2024, 8, 10), score: '11/15' },
             { 
               name: 'Quadratic Homework 2', 
               dueDate: new Date(2024, 8, 15), 
@@ -5373,7 +5373,7 @@ export class DataService {
           ],
           
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 20), score: '32/60' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 20), score: '32/60' }
           ]
         }
       ],
@@ -5431,7 +5431,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { name: 'Mechanics  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
               { 
                 name: 'Mechanics Homework 2', 
                 dueDate: new Date(2024, 7, 22), 
@@ -5443,7 +5443,7 @@ export class DataService {
             ],
             
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '40/60'  }
             ]
           },
           {
@@ -5457,7 +5457,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  },
+              { name: 'Newton ', dueDate: new Date(2024, 8, 3), score: '10/12'  },
               { 
                 name: 'Newton Homework 2', 
                 dueDate: new Date(2024, 8, 6), 
@@ -5483,7 +5483,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-              { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  },
+              { name: 'Energy ', dueDate: new Date(2024, 8, 17), score: '12/12'  },
               { 
                 name: 'Energy Homework 2', 
                 dueDate: new Date(2024, 8, 20), 
@@ -5495,7 +5495,7 @@ export class DataService {
             ],
             
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '10/60'  }
             ]
           }
         ],
@@ -5550,7 +5550,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-              { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' },
+              { name: 'Molecules ', dueDate: new Date(2024, 7, 25) , score: '10/12' },
               { 
                 name: 'Molecules Homework 2', 
                 dueDate: new Date(2024, 7, 28), 
@@ -5576,7 +5576,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-              { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' },
+              { name: 'Reactions ', dueDate: new Date(2024, 8, 15) , score: '10/12' },
               { 
                 name: 'Reactions Homework 2', 
                 dueDate: new Date(2024, 8, 18), 
@@ -5602,7 +5602,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-              { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' },
+              { name: 'Stereochemistry ', dueDate: new Date(2024, 8, 28) , score: '10/12' },
               { 
                 name: 'Stereochemistry Homework 2', 
                 dueDate: new Date(2024, 8, 30), 
@@ -5614,7 +5614,7 @@ export class DataService {
             ],
             
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 9, 5), score: '10/40'  }
             ]
           }
         ],
@@ -5671,7 +5671,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
+              { name: 'Botany  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
               { 
                 name: 'Botany Homework 2', 
                 dueDate: new Date(2024, 7, 22), 
@@ -5684,7 +5684,7 @@ export class DataService {
             
             
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '32/40'  }
             ]
           },
           {
@@ -5698,7 +5698,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
-              { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
+              { name: 'Physiology ', dueDate: new Date(2024, 8, 3) , score: '10/15' }
             ],
             exams: [
               { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
@@ -5715,10 +5715,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
-              { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
+              { name: 'Ecology ', dueDate: new Date(2024, 8, 17), score: '12/30'  }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '80/120' }
             ]
           }
         ],
@@ -5774,10 +5774,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
-              { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
+              { name: 'Programming  1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '119/120' }
             ]
           },
           {
@@ -5791,7 +5791,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
-              { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
+              { name: 'Data Structures ', dueDate: new Date(2024, 8, 3) , score: '0/20' }
             ],
             exams: [
               { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
@@ -5808,10 +5808,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
-              { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
+              { name: 'Algorithms ', dueDate: new Date(2024, 8, 17) , score: '11/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '41/60' }
             ]
           }
         ],
@@ -5868,10 +5868,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+              { name: 'Ancient Civilizations ', dueDate: new Date(2024, 7, 18) , score: '10/12' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '15/60'  }
             ]
           },
           {
@@ -5885,7 +5885,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
+              { name: 'Medieval Times ', dueDate: new Date(2024, 8, 3), score: '9/12'  }
             ],
             exams: [
               { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
@@ -5902,10 +5902,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
-              { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
+              { name: 'Modern History ', dueDate: new Date(2024, 8, 17) , score: '4/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '12/60'  }
             ]
           }
         ],
@@ -5962,10 +5962,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
-              { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+              { name: 'Geography  1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '30/40' }
             ]
           },
           {
@@ -5979,7 +5979,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+              { name: 'Climate ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
             ],
             exams: [
               { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
@@ -5996,10 +5996,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
-              { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
+              { name: 'Landforms ', dueDate: new Date(2024, 8, 17) , score: '15/30' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '34/50' }
             ]
           }
         ],
@@ -6056,10 +6056,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
+              { name: 'Literature  1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
             ],
             exams: [
-              { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
+              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '12/20' }
             ]
           },
           {
@@ -6073,7 +6073,7 @@ export class DataService {
             ],
             assignments: [
               { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+              { name: 'Prose ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
             ],
             exams: [
               { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
@@ -6090,10 +6090,10 @@ export class DataService {
             ],
             assignments: [
               { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
-              { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
+              { name: 'Shakespeare ', dueDate: new Date(2024, 8, 17) , score: '10/12' }
             ],
             exams: [
-              { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
+              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '105/120'  }
             ]
           }
         ],
@@ -6311,10 +6311,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Mechanics Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            { name: 'Mechanics  1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '40/60'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '40/60'  }
           ]
         },
         {
@@ -6328,7 +6328,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Newton Quiz', dueDate: new Date(2024, 8, 3), score: '10/12'  }
+            { name: 'Newton ', dueDate: new Date(2024, 8, 3), score: '10/12'  }
           ],
           exams: [
             { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
@@ -6345,10 +6345,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-            { name: 'Energy Quiz', dueDate: new Date(2024, 8, 17), score: '12/12'  }
+            { name: 'Energy ', dueDate: new Date(2024, 8, 17), score: '12/12'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '10/60'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '10/60'  }
           ]
         }
       ],
@@ -6402,7 +6402,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-            { name: 'Molecules Quiz', dueDate: new Date(2024, 7, 25) , score: '10/12' }
+            { name: 'Molecules ', dueDate: new Date(2024, 7, 25) , score: '10/12' }
           ],
           exams: [
             { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
@@ -6419,7 +6419,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-            { name: 'Reactions Quiz', dueDate: new Date(2024, 8, 15) , score: '10/12' }
+            { name: 'Reactions ', dueDate: new Date(2024, 8, 15) , score: '10/12' }
           ],
           exams: [
             { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
@@ -6436,10 +6436,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-            { name: 'Stereochemistry Quiz', dueDate: new Date(2024, 8, 28) , score: '10/12' }
+            { name: 'Stereochemistry ', dueDate: new Date(2024, 8, 28) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
+            { name: 'Summative Exam', dueDate: new Date(2024, 9, 5), score: '10/40'  }
           ]
         }
       ],
@@ -6493,10 +6493,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Botany Quiz 1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
+            { name: 'Botany  1', dueDate: new Date(2024, 7, 18), score: '10/12'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '32/40'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '32/40'  }
           ]
         },
         {
@@ -6510,7 +6510,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
-            { name: 'Physiology Quiz', dueDate: new Date(2024, 8, 3) , score: '10/15' }
+            { name: 'Physiology ', dueDate: new Date(2024, 8, 3) , score: '10/15' }
           ],
           exams: [
             { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
@@ -6527,10 +6527,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
-            { name: 'Ecology Quiz', dueDate: new Date(2024, 8, 17), score: '12/30'  }
+            { name: 'Ecology ', dueDate: new Date(2024, 8, 17), score: '12/30'  }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '80/120' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '80/120' }
           ]
         }
       ],
@@ -6584,10 +6584,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
-            { name: 'Programming Quiz 1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
+            { name: 'Programming  1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '119/120' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '119/120' }
           ]
         },
         {
@@ -6601,7 +6601,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
-            { name: 'Data Structures Quiz', dueDate: new Date(2024, 8, 3) , score: '0/20' }
+            { name: 'Data Structures ', dueDate: new Date(2024, 8, 3) , score: '0/20' }
           ],
           exams: [
             { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
@@ -6618,10 +6618,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
-            { name: 'Algorithms Quiz', dueDate: new Date(2024, 8, 17) , score: '11/12' }
+            { name: 'Algorithms ', dueDate: new Date(2024, 8, 17) , score: '11/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '41/60' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '41/60' }
           ]
         }
       ],
@@ -6675,10 +6675,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Ancient Civilizations Quiz', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            { name: 'Ancient Civilizations ', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25), score: '15/60'  }
+            { name: '', dueDate: new Date(2024, 7, 25), score: '15/60'  }
           ]
         },
         {
@@ -6692,7 +6692,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Medieval Times Quiz', dueDate: new Date(2024, 8, 3), score: '9/12'  }
+            { name: 'Medieval Times ', dueDate: new Date(2024, 8, 3), score: '9/12'  }
           ],
           exams: [
             { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
@@ -6709,10 +6709,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
-            { name: 'Modern History Quiz', dueDate: new Date(2024, 8, 17) , score: '4/12' }
+            { name: 'Modern History ', dueDate: new Date(2024, 8, 17) , score: '4/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '12/60'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '12/60'  }
           ]
         }
       ],
@@ -6766,10 +6766,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
-            { name: 'Geography Quiz 1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
+            { name: 'Geography  1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '30/40' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '30/40' }
           ]
         },
         {
@@ -6783,7 +6783,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Climate Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            { name: 'Climate ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
             { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
@@ -6800,10 +6800,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
-            { name: 'Landforms Quiz', dueDate: new Date(2024, 8, 17) , score: '15/30' }
+            { name: 'Landforms ', dueDate: new Date(2024, 8, 17) , score: '15/30' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25) , score: '34/50' }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '34/50' }
           ]
         }
       ],
@@ -6857,10 +6857,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-            { name: 'Literature Quiz 1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
+            { name: 'Literature  1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
           ],
           exams: [
-            { name: 'Midterm Exam', dueDate: new Date(2024, 7, 25) , score: '12/20' }
+            { name: '', dueDate: new Date(2024, 7, 25) , score: '12/20' }
           ]
         },
         {
@@ -6874,7 +6874,7 @@ export class DataService {
           ],
           assignments: [
             { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-            { name: 'Prose Quiz', dueDate: new Date(2024, 8, 3) , score: '10/12' }
+            { name: 'Prose ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
           ],
           exams: [
             { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
@@ -6891,10 +6891,10 @@ export class DataService {
           ],
           assignments: [
             { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
-            { name: 'Shakespeare Quiz', dueDate: new Date(2024, 8, 17) , score: '10/12' }
+            { name: 'Shakespeare ', dueDate: new Date(2024, 8, 17) , score: '10/12' }
           ],
           exams: [
-            { name: 'Final Exam', dueDate: new Date(2024, 8, 25), score: '105/120'  }
+            { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '105/120'  }
           ]
         }
       ],
@@ -7504,10 +7504,10 @@ export class DataService {
   //       { title: 'Course Levels', route: this.routes.courses_levels },
   //       { title: 'Course Settings', route: this.routes.courses_settings },
   //       { title: 'Course Subjects', route: this.routes.courses_subjects },
-  //       { title: 'Question Groups', route: this.routes.quizzes_question_groups },
-  //       { title: 'Question Banks', route: this.routes.quizzes_question_banks },
-  //       { title: 'Quiz Setups', route: this.routes.quizzes_setups },
-  //       { title: 'Quiz Results', route: this.routes.quizzes_results },
+  //       { title: 'Question Groups', route: this.routes.zes_question_groups },
+  //       { title: 'Question Banks', route: this.routes.zes_question_banks },
+  //       { title: ' Setups', route: this.routes.zes_setups },
+  //       { title: ' Results', route: this.routes.zes_results },
   //       { title: 'Virtual Classes', route: this.routes.virtual_classes },
   //       { title: 'Zoom Settings', route: this.routes.zoom_settings },
   //       { title: 'Certificates', route: this.routes.certificates },
