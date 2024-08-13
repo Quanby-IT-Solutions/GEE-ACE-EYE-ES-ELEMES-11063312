@@ -17,6 +17,7 @@ import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.se
 import { GuestUser } from 'src/app/shared/models/model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { title } from 'process';
 
 interface IconMap {
   [key: string]: string;
@@ -113,6 +114,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
       subItems: [
         { title: 'Materials', route: this.routes.subjects },
         { title: 'Assignments', route: this.routes.tasks },
+        { title: 'Evaluation', route: this.routes.evaluation}
       ],
     },
     { title: 'Progress', route: this.routes.progress },
@@ -134,7 +136,7 @@ export class OurSidebarComponent implements OnInit, OnDestroy, OnChanges {
   //    },
     { title: 'Student Progress', route: this.routes.assessments },
     { title: 'Reports', route: this.routes.meet },
-
+    { title: 'Evaluation', route: this.routes.evaluation },
     { title: 'Help', route: this.routes.meet }, // arog kaine padi
   ];
 

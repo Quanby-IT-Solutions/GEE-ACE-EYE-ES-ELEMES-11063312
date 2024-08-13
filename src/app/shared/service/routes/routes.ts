@@ -451,6 +451,7 @@ export class routes {
     return this.users_dashboard + '/subjects';
   }
 
+
   public static get help(): string {
     return this.users_dashboard + '/help';
   }
@@ -483,9 +484,9 @@ export class routes {
     return this.users_dashboard + '/add-enroll';
   }
 
-  public static get teacher_evaluation(): string {
-    return this.users_dashboard + '/teacher-evaluation';
-  }
+  // public static get valuation(): string {
+  //   return this.users_dashboard + '/teacher-evaluation';
+  // }
 
   public static get disable_id(): string {
     return this.users_dashboard + '/disable-id';
@@ -521,9 +522,9 @@ export class routes {
   }
 
 
-  public static get curriculum_evaluation(): string {
-    return this.users_dashboard + '/curriculum-evaluation';
-  }
+  // public static get curriculum_evaluation(): string {
+  //   return this.users_dashboard + '/curriculum-evaluation';
+  // }
 
 
   public static get statement_accounts(): string {
@@ -741,6 +742,10 @@ public static get report_generation(): string {
 
   public static get tasks(): string {
     return this.users_dashboard + '/tasks';
+  }
+
+  public static get evaluation(): string {
+    return this.users_dashboard + '/evaluation';
   }
   
   public static get calendar(): string {

@@ -56,7 +56,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   sortMenuOpen: boolean = false;  
 
-  
   constructor(
     private dataService: DataService,
     private router: Router, 
@@ -64,7 +63,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   ) {}
 
   private userSubscription: Subscription | undefined;
-
   public user: User | GuestUser | null = null;  
   role: string | null = null;
 
@@ -72,45 +70,38 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     return this.role;
   }
 
-  // async ngOnInit() {
-  //   this.fetchCourses();
-
-  //   const _user = await this.userService.getUser();
-  //   this.role = _user.role;
-
-  //   this.userSubscription = this.userService.currentUser.subscribe(
-  //     (user) => {
-  //       this.user = user;
-  //     }
-  //   );
-  // }
-
   async ngOnInit() {
     const _user = await this.userService.getUser();
-    this.user = _user;
-    this.role = _user.role;
+    
+    if (this.isUser(_user)) {
+      this.user = _user;
+      this.role = _user.role || null;
+    } else {
+      this.user = null;
+      this.role = null;
+    }
   
     this.fetchCourses(); // Fetch courses after setting the user
   
     this.userSubscription = this.userService.currentUser.subscribe(
       (user) => {
-        this.user = user;
+        if (this.isUser(user)) {
+          this.user = user;
+          this.role = user.role || null;
+        } else {
+          this.user = null;
+          this.role = null;
+        }
         this.fetchCourses(); // Re-fetch courses if the user changes
       }
     );
   }
-  
 
   ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
   }
-
-  // fetchCourses(): void {
-  //   this.courses = this.dataService.getCourses().filter(course => course.enrolled === 'yes');
-  //   this.filteredCourses = this.courses;
-  // }
 
   fetchCourses(): void {
     // Get the current user's email
@@ -128,7 +119,6 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       this.filteredCourses = [];
     }
   }
-  
 
   filterCourses(): void {
     this.filteredCourses = this.courses.filter(
@@ -151,14 +141,16 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     this.sortMenuOpen = false;
   }
 
-
-
-
   selectCourse(course: Course): void {
     this.router.navigate([routes.subject_modules], { state: { course } });
   }
 
   navigateToModules(): void {
     this.router.navigate([routes.add_course]);
+  }
+
+  // Type guard to check if the user is of type User
+  private isUser(user: any): user is User {
+    return user && 'app_metadata' in user && 'user_metadata' in user;
   }
 }
