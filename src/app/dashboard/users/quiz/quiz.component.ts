@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
@@ -21,7 +21,9 @@ export class QuizComponent implements OnInit, OnDestroy {
   timeLeft = '1 hour'; 
   totalScore:number = 0;
   user:any;
-  showResults:boolean = false;
+  @Input() showResults:boolean = false;
+  @Input() role:string = 'student';
+  @Input() editing:boolean = false;
   
   private totalSeconds: number = 3600; // 1 hour in seconds
   private remainingSeconds: number = this.totalSeconds;
@@ -51,17 +53,20 @@ export class QuizComponent implements OnInit, OnDestroy {
       console.log('USER',user);
       user$.unsubscribe();
     })
-    this.timerInterval = setInterval(() => {
-      if (this.remainingSeconds > 0) {
-        this.remainingSeconds--;
-        this.updateDisplayTime();
-      } else {
-        if (this.timerInterval) {
-          clearInterval(this.timerInterval);
+    if(this.role == 'student'){
+      this.timerInterval = setInterval(() => {
+        if (this.remainingSeconds > 0) {
+          this.remainingSeconds--;
+          this.updateDisplayTime();
+        } else {
+          if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+          }
+          this.showResults = true;
         }
-        this.showResults = true;
-      }
-    }, 1000);
+      }, 1000);
+    }
+    
   }
 
   ngOnDestroy(): void {
@@ -116,5 +121,19 @@ export class QuizComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isShaking = false;
     }, 300);
+  }
+  addItem(){
+    const index = this.examQuestions.length;
+    this.examQuestions.push( {
+      id: `q${index + 1}`,
+      question: 'Sample Question',
+      options: {
+        a: 'Sample option 1',
+        b: 'Sample option 2',
+        c: 'Sample option 3',
+        d: 'Sample option 4'
+      },
+      answer: 'a'
+    },)
   }
 }

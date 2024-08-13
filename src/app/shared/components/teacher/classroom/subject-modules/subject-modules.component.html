@@ -160,36 +160,103 @@
 
       <section *ngIf="selectedTab === 'assignments'" class="space-y-6">
         <div *ngIf="!showTaskDetails" class="space-y-4">
-          <h3 class="text-2xl font-bold text-gray-800">Assignments</h3>
-          <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showDetails(i)">
-            <h4 class="text-lg font-semibold text-gray-800">{{ assignment.name }}</h4>
-            <p class="text-gray-600 mt-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
-          </div>
+          <h3 class="text-2xl font-bold text-gray-800 flex justify-between mr-4">
+            <span>Assignments</span> 
+            <button *ngIf="isEditing" (click)="addAssignment()" class="px-3 py-1 bg-green-500 text-sm rounded-lg text-white">
+              <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+              Add Assignment</button>
+          </h3>
+          <ng-container *ngIf="course.modules[selectedModuleIndex].assignments?.length > 0; else noAssignments" >
+            <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showDetails(i)">
+              <h4 class="text-lg font-semibold text-gray-800">{{ assignment.name }}</h4>
+              <p class="text-gray-600 mt-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
+            </div>
+          </ng-container>
+          <ng-template #noAssignments>
+            <div class="w-full h-full flex justify-center flex-col items-center gap-2 mt-4">
+              <i class="fas fa-smile   text-7xl  text-gray-200"></i>
+              <div>
+                No assignments yet.
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div *ngIf="showTaskDetails" class="bg-white p-8 rounded-lg shadow-md">
           <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
             <i class="fas fa-arrow-left mr-2"></i>Back to Assignments
           </button>
           <div *ngIf="selectedTask">
-            <app-task-view [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
+            <app-task-view [onDelete]="deleteTask.bind(this)" [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
           </div>
         </div>
       </section>
 
       <section *ngIf="selectedTab === 'exams'" class="space-y-4">
         <div *ngIf="!showTaskDetails" class="space-y-4">
-          <h3 class="text-2xl font-bold text-gray-800">Examinations</h3>
-          <div *ngFor="let exams of course.modules[selectedModuleIndex].exams; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showExamDetails(i)">
-            <h4 class="text-lg font-semibold text-gray-800">{{ exams.name }}</h4>
-            <p class="text-gray-600 mt-2">Exam Date: {{ exams.dueDate | date:'fullDate' }}</p>
-          </div>
+          <h3 class="text-2xl font-bold text-gray-800 flex justify-between mr-4">
+            <span>Examinations</span> 
+            <button  *ngIf="isEditing" (click)="addExam()" class="px-3 py-1 text-sm bg-green-500 text-white rounded-lg">
+              <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+              Add Exam</button>
+          </h3>
+          <ng-container 
+          *ngIf="course.modules[selectedModuleIndex].exams?.length > 0; else noExams"
+          >
+            <div *ngFor="let exams of course.modules[selectedModuleIndex].exams; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showExamDetails(i)">
+              <h4 class="text-lg font-semibold text-gray-800">{{ exams.name }}</h4>
+              <p class="text-gray-600 mt-2">Exam Date: {{ exams.dueDate | date:'fullDate' }}</p>
+            </div>
+          </ng-container>
+          <ng-template #noExams>
+            <div class="w-full h-full flex justify-center flex-col items-center gap-2 mt-4">
+              <i class="fas fa-smile   text-7xl  text-gray-200"></i>
+              <div>
+                No exams yet.
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div *ngIf="showTaskDetails" class="bg-white p-8 rounded-lg shadow-md">
           <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
             <i class="fas fa-arrow-left mr-2"></i>Back to Examinations
           </button>
           <div *ngIf="selectedTask">
-            <app-task-view [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
+            <app-task-view [onDelete]="deleteTask.bind(this)"  [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
+            <app-quiz [editing]="isEditing" [showResults]="true" [role]="'instructor'"></app-quiz>
+          </div>
+        </div>
+      </section>
+
+      <section *ngIf="selectedTab === 'quiz'" class="space-y-4">
+        <div *ngIf="!showTaskDetails" class="space-y-4">
+          <h3 class="text-2xl font-bold text-gray-800 flex justify-between mr-4">
+            <span>Quizzes</span> 
+            <button  *ngIf="isEditing" (click)="addQuiz()" class="px-3 py-1 bg-green-500 text-sm rounded-lg text-white">
+              <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+              Add Quiz</button>
+          </h3>
+          <ng-container *ngIf="course.modules[selectedModuleIndex].quizzes?.length > 0; else noQuizzes">
+            <div *ngFor="let quiz of course.modules[selectedModuleIndex].quizzes; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showQuizDetails(i)">
+              <h4 class="text-lg font-semibold text-gray-800">{{ quiz.name }}</h4>
+              <p class="text-gray-600 mt-2">Quiz Date: {{ quiz.dueDate | date:'fullDate' }}</p>
+            </div>
+          </ng-container>
+          <ng-template #noQuizzes>
+            <div class="w-full h-full flex justify-center flex-col items-center gap-2 mt-4">
+              <i class="fas fa-smile   text-7xl  text-gray-200"></i>
+              <div>
+                No quizzes yet.
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div *ngIf="showTaskDetails" class="bg-white p-8 rounded-lg shadow-md">
+          <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Quizzes
+          </button>
+          <div *ngIf="selectedTask">
+            <app-task-view [onDelete]="deleteTask.bind(this)"  [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
+            <app-quiz [editing]="isEditing" [showResults]="true" [role]="'instructor'"></app-quiz>
           </div>
         </div>
       </section>

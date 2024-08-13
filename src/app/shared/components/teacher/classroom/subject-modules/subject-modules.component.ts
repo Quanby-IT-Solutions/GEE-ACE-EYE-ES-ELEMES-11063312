@@ -9,13 +9,16 @@ import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.se
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { CommonModule } from '@angular/common';
 import { TaskViewComponent } from '../../../classroom/task-view/task-view.component';
+import { ModalService } from 'src/app/shared/service/modal/modal.service';
+import { title } from 'process';
+import { QuizComponent } from 'src/app/dashboard/users/quiz/quiz.component';
 
 @Component({
   selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent]
+  imports: [FormsModule, PdfViewerModule, CommonModule, TaskViewComponent, QuizComponent]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
@@ -43,6 +46,7 @@ export class SubjectModulesComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private userService: UserService,
     private supabaseService: SupabaseService,
+    private modalService: ModalService,
     private dataService: DataService
   ) {}
 
@@ -142,13 +146,74 @@ export class SubjectModulesComponent implements OnInit {
     }
   }
 
-  addExam() {
-    this.course.modules[this.selectedModuleIndex].exams.push({
-      name: '',
-      dueDate: ''
-    });
+  addAssignment() {
+    const index = this.course.modules[this.selectedModuleIndex].assignments.length;
+    if(this.course.modules[this.selectedModuleIndex].assignments){
+      this.course.modules[this.selectedModuleIndex].assignments.push({
+        index: index,
+        name: 'New Assignment',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'assignment',
+      });
+    }else{
+      this.course.modules[this.selectedModuleIndex].assignments = [{
+        index: index,
+        name: 'New Assignment',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'assignment',
+      }]
+    }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].assignments[index];
+    this.showTaskDetails = true;
   }
 
+  addExam() {
+    const index = this.course.modules[this.selectedModuleIndex].exams?.length ?? 0;
+    if(this.course.modules[this.selectedModuleIndex].exams){
+      this.course.modules[this.selectedModuleIndex].exams.push({
+        index: index,
+        name: 'New Examination',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'exam',
+      });
+    }else{
+      this.course.modules[this.selectedModuleIndex].exams = [{
+        index: index,
+        name: 'New Examination',
+        dueDate: new Date(),
+        course: this.course.course,
+        type: 'exam',
+      }]
+    }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].exams[index];
+    this.showTaskDetails = true;
+  }
+
+  addQuiz() {
+    const index = this.course.modules[this.selectedModuleIndex].quizzes?.length ?? 0;
+   if( this.course.modules[this.selectedModuleIndex].quizzes){
+    this.course.modules[this.selectedModuleIndex].quizzes.push({
+      index: index,
+      name: 'New Quiz',
+      dueDate: new Date(),
+      course: this.course.course,
+      type: 'exam',
+    });
+   }else{
+    this.course.modules[this.selectedModuleIndex].quizzes = [{
+      index: index,
+      name: 'New Quiz',
+      dueDate: new Date(),
+      course: this.course.course,
+      type: 'exam',
+    }]
+   }
+    this.selectedTask = this.course.modules[this.selectedModuleIndex].quizzes[index];
+    this.showTaskDetails = true;
+  }
   removeExam(index: number) {
     this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
   }
@@ -262,6 +327,7 @@ export class SubjectModulesComponent implements OnInit {
   showDetails(index: number) {
     console.log( 'SHOW',this.course);
     this.course.modules[this.selectedModuleIndex].assignments[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].assignments[index].index = index;
     this.course.modules[this.selectedModuleIndex].assignments[index].type = 'assignment';
     this.selectedTask =
       this.course.modules[this.selectedModuleIndex].assignments[index];
@@ -271,9 +337,19 @@ export class SubjectModulesComponent implements OnInit {
   showExamDetails(index: number) {
     console.log( 'SHOW',this.course);
     this.course.modules[this.selectedModuleIndex].exams[index].course = this.course.course;
-    this.course.modules[this.selectedModuleIndex].exams[index].type = 'exam';
+    this.course.modules[this.selectedModuleIndex].exams[index].index = index;
     this.selectedTask =
       this.course.modules[this.selectedModuleIndex].exams[index];
+    console.log('Selected Assignment:', this.selectedTask);
+    this.showTaskDetails = true;
+  }
+
+  showQuizDetails(index: number) {
+    console.log( 'SHOW',this.course);
+    this.course.modules[this.selectedModuleIndex].quizzes[index].course = this.course.course;
+    this.course.modules[this.selectedModuleIndex].quizzes[index].index = index;
+    this.selectedTask =
+      this.course.modules[this.selectedModuleIndex].quizzes[index];
     console.log('Selected Assignment:', this.selectedTask);
     this.showTaskDetails = true;
   }
@@ -308,6 +384,26 @@ export class SubjectModulesComponent implements OnInit {
     } else {
       alert('Please select a file to submit.');
     }
+  }
+
+  deleteTask(){
+ 
+    const modal$ = this.modalService.openConfirmationModal({
+      title: 'Confirm delete',
+      description: `Are you sure you want to delete this ${this.selectedTask.type}?`,      
+    }).subscribe(result=>{
+      if(result){
+        if(this.selectedTask.type == 'exam'){
+          this.course.modules[this.selectedModuleIndex].exams.splice(this.selectedTask.index, 1)
+        }else if(this.selectedTask.type == 'assignment'){
+          this.course.modules[this.selectedModuleIndex].assignments.splice(this.selectedTask.index, 1)
+        }else{
+          this.course.modules[this.selectedModuleIndex].quizzes.splice(this.selectedTask.index, 1)
+        }
+        this.saveData();
+      }
+      modal$.unsubscribe();
+    })
   }
 
   saveData(){

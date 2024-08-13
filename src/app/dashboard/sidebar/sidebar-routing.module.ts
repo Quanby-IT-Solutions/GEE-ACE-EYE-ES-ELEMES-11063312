@@ -141,21 +141,21 @@ const routes: Routes = [
           ),
       },
 
-      {
-        path: 'curriculum',
-        loadChildren: () =>
-          import('src/app/dashboard/users/evaluation/curriculum/curriculum.module').then(
-            (m) => m.CurriculumModule
-          ),
-      },
+      // {
+      //   path: 'curriculum',
+      //   loadChildren: () =>
+      //     import('src/app/dashboard/users/evaluation/curriculum/curriculum.module').then(
+      //       (m) => m.CurriculumModule
+      //     ),
+      // },
 
-      {
-        path: 'teacher',
-        loadChildren: () =>
-          import('src/app/dashboard/users/evaluation/teacher/teacher.module').then(
-            (m) => m.TeacherModule
-          ),
-      },
+      // {
+      //   path: 'teacher',
+      //   loadChildren: () =>
+      //     import('src/app/dashboard/users/evaluation/teacher/teacher.module').then(
+      //       (m) => m.TeacherModule
+      //     ),
+      // },
 
       // student
       {
