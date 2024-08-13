@@ -27,6 +27,7 @@ interface User {
 export class UserManagementComponent {
   showAddUserModal = false;
   selectedUser: User | null = null;
+  activeView: 'allUsers' | 'reports' | 'newUserApproval' = 'allUsers';
 
   newUser: User = {
     id: '',
@@ -72,6 +73,10 @@ export class UserManagementComponent {
     },
     // Add more sample users as needed
   ];
+
+  setActiveView(view: 'allUsers' | 'reports' | 'newUserApproval') {
+    this.activeView = view;
+  }
 
   openModal() {
     this.showAddUserModal = true;
