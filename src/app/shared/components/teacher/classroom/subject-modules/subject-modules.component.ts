@@ -1,213 +1,126 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { SafeUrlPipe } from 'src/app/shared/pipes/safe-url.pipe';
 import { Subscription } from 'rxjs';
-import { User } from '@supabase/supabase-js';
 import { UserService } from 'src/app/shared/service/user/user.service';
-import { GuestUser } from 'src/app/shared/models/model';
 import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-course-management',
+  selector: 'app-subject-modules',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
-  imports: [CommonModule, SafeUrlPipe, PdfViewerModule, FormsModule]
+  imports: [FormsModule, PdfViewerModule, CommonModule]
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
-  selectedTab: string = 'materials';
-  selectedModuleIndex: number = 0;
+  selectedTab = 'about';
+  selectedModuleIndex = 0;
   selectedMaterial: any = null;
-  showAssignmentDetails: boolean = false;
-  selectedAssignment: any = null;
-  isEditing: boolean = false;
-  searchTerm: string = '';
+  isEditing = false;
+  searchTerm = '';
   allUsers: any[] = [];
-  showEnrollModal: boolean = false;
-  tabs: string[] = ['Materials', 'Assignments', 'Quiz', 'Exams', 'Student Management'];
-
+  showEnrollModal = false;
   private userSubscription: Subscription | undefined;
-
-  public user: User | GuestUser | null = null;
+  user: any = null;
   role: string | null = null;
+
+  tabs = [
+    { key: 'materials', label: 'Materials' },
+    { key: 'assignments', label: 'Assignments' },
+    { key: 'quiz', label: 'Quiz' },
+    { key: 'exams', label: 'Exams' },
+    { key: 'studentManagement', label: 'Student Management' }
+  ];
 
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer,
     private userService: UserService,
     private supabaseService: SupabaseService,
-    private dataService: DataService,
+    private dataService: DataService
   ) {}
+
+  getUserRole() {
+    return this.role;
+  }
 
   async ngOnInit() {
     const _user = await this.userService.getUser();
     this.role = _user.role;
-
+  
     this.userSubscription = this.userService.currentUser.subscribe((user) => {
       this.user = user;
     });
-
-    this.course = history.state.course || await this.fetchCourseData();
-
+  
+    this.course = history.state.course || this.fetchCourseData();
     if (!this.course) {
       this.router.navigate(['/']);
     } else {
       this.course.enrolledStudents = this.course.enrolledStudents || [];
+  
+      // Initialize filteredEnrolledStudents with the full list of enrolled students
+      this.filteredEnrolledStudents = [...this.course.enrolledStudents];
+  
       this.allUsers = await this.userService.getAllUsers();
     }
   }
+  
+  
 
-  async fetchCourseData(): Promise<any> {
-    // Implement your data fetching logic here
+  fetchCourseData() {
     return null;
   }
 
-  selectTab(tab: string): void {
+  selectTab(tab: string) {
     this.selectedTab = tab;
     this.selectedMaterial = null;
-    this.showAssignmentDetails = false;
   }
 
-  selectModule(index: number): void {
+  selectModule(index: number) {
     this.selectedModuleIndex = index;
     this.sortMaterialsByDate();
     this.selectedMaterial = null;
-    this.showAssignmentDetails = false;
   }
 
-  goToNextModule(): void {
+  goToNextModule() {
     if (this.selectedModuleIndex < this.course.modules.length - 1) {
       this.selectedModuleIndex++;
       this.sortMaterialsByDate();
       this.selectedMaterial = null;
-      this.showAssignmentDetails = false;
     }
   }
 
-  selectMaterial(material: any): void {
+  selectMaterial(material: any) {
     this.selectedMaterial = material;
-  }
-
-  closeMaterialView(): void {
-    this.selectedMaterial = null;
-  }
-
-  showDetails(index: number): void {
-    this.selectedAssignment = this.course.modules[this.selectedModuleIndex].assignments[index];
-    this.showAssignmentDetails = true;
-  }
-
-  hideDetails(): void {
-    this.selectedAssignment = null;
-    this.showAssignmentDetails = false;
-  }
-
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file && this.selectedAssignment) {
-      this.selectedAssignment.submittedFile = file;
-    }
-  }
-
-  submitAssignment(): void {
-    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
-      this.selectedAssignment.submitted = true;
-      alert('Assignment submitted successfully!');
+    if (!material.link) {
+      console.error('No link provided for this material');
     } else {
-      alert('Please select a file to submit.');
+      fetch(material.link)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch((error) => {
+          console.error('Error loading material:', error);
+        });
     }
   }
 
-  getMaterialIcon(type: string): string {
-    switch (type) {
-      case 'pdf':
-        return 'fa-file-pdf';
-      case 'video':
-        return 'fa-video';
-      case 'image':
-        return 'fa-image';
-      default:
-        return 'fa-file';
-    }
+  downloadMaterial(material: any, event: Event) {
+    event.stopPropagation();
+    const link = document.createElement('a');
+    link.href = material.link;
+    link.download = material.title;
+    link.click();
   }
 
-  private sortMaterialsByDate(): void {
-    const materials = this.course.modules[this.selectedModuleIndex].materials;
-    materials.sort((a: any, b: any) => new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime());
-    materials.forEach((material: any, index: number) => {
-      material.index = index + 1;
-    });
-  }
-
-  toggleEditing(): void {
-    this.isEditing = !this.isEditing;
-  }
-
-  addAssignment(): void {
-    this.course.modules[this.selectedModuleIndex].assignments.push({
-      name: '',
-      dueDate: '',
-    });
-  }
-
-  removeAssignment(index: number): void {
-    this.course.modules[this.selectedModuleIndex].assignments.splice(index, 1);
-  }
-
-  addExam(): void {
-    this.course.modules[this.selectedModuleIndex].exams.push({
-      name: '',
-      dueDate: '',
-    });
-  }
-
-  removeExam(index: number): void {
-    this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
-  }
-
-  enrollStudent(user: any): void {
-    const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
-
-    if (!alreadyEnrolled) {
-      const fullName = `${user.first_name} ${user.last_name}`;
-      
-      this.course.enrolledStudents.push({
-        name: fullName,
-        email: user.email,
-        progress: 0
-      });
-
-      this.dataService.updateCourse(this.course);
-
-      this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
-
-      alert(`${fullName} has been successfully enrolled in the course.`);
-    }
-  }
-
-  openEnrollModal(): void {
-    this.showEnrollModal = true;
-  }
-
-  closeEnrollModal(): void {
-    this.showEnrollModal = false;
-  }
-
-  searchStudents(): void {
-    const term = this.searchTerm.toLowerCase();
-
-    this.allUsers = this.allUsers.filter((student: any) =>
-      student.name.toLowerCase().includes(term) || student.email.toLowerCase().includes(term)
-    );
-  }
-
-  replaceMaterialFile(material: any, event: any): void {
+  replaceMaterialFile(material: any, event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -218,21 +131,164 @@ export class SubjectModulesComponent implements OnInit {
     }
   }
 
-  downloadMaterial(material: any, event: Event): void {
-    event.stopPropagation();
-    const link = document.createElement('a');
-    link.href = material.link;
-    link.download = material.title;
-    link.click();
+  toggleEditing() {
+    this.isEditing = !this.isEditing;
   }
 
-  getUserRole(): string | null {
-    return this.role;
+  addExam() {
+    this.course.modules[this.selectedModuleIndex].exams.push({
+      name: '',
+      dueDate: ''
+    });
   }
 
-  ngOnDestroy(): void {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
+  removeExam(index: number) {
+    this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
+  }
+
+  // enrollStudent(user: any) {
+  //   const alreadyEnrolled = this.course.enrolledStudents.some(
+  //     (student: any) => student.email === user.email
+  //   );
+
+  //   if (!alreadyEnrolled) {
+  //     const fullName = `${user.first_name} ${user.last_name}`;
+  //     this.course.enrolledStudents.push({
+  //       name: fullName,
+  //       email: user.email,
+  //       progress: 0
+  //     });
+
+  //     this.dataService.updateCourse(this.course);
+  //     this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+  //     alert(`${fullName} has been successfully enrolled in the course.`);
+  //   }
+  // }
+
+  enrollStudent(user: any) {
+    const alreadyEnrolled = this.course.enrolledStudents.some(
+      (student: any) => student.email === user.email
+    );
+  
+    if (!alreadyEnrolled) {
+      const fullName = `${user.first_name} ${user.last_name}`;
+      const newStudent = {
+        name: fullName,
+        email: user.email,
+        progress: 0
+      };
+  
+      // Add the new student to the enrolledStudents array
+      this.course.enrolledStudents.push(newStudent);
+  
+      // Also add the new student to the filteredEnrolledStudents array
+      this.filteredEnrolledStudents.push(newStudent);
+  
+      // Update the course data in the service
+      this.dataService.updateCourse(this.course);
+  
+      // Remove the user from the allUsers list to prevent re-enrollment
+      this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+  
+      // Optionally, close the modal after enrolling the student
+      this.closeEnrollModal();
+  
+      alert(`${fullName} has been successfully enrolled in the course.`);
     }
   }
+  
+
+  openEnrollModal() {
+    this.showEnrollModal = true;
+  }
+
+  closeEnrollModal() {
+    this.showEnrollModal = false;
+  }
+
+  filteredEnrolledStudents: any[] = [];
+
+
+  searchStudents() {
+    const term = this.searchTerm.toLowerCase();
+  
+    if (term === '') {
+      // Reset the filtered array to show all students if the search term is empty
+      this.filteredEnrolledStudents = [...this.course.enrolledStudents];
+    } else {
+      this.filteredEnrolledStudents = this.course.enrolledStudents.filter(
+        (student: any) =>
+          student.name.toLowerCase().includes(term) ||
+          student.email.toLowerCase().includes(term)
+      );
+    }
+  }
+  
+  
+
+  getMaterialIcon(type: string): string {
+    return {
+      pdf: 'fa-book',
+      video: 'fa-video',
+      image: 'fa-image'
+    }[type] || 'fa-file';
+  }
+
+  closeMaterialView() {
+    this.selectedMaterial = null;
+  }
+
+  private sortMaterialsByDate() {
+    const materials = this.course.modules[this.selectedModuleIndex].materials;
+    materials.sort((a: any, b: any) =>
+      new Date(a.uploadDate).getTime() > new Date(b.uploadDate).getTime() ? 1 : -1
+    );
+    materials.forEach((material: any, index: number) => {
+      material.index = index + 1;
+    });
+  }
+
+  // Assignments methods
+  showAssignmentDetails = false;
+  selectedAssignment: any = null;
+
+  showDetails(index: number) {
+    this.selectedAssignment =
+      this.course.modules[this.selectedModuleIndex].assignments[index];
+    console.log('Selected Assignment:', this.selectedAssignment);
+    this.showAssignmentDetails = true;
+  }
+
+  hideDetails() {
+    this.selectedAssignment = null;
+    this.showAssignmentDetails = false;
+  }
+
+  fileUploaded = false;  // Track if a file has been uploaded
+  uploadedFileName: string | null = null; // Store the uploaded file name
+  
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedAssignment.submittedFile = file;
+      this.fileUploaded = true; // Mark that a file has been uploaded
+      this.uploadedFileName = file.name; // Store the file name
+    }
+  }
+  
+  changeFile() {
+    this.fileUploaded = false; // Reset the file upload state
+    this.uploadedFileName = null; // Clear the uploaded file name
+  }
+  
+  submitAssignment() {
+    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
+      this.selectedAssignment.submitted = true;
+      alert('Assignment submitted successfully!');
+      // Optionally reset fileUploaded state if needed for future uploads
+    } else {
+      alert('Please select a file to submit.');
+    }
+  }
+  
 }
