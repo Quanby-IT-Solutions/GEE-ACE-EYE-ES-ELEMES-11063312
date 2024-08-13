@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { NewUserApprovalComponent } from './user-approval/new-user-approval/new-user-approval.component';
 import { ReportsComponent } from './reports/reports.component';
+import { UserService } from 'src/app/shared/service/user/user.service';
 
 interface User {
   id: string;
-  firstName: string;
-  lastName: string;
-  middleName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   role: string;
   position: string;
@@ -17,6 +17,7 @@ interface User {
   courseCompleted: number;
   courseInProgress: number;
   courseNotStarted: number;
+  status: string;
 }
 
 @Component({
@@ -30,18 +31,17 @@ interface User {
     ReportsComponent
   ],
   templateUrl: './user-management.component.html',
-  styleUrl: './user-management.component.scss',
+  styleUrls: ['./user-management.component.scss'],
 })
-export class UserManagementComponent {
+export class UserManagementComponent implements OnInit {
   showAddUserModal = false;
   selectedUser: User | null = null;
   activeView: 'allUsers' | 'reports' | 'newUserApproval' = 'allUsers';
 
   newUser: User = {
     id: '',
-    firstName: '',
-    lastName: '',
-    middleName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     role: '',
     position: '',
@@ -49,38 +49,24 @@ export class UserManagementComponent {
     courseCompleted: 0,
     courseInProgress: 0,
     courseNotStarted: 0,
+    status: 'Offline',
   };
 
-  // Sample user data (replace with actual data in your application)
-  users: User[] = [
-    {
-      id: 'user123',
-      firstName: 'Bob',
-      lastName: 'Smith',
-      middleName: 'Curtson',
-      email: 'bobsmith@gmail.com',
-      role: 'Instructor',
-      position: 'Junior Developer',
-      department: 'IT',
-      courseCompleted: 3,
-      courseInProgress: 1,
-      courseNotStarted: 0,
-    },
-    {
-      id: 'user124',
-      firstName: 'Alice',
-      lastName: 'Johnson',
-      middleName: 'Mayfield',
-      email: 'alicejohnson@gmail.com',
-      role: 'Student',
-      position: 'Intern',
-      department: 'Engineering',
-      courseCompleted: 0,
-      courseInProgress: 0,
-      courseNotStarted: 0,
-    },
-    // Add more sample users as needed
-  ];
+  users: User[] = []; // Initialize empty, will be populated by fetching users
+  filteredUsers: User[] = []; // Users filtered by search
+
+  searchTerm: string = '';
+
+  constructor(private userService: UserService) {}
+
+  async ngOnInit() {
+    this.users = await this.userService.getAllUsers(); // Fetch all users
+    this.filteredUsers = [...this.users]; // Initialize filteredUsers
+  }
+
+  trackByUserId(index: number, user: User): string {
+    return user.id;
+  }
 
   setActiveView(view: 'allUsers' | 'reports' | 'newUserApproval') {
     this.activeView = view;
@@ -98,9 +84,8 @@ export class UserManagementComponent {
   resetNewUser() {
     this.newUser = {
       id: '',
-      firstName: '',
-      lastName: '',
-      middleName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       role: '',
       position: '',
@@ -108,15 +93,15 @@ export class UserManagementComponent {
       courseCompleted: 0,
       courseInProgress: 0,
       courseNotStarted: 0,
+      status: 'Offline',
     };
   }
 
-  onSubmit() {
-    // Generate a new ID (in a real app, this would typically be done by the backend)
+  async onSubmit() {
     this.newUser.id = 'user' + (this.users.length + 1);
 
-    // Add the new user to the users array
     this.users.push({ ...this.newUser });
+    this.filteredUsers.push({ ...this.newUser }); // Also add to filteredUsers
 
     console.log('New user added:', this.newUser);
 
@@ -124,15 +109,17 @@ export class UserManagementComponent {
     this.closeModal();
   }
 
-  updateUser(updatedUser: User) {
-    // Find the user in the users array and update their information
-    const index = this.users.findIndex((u) => u.id === updatedUser.id);
-    if (index !== -1) {
-      this.users[index] = { ...updatedUser };
-    }
-    // If this is the selected user, update that as well
-    if (this.selectedUser && this.selectedUser.id === updatedUser.id) {
-      this.selectedUser = { ...updatedUser };
+  searchUsers() {
+    const term = this.searchTerm.toLowerCase();
+    if (term === '') {
+      this.filteredUsers = [...this.users];
+    } else {
+      this.filteredUsers = this.users.filter(
+        user =>
+          user.first_name.toLowerCase().includes(term) ||
+          user.last_name.toLowerCase().includes(term) ||
+          user.email.toLowerCase().includes(term)
+      );
     }
   }
 
@@ -142,5 +129,20 @@ export class UserManagementComponent {
 
   closeUserProfile() {
     this.selectedUser = null;
+  }
+
+  updateUser(updatedUser: any) {
+    const index = this.users.findIndex(u => u.id === updatedUser.id);
+    if (index !== -1) {
+      this.users[index] = {
+        ...this.users[index],
+        first_name: updatedUser.firstName,
+        last_name: updatedUser.lastName,
+        status: updatedUser.status,
+      };
+    }
+    if (this.selectedUser && this.selectedUser.id === updatedUser.id) {
+      this.selectedUser = { ...this.users[index] };
+    }
   }
 }
