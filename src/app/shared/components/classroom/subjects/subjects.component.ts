@@ -134,6 +134,9 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       this.filteredCourses = [];
     }
   }
+  getInstructorFullName(user: User | GuestUser) {
+    throw new Error('Method not implemented.');
+  }
   
 
   filterCourses(): void {

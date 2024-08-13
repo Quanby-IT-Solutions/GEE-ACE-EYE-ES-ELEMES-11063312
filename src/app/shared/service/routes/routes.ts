@@ -747,6 +747,9 @@ public static get report_generation(): string {
   public static get evaluation(): string {
     return this.users_dashboard + '/evaluation';
   }
+  public static get form_evalution(): string {
+    return this.users_dashboard + '/evaluation';
+  }
   
   public static get calendar(): string {
     return this.users_dashboard + '/calendar';

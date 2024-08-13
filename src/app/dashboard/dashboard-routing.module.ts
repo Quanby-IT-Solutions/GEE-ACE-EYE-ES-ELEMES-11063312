@@ -491,6 +491,13 @@ const routes: Routes = [
             'src/app/dashboard/users/student_information/assessments/assessments.module'
           ).then((m) => m.AssessmentsModule),
       },
+      {
+        path: 'Form',
+        loadChildren: () =>
+          import(
+            'src/app/dashboard/users/evaluation/form-evalution/form-evalution.module'
+          ).then((m) => m.FormEvalutionModule),
+      },
 
       {
         path: 'meet',

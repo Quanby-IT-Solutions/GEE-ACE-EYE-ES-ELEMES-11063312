@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FormEvalutionRoutingModule } from './form-evalution-routing.module';
-
+import { FormsModule } from '@angular/forms';
+import { FormEvalutionComponent } from './form-evalution.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [FormEvalutionComponent],
   imports: [
     CommonModule,
-    FormEvalutionRoutingModule
-  ]
+    FormsModule
+  ],
+  exports: [FormEvalutionComponent]
 })
 export class FormEvalutionModule { }

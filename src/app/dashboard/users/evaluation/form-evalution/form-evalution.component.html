@@ -1,1 +1,115 @@
-<p>form-evalution works!</p>
+<div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">{{ evaluationForm.course }}</h2>
+  
+    <form (ngSubmit)="submitEvaluation()">
+      <!-- Overall Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">Overall, how would you rate this course?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.overallRating" [value]="i" name="overallRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Instructor Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the instructor's performance?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.instructorRating" [value]="i" name="instructorRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- TA Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the TA's performance?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.taRating" [value]="i" name="taRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Discussion Sections Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the discussion sections?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.discussionRating" [value]="i" name="discussionRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Homework Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the homework assignments?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.homeworkRating" [value]="i" name="homeworkRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Exams Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the exams?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.examsRating" [value]="i" name="examsRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Videos Rating -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How would you rate the lecture videos?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.videosRating" [value]="i" name="videosRating" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Overall Satisfaction -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">How satisfied are you with this course overall?</label>
+        <div class="mt-2 flex space-x-4">
+          <label *ngFor="let i of [1, 2, 3, 4, 5]" class="flex items-center">
+            <input type="radio" [(ngModel)]="evaluationForm.overallSatisfaction" [value]="i" name="overallSatisfaction" class="mr-2">
+            {{ i === 1 ? '1 (Poor)' : i === 5 ? '5 (Excellent)' : i }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- What did you like -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">What did you like about this course?</label>
+        <textarea [(ngModel)]="evaluationForm.liked" name="liked" rows="3"
+                  class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"></textarea>
+      </div>
+  
+      <!-- What could be improved -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700">What could be improved in this course?</label>
+        <textarea [(ngModel)]="evaluationForm.improvement" name="improvement" rows="3"
+                  class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"></textarea>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  
