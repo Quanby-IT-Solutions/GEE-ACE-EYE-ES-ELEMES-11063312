@@ -13,7 +13,7 @@ import { SupabaseService } from 'src/app/shared/service/api-supabase/supabase.se
 import { DataService } from 'src/app/shared/service/data/data.service';
 
 @Component({
-  selector: 'app-subject-modules',
+  selector: 'app-course-management',
   standalone: true,
   templateUrl: './subject-modules.component.html',
   styleUrls: ['./subject-modules.component.scss'],
@@ -21,14 +21,16 @@ import { DataService } from 'src/app/shared/service/data/data.service';
 })
 export class SubjectModulesComponent implements OnInit {
   course: any = null;
-  selectedTab: string = 'about'; // Default tab
-  selectedModuleIndex: number = 0; // Track the selected module
-  selectedMaterial: any = null; // Track the selected material
-  isEditing: boolean = false; // Track if editing mode is enabled
-
+  selectedTab: string = 'materials';
+  selectedModuleIndex: number = 0;
+  selectedMaterial: any = null;
+  showAssignmentDetails: boolean = false;
+  selectedAssignment: any = null;
+  isEditing: boolean = false;
   searchTerm: string = '';
-  allUsers: any[] = []; // Track all users
+  allUsers: any[] = [];
   showEnrollModal: boolean = false;
+  tabs: string[] = ['Materials', 'Assignments', 'Quiz', 'Exams', 'Student Management'];
 
   private userSubscription: Subscription | undefined;
 
@@ -41,12 +43,7 @@ export class SubjectModulesComponent implements OnInit {
     private userService: UserService,
     private supabaseService: SupabaseService,
     private dataService: DataService,
-
   ) {}
-
-  getUserRole() {
-    return this.role;
-  }
 
   async ngOnInit() {
     const _user = await this.userService.getUser();
@@ -56,76 +53,96 @@ export class SubjectModulesComponent implements OnInit {
       this.user = user;
     });
 
-    this.course = history.state.course || this.fetchCourseData();
+    this.course = history.state.course || await this.fetchCourseData();
 
     if (!this.course) {
-      this.router.navigate(['/']);  // Redirect if course data is missing
+      this.router.navigate(['/']);
     } else {
-      // Ensure consistent structure for students
       this.course.enrolledStudents = this.course.enrolledStudents || [];
-
-      // Fetch all users
       this.allUsers = await this.userService.getAllUsers();
     }
   }
 
-  fetchCourseData(): any {
-    return null; // Replace this with actual data fetching logic
+  async fetchCourseData(): Promise<any> {
+    // Implement your data fetching logic here
+    return null;
   }
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
-    this.selectedMaterial = null; // Reset selected material when changing tabs
+    this.selectedMaterial = null;
+    this.showAssignmentDetails = false;
   }
 
   selectModule(index: number): void {
     this.selectedModuleIndex = index;
-    this.sortMaterialsByDate(); // Sort materials when the module changes
-    this.selectedMaterial = null; // Reset selected material when changing modules
+    this.sortMaterialsByDate();
+    this.selectedMaterial = null;
+    this.showAssignmentDetails = false;
   }
 
   goToNextModule(): void {
     if (this.selectedModuleIndex < this.course.modules.length - 1) {
       this.selectedModuleIndex++;
-      this.sortMaterialsByDate(); // Sort materials when navigating to the next module
-      this.selectedMaterial = null; // Reset selected material when moving to the next module
+      this.sortMaterialsByDate();
+      this.selectedMaterial = null;
+      this.showAssignmentDetails = false;
     }
   }
 
   selectMaterial(material: any): void {
     this.selectedMaterial = material;
-    if (!material.link) {
-      console.error('No link provided for this material');
-    } else {
-      fetch(material.link)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .catch((error) => {
-          console.error('Error loading material:', error);
-        });
-    }
   }
 
-  downloadMaterial(material: any, event: Event): void {
-    event.stopPropagation();
-    const link = document.createElement('a');
-    link.href = material.link;
-    link.download = material.title;
-    link.click();
+  closeMaterialView(): void {
+    this.selectedMaterial = null;
   }
 
-  replaceMaterialFile(material: any, event: any): void {
+  showDetails(index: number): void {
+    this.selectedAssignment = this.course.modules[this.selectedModuleIndex].assignments[index];
+    this.showAssignmentDetails = true;
+  }
+
+  hideDetails(): void {
+    this.selectedAssignment = null;
+    this.showAssignmentDetails = false;
+  }
+
+  onFileSelected(event: any): void {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        material.link = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    if (file && this.selectedAssignment) {
+      this.selectedAssignment.submittedFile = file;
     }
+  }
+
+  submitAssignment(): void {
+    if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
+      this.selectedAssignment.submitted = true;
+      alert('Assignment submitted successfully!');
+    } else {
+      alert('Please select a file to submit.');
+    }
+  }
+
+  getMaterialIcon(type: string): string {
+    switch (type) {
+      case 'pdf':
+        return 'fa-file-pdf';
+      case 'video':
+        return 'fa-video';
+      case 'image':
+        return 'fa-image';
+      default:
+        return 'fa-file';
+    }
+  }
+
+  private sortMaterialsByDate(): void {
+    const materials = this.course.modules[this.selectedModuleIndex].materials;
+    materials.sort((a: any, b: any) => new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime());
+    materials.forEach((material: any, index: number) => {
+      material.index = index + 1;
+    });
   }
 
   toggleEditing(): void {
@@ -154,64 +171,25 @@ export class SubjectModulesComponent implements OnInit {
     this.course.modules[this.selectedModuleIndex].exams.splice(index, 1);
   }
 
-  // enrollStudent(user: any): void {
-  //   // Check if the user is already enrolled
-  //   const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
-
-  //   if (!alreadyEnrolled) {
-  //       // Add the user to the enrolledStudents list
-  //       this.course.enrolledStudents.push({
-  //           name: user.name,
-  //           email: user.email,
-  //           progress: 0 // You can adjust the default progress if needed
-  //       });
-
-  //       // Save the updated course data to local storage
-  //       localStorage.setItem('courseData', JSON.stringify(this.course));
-
-  //       // Remove the user from the allUsers list to prevent re-enrollment
-  //       const index = this.allUsers.indexOf(user);
-  //       if (index !== -1) {
-  //           this.allUsers.splice(index, 1);
-  //       }
-  //   }
-  // }
-
-  // openEnrollModal(): void {
-  //   this.userService.getAllUsers().then(users => {
-  //     this.allUsers = users; // Fetch and assign all users to the allUsers array
-  //   }).catch(error => {
-  //     console.error('Failed to fetch users:', error);
-  //   });
-  //   this.showEnrollModal = true;
-  // }
-
   enrollStudent(user: any): void {
-    // Check if the user is already enrolled
     const alreadyEnrolled = this.course.enrolledStudents.some((student: any) => student.email === user.email);
 
     if (!alreadyEnrolled) {
-        // Construct the full name using first_name and last_name
-        const fullName = `${user.first_name} ${user.last_name}`;
-        
-        // Add the user to the enrolledStudents list
-        this.course.enrolledStudents.push({
-            name: fullName,
-            email: user.email,
-            progress: 0 // You can adjust the default progress if needed
-        });
+      const fullName = `${user.first_name} ${user.last_name}`;
+      
+      this.course.enrolledStudents.push({
+        name: fullName,
+        email: user.email,
+        progress: 0
+      });
 
-        // Update the course data in the service
-        this.dataService.updateCourse(this.course);
+      this.dataService.updateCourse(this.course);
 
-        // Remove the user from the allUsers list to prevent re-enrollment
-        this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
+      this.allUsers = this.allUsers.filter((u: any) => u.email !== user.email);
 
-        // Notify the user
-        alert(`${fullName} has been successfully enrolled in the course.`);
+      alert(`${fullName} has been successfully enrolled in the course.`);
     }
-}
-
+  }
 
   openEnrollModal(): void {
     this.showEnrollModal = true;
@@ -229,72 +207,32 @@ export class SubjectModulesComponent implements OnInit {
     );
   }
 
-  getMaterialIcon(type: string): string {
-    switch (type) {
-      case 'pdf':
-        return 'fa-book';
-      case 'video':
-        return 'fa-video';
-      case 'image':
-        return 'fa-image';
-      default:
-        return 'fa-file';
+  replaceMaterialFile(material: any, event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        material.link = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
-  closeMaterialView(): void {
-    this.selectedMaterial = null;
+  downloadMaterial(material: any, event: Event): void {
+    event.stopPropagation();
+    const link = document.createElement('a');
+    link.href = material.link;
+    link.download = material.title;
+    link.click();
   }
 
-  private sortMaterialsByDate(): void {
-    const materials = this.course.modules[this.selectedModuleIndex].materials;
-    materials.sort((a: any, b: any) => new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime());
-    materials.forEach((material: any, index: number) => {
-      material.index = index + 1;
-    });
+  getUserRole(): string | null {
+    return this.role;
   }
 
-// Properties to manage assignment details view and selected assignment
-showAssignmentDetails: boolean = false;
-selectedAssignment: any = null;
-
-// Method to show the details of a selected assignment
-showDetails(index: number): void {
-  // Retrieve the selected assignment based on the index
-  this.selectedAssignment = this.course.modules[this.selectedModuleIndex].assignments[index];
-
-  // Log the selected assignment to ensure it's being set correctly
-  console.log('Selected Assignment:', this.selectedAssignment);
-
-  // Display the assignment details
-  this.showAssignmentDetails = true;
-}
-
-// Method to hide the assignment details and return to the assignment list
-hideDetails(): void {
-  this.selectedAssignment = null;
-  this.showAssignmentDetails = false;
-}
-
-// Method to handle file selection for submission
-onFileSelected(event: any): void {
-  const file = event.target.files[0];
-  if (file && this.selectedAssignment) {
-    this.selectedAssignment.submittedFile = file;
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
-}
-
-// Method to submit the selected assignment
-submitAssignment(): void {
-  if (this.selectedAssignment && this.selectedAssignment.submittedFile) {
-    // Mark the assignment as submitted
-    this.selectedAssignment.submitted = true;
-    alert('Assignment submitted successfully!');
-  } else {
-    alert('Please select a file to submit.');
-  }
-}
-
-
-
 }
