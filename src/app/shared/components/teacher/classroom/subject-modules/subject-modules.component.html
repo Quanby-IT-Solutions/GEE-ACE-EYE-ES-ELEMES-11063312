@@ -105,11 +105,38 @@
       <!-- Tab Navigation -->
       <nav class="border-b border-gray-300 mb-4">
         <div class="flex space-x-8">
-          <button *ngFor="let tab of tabs" (click)="selectTab(tab.key)" [ngClass]="{ 'text-green-600 border-b-4 border-green-600': selectedTab === tab.key, 'text-gray-500 hover:text-gray-700 hover:border-gray-300 pb-3 border-b-4 border-transparent transition-all duration-300': selectedTab !== tab.key }" class="text-lg font-medium">
+          <button 
+            *ngFor="let tab of [
+              { key: 'materials', label: 'Materials' },
+              { key: 'assignments', label: 'Assignments' },
+              { key: 'quiz', label: 'Quiz' },
+              { key: 'exams', label: 'Exams' }
+            ]" 
+            (click)="selectTab(tab.key)" 
+            [ngClass]="{ 
+              'text-green-600 border-b-4 border-green-600': selectedTab === tab.key, 
+              'text-gray-500 hover:text-gray-700 hover:border-gray-300 pb-3 border-b-4 border-transparent transition-all duration-300': selectedTab !== tab.key 
+            }" 
+            class="text-lg font-medium"
+          >
             {{ tab.label }}
+          </button>
+          
+          <!-- Conditionally display Student Management tab -->
+          <button 
+            *ngIf="getUserRole() === 'department_admin' || getUserRole() === 'instructor'"
+            (click)="selectTab('studentManagement')" 
+            [ngClass]="{ 
+              'text-green-600 border-b-4 border-green-600': selectedTab === 'studentManagement', 
+              'text-gray-500 hover:text-gray-700 hover:border-gray-300 pb-3 border-b-4 border-transparent transition-all duration-300': selectedTab !== 'studentManagement' 
+            }" 
+            class="text-lg font-medium"
+          >
+            Student Management
           </button>
         </div>
       </nav>
+      
 
       <!-- Tab Content -->
       <section *ngIf="selectedTab === 'materials'" class="space-y-4">
@@ -199,6 +226,7 @@
         <button *ngIf="isEditing" class="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all duration-300" (click)="addExam()">Add Exam</button>
       </section>
 
+      @if (getUserRole() === 'department_admin' || getUserRole() === 'instructor') {
       <section *ngIf="selectedTab === 'studentManagement'" class="space-y-6">
         <div class="flex justify-between items-center mb-6">
           <h3 class="text-2xl font-bold text-gray-800">Student Management</h3>
@@ -306,6 +334,7 @@
           </div>
         </div>
       </section>
+    }
       
       
 
