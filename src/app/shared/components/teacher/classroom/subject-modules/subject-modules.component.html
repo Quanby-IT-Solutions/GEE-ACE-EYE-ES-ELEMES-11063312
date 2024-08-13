@@ -159,71 +159,39 @@
       </section>
 
       <section *ngIf="selectedTab === 'assignments'" class="space-y-6">
-        <div *ngIf="!showAssignmentDetails" class="space-y-4">
+        <div *ngIf="!showTaskDetails" class="space-y-4">
           <h3 class="text-2xl font-bold text-gray-800">Assignments</h3>
           <div *ngFor="let assignment of course.modules[selectedModuleIndex].assignments; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showDetails(i)">
             <h4 class="text-lg font-semibold text-gray-800">{{ assignment.name }}</h4>
             <p class="text-gray-600 mt-2">Due Date: {{ assignment.dueDate | date:'fullDate' }}</p>
           </div>
         </div>
-        <div *ngIf="showAssignmentDetails" class="bg-white p-8 rounded-lg shadow-md">
+        <div *ngIf="showTaskDetails" class="bg-white p-8 rounded-lg shadow-md">
           <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
             <i class="fas fa-arrow-left mr-2"></i>Back to Assignments
           </button>
-          <div *ngIf="selectedAssignment">
-            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ selectedAssignment.name }}</h1>
-            <p class="text-sm text-gray-500">{{ selectedAssignment.instructor }}</p>
-            <p class="text-lg text-gray-600 mt-4 mb-6">Due Date: {{ selectedAssignment.dueDate | date:'fullDate' }}</p>
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">Details</h2>
-            <p class="text-gray-700 leading-relaxed">{{ selectedAssignment.details || 'No details available.' }}</p>
-            <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Resources</h2>
-            <div *ngIf="selectedAssignment.resources" class="space-y-2">
-              <div class="flex items-center space-x-2">
-                <i class="fas fa-file-pdf text-red-500"></i>
-                <a [href]="selectedAssignment.resources" target="_blank" class="text-blue-600 hover:underline font-medium">View Resource</a>
-              </div>
-            </div>
-            <p *ngIf="!selectedAssignment.resources" class="text-gray-600">No resources available.</p>
-            <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Submission</h2>
-            <p *ngIf="!selectedAssignment.submitted" class="text-gray-600 mb-4">You have not submitted this assignment yet.</p>
-            <div *ngIf="!selectedAssignment.submitted">
-              <div *ngIf="!fileUploaded" class="flex items-center space-x-4">
-                <div class="relative">
-                  <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="hidden" />
-                  <label for="fileUpload" class="flex items-center justify-center w-full max-w-xs px-5 py-3 bg-green-500 text-white text-lg font-semibold rounded-lg shadow-md cursor-pointer hover:bg-green-600 transition-all duration-300">
-                    <i class="fas fa-upload mr-2"></i> Choose File
-                  </label>
-                </div>
-              </div>
-            
-              <div *ngIf="fileUploaded" class="flex items-center space-x-4">
-                <button class="py-3 px-8 bg-yellow-500 text-white text-lg font-semibold rounded-lg hover:bg-yellow-600 shadow-md transition-all duration-300" (click)="changeFile()">Change File</button>
-                <button class="py-3 px-8 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 shadow-md transition-all duration-300" (click)="submitAssignment()">Submit</button>
-              </div>
-            </div>
-            
-            
-            <div *ngIf="selectedAssignment.submitted" class="text-green-600 mt-4 font-medium">
-              <p>Assignment submitted successfully!</p>
-            </div>
+          <div *ngIf="selectedTask">
+            <app-task-view [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
           </div>
         </div>
       </section>
 
       <section *ngIf="selectedTab === 'exams'" class="space-y-4">
-        <h3 class="text-2xl font-bold text-gray-800">Exams</h3>
-        <div *ngFor="let exam of course.modules[selectedModuleIndex].exams; let i = index" class="p-4 border border-gray-200 rounded-lg">
-          <div *ngIf="isEditing">
-            <input type="text" class="w-full text-lg font-semibold p-2 border border-gray-300 rounded-md mb-2" [(ngModel)]="exam.name" placeholder="Exam Name" />
-            <input type="date" class="w-full text-gray-700 p-2 border border-gray-300 rounded-md mb-2" [(ngModel)]="exam.dueDate" placeholder="Exam Date" />
-            <button class="bg-red-600 text-white rounded-md py-1 px-3 hover:bg-red-700 transition-all duration-300" (click)="removeExam(i)">Remove</button>
-          </div>
-          <div *ngIf="!isEditing">
-            <h4 class="text-lg font-semibold text-gray-800">{{ exam.name }}</h4>
-            <p class="text-gray-700 mt-2">Exam Date: {{ exam.dueDate | date:'fullDate' }}</p>
+        <div *ngIf="!showTaskDetails" class="space-y-4">
+          <h3 class="text-2xl font-bold text-gray-800">Examinations</h3>
+          <div *ngFor="let exams of course.modules[selectedModuleIndex].exams; let i = index" class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer hover:shadow-lg transition-transform transform hover:scale-105" (click)="showExamDetails(i)">
+            <h4 class="text-lg font-semibold text-gray-800">{{ exams.name }}</h4>
+            <p class="text-gray-600 mt-2">Exam Date: {{ exams.dueDate | date:'fullDate' }}</p>
           </div>
         </div>
-        <button *ngIf="isEditing" class="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all duration-300" (click)="addExam()">Add Exam</button>
+        <div *ngIf="showTaskDetails" class="bg-white p-8 rounded-lg shadow-md">
+          <button class="text-blue-600 hover:underline mb-6 flex items-center" (click)="hideDetails()">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Examinations
+          </button>
+          <div *ngIf="selectedTask">
+            <app-task-view [editing]="isEditing" [role]="getUserRole() ?? 'student'" [selectedTask]="selectedTask" [saveData]="saveData.bind(this)"></app-task-view>
+          </div>
+        </div>
       </section>
 
       @if (getUserRole() === 'department_admin' || getUserRole() === 'instructor') {

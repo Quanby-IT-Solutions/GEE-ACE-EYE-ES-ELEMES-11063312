@@ -5933,8 +5933,8 @@ export class DataService {
     this.saveCoursesToStorage(); // Save to localStorage
   }
 
-  private saveCoursesToStorage(): void {
-    localStorage.setItem('courses', JSON.stringify(this.courses));
+   saveCoursesToStorage(courses:any = undefined): void {
+    localStorage.setItem('courses', JSON.stringify( courses ?? this.courses));
   }
 
   private getCoursesFromStorage(): any[] | null {
