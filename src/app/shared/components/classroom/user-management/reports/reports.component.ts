@@ -8,15 +8,25 @@ interface UserStatistics {
   usersByStatus: { status: string; count: number }[];
 }
 
-interface IndividualReport {
+interface BaseReport {
   name: string;
   email: string;
   lastSeen: string;
+}
+
+interface LearnerReport extends BaseReport {
   progress: number;
   pace: string;
   averageScore: number;
-  role: string;
 }
+
+interface InstructorReport extends BaseReport {
+  course: string;
+  averageLearnerFeedback: string;
+  courseProgress: number;
+}
+
+type Report = LearnerReport | InstructorReport;
 
 @Component({
   selector: 'app-reports',
@@ -26,6 +36,7 @@ interface IndividualReport {
   styleUrl: './reports.component.scss',
 })
 export class ReportsComponent implements OnInit {
+  activeRole: 'Learner' | 'Instructor' | 'Administrator' = 'Learner';
   userStats: UserStatistics = {
     totalUsers: 2350,
     newUsers: 900,
@@ -41,7 +52,7 @@ export class ReportsComponent implements OnInit {
     ],
   };
 
-  individualReports: IndividualReport[] = [
+  learnerReports: LearnerReport[] = [
     {
       name: 'Alice Lee',
       email: 'alicelee@gmail.com',
@@ -49,7 +60,6 @@ export class ReportsComponent implements OnInit {
       progress: 70,
       pace: 'On track',
       averageScore: 85,
-      role: 'Learner',
     },
     {
       name: 'Bob Smith',
@@ -58,7 +68,6 @@ export class ReportsComponent implements OnInit {
       progress: 40,
       pace: 'Behind',
       averageScore: 75,
-      role: 'Learner',
     },
     {
       name: 'Charlie Brown',
@@ -67,25 +76,57 @@ export class ReportsComponent implements OnInit {
       progress: 90,
       pace: 'Ahead',
       averageScore: 95,
-      role: 'Learner',
+    },
+  ];
+
+  instructorReports: InstructorReport[] = [
+    {
+      name: 'Bob Smith',
+      email: 'bobsmith@gmail.com',
+      lastSeen: '1 day ago',
+      course: 'Python courses',
+      averageLearnerFeedback: 'Great',
+      courseProgress: 75,
+    },
+    {
+      name: 'Charlie Brown',
+      email: 'charliebrown@gmail.com',
+      lastSeen: '3 days ago',
+      course: 'Management courses',
+      averageLearnerFeedback: 'Average',
+      courseProgress: 85,
     },
     {
       name: 'David Johnson',
       email: 'davidjohnson@gmail.com',
-      lastSeen: '1 hour ago',
-      progress: 100,
-      pace: 'Completed',
-      averageScore: 92,
-      role: 'Instructor',
+      lastSeen: '5 days ago',
+      course: 'Media editing Courses',
+      averageLearnerFeedback: 'Bad',
+      courseProgress: 80,
     },
     {
       name: 'Emma Davis',
       email: 'emmadavis@gmail.com',
-      lastSeen: 'Just now',
-      progress: 100,
-      pace: 'Completed',
-      averageScore: 98,
-      role: 'Administrator',
+      lastSeen: '4 days ago',
+      course: 'UI/UX Courses',
+      averageLearnerFeedback: 'Great',
+      courseProgress: 78,
+    },
+    {
+      name: 'Frank Wilson',
+      email: 'frankwilson@gmail.com',
+      lastSeen: '6 days ago',
+      course: 'HTML & CSS Courses',
+      averageLearnerFeedback: 'Great',
+      courseProgress: 92,
+    },
+    {
+      name: 'Grace Martinez',
+      email: 'gracemartinez@gmail.com',
+      lastSeen: '7 days ago',
+      course: 'Programming Courses',
+      averageLearnerFeedback: 'Average',
+      courseProgress: 88,
     },
   ];
 
@@ -102,8 +143,6 @@ export class ReportsComponent implements OnInit {
     { month: 'Aug', users: 600 },
     { month: 'Sep', users: 900 },
   ];
-
-  activeRole: string = 'Learner';
 
   constructor() {}
 
@@ -136,13 +175,19 @@ export class ReportsComponent implements OnInit {
     return `${(count / this.userStats.totalUsers) * 100}%`;
   }
 
-  setActiveRole(role: string): void {
+  setActiveRole(role: 'Learner' | 'Instructor' | 'Administrator'): void {
     this.activeRole = role;
   }
 
-  getFilteredReports(): IndividualReport[] {
-    return this.individualReports.filter(
-      (report) => report.role === this.activeRole
-    );
+  getFilteredReports(): Report[] {
+    return this.activeRole === 'Instructor' ? this.instructorReports : this.learnerReports;
+  }
+
+  isInstructorReport(report: Report): report is InstructorReport {
+    return (report as InstructorReport).course !== undefined;
+  }
+
+  isLearnerReport(report: Report): report is LearnerReport {
+    return (report as LearnerReport).progress !== undefined;
   }
 }
