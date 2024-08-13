@@ -5287,6 +5287,8 @@ export class DataService {
   // courses, tasks, assessments, grades
   private course: any;
   private defaultCourses = [
+
+    // information technology
     {
       instructor: 'Anton Caesar Cabais',
       instructor_profile: 'assets/img/ton.jpg',
@@ -5316,7 +5318,9 @@ export class DataService {
               dueDate: new Date(2024, 7, 11), 
               score: '10/12',  
               details: 'This assignment covers the basics of IT, including understanding computer hardware and software.',
-              resources: '/assets/courses/teach.pdf',
+              resources: [
+                { name: 'IT Basics', link: 'assets/courses/teach.pdf' }
+              ]            
             },
           ],
           
@@ -5378,34 +5382,35 @@ export class DataService {
         }
       ],
       enrolledStudents: [
-        { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20' },
-        { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60' },
-        { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40' },
-        { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50' },
-        { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30' },
-        { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70' },
-        { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90' },
-        { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60' },
-        { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40' },
-        { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80' },
-        { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50' },
-        { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70' },
-        { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30' },
-        { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60' },
-        { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90' },
-        { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70' },
-        { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50' },
-        { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40' },
-        { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60' },
-        { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80' }
+       
+        { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
+        { name: 'Emilia Aguinaldo', email: 'emiliaaguinaldo@gmail.com', progress: '50' },
+        { name: 'Daniela Bautista', email: 'danielabautista@gmail.com', progress: '30' },
+        { name: 'Sophia Reyes', email: 'sophiareyes@gmail.com', progress: '70' },
+        { name: 'William Cruz', email: 'williamcruz@gmail.com', progress: '90' },
+        { name: 'Olivia Lopez', email: 'olivialopez@gmail.com', progress: '60' },
+        { name: 'Jaime Tan', email: 'jaimetan@gmail.com', progress: '40' },
+        { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },
+        { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
+        { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
+        { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', progress: '30' },
+  
+        { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
+        { name: 'Mason Hernandez', email: 'masonhernandez@gmail.com', progress: '50' },
+        { name: 'Charlotta Dela Rosa', email: 'charlottadelarosa@gmail.com', progress: '40' },
+        { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
+        { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
       ]
+      
     },
     
 
+    // cybersecurity
+
    {
       instructor: 'Anton Caesar Cabais',
-      instructor_profile: 'assets/img/ton.jpg',
-      course: 'Cybersecurity Fundamentals',
+      instructor_profile: 'assets/img/tonn.jpeg',
+      course: 'Cybersecurity ',
       subject: 'Cybersecurity',
       block: 'B',
       startDate: new Date(2024, 8, 1),
@@ -5433,7 +5438,7 @@ export class DataService {
           assignments: [
             { 
               name: 'Cybersecurity Homework 1', 
-              dueDate: new Date(2024, 8, 10), 
+              dueDate: new Date(2024, 7, 15), 
               score: '15/20',  
               details: 'This assignment covers the basic concepts and importance of cybersecurity.',
               resources: '/assets/courses/teach.pdf',
@@ -5496,752 +5501,354 @@ export class DataService {
       ],
     
       enrolledStudents: [
-        { name: 'Alice Johnson', email: 'alicejohnson@gmail.com', progress: '25' },
-        { name: 'Bob Smith', email: 'bobsmith@gmail.com', progress: '70' },
-        { name: 'Charlie Brown', email: 'charliebrown@gmail.com', progress: '45' },
-        { name: 'Diana Prince', email: 'dianaprince@gmail.com', progress: '60' },
-        { name: 'Ethan Hunt', email: 'ethanhunt@gmail.com', progress: '30' },
-        { name: 'Fiona Gallagher', email: 'fionagallagher@gmail.com', progress: '75' },
-        { name: 'George Miller', email: 'georgemiller@gmail.com', progress: '85' },
-        { name: 'Hannah Wilson', email: 'hannahwilson@gmail.com', progress: '55' },
-        { name: 'Ian Fleming', email: 'ianfleming@gmail.com', progress: '40' },
-        { name: 'Jack Ryan', email: 'jackryan@gmail.com', progress: '65' },
-        { name: 'Katherine Johnson', email: 'katherinejohnson@gmail.com', progress: '50' },
-        { name: 'Liam Neeson', email: 'liamneeson@gmail.com', progress: '80' },
-        { name: 'Mona Lisa', email: 'monalisa@gmail.com', progress: '70' },
-        { name: 'Nathan Drake', email: 'nathandrake@gmail.com', progress: '60' },
-        { name: 'Olivia Pope', email: 'oliviapope@gmail.com', progress: '90' },
-        { name: 'Patrick Jane', email: 'patrickjane@gmail.com', progress: '75' },
-        { name: 'Quinn Fabray', email: 'quinnfabray@gmail.com', progress: '65' },
-        { name: 'Riley Matthews', email: 'rileymatthews@gmail.com', progress: '70' },
-        { name: 'Sophia Loren', email: 'sophialoren@gmail.com', progress: '85' },
-        { name: 'Tony Stark', email: 'tonystark@gmail.com', progress: '95' }
+        { name: 'Juan Dela Cruz', email: 'juandelacruz@gmail.com', progress: '20' },
+        { name: 'Maria Santos', email: 'mariasantos@gmail.com', progress: '60' },
+        { name: 'Jose Rizal', email: 'joserizal@gmail.com', progress: '40' },
+        
+        { name: 'Ava Garcia', email: 'avagarcia@gmail.com', progress: '80' },
+        { name: 'Benigno Ramos', email: 'benignoramos@gmail.com', progress: '50' },
+        { name: 'Mia Fernandez', email: 'miafernandez@gmail.com', progress: '70' },
+        { name: 'Elias Mendoza', email: 'eliasmendoza@gmail.com', progress: '30' },
+        { name: 'Isabella Cruz', email: 'isabellacruz@gmail.com', progress: '60' },
+        { name: 'Lucas Santos', email: 'lucassantos@gmail.com', progress: '90' },
+        { name: 'Amelia Villanueva', email: 'ameliavillanueva@gmail.com', progress: '70' },
+  
+        { name: 'Ethan Flores', email: 'ethanflores@gmail.com', progress: '60' },
+        { name: 'Abigail Navarro', email: 'abigailnavarro@gmail.com', progress: '80' }
+      ]
+      
+    },
+
+    // privacy and data protection
+
+    {
+      instructor: 'Kenneth James Belga',
+      instructor_profile: 'assets/img/kenB.jpg',
+      course: 'Privacy and Data Protection',
+      subject: 'Data Protection',
+      block: 'A',
+      startDate: new Date(2024, 8, 10),
+      time: '10:00 - 11:30',
+      grade: '85',
+      enrollmentKey: 'privacy2024',
+      progress: '70',
+      imageUrl: 'assets/img/dataprivacy.webp',
+      enrolled: 'yes',
+      
+   
+      
+      modules: [
+        {
+          title: 'Introduction to Data Protection',
+          description: 'Understanding the fundamentals of data protection',
+          about: 'This module covers the basic concepts of data protection, including the importance of safeguarding personal information and regulatory frameworks.',
+          materials: [
+            { title: 'Data Protection Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/data_protection_basics.pdf', uploadDate: new Date(2024, 7, 30) },
+            { title: 'Data Protection Basics - Video Lecture', type: 'video', link: '/assets/courses/data_protection_basics.mp4', uploadDate: new Date(2024, 7, 31) },
+            { title: 'GDPR Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/gdpr_overview.pdf', uploadDate: new Date(2024, 8, 1) }
+          ],
+          assignments: [
+            { 
+              name: 'Data Protection Homework 1', 
+              dueDate: new Date(2024, 8, 15), 
+              score: '18/20',  
+              details: 'This assignment focuses on understanding the principles of data protection and privacy regulations.',
+              resources: '/assets/courses/data_protection_basics.pdf',
+            },
+          ],
+          exams: [
+            { name: 'Data Protection Quiz', dueDate: new Date(2024, 8, 25), score: '40/50' }
+          ]
+        },
+        {
+          title: 'Privacy Laws and Regulations',
+          description: 'Exploring global privacy laws and regulations',
+          about: 'This module delves into the various privacy laws and regulations around the world, such as GDPR, CCPA, and others.',
+          materials: [
+            { title: 'Privacy Laws - Lecture Notes', type: 'pdf', link: '/assets/courses/privacy_laws_notes.pdf', uploadDate: new Date(2024, 8, 5) },
+            { title: 'Privacy Laws - Video Lecture', type: 'video', link: '/assets/courses/privacy_laws_lecture.mp4', uploadDate: new Date(2024, 8, 6) },
+            { title: 'CCPA Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/ccpa_overview.pdf', uploadDate: new Date(2024, 8, 7) }
+          ],
+          assignments: [
+            { name: 'Privacy Laws Homework', dueDate: new Date(2024, 8, 20), score: '22/25' },
+            { name: 'GDPR vs CCPA Analysis', dueDate: new Date(2024, 8, 25), score: '24/25' },
+            { 
+              name: 'Privacy Regulation Case Study', 
+              dueDate: new Date(2024, 8, 30), 
+              score: '23/25',
+              resources: [
+                { name: 'Privacy Case Study Guide', link: '/assets/courses/privacy_case_study_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Privacy Laws Test', dueDate: new Date(2024, 9, 5), score: '42/50' }
+          ]
+        },
+        {
+          title: 'Data Privacy in Practice',
+          description: 'Implementing data privacy measures in organizations',
+          about: 'In this module, you will learn practical approaches to implementing data privacy measures within organizations, including data handling and breach management.',
+          materials: [
+            { title: 'Data Privacy Implementation - Lecture Notes', type: 'pdf', link: '/assets/courses/data_privacy_implementation.pdf', uploadDate: new Date(2024, 8, 15) },
+            { title: 'Data Privacy Implementation - Video Lecture', type: 'video', link: '/assets/courses/data_privacy_lecture.mp4', uploadDate: new Date(2024, 8, 16) },
+            { title: 'Breach Management - Supplementary Reading', type: 'pdf', link: '/assets/courses/breach_management.pdf', uploadDate: new Date(2024, 8, 17) }
+          ],
+          assignments: [
+            { name: 'Data Privacy Audit Exercise', dueDate: new Date(2024, 9, 10), score: '19/20' },
+            { name: 'Data Breach Response Plan', dueDate: new Date(2024, 9, 15), score: '20/20' },
+            { 
+              name: 'Data Privacy Implementation Homework', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '18/20',
+              resources: [
+                { name: 'Data Privacy Audit Guide', link: '/assets/courses/data_privacy_audit_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 9, 30), score: '88/100' }
+          ]
+        }
+      ],
+      
+      enrolledStudents: [
+        { name: 'Sophia Lopez', email: 'sophialopez@gmail.com', progress: '30' },
+        { name: 'Liam Martinez', email: 'liammartinez@gmail.com', progress: '70' },
+        { name: 'Noah Garcia', email: 'noahgarcia@gmail.com', progress: '50' },
+        { name: 'Olivia Hernandez', email: 'oliviahernandez@gmail.com', progress: '60' },
+        { name: 'Emma Gonzales', email: 'emmagonzales@gmail.com', progress: '80' },
+        { name: 'James Rodriguez', email: 'jamesrodriguez@gmail.com', progress: '55' },
+        { name: 'Mia Diaz', email: 'miadiaz@gmail.com', progress: '75' },
+        { name: 'Lucas Perez', email: 'lucasperez@gmail.com', progress: '40' },
+        { name: 'Ethan Sanchez', email: 'ethansanchez@gmail.com', progress: '65' },
+        { name: 'Ava Ramirez', email: 'avaramirez@gmail.com', progress: '85' },
+        { name: 'Isabella Flores', email: 'isabellaflores@gmail.com', progress: '45' },
+        { name: 'Oliver Morales', email: 'olivermorales@gmail.com', progress: '90' }
       ]
     },
+
+    {
+      instructor: 'Kenneth James Belga',
+      instructor_profile: 'assets/img/kenB.jpg',
+      course: 'Python Programming Language',
+      subject: 'Programming',
+      block: 'C',
+      startDate: new Date(2024, 8, 15),
+      time: '13:00 - 14:30',
+      grade: '92',
+      enrollmentKey: 'python2024',
+      progress: '85',
+      imageUrl: 'assets/img/pythonn.jpg', 
+      enrolled: 'yes',
+      
+      prerequisite: {
+        course: 'Introduction to Programming'
+      },
+      
+      modules: [
+        {
+          title: 'Getting Started with Python',
+          description: 'An introduction to Python programming',
+          about: 'This module covers the basics of Python programming, including setting up the environment, understanding Python syntax, and writing simple programs.',
+          materials: [
+            { title: 'Python Basics - Lecture Notes', type: 'pdf', link: '/assets/courses/python_basics.pdf', uploadDate: new Date(2024, 8, 5) },
+            { title: 'Python Installation Guide - Video Tutorial', type: 'video', link: '/assets/courses/python_installation.mp4', uploadDate: new Date(2024, 8, 6) },
+            { title: 'Python Syntax Overview - Supplementary Reading', type: 'pdf', link: '/assets/courses/python_syntax.pdf', uploadDate: new Date(2024, 8, 7) }
+          ],
+          assignments: [
+            { 
+              name: 'Python Basics Homework 1', 
+              dueDate: new Date(2024, 8, 20), 
+              score: '18/20',  
+              details: 'This assignment involves writing basic Python programs to reinforce understanding of the syntax and simple operations.',
+              resources: '/assets/courses/python_basics.pdf',
+            },
+          ],
+          exams: [
+            { name: 'Python Basics Quiz', dueDate: new Date(2024, 8, 30), score: '45/50' }
+          ]
+        },
+        {
+          title: 'Data Structures in Python',
+          description: 'Understanding and using data structures in Python',
+          about: 'This module explores Python’s built-in data structures like lists, tuples, dictionaries, and sets, and how to use them effectively in programming.',
+          materials: [
+            { title: 'Python Data Structures - Lecture Notes', type: 'pdf', link: '/assets/courses/python_data_structures.pdf', uploadDate: new Date(2024, 8, 10) },
+            { title: 'Data Structures - Video Lecture', type: 'video', link: '/assets/courses/data_structures.mp4', uploadDate: new Date(2024, 8, 11) },
+            { title: 'Advanced Data Structures - Supplementary Reading', type: 'pdf', link: '/assets/courses/advanced_data_structures.pdf', uploadDate: new Date(2024, 8, 12) }
+          ],
+          assignments: [
+            { name: 'Data Structures Homework', dueDate: new Date(2024, 9, 5), score: '23/25' },
+            { name: 'Building a Dictionary-based Application', dueDate: new Date(2024, 9, 10), score: '22/25' },
+            { 
+              name: 'List and Tuple Operations', 
+              dueDate: new Date(2024, 9, 15), 
+              score: '24/25',
+              resources: [
+                { name: 'Data Structures Guide', link: '/assets/courses/data_structures_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Data Structures Test', dueDate: new Date(2024, 9, 20), score: '47/50' }
+          ]
+        },
+        {
+          title: 'Object-Oriented Programming in Python',
+          description: 'Implementing OOP concepts in Python',
+          about: 'In this module, students learn how to implement object-oriented programming concepts in Python, such as classes, objects, inheritance, and polymorphism.',
+          materials: [
+            { title: 'OOP in Python - Lecture Notes', type: 'pdf', link: '/assets/courses/oop_python.pdf', uploadDate: new Date(2024, 9, 1) },
+            { title: 'Classes and Objects - Video Lecture', type: 'video', link: '/assets/courses/classes_objects.mp4', uploadDate: new Date(2024, 9, 2) },
+            { title: 'Inheritance and Polymorphism - Supplementary Reading', type: 'pdf', link: '/assets/courses/inheritance_polymorphism.pdf', uploadDate: new Date(2024, 9, 3) }
+          ],
+          assignments: [
+            { name: 'OOP Concepts Homework', dueDate: new Date(2024, 9, 20), score: '20/20' },
+            { name: 'Building a Python Class', dueDate: new Date(2024, 9, 25), score: '19/20' },
+            { 
+              name: 'OOP Project', 
+              dueDate: new Date(2024, 9, 30), 
+              score: '25/25',
+              resources: [
+                { name: 'OOP Project Guide', link: '/assets/courses/oop_project_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 10, 5), score: '90/100' }
+          ]
+        }
+      ],
+      
+      enrolledStudents: [
+        { name: 'John Smith', email: 'johnsmith@gmail.com', progress: '40' },
+        { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '80' },
+        { name: 'David Johnson', email: 'davidjohnson@gmail.com', progress: '60' },
+        { name: 'Sarah Wilson', email: 'sarahwilson@gmail.com', progress: '55' },
+        { name: 'Michael Brown', email: 'michaelbrown@gmail.com', progress: '70' },
+        { name: 'Jessica Martinez', email: 'jessicamartinez@gmail.com', progress: '65' },
+        { name: 'James Anderson', email: 'jamesanderson@gmail.com', progress: '75' },
+        { name: 'Linda Moore', email: 'lindamoore@gmail.com', progress: '45' },
+        { name: 'Robert Jackson', email: 'robertjackson@gmail.com', progress: '85' },
+        { name: 'Karen Lee', email: 'karenlee@gmail.com', progress: '90' },
+        { name: 'Charles White', email: 'charleswhite@gmail.com', progress: '50' },
+        { name: 'Jennifer Harris', email: 'jenniferharris@gmail.com', progress: '95' }
+      ]
+    },
+
+    {
+      instructor: 'Anton Caesar Cabais',
+      instructor_profile: 'assets/img/tonn.jpeg',
+      course: 'Introduction to Programming',
+      subject: 'Programming',
+      block: 'D',
+      startDate: new Date(2024, 8, 20),
+      time: '09:00 - 10:30',
+      grade: '88',
+      enrollmentKey: 'introprog2024',
+      progress: '65',
+      imageUrl: 'assets/img/introtoprog.png',
+      enrolled: 'yes',
+      
+      
+      modules: [
+        {
+          title: 'Understanding Programming Concepts',
+          description: 'Introduction to basic programming concepts',
+          about: 'This module covers fundamental programming concepts such as variables, data types, and control structures. It is designed for complete beginners.',
+          materials: [
+            { title: 'Programming Concepts - Lecture Notes', type: 'pdf', link: '/assets/courses/programming_concepts.pdf', uploadDate: new Date(2024, 8, 10) },
+            { title: 'Variables and Data Types - Video Lecture', type: 'video', link: '/assets/courses/variables_datatypes.mp4', uploadDate: new Date(2024, 8, 11) },
+            { title: 'Control Structures - Supplementary Reading', type: 'pdf', link: '/assets/courses/control_structures.pdf', uploadDate: new Date(2024, 8, 12) }
+          ],
+          assignments: [
+            { 
+              name: 'Basic Concepts Homework', 
+              dueDate: new Date(2024, 8, 25), 
+              score: '17/20',  
+              details: 'This assignment focuses on understanding and applying basic programming concepts covered in the lectures.',
+              resources: '/assets/courses/programming_concepts.pdf',
+            },
+          ],
+          exams: [
+            { name: 'Concepts Quiz', dueDate: new Date(2024, 9, 5), score: '42/50' }
+          ]
+        },
+        {
+          title: 'Introduction to Algorithms',
+          description: 'Learning the basics of algorithms',
+          about: 'This module introduces students to algorithms and their importance in programming. It covers basic algorithmic thinking and problem-solving techniques.',
+          materials: [
+            { title: 'Algorithms - Lecture Notes', type: 'pdf', link: '/assets/courses/algorithms_notes.pdf', uploadDate: new Date(2024, 8, 20) },
+            { title: 'Algorithm Basics - Video Lecture', type: 'video', link: '/assets/courses/algorithm_basics.mp4', uploadDate: new Date(2024, 8, 21) },
+            { title: 'Sorting and Searching Algorithms - Supplementary Reading', type: 'pdf', link: '/assets/courses/sorting_searching.pdf', uploadDate: new Date(2024, 8, 22) }
+          ],
+          assignments: [
+            { name: 'Algorithm Practice Homework', dueDate: new Date(2024, 9, 10), score: '20/25' },
+            { name: 'Sorting Algorithms Exercise', dueDate: new Date(2024, 9, 15), score: '22/25' },
+            { 
+              name: 'Algorithm Design Task', 
+              dueDate: new Date(2024, 9, 20), 
+              score: '23/25',
+              resources: [
+                { name: 'Algorithm Design Guide', link: '/assets/courses/algorithm_design_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Algorithm Quiz', dueDate: new Date(2024, 9, 25), score: '45/50' }
+          ]
+        },
+        {
+          title: 'Introduction to Programming Languages',
+          description: 'An overview of various programming languages',
+          about: 'This module gives an overview of different programming languages, their use cases, and the basics of writing code in languages like Python, JavaScript, and Java.',
+          materials: [
+            { title: 'Programming Languages Overview - Lecture Notes', type: 'pdf', link: '/assets/courses/programming_languages.pdf', uploadDate: new Date(2024, 9, 1) },
+            { title: 'Python vs JavaScript - Video Lecture', type: 'video', link: '/assets/courses/python_vs_js.mp4', uploadDate: new Date(2024, 9, 2) },
+            { title: 'Introduction to Python - Supplementary Reading', type: 'pdf', link: '/assets/courses/intro_python.pdf', uploadDate: new Date(2024, 9, 3) }
+          ],
+          assignments: [
+            { name: 'Programming Languages Comparison Homework', dueDate: new Date(2024, 9, 20), score: '18/20' },
+            { name: 'Basic Python Programming Task', dueDate: new Date(2024, 9, 25), score: '19/20' },
+            { 
+              name: 'Writing Simple Programs', 
+              dueDate: new Date(2024, 9, 30), 
+              score: '20/20',
+              resources: [
+                { name: 'Programming Basics Guide', link: '/assets/courses/programming_basics_guide.pdf' }
+              ]
+            }
+          ],
+          exams: [
+            { name: 'Final Exam', dueDate: new Date(2024, 10, 10), score: '85/100' }
+          ]
+        }
+      ],
+      
+      enrolledStudents: [
+        { name: 'Olivia Smith', email: 'oliviasmith@gmail.com', progress: '25' },
+        { name: 'Liam Johnson', email: 'liamjohnson@gmail.com', progress: '70' },
+        { name: 'Sophia Williams', email: 'sophiawilliams@gmail.com', progress: '50' },
+        { name: 'Benjamin Brown', email: 'benjaminbrown@gmail.com', progress: '60' },
+        { name: 'Emma Jones', email: 'emmajones@gmail.com', progress: '80' },
+        { name: 'Lucas Garcia', email: 'lucasgarcia@gmail.com', progress: '55' },
+        { name: 'Mia Martinez', email: 'miamartinez@gmail.com', progress: '75' },
+        { name: 'Ethan Davis', email: 'ethandavis@gmail.com', progress: '40' },
+        { name: 'Ava Rodriguez', email: 'avarodriguez@gmail.com', progress: '85' },
+        { name: 'Noah Wilson', email: 'noahwilson@gmail.com', progress: '90' },
+        { name: 'Isabella Taylor', email: 'isabellataylor@gmail.com', progress: '45' },
+        { name: 'James Harris', email: 'jamesharris@gmail.com', progress: '95' }
+      ]
+    }
+    
+    
+    
     
 
 
     
-
-      {
-        instructor: 'Chrisma Maxwell',
-        instructor_profile: 'assets/img/bini.jpeg', 
-        course: 'Physics 201',
-        subject: 'Mechanics',
-        block: 'B',
-        startDate: new Date(2024, 8, 21),
-        enrollmentKey: '12345',
-
-        time: '10:00 - 11:00',
-        grade: '92',
-        progress: '85',
-        imageUrl: 'assets/img/physics.png',
-        enrolled: 'no',
-  
-        modules: [
-          {
-            title: 'Introduction to Mechanics',
-            description: 'Basic Concepts in Mechanics',
-            about: 'This module introduces the foundational concepts in mechanics, including force, motion, and energy.',
-            materials: [
-              { title: 'Introduction to Mechanics - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Introduction to Mechanics - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Mechanics', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Mechanics Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Mechanics  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
-              { 
-                name: 'Mechanics Homework 2', 
-                dueDate: new Date(2024, 7, 22), 
-                score: '11/12',
-                resources: [
-                  { name: 'Mechanics Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '40/60'  }
-            ]
-          },
-          {
-            title: 'Newton’s Laws of Motion',
-            description: 'Understanding Newton’s Laws',
-            about: 'This module provides a detailed study of Newton’s three laws of motion and their practical applications.',
-            materials: [
-              { title: 'Newton’s Laws - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Newton’s Laws - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Newton’s Laws', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Newton Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Newton ', dueDate: new Date(2024, 8, 3), score: '10/12'  },
-              { 
-                name: 'Newton Homework 2', 
-                dueDate: new Date(2024, 8, 6), 
-                score: '12/12',
-                resources: [
-                  { name: 'Newton Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Laws of Motion Test', dueDate: new Date(2024, 8, 7), score: '23/40'  }
-            ]
-          },
-          {
-            title: 'Energy and Work',
-            description: 'Conservation of Energy',
-            about: 'This module explores the concepts of energy, work, and the conservation of mechanical energy.',
-            materials: [
-              { title: 'Energy and Work - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Energy and Work - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Energy and Work', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Energy Homework', dueDate: new Date(2024, 8, 12), score: '11/12'  },
-              { name: 'Energy ', dueDate: new Date(2024, 8, 17), score: '12/12'  },
-              { 
-                name: 'Energy Homework 2', 
-                dueDate: new Date(2024, 8, 20), 
-                score: '12/12',
-                resources: [
-                  { name: 'Energy Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '10/60'  }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Joshua Corda',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'Chemistry 301',
-        subject: 'Organic Chemistry',
-        block: 'C',
-        time: '11:00 - 12:00',
-        grade: '91',
-        progress: '85',
-        imageUrl: 'assets/img/chemistry.png',
-        enrolled: 'no',
-        enrollmentKey: '12345',
-
-        modules: [
-          {
-            title: 'Organic Molecules and Structures',
-            description: 'Introduction to Organic Molecules',
-            about: 'This module introduces the structure and bonding of organic molecules, including hydrocarbons and functional groups.',
-            materials: [
-              { title: 'Organic Molecules - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Organic Molecules - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Organic Molecules', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Molecules Homework', dueDate: new Date(2024, 7, 20), score: '10/12'  },
-              { name: 'Molecules ', dueDate: new Date(2024, 7, 25) , score: '10/12' },
-              { 
-                name: 'Molecules Homework 2', 
-                dueDate: new Date(2024, 7, 28), 
-                score: '12/12',
-                resources: [
-                  { name: 'Molecules Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Molecules Test', dueDate: new Date(2024, 7, 30), score: '30/40'  }
-            ]
-          },
-          {
-            title: 'Chemical Reactions in Organic Chemistry',
-            description: 'Types of Organic Reactions',
-            about: 'This module covers various types of chemical reactions in organic chemistry, such as substitution, addition, and elimination reactions.',
-            materials: [
-              { title: 'Organic Reactions - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Organic Reactions - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Organic Reactions', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Reactions Homework', dueDate: new Date(2024, 8, 10) , score: '10/12' },
-              { name: 'Reactions ', dueDate: new Date(2024, 8, 15) , score: '10/12' },
-              { 
-                name: 'Reactions Homework 2', 
-                dueDate: new Date(2024, 8, 18), 
-                score: '12/12',
-                resources: [
-                  { name: 'Reactions Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Reactions Test', dueDate: new Date(2024, 8, 20), score: '40/50'  }
-            ]
-          },
-          {
-            title: 'Stereochemistry',
-            description: 'Understanding Molecular Geometry',
-            about: 'This module focuses on the spatial arrangement of atoms in organic molecules and its implications in chemical reactions.',
-            materials: [
-              { title: 'Stereochemistry - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Stereochemistry - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Stereochemistry', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Stereochemistry Homework', dueDate: new Date(2024, 8, 25), score: '10/12'  },
-              { name: 'Stereochemistry ', dueDate: new Date(2024, 8, 28) , score: '10/12' },
-              { 
-                name: 'Stereochemistry Homework 2', 
-                dueDate: new Date(2024, 8, 30), 
-                score: '11/12',
-                resources: [
-                  { name: 'Stereochemistry Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 9, 5), score: '10/40'  }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Sean Palacay',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'Biology 101',
-        subject: 'Botany',
-        block: 'D',
-        startDate: new Date(2024, 8, 23),
-        enrollmentKey: '12345',
-
-        time: '12:00 - 13:00',
-        grade: '90',
-        progress: '85',
-        imageUrl: 'assets/img/biology.png',
-        enrolled: 'yes',
-        
-        modules: [
-          {
-            title: 'Introduction to Botany',
-            description: 'Basics of Plant Biology',
-            about: 'This module covers the basic principles of plant biology, including plant structure, function, and growth.',
-            materials: [
-              { title: 'Introduction to Botany - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Introduction to Botany - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Botany', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Botany Homework 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Botany  1', dueDate: new Date(2024, 7, 18), score: '10/12'  },
-              { 
-                name: 'Botany Homework 2', 
-                dueDate: new Date(2024, 7, 22), 
-                score: '11/12',
-                resources: [
-                  { name: 'Botany Guide', link: 'assets/courses/teach.pdf' }
-                ]
-              }
-            ],
-            
-            
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '32/40'  }
-            ]
-          },
-          {
-            title: 'Plant Physiology',
-            description: 'Understanding Plant Processes',
-            about: 'This module explores the physiological processes in plants, such as photosynthesis, respiration, and water transport.',
-            materials: [
-              { title: 'Plant Physiology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Plant Physiology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Plant Physiology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Physiology Homework', dueDate: new Date(2024, 7, 30), score: '10/20'  },
-              { name: 'Physiology ', dueDate: new Date(2024, 8, 3) , score: '10/15' }
-            ],
-            exams: [
-              { name: 'Physiology Test', dueDate: new Date(2024, 8, 7), score: '105/120'  }
-            ]
-          },
-          {
-            title: 'Plant Ecology',
-            description: 'Plants and Their Environment',
-            about: 'This module focuses on the interactions between plants and their environment, including topics like plant communities and ecosystems.',
-            materials: [
-              { title: 'Plant Ecology - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Plant Ecology - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Plant Ecology', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Ecology Homework', dueDate: new Date(2024, 8, 12), score: '10/25'  },
-              { name: 'Ecology ', dueDate: new Date(2024, 8, 17), score: '12/30'  }
-            ],
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '80/120' }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Kenneth Belga',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'Computer Science 101',
-        subject: 'Programming',
-        block: 'E',
-        startDate: new Date(2024, 8, 25),
-        time: '13:00 - 14:00',
-        grade: '93',
-        progress: '85',
-        imageUrl: 'assets/img/compsci.png',
-        enrolled: 'yes',
-        enrollmentKey: '12345',
-
-        modules: [
-          {
-            title: 'Introduction to Programming',
-            description: 'Getting Started with Code',
-            about: 'This module introduces the fundamentals of programming, including basic syntax, variables, and control structures.',
-            materials: [
-              { title: 'Introduction to Programming - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Introduction to Programming - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Programming', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Programming Homework 1', dueDate: new Date(2024, 7, 15), score: '0/12'  },
-              { name: 'Programming  1', dueDate: new Date(2024, 7, 18), score: '9/15'  }
-            ],
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '119/120' }
-            ]
-          },
-          {
-            title: 'Data Structures',
-            description: 'Organizing and Managing Data',
-            about: 'This module covers essential data structures such as arrays, linked lists, and trees, and their applications in programming.',
-            materials: [
-              { title: 'Data Structures - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Data Structures - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Data Structures', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Data Structures Homework', dueDate: new Date(2024, 7, 30) , score: '4/12' },
-              { name: 'Data Structures ', dueDate: new Date(2024, 8, 3) , score: '0/20' }
-            ],
-            exams: [
-              { name: 'Data Structures Test', dueDate: new Date(2024, 8, 7), score: '2/120'  }
-            ]
-          },
-          {
-            title: 'Algorithms and Problem-Solving',
-            description: 'Efficient Coding Techniques',
-            about: 'This module focuses on developing algorithms to solve computational problems efficiently.',
-            materials: [
-              { title: 'Algorithms - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Algorithms - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Algorithms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Algorithms Homework', dueDate: new Date(2024, 8, 12), score: '12/12'  },
-              { name: 'Algorithms ', dueDate: new Date(2024, 8, 17) , score: '11/12' }
-            ],
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '41/60' }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Anton Caesar Cabais',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'History 101',
-        subject: 'World History',
-        block: 'F',
-        startDate: new Date(2024, 8, 27),
-        enrollmentKey: '12345',
-
-        time: '14:00 - 15:00',
-        grade: '88',
-        progress: '85',
-        imageUrl: 'assets/img/history.png',
-        enrolled: 'yes',
-  
-        modules: [
-          {
-            title: 'Ancient Civilizations',
-            description: 'Exploring the Foundations of History',
-            about: 'This module explores the major ancient civilizations, including Mesopotamia, Egypt, and the Indus Valley.',
-            materials: [
-              { title: 'Ancient Civilizations - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Ancient Civilizations - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Ancient Civilizations', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Ancient Civilizations Essay', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Ancient Civilizations ', dueDate: new Date(2024, 7, 18) , score: '10/12' }
-            ],
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25), score: '15/60'  }
-            ]
-          },
-          {
-            title: 'Medieval Times',
-            description: 'History of the Middle Ages',
-            about: 'This module covers the key events and developments during the Medieval period, including feudalism, the Crusades, and the rise of nation-states.',
-            materials: [
-              { title: 'Medieval Times - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Medieval Times - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Medieval Times', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Medieval Times Essay', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Medieval Times ', dueDate: new Date(2024, 8, 3), score: '9/12'  }
-            ],
-            exams: [
-              { name: 'Medieval Times Test', dueDate: new Date(2024, 8, 7) , score: '40/60' }
-            ]
-          },
-          {
-            title: 'Modern History',
-            description: 'World Events from 1500 to Present',
-            about: 'This module focuses on significant global events from the Renaissance to the present day, including revolutions, wars, and technological advancements.',
-            materials: [
-              { title: 'Modern History - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Modern History - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Modern History', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Modern History Essay', dueDate: new Date(2024, 8, 12) , score: '10/12' },
-              { name: 'Modern History ', dueDate: new Date(2024, 8, 17) , score: '4/12' }
-            ],
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '12/60'  }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Joemar Cardino',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'Geography 101',
-        subject: 'Physical Geography',
-        block: 'G',
-        startDate: new Date(2024, 8, 19),
-        enrollmentKey: '12345',
-
-        time: '15:00 - 16:00',
-        grade: '81',
-        progress: '65',
-        imageUrl: 'assets/img/georaphy.png',
-        enrolled: 'yes',
-  
-        modules: [
-          {
-            title: 'Introduction to Physical Geography',
-            description: 'Earth’s Physical Features',
-            about: 'This module covers the basic physical features of the Earth, including landforms, climate, and ecosystems.',
-            materials: [
-              { title: 'Introduction to Physical Geography - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Introduction to Physical Geography - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on Physical Geography', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Geography Homework 1', dueDate: new Date(2024, 7, 15) , score: '10/12' },
-              { name: 'Geography  1', dueDate: new Date(2024, 7, 18) , score: '10/12' }
-            ],
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '30/40' }
-            ]
-          },
-          {
-            title: 'Weather and Climate',
-            description: 'Understanding Atmospheric Processes',
-            about: 'This module explores the processes that drive weather and climate, including the water cycle, atmospheric circulation, and climate change.',
-            materials: [
-              { title: 'Weather and Climate - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Weather and Climate - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Weather and Climate', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Weather Homework', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Climate ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
-            ],
-            exams: [
-              { name: 'Weather Test', dueDate: new Date(2024, 8, 7) , score: '48/60' }
-            ]
-          },
-          {
-            title: 'Landforms and Landscapes',
-            description: 'Formation and Evolution of Earth’s Surface',
-            about: 'This module focuses on the processes that shape the Earth’s surface, such as plate tectonics, erosion, and sedimentation.',
-            materials: [
-              { title: 'Landforms and Landscapes - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Landforms and Landscapes - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Landforms', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Landforms Homework', dueDate: new Date(2024, 8, 12) , score: '12/40' },
-              { name: 'Landforms ', dueDate: new Date(2024, 8, 17) , score: '15/30' }
-            ],
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25) , score: '34/50' }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      },
-      {
-        instructor: 'Kenneth Aycardo',
-        instructor_profile: 'assets/img/bini.jpeg',
-        course: 'Literature 101',
-        subject: 'English Literature',
-        block: 'H',
-        startDate: new Date(2024, 8, 18),
-        enrollmentKey: '12345',
-
-        time: '16:00 - 17:00',
-        grade: '75',
-        progress: '65',
-        imageUrl: 'assets/img/literature.png',
-        enrolled: 'yes',
-  
-        modules: [
-          {
-            title: 'Introduction to English Literature',
-            description: 'Overview of English Literary Works',
-            about: 'This module provides an introduction to the major works and authors in English literature, from Chaucer to modern times.',
-            materials: [
-              { title: 'Introduction to English Literature - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 5) },
-              { title: 'Introduction to English Literature - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 6) },
-              { title: 'Supplementary Reading on English Literature', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 7) }
-            ],
-            assignments: [
-              { name: 'Literature Essay 1', dueDate: new Date(2024, 7, 15), score: '10/12'  },
-              { name: 'Literature  1', dueDate: new Date(2024, 7, 18) , score: '9/13' }
-            ],
-            exams: [
-              { name: 'Quiz', dueDate: new Date(2024, 7, 25) , score: '12/20' }
-            ]
-          },
-          {
-            title: 'Poetry and Prose',
-            description: 'Exploring Different Literary Forms',
-            about: 'This module explores the various forms of poetry and prose, including sonnets, novels, and essays, with an emphasis on literary analysis.',
-            materials: [
-              { title: 'Poetry and Prose - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 10) },
-              { title: 'Poetry and Prose - Video Lecture', type: 'video', link: 'assets/courses/bini.mp4', uploadDate: new Date(2024, 6, 11) },
-              { title: 'Practice Problems on Poetry and Prose', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 12) }
-            ],
-            assignments: [
-              { name: 'Poetry Analysis 1', dueDate: new Date(2024, 7, 30) , score: '10/12' },
-              { name: 'Prose ', dueDate: new Date(2024, 8, 3) , score: '10/12' }
-            ],
-            exams: [
-              { name: 'Poetry Test', dueDate: new Date(2024, 8, 7), score: '20/60'  }
-            ]
-          },
-          {
-            title: 'Shakespeare and His Contemporaries',
-            description: 'The Golden Age of English Drama',
-            about: 'This module focuses on the works of William Shakespeare and his contemporaries, examining their influence on English literature and culture.',
-            materials: [
-              { title: 'Shakespeare - Lecture Notes', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 15) },
-              { title: 'Shakespeare - Video Lecture', type: 'video', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 16) },
-              { title: 'Example Problems on Shakespeare', type: 'pdf', link: 'assets/courses/teach.pdf', uploadDate: new Date(2024, 6, 17) }
-            ],
-            assignments: [
-              { name: 'Shakespeare Essay', dueDate: new Date(2024, 8, 12), score: '10/12'  },
-              { name: 'Shakespeare ', dueDate: new Date(2024, 8, 17) , score: '10/12' }
-            ],
-            exams: [
-              { name: 'Summative Test', dueDate: new Date(2024, 8, 25), score: '105/120'  }
-            ]
-          }
-        ],
-        enrolledStudents: [
-          { name: 'John Doe', email: 'johndoe@gmail.com', progress: '20', },
-          { name: 'Jane Smith', email: 'janesmith@gmail.com', progress: '60', },
-          { name: 'Michael Johnson', email: 'michaeljohnson@gmail.com', progress: '40', },
-          { name: 'Emily Davis', email: 'emilydavis@gmail.com', progress: '50', },
-          { name: 'Daniel Garcia', email: 'danielgarcia@gmail.com', progress: '30', },
-          { name: 'Sophia Martinez', email: 'sophiamartinez@gmail.com', progress: '70', },
-          { name: 'William Anderson', email: 'williamanderson@gmail.com', progress: '90', },
-          { name: 'Olivia Thomas', email: 'oliviathomas@gmail.com', progress: '60', },
-          { name: 'James Lee', email: 'jameslee@gmail.com', progress: '40', },
-          { name: 'Ava Gonzalez', email: 'avagonzalez@gmail.com', progress: '80', },
-          { name: 'Benjamin Harris', email: 'benjaminharris@gmail.com', progress: '50', },
-          { name: 'Mia Clark', email: 'miaclark@gmail.com', progress: '70', },
-          { name: 'Elijah Lewis', email: 'elijahlewis@gmail.com', progress: '30', },
-          { name: 'Isabella Robinson', email: 'isabellarobinson@gmail.com', progress: '60', },
-          { name: 'Lucas Walker', email: 'lucaswalker@gmail.com', progress: '90', },
-          { name: 'Amelia Young', email: 'ameliayoung@gmail.com', progress: '70', },
-          { name: 'Mason Hall', email: 'masonhall@gmail.com', progress: '50', },
-          { name: 'Charlotte Allen', email: 'charlotteallen@gmail.com', progress: '40', },
-          { name: 'Ethan King', email: 'ethanking@gmail.com', progress: '60', },
-          { name: 'Abigail Wright', email: 'abigailwright@gmail.com', progress: '80', }
-        ],
-        
-      
-        
-      }
     
   ];
 
