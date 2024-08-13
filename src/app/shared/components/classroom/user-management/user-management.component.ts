@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { NewUserApprovalComponent } from './user-approval/new-user-approval/new-user-approval.component';
+import { ReportsComponent } from './reports/reports.component';
 
 interface User {
   id: string;
@@ -26,6 +27,7 @@ interface User {
     FormsModule,
     UserProfileComponent,
     NewUserApprovalComponent,
+    ReportsComponent
   ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss',
