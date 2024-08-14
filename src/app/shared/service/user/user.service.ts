@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { SupabaseService } from '../api-supabase/supabase.service';
 import { User } from '@supabase/supabase-js';
 import { GuestUser } from '../../models/model';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom, from, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -62,5 +62,27 @@ export class UserService {
     console.log(data);
     return data;
   }
+
+
+  updateUserStatus(userId: string, status: string): Observable<any> {
+    console.log('Updating user status:', userId, status); // Debugging log
+
+    const updatePromise = this.supabaseService.client
+      .from('users_tb')  // Make sure this is your actual table name
+      .update({ status: status })
+      .eq('user_id', userId);  // Ensure 'user_id' is the correct column
+
+    return from(updatePromise).pipe(
+      tap({
+        next: (result) => {
+          console.log('Update result:', result);  // Log the result for debugging
+        },
+        error: (err) => {
+          console.error('Error updating user status:', err);  // Log errors
+        }
+      })
+    );
+  }
+  
   
 }

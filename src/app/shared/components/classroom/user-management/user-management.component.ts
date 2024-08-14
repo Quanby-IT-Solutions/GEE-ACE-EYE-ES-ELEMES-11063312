@@ -7,6 +7,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { UserService } from 'src/app/shared/service/user/user.service';
 
 interface User {
+  user_id: string;
   id: string;
   first_name: string;
   last_name: string;
@@ -39,6 +40,8 @@ export class UserManagementComponent implements OnInit {
   activeView: 'allUsers' | 'reports' | 'newUserApproval' = 'allUsers';
 
   newUser: User = {
+    user_id: '',
+
     id: '',
     first_name: '',
     last_name: '',
@@ -98,6 +101,8 @@ export class UserManagementComponent implements OnInit {
 
   resetNewUser() {
     this.newUser = {
+      user_id: '',
+
       id: '',
       first_name: '',
       last_name: '',
@@ -191,5 +196,30 @@ export class UserManagementComponent implements OnInit {
     if (this.selectedUser && this.selectedUser.id === updatedUser.id) {
       this.selectedUser = { ...this.users[index] };
     }
+  }
+
+
+  blockUser(user: User): void {
+    user.status = 'suspended';
+    this.userService.updateUserStatus(user.user_id, 'suspended').subscribe(
+      response => {
+        console.log('User suspended successfully.');
+      },
+      error => {
+        console.error('Error blocking user:', error);
+      }
+    );
+  }
+
+   activateUser(user: User): void {
+    user.status = 'active';
+    this.userService.updateUserStatus(user.user_id, 'active').subscribe(
+      response => {
+        console.log('User activated successfully.');
+      },
+      error => {
+        console.error('Error activating user:', error);
+      }
+    );
   }
 }

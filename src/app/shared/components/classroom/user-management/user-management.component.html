@@ -75,7 +75,7 @@
     </div>
     
     <!-- Actions -->
-    <div class="p-6 border-t">
+    <!-- <div class="p-6 border-t">
       <h3 class="text-sm font-medium text-gray-500 mb-4">Actions</h3>
       <button
         class="flex items-center w-full text-left py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors"
@@ -87,7 +87,7 @@
       >
         <i class="fas fa-trash mr-2"></i> Delete
       </button>
-    </div>
+    </div> -->
   </div>
   
 
@@ -159,12 +159,12 @@
                   <th class="p-4">Position</th>
                   <th class="p-4">Department</th>
                   <th class="p-4">Status</th>
+                  <th class="p-4">Action</th>
                 </tr>
               </thead>
               <tbody class="text-gray-800">
                 <tr
                   *ngFor="let user of filteredUsers; trackBy: trackByUserId"
-                  (click)="selectUser(user)"
                   class="hover:bg-gray-50 cursor-pointer transition-colors"
                 >
                   <td class="p-4 border-b border-gray-200">{{ user.first_name }}</td>
@@ -177,17 +177,35 @@
                       class="px-3 py-1 text-xs font-semibold leading-5 rounded-full"
                       [ngClass]="{
                         'bg-green-100 text-green-800': user.status === 'active',
-                        'bg-red-100 text-red-800': user.status !== 'active'
+                        'bg-red-100 text-red-800': user.status === 'suspended'
                       }"
                     >
                       {{ user.status }}
                     </span>
+                  </td>
+                  <td class="p-4 border-b border-gray-200">
+                    <button
+                      class="text-red-500 hover:text-red-700 mr-2"
+                      (click)="blockUser(user)"
+                      *ngIf="user.status !== 'suspended'"
+                    >
+                      <i class="fas fa-ban"></i> Block
+                    </button>
+                    <button
+                      class="text-green-500 hover:text-green-700"
+                      (click)="activateUser(user)"
+                      *ngIf="user.status === 'suspended'"
+                    >
+                      <i class="fas fa-check-circle"></i> Activate
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+        
+        
         
         
 
