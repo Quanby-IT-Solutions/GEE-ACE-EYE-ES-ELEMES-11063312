@@ -54,9 +54,9 @@
       <div class="flex flex-col p-4 w-full max-md:max-w-full mx-auto">
         <div class="flex flex-wrap flex-1 gap-3 size-full max-md:max-w-full justify-center items-center">
           <article *ngFor="let template of certificateTemplates" 
-                   class="flex flex-col grow shrink pb-3 w-[141px] justify-center items-center cursor-pointer"
-                   [class.selected-template]="template === selectedTemplate"
-                   (click)="selectTemplate(template)">
+         class="flex flex-col grow shrink pb-3 w-[141px] justify-center items-center cursor-pointer"
+         [ngClass]="{'selected-template': template === selectedTemplate}"
+         (click)="selectTemplate(template)">
             <img loading="lazy" [src]="template.imageUrl" [alt]="template.title" class="object-contain w-44 rounded-xl aspect-[1.78]" />
             <div class="flex flex-col mt-3 w-full text-center">
               <h3 class="w-full text-base font-medium leading-6 text-neutral-900">{{ template.title }}</h3>
@@ -66,11 +66,14 @@
         </div>
       </div>
       <div class="flex items-start px-4 py-3 w-full text-base font-bold text-center text-slate-50 max-md:max-w-full">
-        <div class="flex overflow-hidden justify-center items-center px-5 bg-blue-600 rounded-xl max-w-[480px] min-h-[48px] min-w-[84px] w-[177px]">
-          <div class="overflow-hidden self-stretch my-auto w-[137px]">
-            Use this template
-          </div>
-        </div>
+        <button class="flex overflow-hidden justify-center items-center px-5 rounded-xl max-w-[480px] min-h-[48px] min-w-[84px] w-[177px]"
+        [ngClass]="{'bg-slate-300 text-slate-50': !selectedTemplate, 'bg-blue-600 text-slate-50': selectedTemplate}"
+        [disabled]="!selectedTemplate"
+        (click)="useSelectedTemplate()">
+          <span class="overflow-hidden self-stretch my-auto w-[137px]">
+            {{ selectedTemplate ? 'Use this template' : 'Select a template' }}
+          </span>
+        </button>
       </div>
       <div
         class="px-4 pt-4 pb-2 w-full text-lg font-bold leading-none min-h-[47px] text-neutral-900 max-md:max-w-full"
@@ -78,39 +81,40 @@
         2. Select course
       </div>
       <div class="flex flex-col justify-center px-4 py-3 w-full max-md:max-w-full">
-        <div
-          class="flex flex-col w-full min-h-[48px] min-w-[160px] max-md:max-w-full"
-        >
+        <div class="flex flex-col w-full min-h-[48px] min-w-[160px] max-md:max-w-full">
           <div class="flex flex-wrap flex-1 rounded-xl size-full max-md:max-w-full">
-            <div
-              class="flex justify-center items-center pl-4 w-10 h-full rounded-xl bg-slate-200"
-            >
+            <div class="flex justify-center items-center pl-4 w-10 h-full rounded-xl bg-slate-200">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/e6bf6b3b2c788bf80c94952975eac41092ba0774cd1a996be71f99b1b98466be?placeholderIfAbsent=true&apiKey=377401e3604042c7b3deecb062253d04"
                 class="object-contain flex-1 shrink self-stretch my-auto w-6 aspect-square basis-0"
               />
             </div>
-            <div
+            <input
+              type="text"
+              placeholder="Search by course"
+              (input)="onSearchCourse($event)"
               class="overflow-hidden flex-1 shrink self-stretch py-2 pr-4 pl-2 h-full text-base rounded-none bg-slate-200 min-w-[240px] text-slate-500 w-[193px] max-md:max-w-full"
-            >
-              Search by course
-            </div>
+              [disabled]="!isTemplateConfirmed"
+            />
           </div>
         </div>
       </div>
-      <div *ngFor="let course of courses" class="flex flex-wrap gap-4 items-center px-4 py-2 w-full text-base font-medium bg-slate-50 min-h-[72px] text-neutral-900 max-md:max-w-full">
-        <img
-          loading="lazy"
-          [src]="course.imageUrl"
-          class="object-contain shrink-0 self-stretch my-auto w-14 rounded-3xl aspect-square"
-        />
-        <div class="flex flex-col justify-center self-stretch my-auto w-[230px]">
-          <div class="overflow-hidden max-w-full w-[230px]">
-            {{ course.title }}
-          </div>
+      
+      <div *ngFor="let course of filteredCourses"
+      class="flex flex-wrap gap-4 items-center px-4 py-2 w-full text-base font-medium bg-slate-50 min-h-[72px] text-neutral-900 max-md:max-w-full cursor-pointer"
+      [ngClass]="{'bg-blue-600 text-white': course === selectedCourse, 'bg-slate-50 text-neutral-900': course !== selectedCourse, 'cursor-not-allowed opacity-50': !isTemplateConfirmed}"
+      (click)="isTemplateConfirmed ? selectCourse(course) : null">
+      <img loading="lazy" [src]="course.imageUrl"
+        class="object-contain shrink-0 self-stretch my-auto w-14 rounded-3xl aspect-square" />
+      <div class="flex flex-col justify-center self-stretch my-auto w-[230px]">
+        <div class="overflow-hidden max-w-full w-[230px]">
+          {{ course.title }}
         </div>
       </div>
+    </div>
+    
+      
       <div
         class="flex flex-wrap gap-4 items-start px-4 py-3 w-full text-sm font-bold text-center text-neutral-900 max-md:max-w-full"
       >
@@ -129,14 +133,13 @@
           </div>
         </div>
       </div>
-      <div
-        class="flex items-start px-4 py-3 w-full text-sm font-bold text-center text-slate-50 max-md:max-w-full"
-      >
-        <div
-          class="flex overflow-hidden flex-1 shrink justify-center items-center px-4 bg-blue-600 rounded-xl basis-0 max-w-[480px] min-h-[40px] min-w-[84px] w-[480px] max-md:max-w-full"
-        >
+      <div class="flex items-start px-4 py-3 w-full text-sm font-bold text-center text-slate-50 max-md:max-w-full">
+        <button class="flex overflow-hidden justify-center items-center px-4 bg-blue-600 rounded-xl max-w-[480px] min-h-[40px] min-w-[84px] w-[480px] max-md:max-w-full"
+          [ngClass]="{'bg-slate-300 text-slate-50': !selectedCourse, 'bg-blue-600 text-slate-50': selectedCourse}"
+          [disabled]="!selectedCourse"
+          (click)="issueToCourse()">
           <div class="overflow-hidden self-stretch my-auto w-[106px]">
             Issue to Course
           </div>
-        </div>
+        </button>
       </div>

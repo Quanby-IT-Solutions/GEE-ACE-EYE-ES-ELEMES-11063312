@@ -9,8 +9,11 @@ export class CertificatesComponent {
 
   selectedTemplate: any = null;
   showGenerateCertificateSection = false;
-searchTerm: string = '';
+  searchTerm: string = '';
   filteredCourses: any[] = [];
+  selectedCourse: any = null; 
+  isTemplateConfirmed: boolean = false;
+
   certificateTemplates = [
    
     {
@@ -110,8 +113,46 @@ searchTerm: string = '';
   
 
   selectTemplate(template: any) {
-    this.selectedTemplate = template;
+    if (this.selectedTemplate === template) {
+      this.selectedTemplate = null;
+    } else {
+      this.selectedTemplate = template;
+    }
   }
 
+  useSelectedTemplate() {
+    if (this.selectedTemplate) {
+      this.isTemplateConfirmed = true;
+      console.log('Using template:', this.selectedTemplate);
+    }
+  }
 
+  constructor() {
+    // Initialize the filteredCourses with all available courses initially.
+    this.filteredCourses = this.courses;
+  }
+
+   onSearchCourse(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const searchTerm = input.value.toLowerCase().trim();
+
+    if (searchTerm === '') {
+      this.filteredCourses = this.courses;
+    } else {
+      this.filteredCourses = this.courses.filter(course =>
+        course.title.toLowerCase().includes(searchTerm)
+      );
+    }
+  }
+
+  selectCourse(course: any) { 
+    this.selectedCourse = this.selectedCourse === course ? null : course;
+  }
+  
+  issueToCourse() {
+    if (this.selectedCourse) {
+      console.log('Issuing certificate to course:', this.selectedCourse);
+    }
+  }
+  
 }
